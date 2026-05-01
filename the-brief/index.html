@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a1612;
+      --cream:  #f0ebe0;
+      --muted:  #8a7e6d;
+      --orange: #e8512a;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Alexandria', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    .scene {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.4s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .photo-wrap {
+      position: relative;
+      width: min(680px, 92vw);
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      filter: sepia(0.12) contrast(1.05);
+    }
+
+    .caption {
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(240,235,224,0.55);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .caption strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: rgba(240,235,224,0.25);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back:hover { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="eyebrow">Firebelly Design · Chicago · 2005–2009</div>
+    <div class="photo-wrap">
+      <img src="../images/easter/the-team.jpg" alt="The team">
+    </div>
+    <p class="caption">Where it started. <strong>Mikel Rosenthal</strong> · Firebelly Design</p>
+  </div>
+  <a class="back" href="../">← pbk studio</a>
+</body>
+</html>
