@@ -671,9 +671,10 @@
       position: relative;
       background: var(--ink);
       overflow: hidden;
-      height: 420px;
+      aspect-ratio: 16/9;
+      max-height: 540px;
     }
-    .modal-gallery.single { height: 420px; }
+    .modal-gallery.single { aspect-ratio: 16/9; max-height: 540px; }
     .carousel-track {
       display: flex;
       height: 100%;
@@ -688,7 +689,7 @@
     .carousel-slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       user-select: none;
     }
@@ -842,7 +843,7 @@
     @media (max-width: 720px) {
       .modal-body { padding: 32px 24px 48px; }
       .modal-cols { grid-template-columns: 1fr; gap: 24px; }
-      .modal-gallery img { height: 220px; }
+      .modal-gallery { max-height: 240px; }
     }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
@@ -2386,6 +2387,7 @@
         meta: 'Design Systems Lead / Senior Designer · Contract · Remote',
         tags: ['Enterprise Scale', 'Accessibility', 'Cross-platform', 'Component Architecture', 'Governance'],
         images: [
+          'images/design-systems/ge-edison/00-portfolio-slide.jpg',
           'images/design-systems/ge-edison.png',
           'images/design-systems/ge-edison/01-home-light.jpg',
           'images/design-systems/ge-edison/02-home-alt.png',
@@ -2406,7 +2408,7 @@
         title: 'FIBER Design System',
         meta: 'Senior UI/UX Designer · Contract',
         tags: ['Enterprise Design System', 'Component Library', 'Healthcare', 'Multi-product', 'Documentation'],
-        images: ['images/design-systems/bcbs-fiber-1.png', 'images/design-systems/bcbs-fiber-2.png'],
+        images: ['images/design-systems/bcbs-fiber-slide.jpg', 'images/design-systems/bcbs-fiber-1.png', 'images/design-systems/bcbs-fiber-2.png'],
         intro: 'FIBER was the first unified design system across Blue Cross Blue Shield\'s fragmented digital product ecosystem — bringing consistency to a platform serving millions of members.',
         body: `<p>FIBER stood for Foundational Interface Building Elements Reference — a name that telegraphed exactly what it needed to do: give dozens of product teams a shared visual foundation they could actually build on.</p>
                <p>Coming into a large insurance enterprise, the design landscape was fractured. Each product team had developed its own patterns, its own component vocabulary, its own interpretation of the brand. FIBER's job was to end that fragmentation without disrupting the teams already shipping.</p>
@@ -2423,6 +2425,7 @@
         meta: 'Principal Designer / Design Systems Lead',
         tags: ['Product System', 'Marketing System', 'Fintech', 'Brand-to-Product', 'Token Architecture', 'Multi-brand'],
         images: [
+          'images/design-systems/avant-pathfinder/00-portfolio-slide.jpg',
           'images/design-systems/avant-pathfinder/01-dashboard.jpg',
           'images/design-systems/avant-pathfinder/02-login.jpg',
           'images/design-systems/avant-pathfinder/03-style.png',
@@ -2450,6 +2453,7 @@
         meta: 'Senior Designer / Design Systems Lead · Contract',
         tags: ['HR Technology', 'Component System', 'SaaS', 'Accessibility', 'Product Design'],
         images: [
+          'images/design-systems/sure-prism/00-portfolio-slide.jpg',
           'images/design-systems/sure-prism/02-graphs-desktop.png',
           'images/design-systems/sure-prism/03-connect-macbook.png',
           'images/design-systems/sure-prism/04-relationship-advisor.png',
@@ -2474,6 +2478,7 @@
         meta: 'Senior UI/UX Designer · Contract',
         tags: ['Enterprise UX', 'Data Products', 'Consumer Platform', 'Dashboard Design', 'Financial Data'],
         images: [
+          'images/design-systems/transunion/00-portfolio-slide.jpg',
           'images/design-systems/transunion/01-tucm-overview.jpg',
           'images/design-systems/transunion/02-tucm-screens.jpg',
           'images/design-systems/transunion/03-tucm-detail.jpg',
@@ -2495,6 +2500,7 @@
         meta: 'Lead UX/UI Designer · Contract',
         tags: ['Rebranding', 'UX Design', 'Mobile', 'Desktop', 'Consumer Finance', 'Dashboard'],
         images: [
+          'images/ux/truecredit/00-portfolio-slide.jpg',
           'images/ux/truecredit/01-overview.jpg',
           'images/ux/truecredit/02-dashboard.jpg',
           'images/ux/truecredit/03-detail.jpg',
@@ -2668,6 +2674,7 @@
         meta: 'Art Director / Senior Designer · In-house · Chicago',
         tags: ['Campaign Design', 'Art Direction', 'Event Graphics', 'Motion', 'Brand'],
         images: [
+          'images/branding/avant/00-portfolio-slide.jpg',
           'images/branding/avant/01-forge-hero.jpg',
           'images/branding/avant/02-forge-banner.jpg',
           'images/branding/avant/03-sf-concept-1.jpg',
