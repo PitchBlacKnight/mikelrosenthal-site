@@ -453,7 +453,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--cream);
-      border: 1px solid rgba(240,235,224,0.18);
+      border: 1px solid rgba(240,235,224,0.50);
       padding: 6px 13px;
     }
 
@@ -969,6 +969,9 @@
 
     /* Practice already dark — deepen it further so it reads as distinct */
     html.dark #practice        { background: #0f0d0b; }
+    /* Practice section: --cream flips to near-black in dark mode; force light values */
+    html.dark .prac-name       { color: #ede8dd; }
+    html.dark .str-tag         { color: #ede8dd; border-color: rgba(237,232,221,0.55); }
 
     /* Mobile nav hardcodes var(--ink) as bg — keep it dark */
     html.dark .mobile-nav      { background: #0f0d0b; border-top-color: rgba(237,232,221,0.08); }
