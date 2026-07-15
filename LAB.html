@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PBK LAB — Motion & Interaction Playground</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --ink:#0F0C0A; --ink-2:#171210; --cream:#F1E8D6; --cream-70:rgba(241,232,214,.72);
+  --cream-45:rgba(241,232,214,.45); --coral:#EF7A5E; --pink:#DE93A9; --slate:#8FA8A6;
+  --line:rgba(241,232,214,.13);
+  --serif:"Fraunces",Georgia,serif; --sans:"Space Grotesk",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--coral);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.grain{position:fixed;inset:-100%;z-index:1200;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}30%{transform:translate(4%,-3%)}60%{transform:translate(-5%,5%)}}
+
+header{padding:110px clamp(20px,4vw,56px) 60px;border-bottom:1px solid var(--line)}
+.lab-tag{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--coral);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.lab-tag::before{content:"";width:38px;height:1px;background:var(--coral)}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,6.5vw,96px);line-height:1;letter-spacing:-.015em;max-width:16ch}
+h1 em{font-style:italic;color:var(--coral)}
+.lab-intro{margin-top:24px;max-width:60ch;color:var(--cream-70);font-size:15px}
+.lab-intro b{color:var(--cream);font-weight:400}
+.lab-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;
+  padding:16px clamp(20px,4vw,56px);background:rgba(15,12,10,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.lab-nav .brand{font-family:var(--serif);font-size:16px}
+.lab-nav .brand em{font-style:italic;color:var(--coral)}
+.lab-nav .links{display:flex;gap:26px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-70)}
+.lab-nav .links a:hover{color:var(--coral)}
+
+.sec{padding:clamp(60px,9vh,110px) clamp(20px,4vw,56px)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45)}
+.sec-head .no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--coral)}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* demo grid */
+.demos{display:grid;grid-template-columns:1fr;gap:clamp(20px,2.4vw,34px)}
+@media(min-width:980px){.demos{grid-template-columns:1fr 1fr}}
+.demo{border:1px solid var(--line);border-radius:4px;background:var(--ink-2);overflow:hidden;display:flex;flex-direction:column}
+.demo.wide{grid-column:1/-1}
+.demo-bar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.demo-bar h3{font-family:var(--serif);font-weight:400;font-size:19px}
+.demo-bar .tags{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-45)}
+.demo-bar .acts{display:flex;gap:8px}
+.demo-bar button{
+  font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  background:none;border:1px solid var(--line);color:var(--cream-70);border-radius:99px;padding:7px 14px;cursor:pointer;
+  transition:all .3s}
+.demo-bar button:hover{border-color:var(--coral);color:var(--coral)}
+.demo-bar button.copied{background:var(--coral);color:var(--ink);border-color:var(--coral)}
+.stage{position:relative;min-height:280px;display:flex;align-items:center;justify-content:center;padding:34px;overflow:hidden}
+.demo.wide .stage{min-height:340px}
+.codebox{display:none;border-top:1px solid var(--line);max-height:420px;overflow:auto;background:#0B0908}
+.demo.show-code .codebox{display:block}
+.codebox pre{font-family:var(--mono);font-size:11px;line-height:1.7;color:#C9BFa9;padding:20px 22px;white-space:pre;tab-size:2}
+
+/* linkboard */
+.links-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:760px){.links-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1180px){.links-grid{grid-template-columns:1fr 1fr 1fr}}
+.link-card{border:1px solid var(--line);border-radius:4px;padding:22px 24px;display:flex;flex-direction:column;gap:8px;
+  transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1);position:relative;background:var(--ink-2)}
+.link-card:hover{border-color:rgba(239,122,94,.6);transform:translateY(-4px)}
+.link-card .k{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--pink)}
+.link-card h4{font-family:var(--serif);font-weight:400;font-size:21px}
+.link-card h4 span{font-family:var(--sans);font-size:11px;color:var(--cream-45);margin-left:8px}
+.link-card p{font-size:13px;color:var(--cream-70)}
+.link-card .arr{position:absolute;top:20px;right:22px;color:var(--coral);transition:transform .4s}
+.link-card:hover .arr{transform:translate(4px,-4px)}
+
+.howto{max-width:70ch;color:var(--cream-70);font-size:15px;display:flex;flex-direction:column;gap:14px}
+.howto b{color:var(--cream);font-weight:400}
+.howto .step{display:flex;gap:16px}
+.howto .step i{font-family:var(--serif);font-style:italic;color:var(--coral);min-width:24px}
+footer{padding:40px clamp(20px,4vw,56px);border-top:1px solid var(--line);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45)}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="lab-nav">
+  <a class="brand" href="index.html">PBK <em>Lab</em></a>
+  <div class="links">
+    <a href="#interactions">Interactions</a>
+    <a href="#sources">Sources</a>
+    <a href="#howto">How to use</a>
+    <a href="index.html">← Back to site</a>
+  </div>
+</nav>
+
+<header>
+  <p class="lab-tag">Private Playground · Not linked from the live site</p>
+  <h1>Motion experiments, <em>ready to steal.</em></h1>
+  <p class="lab-intro">Every cell below is a <b>live, working interaction</b> built on the same stack as your site (vanilla JS + GSAP + ScrollTrigger — all free in 2026). Hit <b>Code</b> to see the source, <b>Copy</b> to grab it, then paste into any page — each snippet is self-contained with its own markup, style, and script.</p>
+</header>
+
+<!-- ============ 01 · INTERACTIONS ============ -->
+<section class="sec" id="interactions">
+  <div class="sec-head"><span class="no">01</span><span>Live Interactions — copy &amp; paste</span></div>
+  <div class="demos">
+
+    <!-- Magnetic button -->
+    <div class="demo" data-name="Magnetic Button">
+      <div class="demo-bar"><div><h3>Magnetic Button</h3><div class="tags">Hover · GSAP · Awwwards staple</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-magnet-wrap">
+  <a href="#" class="fx-magnet">Let's talk →</a>
+</div>
+<style>
+.fx-magnet-wrap{display:flex;justify-content:center;padding:20px}
+.fx-magnet{
+  display:inline-block;padding:20px 44px;border:1px solid rgba(241,232,214,.4);
+  border-radius:99px;font-family:"Fraunces",serif;font-style:italic;font-size:20px;
+  color:#F1E8D6;transition:background .35s,color .35s,border-color .35s;
+}
+.fx-magnet:hover{background:#EF7A5E;border-color:#EF7A5E;color:#0F0C0A}
+</style>
+<script>
+document.querySelectorAll('.fx-magnet').forEach(el => {
+  const x = gsap.quickTo(el, 'x', {duration:.4, ease:'power3'});
+  const y = gsap.quickTo(el, 'y', {duration:.4, ease:'power3'});
+  el.parentElement.addEventListener('mousemove', e => {
+    const b = el.getBoundingClientRect();
+    x((e.clientX - (b.left + b.width/2)) * .38);
+    y((e.clientY - (b.top + b.height/2)) * .38);
+  });
+  el.parentElement.addEventListener('mouseleave', () =>
+    gsap.to(el, {x:0, y:0, duration:.8, ease:'elastic.out(1,.35)'}));
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Text scramble -->
+    <div class="demo" data-name="Text Scramble">
+      <div class="demo-bar"><div><h3>Text Scramble</h3><div class="tags">Hover · Vanilla · Cyber-editorial</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<a href="#" class="fx-scramble" data-text="PITCHBLACKNIGHT">PITCHBLACKNIGHT</a>
+<style>
+.fx-scramble{
+  font-family:"Space Grotesk",sans-serif;font-size:clamp(22px,3vw,34px);
+  letter-spacing:.28em;color:#F1E8D6;
+}
+.fx-scramble:hover{color:#EF7A5E}
+</style>
+<script>
+document.querySelectorAll('.fx-scramble').forEach(el => {
+  const chars = '!<>-_\\/[]{}—=+*^?#________';
+  const original = el.dataset.text;
+  let frame, iteration = 0;
+  el.addEventListener('mouseenter', () => {
+    cancelAnimationFrame(frame); iteration = 0;
+    const tick = () => {
+      el.textContent = original.split('').map((c, i) =>
+        i < iteration ? c : chars[Math.floor(Math.random() * chars.length)]).join('');
+      iteration += .4;
+      if (iteration < original.length) frame = requestAnimationFrame(tick);
+      else el.textContent = original;
+    };
+    tick();
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Char rise reveal -->
+    <div class="demo" data-name="Char Rise Reveal">
+      <div class="demo-bar"><div><h3>Char Rise Reveal</h3><div class="tags">On-view · No library · Kinetic type</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<h2 class="fx-rise">Every pixel earns its place.</h2>
+<style>
+.fx-rise{
+  font-family:"Fraunces",serif;font-weight:300;font-size:clamp(26px,3.4vw,44px);
+  color:#F1E8D6;line-height:1.1;letter-spacing:-.01em;
+}
+.fx-rise .ch{display:inline-block;overflow:hidden;vertical-align:top}
+.fx-rise .ch i{display:inline-block;font-style:normal;transform:translateY(110%) rotate(5deg);
+  transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.fx-rise.in .ch i{transform:none}
+</style>
+<script>
+document.querySelectorAll('.fx-rise').forEach(el => {
+  el.innerHTML = el.textContent.split('').map(c =>
+    c === ' ' ? ' ' : `<span class="ch"><i>${c}</i></span>`).join('');
+  el.querySelectorAll('.ch i').forEach((c, i) => c.style.transitionDelay = (i * 22) + 'ms');
+  new IntersectionObserver((es, io) => es.forEach(e => {
+    if (e.isIntersecting) { el.classList.add('in'); io.disconnect(); }
+  }), {threshold:.4}).observe(el);
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Spotlight card -->
+    <div class="demo" data-name="Spotlight Card">
+      <div class="demo-bar"><div><h3>Spotlight Card</h3><div class="tags">Hover · CSS variables · Aceternity-style</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-spot">
+  <h4>Design Systems</h4>
+  <p>Move your mouse — the light follows. Works as cards, nav items, or pricing rows.</p>
+</div>
+<style>
+.fx-spot{
+  --mx:50%; --my:50%;
+  position:relative;max-width:340px;padding:34px 30px;border-radius:6px;
+  background:#171210;border:1px solid rgba(241,232,214,.12);overflow:hidden;
+  font-family:"Space Grotesk",sans-serif;color:rgba(241,232,214,.7);
+}
+.fx-spot::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(280px circle at var(--mx) var(--my), rgba(239,122,94,.16), transparent 65%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.fx-spot:hover::before{opacity:1}
+.fx-spot h4{font-family:"Fraunces",serif;font-weight:400;font-size:23px;color:#F1E8D6;margin-bottom:10px}
+.fx-spot p{font-size:13.5px;line-height:1.6}
+</style>
+<script>
+document.querySelectorAll('.fx-spot').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const b = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - b.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - b.top) + 'px');
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Tilt + glare -->
+    <div class="demo" data-name="Tilt Glare Card">
+      <div class="demo-bar"><div><h3>3D Tilt + Glare</h3><div class="tags">Hover · Vanilla · Depth</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-tilt">
+  <img src="ASSETS/work/board-google.jpg" alt="">
+  <span class="glare"></span>
+</div>
+<style>
+.fx-tilt{
+  position:relative;width:min(340px,80%);border-radius:6px;overflow:hidden;
+  transform-style:preserve-3d;will-change:transform;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+}
+.fx-tilt img{width:100%;display:block}
+.fx-tilt .glare{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg, transparent 30%, rgba(241,232,214,.22) 48%, transparent 62%);
+  transform:translateX(-120%);transition:transform .6s;
+}
+.fx-tilt:hover .glare{transform:translateX(120%)}
+</style>
+<script>
+document.querySelectorAll('.fx-tilt').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const b = card.getBoundingClientRect();
+    const rx = ((e.clientY - b.top) / b.height - .5) * -10;
+    const ry = ((e.clientX - b.left) / b.width - .5) * 12;
+    card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform .7s cubic-bezier(.22,1,.36,1)';
+    card.style.transform = 'perspective(700px)';
+    setTimeout(() => card.style.transition = '', 700);
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Odometer counter -->
+    <div class="demo" data-name="Counter">
+      <div class="demo-bar"><div><h3>Ease-out Counter</h3><div class="tags">On-view · Vanilla · Stats</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-count-row">
+  <div class="fx-count"><b data-to="24">0</b><span>Years</span></div>
+  <div class="fx-count"><b data-to="156">0</b><span>Works</span></div>
+  <div class="fx-count"><b data-to="500">0</b><span>K reached</span></div>
+</div>
+<style>
+.fx-count-row{display:flex;gap:clamp(30px,5vw,70px);font-family:"Space Grotesk",sans-serif}
+.fx-count{text-align:center}
+.fx-count b{display:block;font-family:"Fraunces",serif;font-weight:300;font-size:clamp(40px,5vw,64px);
+  color:#F1E8D6;line-height:1}
+.fx-count span{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(241,232,214,.45)}
+</style>
+<script>
+document.querySelectorAll('.fx-count b').forEach(el => {
+  new IntersectionObserver((es, io) => es.forEach(entry => {
+    if (!entry.isIntersecting) return; io.disconnect();
+    const end = +el.dataset.to, t0 = performance.now(), dur = 1700;
+    const step = t => {
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 4)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }), {threshold:.6}).observe(el);
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Image trail -->
+    <div class="demo wide" data-name="Cursor Image Trail">
+      <div class="demo-bar"><div><h3>Cursor Image Trail</h3><div class="tags">Mousemove · GSAP · Very 2026</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-trail" data-images="ASSETS/work/board-google.jpg,ASSETS/work/board-aflac.jpg,ASSETS/work/board-porter.jpg,ASSETS/work/board-truecredit.jpg,ASSETS/work/spacelab-box.jpg,ASSETS/work/board-dremel.jpg">
+  <p>move your cursor through this field</p>
+</div>
+<style>
+.fx-trail{
+  position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border-radius:4px;background:#0B0908;cursor:crosshair;
+}
+.fx-trail p{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(18px,2.2vw,28px);
+  color:rgba(241,232,214,.45);pointer-events:none}
+.fx-trail img.tr{
+  position:absolute;width:180px;border-radius:3px;pointer-events:none;
+  box-shadow:0 20px 50px -15px rgba(0,0,0,.8);will-change:transform;
+}
+</style>
+<script>
+document.querySelectorAll('.fx-trail').forEach(zone => {
+  const srcs = zone.dataset.images.split(',');
+  let last = 0, i = 0;
+  zone.addEventListener('mousemove', e => {
+    if (performance.now() - last < 110) return;
+    last = performance.now();
+    const b = zone.getBoundingClientRect();
+    const img = document.createElement('img');
+    img.src = srcs[i++ % srcs.length]; img.className = 'tr';
+    zone.appendChild(img);
+    gsap.set(img, {x: e.clientX - b.left - 90, y: e.clientY - b.top - 60,
+      rotate: gsap.utils.random(-14, 14), scale: 0});
+    gsap.timeline({onComplete: () => img.remove()})
+      .to(img, {scale: 1, duration: .35, ease: 'back.out(2)'})
+      .to(img, {scale: .6, opacity: 0, y: '-=40', duration: .5, ease: 'power2.in'}, '+=.25');
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Marquee -->
+    <div class="demo wide" data-name="Velocity Marquee">
+      <div class="demo-bar"><div><h3>Velocity-Reactive Marquee</h3><div class="tags">Scroll · GSAP ScrollTrigger · Skews with speed</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-marquee"><div class="track">
+  <span>Art Direction ✦ Design Systems ✦ Motion ✦ Sound ✦ </span><span>Art Direction ✦ Design Systems ✦ Motion ✦ Sound ✦ </span>
+</div></div>
+<style>
+.fx-marquee{overflow:hidden;width:100%;padding:26px 0;border-top:1px solid rgba(241,232,214,.13);
+  border-bottom:1px solid rgba(241,232,214,.13)}
+.fx-marquee .track{display:flex;width:max-content;will-change:transform}
+.fx-marquee span{font-family:"Fraunces",serif;font-style:italic;font-weight:300;white-space:nowrap;
+  font-size:clamp(22px,3vw,40px);color:rgba(241,232,214,.6);padding-right:20px}
+</style>
+<script>
+document.querySelectorAll('.fx-marquee .track').forEach(track => {
+  const tween = gsap.to(track, {xPercent:-50, repeat:-1, duration:24, ease:'none'});
+  const skew = gsap.quickTo(track, 'skewX', {duration:.5, ease:'power3'});
+  let settle;
+  ScrollTrigger.create({
+    onUpdate(self){
+      const v = self.getVelocity();
+      tween.timeScale(gsap.utils.clamp(-4, 4, 1 + v/900));
+      skew(gsap.utils.clamp(-10, 10, v/200));
+      if (settle) settle.restart(true);
+      else settle = gsap.delayedCall(.15, () => {
+        gsap.to(tween, {timeScale:1, duration:.6, overwrite:'auto'}); skew(0);
+      });
+    }
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Text fill on scroll -->
+    <div class="demo wide" data-name="Scroll Text Fill">
+      <div class="demo-bar"><div><h3>Text Fill on Scroll</h3><div class="tags">Scrub · GSAP ScrollTrigger · Editorial</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<p class="fx-fill">Words wake up one by one as the reader scrolls — the single most-used editorial trick on every awards site this year, and it never misses.</p>
+<style>
+.fx-fill{
+  font-family:"Fraunces",serif;font-weight:300;font-size:clamp(22px,3vw,40px);
+  line-height:1.25;color:#F1E8D6;max-width:26ch;letter-spacing:-.01em;
+}
+.fx-fill .w{opacity:.13}
+</style>
+<script>
+document.querySelectorAll('.fx-fill').forEach(el => {
+  el.innerHTML = el.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
+  gsap.to(el.querySelectorAll('.w'), {
+    opacity: 1, stagger: .06, ease: 'none',
+    scrollTrigger: {trigger: el, start: 'top 85%', end: 'bottom 45%', scrub: .5}
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Clip reveal -->
+    <div class="demo" data-name="Clip Reveal Image">
+      <div class="demo-bar"><div><h3>Clip-Path Image Reveal</h3><div class="tags">On-view · GSAP · Cinematic</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<figure class="fx-clip"><img src="ASSETS/work/spacelab-box.jpg" alt=""></figure>
+<style>
+.fx-clip{width:min(380px,85%);border-radius:4px;overflow:hidden}
+.fx-clip img{width:100%;display:block;transform:scale(1.15)}
+</style>
+<script>
+document.querySelectorAll('.fx-clip').forEach(fig => {
+  const img = fig.querySelector('img');
+  gsap.set(fig, {clipPath: 'inset(100% 0% 0% 0%)'});
+  ScrollTrigger.create({
+    trigger: fig, start: 'top 82%', once: true,
+    onEnter: () => {
+      gsap.to(fig, {clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'expo.inOut'});
+      gsap.to(img, {scale: 1, duration: 1.8, ease: 'expo.out'});
+    }
+  });
+});
+</script>
+      </template>
+    </div>
+
+    <!-- Aurora background -->
+    <div class="demo" data-name="Aurora Background">
+      <div class="demo-bar"><div><h3>Aurora Mesh Background</h3><div class="tags">Ambient · Pure CSS · Zero JS</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage"></div>
+      <template class="snippet">
+<div class="fx-aurora"><span>ambient light, no javascript</span></div>
+<style>
+.fx-aurora{
+  position:relative;width:100%;min-height:260px;border-radius:6px;overflow:hidden;
+  background:#0B0908;display:flex;align-items:center;justify-content:center;
+}
+.fx-aurora::before,.fx-aurora::after{
+  content:"";position:absolute;width:60%;aspect-ratio:1;border-radius:50%;
+  filter:blur(70px);opacity:.5;mix-blend-mode:screen;
+}
+.fx-aurora::before{
+  background:radial-gradient(circle, #EF7A5E, transparent 65%);
+  top:-20%;left:-10%;animation:fx-aur1 11s ease-in-out infinite alternate;
+}
+.fx-aurora::after{
+  background:radial-gradient(circle, #8FA8A6, transparent 65%);
+  bottom:-25%;right:-10%;animation:fx-aur2 13s ease-in-out infinite alternate;
+}
+@keyframes fx-aur1{to{transform:translate(30%,25%) scale(1.2)}}
+@keyframes fx-aur2{to{transform:translate(-25%,-20%) scale(1.35)}}
+.fx-aurora span{position:relative;z-index:2;font-family:"Fraunces",serif;font-style:italic;
+  color:rgba(241,232,214,.75);font-size:clamp(16px,2vw,22px)}
+</style>
+      </template>
+    </div>
+
+    <!-- Stacking cards -->
+    <div class="demo wide" data-name="Stacking Cards">
+      <div class="demo-bar"><div><h3>Sticky Stacking Cards</h3><div class="tags">Scroll · CSS sticky + GSAP · Storytelling</div></div>
+        <div class="acts"><button data-act="code">Code</button><button data-act="copy">Copy</button></div></div>
+      <div class="stage" style="align-items:flex-start"></div>
+      <template class="snippet">
+<div class="fx-stack">
+  <div class="card" style="--i:0"><h5>01 · Vision</h5><p>Each card pins and shrinks as the next arrives.</p></div>
+  <div class="card" style="--i:1"><h5>02 · Map</h5><p>Classic scroll-storytelling — perfect for process sections.</p></div>
+  <div class="card" style="--i:2"><h5>03 · Deliver</h5><p>The last card rides on top of the settled deck.</p></div>
+</div>
+<style>
+.fx-stack{width:100%;max-width:560px;margin:0 auto}
+.fx-stack .card{
+  position:sticky;top:90px;min-height:230px;margin-bottom:40px;border-radius:8px;
+  background:#1F1815;border:1px solid rgba(241,232,214,.14);padding:34px;
+  font-family:"Space Grotesk",sans-serif;color:rgba(241,232,214,.72);
+  transform-origin:top center;
+}
+.fx-stack h5{font-family:"Fraunces",serif;font-weight:400;font-size:24px;color:#F1E8D6;margin-bottom:10px}
+.fx-stack p{font-size:14px}
+</style>
+<script>
+document.querySelectorAll('.fx-stack').forEach(stack => {
+  const cards = stack.querySelectorAll('.card');
+  cards.forEach((card, i) => {
+    if (i === cards.length - 1) return;
+    gsap.to(card, {
+      scale: .92 + i * .02, filter: 'brightness(.6)', ease: 'none',
+      scrollTrigger: {trigger: cards[i + 1], start: 'top bottom', end: 'top 90px', scrub: true}
+    });
+  });
+});
+</script>
+      </template>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 02 · SOURCES ============ -->
+<section class="sec" id="sources">
+  <div class="sec-head"><span class="no">02</span><span>Where to hunt — bookmarked for you</span></div>
+  <div class="links-grid">
+    <a class="link-card" href="https://tympanus.net/codrops/hub/all/" target="_blank" rel="noopener">
+      <span class="k">Steal the code</span><h4>Codrops Hub<span>free</span></h4>
+      <p>2,000+ live demos with full source downloads. The mother lode for creative web interactions.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://osmo.supply/" target="_blank" rel="noopener">
+      <span class="k">Steal the code</span><h4>Osmo<span>free + paid vault</span></h4>
+      <p>The exact GSAP components Awwwards winners use — cursors, loaders, buttons, transitions.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://gsap.com/demos/" target="_blank" rel="noopener">
+      <span class="k">Steal the code</span><h4>GSAP Demos<span>free — all plugins</span></h4>
+      <p>Official CodePens for every plugin: SplitText, MorphSVG, ScrollSmoother, Flip — all free now.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://codepen.io/search/pens?q=creative+portfolio+interaction" target="_blank" rel="noopener">
+      <span class="k">Steal the code</span><h4>CodePen<span>free</span></h4>
+      <p>Search anything — "magnetic button", "webgl hover" — and watch it run beside its code.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://uiverse.io/" target="_blank" rel="noopener">
+      <span class="k">Steal the code</span><h4>Uiverse<span>MIT / free</span></h4>
+      <p>Thousands of copy-paste CSS components. Buttons, loaders, cards — one click to grab.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://ui.aceternity.com/" target="_blank" rel="noopener">
+      <span class="k">Translate to vanilla</span><h4>Aceternity UI<span>React</span></h4>
+      <p>The famous spotlight cards, text reveals, bento grids. React-only — point Claude at one and it becomes vanilla.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://magicui.design/" target="_blank" rel="noopener">
+      <span class="k">Translate to vanilla</span><h4>Magic UI<span>React</span></h4>
+      <p>150+ animated components — marquees, globes, particles, shimmer effects.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://www.awwwards.com/websites/gsap/" target="_blank" rel="noopener">
+      <span class="k">Inspiration only</span><h4>Awwwards<span>daily</span></h4>
+      <p>What "modern" means this week. Study the moves, don't copy the code — bring ideas here instead.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://godly.website/" target="_blank" rel="noopener">
+      <span class="k">Inspiration only</span><h4>Godly<span>curated</span></h4>
+      <p>Astronomically good web design, tightly curated with video previews of every interaction.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://rive.app/" target="_blank" rel="noopener">
+      <span class="k">Creative tool</span><h4>Rive<span>interactive animation</span></h4>
+      <p>Design animations that respond to input — logos that react, characters that follow the cursor.</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://spline.design/" target="_blank" rel="noopener">
+      <span class="k">Creative tool</span><h4>Spline<span>3D, no code</span></h4>
+      <p>Design interactive 3D scenes visually, embed with one snippet. The shortcut to "how did they do that 3D."</p><span class="arr">↗</span></a>
+    <a class="link-card" href="https://www.unicorn.studio/" target="_blank" rel="noopener">
+      <span class="k">Creative tool</span><h4>Unicorn Studio<span>WebGL effects</span></h4>
+      <p>Shader-grade hero effects — liquid, grain, displacement — designed visually, embedded anywhere.</p><span class="arr">↗</span></a>
+  </div>
+</section>
+
+<!-- ============ 03 · HOW TO USE ============ -->
+<section class="sec" id="howto">
+  <div class="sec-head"><span class="no">03</span><span>The workflow</span></div>
+  <div class="howto">
+    <div class="step"><i>i.</i><p><b>Browse</b> — scroll this page or the source sites above. Every demo here runs on your site's exact stack, in your palette.</p></div>
+    <div class="step"><i>ii.</i><p><b>Copy</b> — hit the Copy button on any cell. The snippet is self-contained: markup + style + script. Paste it into any page and it works.</p></div>
+    <div class="step"><i>iii.</i><p><b>Adapt with Claude</b> — found something elsewhere? Drop the URL or a screenshot into a Claude session with: <b>"adapt this into my site's style — see LAB.html for my stack."</b> New experiments get added here first, then promoted to the live site.</p></div>
+    <div class="step"><i>iv.</i><p><b>Requirements</b> — GSAP + ScrollTrigger load in this page's &lt;head&gt; via CDN (both free). Snippets marked "No library" or "Pure CSS" work anywhere, even in emails-adjacent contexts.</p></div>
+  </div>
+</section>
+
+<footer>PBK Lab · Private · © 2026 Mikel Rosenthal — add experiments freely, this page never ships to the homepage nav</footer>
+
+<script>
+/* Lab engine: each demo renders its snippet live + exposes source */
+document.querySelectorAll('.demo').forEach(demo => {
+  const tpl = demo.querySelector('template.snippet');
+  const stage = demo.querySelector('.stage');
+  const source = tpl.innerHTML.trim();
+
+  /* live render */
+  stage.appendChild(tpl.content.cloneNode(true));
+  stage.querySelectorAll('script').forEach(inert => {
+    const s = document.createElement('script');
+    s.textContent = inert.textContent;
+    inert.replaceWith(s);
+  });
+
+  /* code view + copy */
+  const box = document.createElement('div');
+  box.className = 'codebox';
+  const pre = document.createElement('pre');
+  pre.textContent = source;
+  box.appendChild(pre);
+  demo.appendChild(box);
+
+  demo.querySelector('[data-act="code"]').addEventListener('click', () =>
+    demo.classList.toggle('show-code'));
+  const copyBtn = demo.querySelector('[data-act="copy"]');
+  copyBtn.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(source);
+    copyBtn.textContent = 'Copied ✓'; copyBtn.classList.add('copied');
+    setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 1600);
+  });
+});
+if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+</script>
+</body>
+</html>

@@ -1,9 +1,1 @@
-# Audio files — hosted on Supabase Storage
-audio/
-
-# Mac system files
 .DS_Store
-**/.DS_Store
-
-# Editor
-.vscode/
