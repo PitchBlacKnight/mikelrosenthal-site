@@ -287,7 +287,9 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 }
 .shot img{width:100%;transform:scale(1.05)}
 .shot.tall{max-height:60vh}
-.shot-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px)}
+.shot-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);align-items:start}
+.shot-row .shot{aspect-ratio:4/3}
+.shot-row .shot img{height:100%;object-fit:cover}
 .shot-row .shot:last-child{transform:translateY(clamp(8px,1.4vw,20px))}
 .shot .cap{
   position:absolute;left:14px;bottom:12px;z-index:2;
@@ -836,7 +838,7 @@ body.cf-lock{overflow:hidden}
       </dl>
     </div>
     <div class="work-media">
-      <figure class="shot tall"><img src="ASSETS/work/prism-graphs.jpg" alt="PRISM Connect dashboard — personality, motivation, and decision-making visualizations" loading="lazy" style="object-fit:cover;object-position:top;height:58vh"><span class="cap">PRISM Connect</span></figure>
+      <figure class="shot"><img src="ASSETS/design-systems/board-prism.jpg" alt="PRISM Psychometric Consumer App — presentation board with laptop and mobile mockups" loading="lazy"><span class="cap">PRISM · Psychometric Consumer App</span></figure>
     </div>
   </article>
 
