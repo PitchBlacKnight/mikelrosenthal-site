@@ -618,12 +618,34 @@ body.cf-lock{overflow:hidden}
 .os-side{display:flex;flex-direction:column;gap:22px}
 .os-side p{font-size:clamp(14px,1.15vw,17px);color:var(--cream-70);max-width:46ch}
 .os-side p b{color:var(--cream);font-weight:400}
-.os-link{
-  font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.8vw,24px);color:var(--pink);
-  border-bottom:1px solid rgba(222,147,169,.4);padding-bottom:2px;align-self:flex-start;
-  transition:color .3s,border-color .3s;
+.btn-pbk{
+  display:inline-flex;align-items:center;gap:18px;align-self:flex-start;
+  font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,28px);color:var(--cream);
+  border:1px solid rgba(222,147,169,.55);border-radius:99px;
+  padding:clamp(16px,2.2vh,24px) clamp(30px,3.2vw,48px);
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 0 rgba(222,147,169,0);
+  transition:background .45s,color .45s,border-color .45s,box-shadow .45s;
 }
-.os-link:hover{color:var(--coral);border-color:var(--coral)}
+.btn-pbk::before{
+  content:"";position:absolute;inset:-40%;z-index:-1;opacity:.5;
+  background:radial-gradient(60% 80% at 30% 100%, rgba(222,147,169,.22), transparent 70%);
+}
+.btn-pbk:hover{background:var(--pink);border-color:var(--pink);color:var(--ink);box-shadow:0 12px 44px -10px rgba(222,147,169,.55)}
+.btn-pbk .eq{display:inline-flex;align-items:flex-end;gap:3px;height:20px}
+.btn-pbk .eq i{
+  width:3px;height:100%;border-radius:2px;background:var(--pink);
+  transform-origin:bottom;animation:eq 1.1s ease-in-out infinite;transition:background .45s;
+}
+.btn-pbk:hover .eq i{background:var(--ink)}
+.btn-pbk .eq i:nth-child(1){animation-delay:0s}
+.btn-pbk .eq i:nth-child(2){animation-delay:.22s}
+.btn-pbk .eq i:nth-child(3){animation-delay:.44s}
+.btn-pbk .eq i:nth-child(4){animation-delay:.11s}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.btn-pbk .arr{font-style:normal;transition:transform .4s var(--ease)}
+.btn-pbk:hover .arr{transform:translateX(6px)}
+.os-kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--pink)}
 
 /* ---- final CTA ---- */
 .final{min-height:min(92svh,980px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
@@ -1163,7 +1185,11 @@ body.cf-lock{overflow:hidden}
     <h2 class="reveal">Original music, <em>produced in the dark.</em></h2>
     <div class="os-side">
       <p class="reveal">Released as <b>PitchBlacKnight</b> — first-take improv sessions, live-mastered, no overdubs, no do-overs. Recorded by accident while working. That's the method. A different kind of discipline; the same eye for what's true.</p>
-      <a class="os-link reveal" href="https://pitchblacknight.com" target="_blank" rel="noopener">pitchblacknight.com <span class="arr">→</span></a>
+      <p class="os-kicker reveal">160+ works · Music · Motion · Visual art</p>
+      <a class="btn-pbk reveal" href="https://pitchblacknight.com" target="_blank" rel="noopener" data-magnetic aria-label="Enter PitchBlacKnight — original music and motion art">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        Enter PitchBlacKnight <span class="arr">→</span>
+      </a>
     </div>
   </div>
 </section>
