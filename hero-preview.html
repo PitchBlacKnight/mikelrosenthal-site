@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero background picker</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F0C0A; --cream:#F1E8D6; --cream-70:rgba(241,232,214,.72); --cream-45:rgba(241,232,214,.45);
+  --coral:#EF7A5E; --pink:#DE93A9; --line:rgba(241,232,214,.13);
+  --serif:"Fraunces",Georgia,serif; --sans:"Space Grotesk",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:300;overflow:hidden}
+
+.hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:-6% 0;z-index:0}
+.hero-bg img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.2s ease;
+  filter:saturate(1.05) hue-rotate(-14deg) brightness(.95) contrast(1.08);
+}
+.hero-bg img.on{opacity:.5}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 70% 10%, transparent 0%, rgba(15,12,10,.55) 55%, var(--ink) 100%),
+  linear-gradient(180deg, rgba(15,12,10,.55) 0%, rgba(15,12,10,.15) 40%, var(--ink) 96%)}
+.hero-inner{position:relative;z-index:2;padding:0 clamp(20px,4vw,56px) 90px}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-70);margin-bottom:28px}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--coral)}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(52px,9vw,140px);line-height:.96;letter-spacing:-.015em}
+h1 em{font-style:italic;font-weight:400;color:var(--coral)}
+h1 .ghost{color:transparent;-webkit-text-stroke:1px var(--cream-45)}
+.sub{margin-top:34px;max-width:44ch;font-size:15px;color:var(--cream-70)}
+.sub b{color:var(--cream);font-weight:400}
+
+.picker{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;
+  background:rgba(15,12,10,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  padding:12px clamp(16px,3vw,40px);display:flex;gap:8px;align-items:center;overflow-x:auto;
+}
+.picker span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--coral);white-space:nowrap;margin-right:8px}
+.picker button{
+  font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.06em;white-space:nowrap;
+  background:transparent;color:var(--cream-70);border:1px solid var(--line);border-radius:99px;
+  padding:7px 14px;cursor:pointer;transition:all .25s;
+}
+.picker button:hover{border-color:var(--coral);color:var(--cream)}
+.picker button.on{background:var(--coral);border-color:var(--coral);color:var(--ink)}
+.current{
+  position:fixed;top:18px;right:clamp(16px,3vw,40px);z-index:10;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);
+  background:rgba(15,12,10,.7);border:1px solid var(--line);border-radius:99px;padding:8px 16px;
+}
+.current b{color:var(--pink);font-weight:400}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg" id="bg"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Mikel Rosenthal · Art Director &amp; Design Systems Lead · Chicago</p>
+    <h1>Unmistakable<br><em>visual worlds,</em><br><span class="ghost">built to scale.</span></h1>
+    <p class="sub"><b>Twenty-four years</b> of art direction, product design, and enterprise design systems — trusted by Google, GE Healthcare, Blue Cross Blue Shield, TransUnion, and Avant.</p>
+  </div>
+</header>
+
+<div class="current">Now showing: <b id="label">—</b></div>
+<div class="picker" id="picker"><span>Pick a hero ↓</span></div>
+
+<script>
+const gifs = ["3x Geo Twist","Black Sea","Can you see me","Circle spheres","Cosmos","Crank still","Didn't mean to scare you","Drip Row","Forever drop","Graph builds","I think I'm lost","Infinite dance","Keep building","Masks","Never still","Orbit Wave","Perfect sink","Slinky Forgo","Space Trip","Stone Ascension","The world is yours","Time scale","Twisting triangles","Twisting vector","Under the sea","Zen Circle","anapose"];
+const bg = document.getElementById('bg');
+const picker = document.getElementById('picker');
+const label = document.getElementById('label');
+let cur = null, curBtn = null;
+
+gifs.forEach(name => {
+  const b = document.createElement('button');
+  b.textContent = name;
+  b.onclick = () => {
+    if (curBtn) curBtn.classList.remove('on');
+    b.classList.add('on'); curBtn = b;
+    const img = document.createElement('img');
+    img.src = 'ASSETS/motion-art/' + encodeURIComponent(name) + '.gif';
+    img.onload = () => {
+      requestAnimationFrame(() => img.classList.add('on'));
+      if (cur){ const old = cur; old.classList.remove('on'); setTimeout(() => old.remove(), 1300); }
+      cur = img;
+    };
+    bg.appendChild(img);
+    label.textContent = name;
+  };
+  picker.appendChild(b);
+});
+// start on Black Sea
+picker.querySelectorAll('button')[1].click();
+</script>
+</body>
+</html>

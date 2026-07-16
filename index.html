@@ -172,6 +172,10 @@ a{color:inherit;text-decoration:none}
 .hero{position:relative;min-height:min(100svh,1150px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;z-index:2}
 .hero-bg{position:absolute;inset:-6% 0;z-index:0}
 .hero-bg img,.hero-bg video{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(1.05) hue-rotate(-14deg) brightness(.98) contrast(1.08)}
+/* hero background modes: body[data-hero] set by DEFAULT_HERO in script (?hero=video / ?hero=gif to preview) */
+.hero-bg .hero-gif{position:absolute;inset:0;display:none}
+body[data-hero="gif"] .hero-bg video{display:none}
+body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .hero-bg::after{content:"";position:absolute;inset:0;background:
   radial-gradient(120% 90% at 70% 10%, transparent 0%, rgba(15,12,10,.55) 55%, var(--ink) 100%),
   linear-gradient(180deg, rgba(15,12,10,.55) 0%, rgba(15,12,10,.15) 40%, var(--ink) 96%)}
@@ -726,6 +730,7 @@ body.cf-lock{overflow:hidden}
     <video autoplay muted loop playsinline preload="auto" poster="ASSETS/video/hero-poster.jpg" aria-hidden="true">
       <source src="ASSETS/video/hero-bg.mp4" type="video/mp4">
     </video>
+    <img class="hero-gif" src="ASSETS/motion-art/Forever%20wonder.gif" alt="" aria-hidden="true">
   </div>
 
   <div class="hero-inner" id="heroInner">
@@ -1529,8 +1534,13 @@ body.cf-lock{overflow:hidden}
     if (e.key === 'Escape') document.querySelectorAll('.casefile.open').forEach(closeCase);
   });
 
+  /* hero background: 'gif' (Forever wonder) or 'video' — flip DEFAULT_HERO to switch, or preview via ?hero=video */
+  const DEFAULT_HERO = 'gif';
+  const heroMode = new URLSearchParams(location.search).get('hero') || DEFAULT_HERO;
+  document.body.dataset.hero = heroMode;
+
   const heroVideo = document.querySelector('.hero-bg video');
-  if (reduced && heroVideo) heroVideo.pause();
+  if (heroVideo && (reduced || heroMode === 'gif')) heroVideo.pause();
 
   if (!hasGSAP || reduced) return;   // graceful static fallback
 
