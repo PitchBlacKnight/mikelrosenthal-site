@@ -349,6 +349,42 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .sys-cap b em{font-style:italic;color:var(--coral)}
 .sys-cap span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-45);text-align:right}
 
+
+/* ---- featured carousel ---- */
+.feat{border-top:1px solid var(--line);padding-top:clamp(26px,4vh,44px)}
+.feat-stage{position:relative;min-height:clamp(520px,66vh,660px)}
+.feat-slide{
+  position:absolute;inset:0;display:grid;gap:clamp(24px,4vw,64px);grid-template-columns:1fr;
+  align-content:start;
+  opacity:0;visibility:hidden;transform:translateY(16px);pointer-events:none;
+  transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s;
+}
+.feat-slide.on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
+@media(min-width:960px){.feat-slide{grid-template-columns:minmax(300px,1fr) 1.3fr;align-items:center}}
+.feat-meta{display:flex;flex-direction:column;gap:18px}
+.feat-title{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,52px);line-height:1.05;letter-spacing:-.01em}
+.feat-fact{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);border-top:1px solid var(--line);padding-top:14px}
+.feat-media{
+  position:relative;overflow:hidden;border-radius:3px;margin:0;
+  outline:1px solid var(--line);outline-offset:-1px;
+  box-shadow:0 22px 48px -28px rgba(0,0,0,.55);
+  aspect-ratio:4/3;max-height:clamp(400px,58vh,600px);width:100%;
+}
+.feat-media img{width:100%;height:100%;object-fit:cover}
+@media(max-width:959px){.feat-stage{min-height:640px}.feat-media{aspect-ratio:auto;height:280px}}
+.feat-ctrl{display:flex;align-items:center;gap:clamp(16px,2.6vw,28px);margin-top:clamp(20px,3vh,30px)}
+.feat-btn{
+  width:46px;height:46px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;
+  background:none;color:var(--cream);font-size:16px;line-height:1;cursor:pointer;
+  transition:border-color .3s,color .3s,transform .3s var(--ease);
+}
+.feat-btn:hover{border-color:var(--coral);color:var(--coral);transform:scale(1.06)}
+.feat-count{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--cream-45);white-space:nowrap}
+.feat-count em{color:var(--coral);font-style:italic}
+.feat-bar{flex:1;height:1px;background:var(--line);position:relative;overflow:visible}
+.feat-bar i{position:absolute;left:0;top:-.5px;height:2px;width:0;background:var(--coral)}
+@media (prefers-reduced-motion: reduce){.feat-bar{display:none}}
+
 /* ---- case files ---- */
 .sys-card{cursor:pointer}
 .sys-cap .cta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);white-space:nowrap}
@@ -817,106 +853,72 @@ body.cf-lock{overflow:hidden}
   <img class="secfx on-dark mid-r rot-l" src="ASSETS/motion-art/Slinky%20Forgo.gif" alt="" aria-hidden="true" loading="lazy" width="400" height="400">
   <div class="sec-tag"><span class="no">03</span><span>Selected Work · 2013 — 2026</span></div>
 
-  <!-- Pathfinder -->
-  <article class="work-item">
-    <div class="work-meta">
-      <div class="work-no">01</div>
-      <p class="work-kicker reveal">Avant · Product Platform · 2021–2024</p>
-      <h3 class="work-title reveal">Pathfinder</h3>
-      <p class="work-desc reveal">Design vision and system for a B2B telecom-intelligence platform — connectivity mapping, project dashboards, and configuration tools unified under one component framework used by 350+ trusted advisors.</p>
-      <dl class="work-facts reveal">
-        <div><dt>Role</dt><dd>Senior Product / Systems Designer</dd></div>
-        <div><dt>Scope</dt><dd>Product vision · Design system · Data viz</dd></div>
-        <div><dt>Reach</dt><dd>350+ internal managers enabled</dd></div>
-      </dl>
-    </div>
-    <div class="work-media">
-      <figure class="shot"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder 2.0 dashboard — booked MRC, commissions, advisor rank, and Pinnacle loyalty program on the dark theme" loading="lazy" width="2244" height="2400"><span class="cap">Pathfinder 2.0 · Dashboard</span></figure>
-      <div class="shot-row">
-        <figure class="shot"><img src="ASSETS/design-systems/pf2-styletile-23.jpg" alt="Pathfinder 2.0 style tile — palette, map hero, and analytics widgets on the light theme" loading="lazy" width="2400" height="1677"><span class="cap">Style Tile · Light</span></figure>
-        <figure class="shot"><img src="ASSETS/design-systems/pathfinder-30-concept.jpg" alt="Pathfinder 3.0 concept — evolved dark theme with sales dashboard and product cards" loading="lazy" width="2400" height="1677"><span class="cap">3.0 Concept</span></figure>
-      </div>
-    </div>
-  </article>
+  <div class="feat" id="feat">
+    <div class="feat-stage">
 
-  <!-- Spacelab -->
-  <article class="work-item flip">
-    <div class="work-meta">
-      <div class="work-no">02</div>
-      <p class="work-kicker reveal">Spacelab · Brand &amp; Packaging · 2021</p>
-      <h3 class="work-title reveal">Spacelab</h3>
-      <p class="work-desc reveal">A full identity and packaging system for an artisan edibles brand — cosmic illustration language, midnight blues cut with burnt orange, carried across boxes, tins, foils, and jars.</p>
-      <dl class="work-facts reveal">
-        <div><dt>Role</dt><dd>Creative Direction · Identity · Packaging</dd></div>
-        <div><dt>Scope</dt><dd>Logo system · Illustration · Print production</dd></div>
-        <div><dt>Studio</dt><dd>PBK Studio</dd></div>
-      </dl>
-    </div>
-    <div class="work-media">
-      <figure class="shot"><img src="ASSETS/work/spacelab-openbox.jpg" alt="Spacelab drawer box sliding open — white and burnt orange with cosmic chart illustration" loading="lazy" width="2400" height="1600"><span class="cap">Drawer Box</span></figure>
-      <div class="shot-row">
-        <figure class="shot"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin with geometric pattern lid on midnight blue" loading="lazy" width="2400" height="1800"><span class="cap">Pattern Tin</span></figure>
-        <figure class="shot"><img src="ASSETS/work/spacelab-jar.jpg" alt="Spacelab midnight-navy jar with gradient wordmark" loading="lazy" width="2400" height="1920"><span class="cap">Night Jar</span></figure>
-      </div>
-      <figure class="shot"><img src="ASSETS/work/spacelab-foil.jpg" alt="Spacelab foil wraps in burnt orange and midnight blue with botanical illustration" loading="lazy" width="2400" height="1800"><span class="cap">Foil Wraps</span></figure>
-    </div>
-  </article>
+      <article class="feat-slide on" aria-label="Pathfinder">
+        <div class="feat-meta">
+          <div class="work-no">01</div>
+          <p class="work-kicker">Avant · Product Platform · 2021–2024</p>
+          <h3 class="feat-title">Pathfinder</h3>
+          <p class="work-desc">Design vision and system for a B2B telecom-intelligence platform — connectivity mapping, project dashboards, and configuration tools unified under one component framework used by 350+ trusted advisors.</p>
+          <p class="feat-fact">Senior Product / Systems Designer · Product vision · Design system · Data viz</p>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder 2.0 dashboard on the dark theme" loading="lazy" width="2244" height="2400"></figure>
+      </article>
 
-  <!-- PRISM -->
-  <article class="work-item">
-    <div class="work-meta">
-      <div class="work-no">03</div>
-      <p class="work-kicker reveal">SurePeople · HR Tech · 2020</p>
-      <h3 class="work-title reveal">PRISM</h3>
-      <p class="work-desc reveal">Product design lead for a psychometric intelligence platform — translating dense personality data into humane, readable dashboards for coaches and teams.</p>
-      <dl class="work-facts reveal">
-        <div><dt>Role</dt><dd>Product Design Lead</dd></div>
-        <div><dt>Scope</dt><dd>Dashboards · Data visualization · Mobile UX</dd></div>
-      </dl>
-    </div>
-    <div class="work-media">
-      <figure class="shot"><img src="ASSETS/design-systems/board-prism.jpg" alt="PRISM Psychometric Consumer App — presentation board with laptop and mobile mockups" loading="lazy" width="2560" height="1440"><span class="cap">PRISM · Psychometric Consumer App</span></figure>
-    </div>
-  </article>
+      <article class="feat-slide" aria-label="Spacelab">
+        <div class="feat-meta">
+          <div class="work-no">02</div>
+          <p class="work-kicker">Spacelab · Brand &amp; Packaging · 2021</p>
+          <h3 class="feat-title">Spacelab</h3>
+          <p class="work-desc">A full identity and packaging system for an artisan edibles brand — cosmic illustration language, midnight blues cut with burnt orange, carried across boxes, tins, foils, and jars.</p>
+          <p class="feat-fact">Creative Direction · Identity · Packaging · PBK Studio</p>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/work/spacelab-openbox.jpg" alt="Spacelab drawer box sliding open — white and burnt orange with cosmic chart illustration" loading="lazy" width="2400" height="1600"></figure>
+      </article>
 
-  <!-- TrueCredit -->
-  <article class="work-item flip">
-    <div class="work-meta">
-      <div class="work-no">04</div>
-      <p class="work-kicker reveal">TransUnion · Fintech · 2018</p>
-      <h3 class="work-title reveal">TrueCredit</h3>
-      <p class="work-desc reveal">Rebrand and product ideation for a consumer credit platform — an "art of the possible" vision that reframed credit data as something people could actually feel good reading.</p>
-      <dl class="work-facts reveal">
-        <div><dt>Role</dt><dd>Design Systems Lead · Senior Product Designer</dd></div>
-        <div><dt>Scope</dt><dd>Rebrand · Product vision · Enterprise system</dd></div>
-      </dl>
-    </div>
-    <div class="work-media">
-      <figure class="shot"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit rebrand — mobile, tablet, and desktop dashboard designs" loading="lazy" width="1600" height="1236"><span class="cap">Rebrand · Mobile &amp; Desktop</span></figure>
-      <figure class="shot"><img src="ASSETS/work/truecredit.jpg" alt="TrueCredit visual design ideation — score cards and data visualization" loading="lazy" width="1800" height="1391"><span class="cap">Visual Ideation</span></figure>
-    </div>
-  </article>
+      <article class="feat-slide" aria-label="PRISM">
+        <div class="feat-meta">
+          <div class="work-no">03</div>
+          <p class="work-kicker">SurePeople · HR Tech · 2020</p>
+          <h3 class="feat-title">PRISM</h3>
+          <p class="work-desc">Product design lead for a psychometric intelligence platform — translating dense personality data into humane, readable dashboards for coaches and teams.</p>
+          <p class="feat-fact">Product Design Lead · Dashboards · Data visualization · Mobile UX</p>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/design-systems/board-prism.jpg" alt="PRISM Psychometric Consumer App — presentation board with laptop and mobile mockups" loading="lazy" width="2560" height="1440"></figure>
+      </article>
 
-  <!-- Avant Marketing -->
-  <article class="work-item">
-    <div class="work-meta">
-      <div class="work-no">05</div>
-      <p class="work-kicker reveal">Avant · Brand System · 2022–2024</p>
-      <h3 class="work-title reveal">Avant Marketing System</h3>
-      <p class="work-desc reveal">A Figma-first marketing design system — campaign templates, social kits, and brand components that let a lean team produce at agency volume without agency drift.</p>
-      <dl class="work-facts reveal">
-        <div><dt>Role</dt><dd>Brand Direction · Systems Design</dd></div>
-        <div><dt>Scope</dt><dd>Campaign kit · Social system · Figma library</dd></div>
-      </dl>
+      <article class="feat-slide" aria-label="TrueCredit">
+        <div class="feat-meta">
+          <div class="work-no">04</div>
+          <p class="work-kicker">TransUnion · Fintech · 2018</p>
+          <h3 class="feat-title">TrueCredit</h3>
+          <p class="work-desc">Rebrand and product ideation for a consumer credit platform — an "art of the possible" vision that reframed credit data as something people could actually feel good reading.</p>
+          <p class="feat-fact">Design Systems Lead · Rebrand · Product vision · Enterprise system</p>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit rebrand — mobile, tablet, and desktop dashboard designs" loading="lazy" width="1600" height="1236"></figure>
+      </article>
+
+      <article class="feat-slide" aria-label="Avant Marketing System">
+        <div class="feat-meta">
+          <div class="work-no">05</div>
+          <p class="work-kicker">Avant · Brand System · 2022–2024</p>
+          <h3 class="feat-title">Avant Marketing System</h3>
+          <p class="work-desc">A Figma-first marketing design system — campaign templates, social kits, and brand components that let a lean team produce at agency volume without agency drift.</p>
+          <p class="feat-fact">Brand Direction · Systems Design · Campaign kit · Figma library</p>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system overview" loading="lazy" width="1800" height="728"></figure>
+      </article>
+
     </div>
-    <div class="work-media">
-      <figure class="shot"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social overview" loading="lazy" width="1800" height="728"><span class="cap">Social System</span></figure>
-      <div class="shot-row">
-        <figure class="shot"><img src="ASSETS/work/avant-branding.jpg" alt="Avant branding exploration" loading="lazy" width="1800" height="1074"><span class="cap">Brand Direction</span></figure>
-        <figure class="shot"><img src="ASSETS/work/avant-library.jpg" alt="Avant marketing Figma library" loading="lazy" width="1800" height="826"><span class="cap">Figma Library</span></figure>
-      </div>
+    <div class="feat-ctrl">
+      <button class="feat-btn" id="featPrev" aria-label="Previous project">&larr;</button>
+      <button class="feat-btn" id="featNext" aria-label="Next project">&rarr;</button>
+      <span class="feat-count"><em id="featCur">01</em>&thinsp;/&thinsp;05</span>
+      <span class="feat-bar" aria-hidden="true"><i id="featBar"></i></span>
     </div>
-  </article>
+  </div>
 
 </section>
 
@@ -1504,6 +1506,38 @@ body.cf-lock{overflow:hidden}
   addEventListener('resize', () => {
     document.querySelectorAll('.proc.open .proc-body').forEach(b => b.style.maxHeight = b.scrollHeight + 'px');
   });
+
+
+  /* featured carousel */
+  const featSlides = [...document.querySelectorAll('.feat-slide')];
+  if (featSlides.length){
+    const cur = document.getElementById('featCur');
+    const bar = document.getElementById('featBar');
+    const FEAT_MS = 7000;
+    let fi = 0, ftimer = null;
+    const runBar = () => {
+      if (reduced || !bar) return;
+      bar.style.transition = 'none'; bar.style.width = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bar.style.transition = `width ${FEAT_MS}ms linear`; bar.style.width = '100%';
+      }));
+    };
+    const fgo = n => {
+      featSlides[fi].classList.remove('on');
+      fi = (n + featSlides.length) % featSlides.length;
+      featSlides[fi].classList.add('on');
+      cur.textContent = String(fi + 1).padStart(2, '0');
+      runBar();
+    };
+    const fstart = () => { if (!reduced && !ftimer) { ftimer = setInterval(() => fgo(fi + 1), FEAT_MS); runBar(); } };
+    const fstop = () => { clearInterval(ftimer); ftimer = null; if (bar){ bar.style.transition = 'none'; } };
+    document.getElementById('featNext').addEventListener('click', () => { fstop(); fgo(fi + 1); fstart(); });
+    document.getElementById('featPrev').addEventListener('click', () => { fstop(); fgo(fi - 1); fstart(); });
+    const featEl = document.getElementById('feat');
+    featEl.addEventListener('mouseenter', fstop);
+    featEl.addEventListener('mouseleave', fstart);
+    fstart();
+  }
 
   /* case files */
   const openCase = id => {
