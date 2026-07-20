@@ -773,7 +773,7 @@ body.cf-lock{overflow:hidden}
 <!-- 01 · HERO -->
 <header class="hero" id="top">
   <div class="hero-bg" id="heroBg">
-    <video autoplay muted loop playsinline preload="auto" poster="ASSETS/video/hero-poster.jpg" aria-hidden="true">
+    <video muted loop playsinline preload="none" poster="ASSETS/video/hero-poster.jpg" aria-hidden="true">
       <source src="ASSETS/video/hero-bg.mp4" type="video/mp4">
     </video>
     <img class="hero-gif" src="ASSETS/motion-art/Forever%20wonder.gif" alt="" aria-hidden="true" width="360" height="360">
@@ -1592,7 +1592,10 @@ body.cf-lock{overflow:hidden}
   document.body.dataset.hero = heroMode;
 
   const heroVideo = document.querySelector('.hero-bg video');
-  if (heroVideo && (reduced || heroMode === 'gif')) heroVideo.pause();
+  if (heroVideo && heroMode === 'video' && !reduced) {
+    heroVideo.preload = 'auto';
+    heroVideo.play().catch(() => {});
+  }
 
   if (!hasGSAP || reduced) return;   // graceful static fallback
 
