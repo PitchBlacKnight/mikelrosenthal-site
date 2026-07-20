@@ -444,7 +444,11 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-img{margin:26px 0 8px;border-radius:3px;outline:1px solid var(--line);outline-offset:-1px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.8)}
 .cf-img img{width:100%;display:block}
 .cf-imgrow{display:grid;grid-template-columns:1fr;gap:18px;margin:26px 0 8px}
-@media(min-width:760px){.cf-imgrow{grid-template-columns:1fr 1fr}.cf-imgrow.three{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){.cf-imgrow{grid-template-columns:1fr 1fr}.cf-imgrow.three{grid-template-columns:repeat(3,1fr)}
+.cf-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:22px 0 8px}
+.cf-thumbs .cf-img{margin:0}
+.cf-thumbs img{aspect-ratio:3/4;object-fit:cover;object-position:top}
+.cf-thumbs-note{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);margin-top:10px}}
 .cf-imgrow .cf-img{margin:0}
 .cf-note{margin-top:clamp(40px,6vh,64px);padding-top:18px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.14em;color:var(--cream-45)}
 body.cf-lock{overflow:hidden}
@@ -1303,11 +1307,14 @@ body.cf-lock{overflow:hidden}
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
       <p><b>One template, infinite expression.</b> "Forge the Future" set the model: a locked typographic and brand structure with expressive visual fields, so campaign variants multiply without drift — dozens of banner and social formats from one template logic.</p>
       <p><b>Beyond banners.</b> The library covered the unglamorous, high-volume work: 40-page industry reports, partner enablement, and event material — templates carrying the brand's editorial layer so a report and a LinkedIn banner read as one company. The pattern throughout: <b>I created the materials first</b> — covers, reports, campaign assets — then refined each into the library as templates the team could ship from.</p>
-      <figure class="cf-imgrow three">
-        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-53.jpg" alt="Colocation and Cloud 6-12 Report cover — concentric line rings on midnight blue" loading="lazy" width="2000" height="2580"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-52.jpg" alt="Colocation and Cloud 6-12 Report cover — spirograph line bloom" loading="lazy" width="2000" height="2580"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-55.jpg" alt="Colo and Cloud 6-12 Report cover — flowing wave mesh in blue and teal" loading="lazy" width="2000" height="2580"></div>
-      </figure>
+      <div class="cf-thumbs">
+        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-53.jpg" alt="Colo and Cloud report cover — concentric rings" loading="lazy" width="900" height="1161"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-52.jpg" alt="Colo and Cloud report cover — spirograph bloom" loading="lazy" width="900" height="1161"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-55.jpg" alt="Colo and Cloud report cover — wave mesh" loading="lazy" width="900" height="1161"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/avant-cover-final.jpg" alt="Cloud and Colo 6-12 Report — final cover, orbital lines" loading="lazy" width="900" height="1164"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/avant-pinnacle.jpg" alt="Pinnacle Loyalty Program website — tiered rewards microsite" loading="lazy" width="900" height="1886"></div>
+      </div>
+      <p class="cf-thumbs-note">From the library — report cover explorations · final cover · Pinnacle loyalty microsite</p>
       <p><b>Enablement over enforcement.</b> Adoption ran through training sessions and self-serve guides written for non-designers. The training did more for scale than any template.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system" loading="lazy" width="1800" height="728"></div>
