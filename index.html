@@ -53,6 +53,7 @@ body{
 }
 ::selection{background:var(--coral);color:var(--ink)}
 img{max-width:100%;height:auto;display:block}
+video.mv{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .has-cursor,.has-cursor a,.has-cursor .proc-head,.has-cursor .tier-cta{cursor:none}
 
@@ -178,7 +179,7 @@ a{color:inherit;text-decoration:none}
 .hero-bg img,.hero-bg video{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(1.05) hue-rotate(-14deg) brightness(.98) contrast(1.08)}
 /* hero background modes: body[data-hero] set by DEFAULT_HERO in script (?hero=video / ?hero=gif to preview) */
 .hero-bg .hero-gif{position:absolute;inset:0;display:none}
-body[data-hero="gif"] .hero-bg video{display:none}
+body[data-hero="gif"] .hero-bg video:not(.hero-gif){display:none}
 body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .hero-bg::after{content:"";position:absolute;inset:0;background:
   radial-gradient(120% 90% at 70% 10%, transparent 0%, rgba(15,12,10,.55) 55%, var(--ink) 100%),
@@ -577,8 +578,8 @@ body.cf-lock{overflow:hidden}
 .archive-head p{font-size:13px;color:var(--cream-45);max-width:34ch;text-align:right}
 .gif-river{display:flex;gap:clamp(14px,1.6vw,24px);width:max-content}
 .gif-cell{position:relative;width:clamp(180px,20vw,290px);aspect-ratio:1;overflow:hidden;border-radius:3px;outline:1px solid var(--line);outline-offset:-1px;flex-shrink:0}
-.gif-cell img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
-.gif-cell:hover img{transform:scale(1.05)}
+.gif-cell img,.gif-cell video{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.gif-cell:hover img,.gif-cell:hover video{transform:scale(1.05)}
 .gif-cell figcaption{
   position:absolute;left:10px;bottom:10px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--cream);background:rgba(15,12,10,.78);padding:6px 10px;border-radius:2px;
@@ -667,11 +668,11 @@ body.cf-lock{overflow:hidden}
   min-height:clamp(290px,38vh,400px);display:flex;flex-direction:column;justify-content:center;
 }
 .otherside .pbk-reel{position:absolute;inset:0;z-index:0;overflow:hidden}
-.otherside .pbk-reel img{
+.otherside .pbk-reel img,.otherside .pbk-reel video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transform:scale(1.05);transition:opacity 2s cubic-bezier(.4,0,.2,1);will-change:opacity,transform;
 }
-.otherside .pbk-reel img.on{opacity:1;animation:hr-drift 10s ease-out forwards}
+.otherside .pbk-reel img.on,.otherside .pbk-reel video.on{opacity:1;animation:hr-drift 10s ease-out forwards}
 @keyframes hr-drift{0%{transform:scale(1.05)}100%{transform:scale(1)}}
 .otherside .pbk-scrim{position:absolute;inset:0;z-index:1;background:
   linear-gradient(90deg, rgba(6,6,6,.9) 0%, rgba(6,6,6,.62) 48%, rgba(6,6,6,.34) 100%),
@@ -799,7 +800,7 @@ body.cf-lock{overflow:hidden}
     <video muted loop playsinline preload="none" poster="ASSETS/video/hero-poster.jpg" aria-hidden="true">
       <source src="ASSETS/video/hero-bg.mp4" type="video/mp4">
     </video>
-    <img class="hero-gif" src="ASSETS/motion-art/Forever%20wonder.gif" alt="" aria-hidden="true" width="360" height="360">
+    <video class="hero-gif mv" poster="ASSETS/motion-art/v/Forever%20wonder.jpg" data-src="ASSETS/motion-art/v/Forever%20wonder.mp4" muted loop playsinline preload="none" width="360" height="360" aria-hidden="true"></video>
   </div>
 
   <div class="hero-inner" id="heroInner">
@@ -827,7 +828,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 02 · PROBLEM / SOLUTION -->
 <section class="sec light" id="manifesto">
-  <img class="secfx on-light tr rot-r" src="ASSETS/motion-art/Solar%20BW.gif" alt="" aria-hidden="true" loading="lazy" style="opacity:.12;width:clamp(280px,30vw,480px)" width="500" height="281">
+  <video class="secfx on-light tr rot-r mv" poster="ASSETS/motion-art/v/Solar%20BW.jpg" data-src="ASSETS/motion-art/v/Solar%20BW.mp4" muted loop playsinline preload="none" width="500" height="281" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">01</span><span>The Premise</span></div>
   <div class="mani-grid">
     <h2 class="mani-state" id="maniState">
@@ -845,7 +846,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 02 · THE SYSTEMS -->
 <section class="sec systems" id="systems">
-  <img class="secfx on-dark mid-l rot-r" src="ASSETS/motion-art/3x%20Geo%20Twist.gif" alt="" aria-hidden="true" loading="lazy" width="500" height="500">
+  <video class="secfx on-dark mid-l rot-r mv" poster="ASSETS/motion-art/v/3x%20Geo%20Twist.jpg" data-src="ASSETS/motion-art/v/3x%20Geo%20Twist.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">02</span><span>The Systems · 2016 — 2026</span></div>
   <div class="index-head">
     <h2 class="reveal">Ten years of enterprise systems — <em>built from zero.</em></h2>
@@ -881,7 +882,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 03 · SELECTED WORK -->
 <section class="sec" id="work">
-  <img class="secfx on-dark mid-r rot-l" src="ASSETS/motion-art/Slinky%20Forgo.gif" alt="" aria-hidden="true" loading="lazy" width="400" height="400">
+  <video class="secfx on-dark mid-r rot-l mv" poster="ASSETS/motion-art/v/Slinky%20Forgo.jpg" data-src="ASSETS/motion-art/v/Slinky%20Forgo.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">03</span><span>Selected Work · 2013 — 2026</span></div>
 
   <div class="feat" id="feat">
@@ -956,7 +957,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 02.7 · PROJECT INDEX -->
 <section class="sec index" id="index">
-  <img class="secfx on-dark tl" src="ASSETS/motion-art/Circle%20spheres.gif" alt="" aria-hidden="true" loading="lazy" width="500" height="500">
+  <video class="secfx on-dark tl mv" poster="ASSETS/motion-art/v/Circle%20spheres.jpg" data-src="ASSETS/motion-art/v/Circle%20spheres.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">03.5</span><span>The Index · 2009 — 2024</span></div>
   <div class="index-head">
     <h2 class="reveal">Fifteen years of shipped products, <em>one board at a time.</em></h2>
@@ -992,7 +993,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 04 · PROOF -->
 <section class="sec proof" id="proof">
-  <img class="secfx on-dark tr rot-l" src="ASSETS/motion-art/Orbits%20and%20orbits.gif" alt="" aria-hidden="true" loading="lazy" width="500" height="500">
+  <video class="secfx on-dark tr rot-l mv" poster="ASSETS/motion-art/v/Orbits%20and%20orbits.jpg" data-src="ASSETS/motion-art/v/Orbits%20and%20orbits.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">04</span><span>Evidence</span></div>
   <div class="stats">
     <div class="stat reveal"><div class="n"><span data-count="24">0</span><i>+</i></div><div class="lbl">Years of practice</div></div>
@@ -1010,7 +1011,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 05 · PROCESS -->
 <section class="sec" id="process">
-  <img class="secfx on-dark bl rot-r" src="ASSETS/motion-art/Crank%20still.gif" alt="" aria-hidden="true" loading="lazy" width="400" height="400">
+  <video class="secfx on-dark bl rot-r mv" poster="ASSETS/motion-art/v/Crank%20still.jpg" data-src="ASSETS/motion-art/v/Crank%20still.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">05</span><span>How the work gets made</span></div>
   <div class="proc-list">
     <div class="proc open">
@@ -1019,7 +1020,7 @@ body.cf-lock{overflow:hidden}
       </div>
       <div class="proc-body"><div class="proc-body-inner">
         <p><b>Find the unmistakable idea.</b> Deep listening, brand and product audit, ambition-setting. Before a single pixel: what should this feel like, and why would anyone remember it?</p>
-        <img class="proc-gif" src="ASSETS/motion-art/Orbit%20v4.gif" alt="" loading="lazy" width="540" height="540">
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Orbit%20v4.jpg" data-src="ASSETS/motion-art/v/Orbit%20v4.mp4" muted loop playsinline preload="none" width="540" height="540"></video>
       </div></div>
     </div>
     <div class="proc">
@@ -1028,7 +1029,7 @@ body.cf-lock{overflow:hidden}
       </div>
       <div class="proc-body"><div class="proc-body-inner">
         <p><b>Name the real problem.</b> Define success in measurable terms, cut the noise, and get every stakeholder pointed at the same north star — in writing.</p>
-        <img class="proc-gif" src="ASSETS/motion-art/Twisting%20vector.gif" alt="" loading="lazy" width="499" height="416">
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Twisting%20vector.jpg" data-src="ASSETS/motion-art/v/Twisting%20vector.mp4" muted loop playsinline preload="none" width="499" height="416"></video>
       </div></div>
     </div>
     <div class="proc">
@@ -1037,7 +1038,7 @@ body.cf-lock{overflow:hidden}
       </div>
       <div class="proc-body"><div class="proc-body-inner">
         <p><b>Architecture before decoration.</b> Token structures, component inventories, user flows, narrative arcs — the skeleton that lets beauty scale without breaking.</p>
-        <img class="proc-gif" src="ASSETS/motion-art/Graph%20builds.gif" alt="" loading="lazy" width="800" height="600">
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Graph%20builds.jpg" data-src="ASSETS/motion-art/v/Graph%20builds.mp4" muted loop playsinline preload="none" width="800" height="600"></video>
       </div></div>
     </div>
     <div class="proc">
@@ -1046,7 +1047,7 @@ body.cf-lock{overflow:hidden}
       </div>
       <div class="proc-body"><div class="proc-body-inner">
         <p><b>Craft at full volume.</b> Art direction, pixels, motion, sound — executed to production quality, not concept quality. First-take energy, obsessive finish.</p>
-        <img class="proc-gif" src="ASSETS/motion-art/Keep%20building.gif" alt="" loading="lazy" width="256" height="256">
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Keep%20building.jpg" data-src="ASSETS/motion-art/v/Keep%20building.mp4" muted loop playsinline preload="none" width="256" height="256"></video>
       </div></div>
     </div>
     <div class="proc">
@@ -1055,7 +1056,7 @@ body.cf-lock{overflow:hidden}
       </div>
       <div class="proc-body"><div class="proc-body-inner">
         <p><b>Systems teams actually use.</b> Documentation, governance, Figma libraries, developer handoff — the unglamorous 20% that makes the other 80% survive contact with reality.</p>
-        <img class="proc-gif" src="ASSETS/motion-art/Forever%20drop.gif" alt="" loading="lazy" width="490" height="392">
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Forever%20drop.jpg" data-src="ASSETS/motion-art/v/Forever%20drop.mp4" muted loop playsinline preload="none" width="490" height="392"></video>
       </div></div>
     </div>
   </div>
@@ -1063,7 +1064,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 06 · PRACTICE -->
 <section class="sec light practice" id="practice">
-  <img class="secfx on-light tr rot-l" src="ASSETS/motion-art/Can%20you%20see%20me.gif" alt="" aria-hidden="true" loading="lazy" width="500" height="500">
+  <video class="secfx on-light tr rot-l mv" poster="ASSETS/motion-art/v/Can%20you%20see%20me.jpg" data-src="ASSETS/motion-art/v/Can%20you%20see%20me.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">06</span><span>The Practice · 2001 — 2026</span></div>
   <div class="prac-head">
     <h2 class="reveal">One practice, <em>every discipline</em> — rooted in a Fluxus mindset.</h2>
@@ -1152,7 +1153,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- 07 · OFFER -->
 <section class="sec light offer" id="offer">
-  <img class="secfx on-light bl" src="ASSETS/motion-art/anapose.gif" alt="" aria-hidden="true" loading="lazy" width="500" height="500">
+  <video class="secfx on-light bl mv" poster="ASSETS/motion-art/v/anapose.jpg" data-src="ASSETS/motion-art/v/anapose.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">07</span><span>Ways to work together</span></div>
   <div class="offer-grid">
     <div class="tier reveal">
@@ -1183,46 +1184,46 @@ body.cf-lock{overflow:hidden}
 
 <!-- 08 · MOTION ARCHIVE -->
 <section class="sec archive" id="archive">
-  <img class="secfx on-dark inset" src="ASSETS/motion-art/Solve%20me.gif" alt="" aria-hidden="true" loading="lazy" width="400" height="400">
+  <video class="secfx on-dark inset mv" poster="ASSETS/motion-art/v/Solve%20me.jpg" data-src="ASSETS/motion-art/v/Solve%20me.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">08</span><span>The Motion Archive</span></div>
   <div class="archive-head">
     <h2 class="reveal">156 generative works. <em>Every one begins with a constraint.</em></h2>
     <p class="reveal">A daily practice since 1990 — geometry, orbit, and patience. Full archive at pitchblacknight.com.</p>
   </div>
   <div class="gif-river" id="gifRiver" aria-label="Selected motion works">
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Cosmos.gif" alt="Cosmos" loading="lazy" width="400" height="300"><figcaption>Cosmos</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Orbit%20Wave.gif" alt="Orbit Wave" loading="lazy" width="500" height="500"><figcaption>Orbit Wave</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Synchronization.gif" alt="Synchronization" loading="lazy" width="400" height="400"><figcaption>Synchronization</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Drip%20Row.gif" alt="Drip Row" loading="lazy" width="500" height="500"><figcaption>Drip Row</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Divide%20and%20conquer.gif" alt="Divide and Conquer" loading="lazy" width="400" height="400"><figcaption>Divide and Conquer</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Twisting%20triangles.gif" alt="Twisting Triangles" loading="lazy" width="500" height="500"><figcaption>Twisting Triangles</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Vector%20Spin.gif" alt="Vector Spin" loading="lazy" width="500" height="500"><figcaption>Vector Spin</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Time%20scale.gif" alt="Time Scale" loading="lazy" width="400" height="400"><figcaption>Time Scale</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Orbitals.gif" alt="Orbitals" loading="lazy" width="400" height="400"><figcaption>Orbitals</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Never%20still.gif" alt="Never Still" loading="lazy" width="400" height="400"><figcaption>Never Still</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Grid%20collapse.gif" alt="Grid Collapse" loading="lazy" width="500" height="500"><figcaption>Grid Collapse</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/The%20biggest%20box.gif" alt="The Biggest Box" loading="lazy" width="500" height="500"><figcaption>The Biggest Box</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Cosmos.gif" alt="Cosmos" loading="lazy" width="400" height="300"><figcaption>Cosmos</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Orbit%20Wave.gif" alt="Orbit Wave" loading="lazy" width="500" height="500"><figcaption>Orbit Wave</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Synchronization.gif" alt="Synchronization" loading="lazy" width="400" height="400"><figcaption>Synchronization</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Drip%20Row.gif" alt="Drip Row" loading="lazy" width="500" height="500"><figcaption>Drip Row</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Divide%20and%20conquer.gif" alt="Divide and Conquer" loading="lazy" width="400" height="400"><figcaption>Divide and Conquer</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Twisting%20triangles.gif" alt="Twisting Triangles" loading="lazy" width="500" height="500"><figcaption>Twisting Triangles</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Vector%20Spin.gif" alt="Vector Spin" loading="lazy" width="500" height="500"><figcaption>Vector Spin</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Time%20scale.gif" alt="Time Scale" loading="lazy" width="400" height="400"><figcaption>Time Scale</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Orbitals.gif" alt="Orbitals" loading="lazy" width="400" height="400"><figcaption>Orbitals</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Never%20still.gif" alt="Never Still" loading="lazy" width="400" height="400"><figcaption>Never Still</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/Grid%20collapse.gif" alt="Grid Collapse" loading="lazy" width="500" height="500"><figcaption>Grid Collapse</figcaption></figure>
-    <figure class="gif-cell"><img src="ASSETS/motion-art/The%20biggest%20box.gif" alt="The Biggest Box" loading="lazy" width="500" height="500"><figcaption>The Biggest Box</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Cosmos.jpg" data-src="ASSETS/motion-art/v/Cosmos.mp4" muted loop playsinline preload="none" width="400" height="300" aria-label="Cosmos"></video><figcaption>Cosmos</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Orbit%20Wave.jpg" data-src="ASSETS/motion-art/v/Orbit%20Wave.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Orbit Wave"></video><figcaption>Orbit Wave</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Synchronization.jpg" data-src="ASSETS/motion-art/v/Synchronization.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Synchronization"></video><figcaption>Synchronization</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Drip%20Row.jpg" data-src="ASSETS/motion-art/v/Drip%20Row.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Drip Row"></video><figcaption>Drip Row</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Divide%20and%20conquer.jpg" data-src="ASSETS/motion-art/v/Divide%20and%20conquer.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Divide and Conquer"></video><figcaption>Divide and Conquer</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Twisting%20triangles.jpg" data-src="ASSETS/motion-art/v/Twisting%20triangles.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Twisting Triangles"></video><figcaption>Twisting Triangles</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Vector%20Spin.jpg" data-src="ASSETS/motion-art/v/Vector%20Spin.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Vector Spin"></video><figcaption>Vector Spin</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Time%20scale.jpg" data-src="ASSETS/motion-art/v/Time%20scale.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Time Scale"></video><figcaption>Time Scale</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Orbitals.jpg" data-src="ASSETS/motion-art/v/Orbitals.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Orbitals"></video><figcaption>Orbitals</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Never%20still.jpg" data-src="ASSETS/motion-art/v/Never%20still.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Never Still"></video><figcaption>Never Still</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Grid%20collapse.jpg" data-src="ASSETS/motion-art/v/Grid%20collapse.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Grid Collapse"></video><figcaption>Grid Collapse</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/The%20biggest%20box.jpg" data-src="ASSETS/motion-art/v/The%20biggest%20box.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="The Biggest Box"></video><figcaption>The Biggest Box</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Cosmos.jpg" data-src="ASSETS/motion-art/v/Cosmos.mp4" muted loop playsinline preload="none" width="400" height="300" aria-label="Cosmos"></video><figcaption>Cosmos</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Orbit%20Wave.jpg" data-src="ASSETS/motion-art/v/Orbit%20Wave.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Orbit Wave"></video><figcaption>Orbit Wave</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Synchronization.jpg" data-src="ASSETS/motion-art/v/Synchronization.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Synchronization"></video><figcaption>Synchronization</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Drip%20Row.jpg" data-src="ASSETS/motion-art/v/Drip%20Row.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Drip Row"></video><figcaption>Drip Row</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Divide%20and%20conquer.jpg" data-src="ASSETS/motion-art/v/Divide%20and%20conquer.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Divide and Conquer"></video><figcaption>Divide and Conquer</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Twisting%20triangles.jpg" data-src="ASSETS/motion-art/v/Twisting%20triangles.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Twisting Triangles"></video><figcaption>Twisting Triangles</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Vector%20Spin.jpg" data-src="ASSETS/motion-art/v/Vector%20Spin.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Vector Spin"></video><figcaption>Vector Spin</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Time%20scale.jpg" data-src="ASSETS/motion-art/v/Time%20scale.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Time Scale"></video><figcaption>Time Scale</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Orbitals.jpg" data-src="ASSETS/motion-art/v/Orbitals.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Orbitals"></video><figcaption>Orbitals</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Never%20still.jpg" data-src="ASSETS/motion-art/v/Never%20still.mp4" muted loop playsinline preload="none" width="400" height="400" aria-label="Never Still"></video><figcaption>Never Still</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Grid%20collapse.jpg" data-src="ASSETS/motion-art/v/Grid%20collapse.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="Grid Collapse"></video><figcaption>Grid Collapse</figcaption></figure>
+    <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/The%20biggest%20box.jpg" data-src="ASSETS/motion-art/v/The%20biggest%20box.mp4" muted loop playsinline preload="none" width="500" height="500" aria-label="The Biggest Box"></video><figcaption>The Biggest Box</figcaption></figure>
   </div>
 </section>
 
 <!-- 09 · THE OTHER SIDE -->
 <section class="sec otherside" id="otherside">
   <div class="pbk-reel" aria-hidden="true">
-    <img class="on" src="ASSETS/motion-art/Vector%20echo.gif" alt="" loading="lazy" width="400" height="400">
-    <img src="ASSETS/motion-art/Night%20Moon.gif" alt="" loading="lazy" width="426" height="239">
-    <img src="ASSETS/motion-art/Stay%20in%20line.gif" alt="" loading="lazy" width="500" height="500">
+    <video class="on mv" poster="ASSETS/motion-art/v/Vector%20echo.jpg" data-src="ASSETS/motion-art/v/Vector%20echo.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
+    <video class="mv" poster="ASSETS/motion-art/v/Night%20Moon.jpg" data-src="ASSETS/motion-art/v/Night%20Moon.mp4" muted loop playsinline preload="none" width="426" height="239"></video>
+    <video class="mv" poster="ASSETS/motion-art/v/Stay%20in%20line.jpg" data-src="ASSETS/motion-art/v/Stay%20in%20line.mp4" muted loop playsinline preload="none" width="500" height="500"></video>
   </div>
   <div class="pbk-scrim" aria-hidden="true"></div>
   <div class="sec-tag"><span class="no">09</span><span>The Other Side of the Practice</span></div>
@@ -1244,8 +1245,8 @@ body.cf-lock{overflow:hidden}
 <!-- 10 · FINAL CTA -->
 <section class="sec final" id="contact">
   <div class="final-bg" id="finalBg" aria-hidden="true">
-    <img class="fb-base" src="ASSETS/motion-art/Black%20Sea.gif" alt="" width="498" height="280">
-    <img class="fb fb-1" src="ASSETS/motion-art/Back%20to%20the%20beginning.gif" alt="" loading="lazy" width="400" height="336">
+    <video class="fb-base mv" poster="ASSETS/motion-art/v/Black%20Sea.jpg" data-src="ASSETS/motion-art/v/Black%20Sea.mp4" muted loop playsinline preload="none" width="498" height="280"></video>
+    <video class="fb fb-1 mv" poster="ASSETS/motion-art/v/Back%20to%20the%20beginning.jpg" data-src="ASSETS/motion-art/v/Back%20to%20the%20beginning.mp4" muted loop playsinline preload="none" width="400" height="336"></video>
   </div>
   <div class="final-inner">
     <div class="sec-tag"><span class="no">10</span><span>The Invitation</span></div>
@@ -1628,14 +1629,31 @@ body.cf-lock{overflow:hidden}
   const heroMode = new URLSearchParams(location.search).get('hero') || DEFAULT_HERO;
   document.body.dataset.hero = heroMode;
 
-  const heroVideo = document.querySelector('.hero-bg video');
+  /* motion art: <video> replaces GIF — attach src only as each nears the viewport */
+  const mvs = [...document.querySelectorAll('video.mv')];
+  if (mvs.length) {
+    const load = v => {
+      if (v.dataset.src) { v.src = v.dataset.src; delete v.dataset.src; }
+      if (!reduced) v.play().catch(() => {});
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { load(e.target); obs.unobserve(e.target); } });
+      }, { rootMargin: '400px 0px' });
+      mvs.forEach(v => io.observe(v));
+    } else {
+      mvs.forEach(load);
+    }
+  }
+
+  const heroVideo = document.querySelector('.hero-bg video:not(.hero-gif)');
   if (heroVideo && heroMode === 'video' && !reduced) {
     heroVideo.preload = 'auto';
     heroVideo.play().catch(() => {});
   }
 
   /* PitchBlacKnight banner reel — same crossfade cadence as pitchblacknight.com */
-  const pbkReel = [...document.querySelectorAll('.pbk-reel img')];
+  const pbkReel = [...document.querySelectorAll('.pbk-reel video')];
   if (pbkReel.length > 1 && !reduced) {
     let pbkAt = 0;
     setInterval(() => {
