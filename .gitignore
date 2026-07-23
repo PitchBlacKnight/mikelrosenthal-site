@@ -1,2 +1,6 @@
 .DS_Store
+CLAUDE.md
+_*.html
+_tmp-*/
 intel-key.js
+intel.html
