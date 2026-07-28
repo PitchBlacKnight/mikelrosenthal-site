@@ -2409,11 +2409,35 @@ body.cf-lock{overflow:hidden}
     .add(() => {}, '+=0.15')
     .to(loader, {clipPath: 'inset(0 0 100% 0)', duration: 1.05, ease: 'expo.inOut',
         onStart(){ loader.style.clipPath = 'inset(0 0 0% 0)'; },
-        onComplete(){
-          loader.style.display = 'none';
-          if (lenis) lenis.start(); else document.body.style.overflow = '';
-          heroIntro.play();
-        }});
+        onComplete(){ revealHero(); }});
+
+  /* ---- failsafe: the hero must never depend on the preloader finishing ----
+     If the tab is backgrounded during load, rAF throttling stalls the loader
+     timeline and the intro would never fire — leaving a visitor on a hero with
+     no headline, eyebrow, or copy. revealHero() is idempotent and also runs on
+     a timer, so the page always arrives. */
+  let heroRevealed = false;
+  function revealHero(){
+    if (heroRevealed) return;
+    heroRevealed = true;
+    loadTl.kill();
+    loader.style.display = 'none';
+    if (lenis) lenis.start(); else document.body.style.overflow = '';
+    heroIntro.play();
+  }
+  setTimeout(revealHero, 6000);
+  addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') setTimeout(revealHero, 1200);
+  });
+  /* last resort: if the intro itself never rendered, snap the hero to its end state */
+  setTimeout(() => {
+    const sub = document.getElementById('heroSub');
+    if (sub && parseFloat(getComputedStyle(sub).opacity) === 0) {
+      gsap.set('#heroEyebrow', {opacity: 1, x: 0});
+      gsap.set('#heroSub', {opacity: 1, y: 0});
+      heroChars.forEach(set => gsap.set(set, {yPercent: 0, rotate: 0}));
+    }
+  }, 10000);
 
   /* ---- hero: pinned kinetic scrub (desktop) ---- */
   const mm = gsap.matchMedia();
