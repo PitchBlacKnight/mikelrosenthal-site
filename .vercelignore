@@ -1,0 +1,7 @@
+intel-key.js
+CLAUDE.md
+.claude/
+.DS_Store
+_*.html
+_tmp-*/
+intel.html
