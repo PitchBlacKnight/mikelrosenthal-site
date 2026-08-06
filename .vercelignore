@@ -5,3 +5,6 @@ CLAUDE.md
 _*.html
 _tmp-*/
 intel.html
+
+# Reference material — never deploy
+_reference/
