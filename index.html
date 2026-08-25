@@ -455,6 +455,11 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-thumbs img{aspect-ratio:3/4;object-fit:cover;object-position:top}
 .cf-thumbs-note{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);margin-top:10px}}
 .cf-imgrow .cf-img{margin:0}
+.cf-deck{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:26px 0 4px;padding:2px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--cream-25) transparent}
+.cf-deck::-webkit-scrollbar{height:6px}
+.cf-deck::-webkit-scrollbar-thumb{background:rgba(var(--cream-rgb),.25);border-radius:3px}
+.cf-deck img{height:clamp(240px,44vh,500px);width:auto;flex:0 0 auto;scroll-snap-align:start;display:block;border-radius:3px;outline:1px solid var(--line);outline-offset:-1px;background:var(--ink-2)}
+.cf-deck-note{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);margin-top:6px}
 .cf-loop{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(241,232,214,.72);border-left:2px solid var(--coral);padding-left:16px;margin:20px 0 0;max-width:60ch}
 .cf-note{margin-top:clamp(40px,6vh,64px);padding-top:18px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.14em;color:var(--cream-45)}
 body.cf-lock{overflow:hidden}
@@ -974,6 +979,7 @@ body.cf-lock{overflow:hidden}
   <div class="idx-grid">
     <figure class="idx-card reveal" data-case="cf-truecredit" tabindex="0" role="button" aria-label="Open TrueCredit case file" style="cursor:pointer"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit — TransUnion fintech rebrand across mobile, tablet, and desktop, 2018" loading="lazy" width="1600" height="1236"><figcaption><b>TrueCredit</b><span>Fintech Rebrand · 2018</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-marketing" tabindex="0" role="button" aria-label="Open the Avant Marketing Library case file" style="cursor:pointer"><img src="ASSETS/work/board-avant-forge.jpg" alt="Avant — Forge the Future campaign key art, neon light rings with Ignite Your X-Factor lockup, 2022–2023" loading="lazy" width="1200" height="557"><figcaption><b>Avant</b><span>Marketing Campaign · Brand Direction · 2022–2023</span></figcaption></figure>
+    <figure class="idx-card reveal" data-case="cf-spacelab" tabindex="0" role="button" aria-label="Open Spacelab case file" style="cursor:pointer"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab — brand and packaging system, geometric pattern tin, 2021" loading="lazy" width="1800" height="1350"><figcaption><b>Spacelab</b><span>Brand Identity · Packaging System · 2021</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-google" tabindex="0" role="button" aria-label="Open Google Information Dashboard case file" style="cursor:pointer"><img src="ASSETS/work/board-google.jpg" alt="Google — Information Dashboard, self-initiated study, 2016" loading="lazy" width="1200" height="927"><figcaption><b>Google</b><span>Information Dashboard · 2016</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-mavenwave" tabindex="0" role="button" aria-label="Open Maven Wave case file" style="cursor:pointer"><img src="ASSETS/work/board-mavenwave.jpg" alt="Maven Wave — logo redesign concepts, 2009" loading="lazy" width="1200" height="927"><figcaption><b>Maven Wave Partners</b><span>Brand Identity · Logo System · 2013–2014</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-aflac" tabindex="0" role="button" aria-label="Open Aflac CRM Application case file" style="cursor:pointer"><img src="ASSETS/work/board-aflac.jpg" alt="Aflac — Mobile and Desktop CRM Application Design, 2010" loading="lazy" width="1200" height="927"><figcaption><b>Aflac</b><span>Mobile / Desktop CRM · 2010</span></figcaption></figure>
@@ -987,7 +993,6 @@ body.cf-lock{overflow:hidden}
     <figure class="idx-card reveal" data-case="cf-catamaran" tabindex="0" role="button" aria-label="Open My Catamaran Member App case file" style="cursor:pointer"><img src="ASSETS/work/board-catamaran.jpg" alt="My Catamaran — product design" loading="lazy" width="1200" height="927"><figcaption><b>My Catamaran</b><span>Brand &amp; Member App · 2014</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-prism" tabindex="0" role="button" aria-label="Open the PRISM case file" style="cursor:pointer"><img src="ASSETS/work/prism-desktop.jpg" alt="PRISM — primary personality desktop experience, 2020" loading="lazy" width="1600" height="900"><figcaption><b>PRISM</b><span>Personality Platform · 2020</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-whirlpool" tabindex="0" role="button" aria-label="Open Whirlpool Vision App case file" style="cursor:pointer"><img src="ASSETS/work/board-whirlpool.jpg" alt="Whirlpool Vision — connected-appliance companion app, 2015" loading="lazy" width="1200" height="926"><figcaption><b>Whirlpool Vision</b><span>Product Design · App · 2015</span></figcaption></figure>
-    <figure class="idx-card reveal" data-case="cf-spacelab" tabindex="0" role="button" aria-label="Open Spacelab case file" style="cursor:pointer"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab — brand and packaging system, geometric pattern tin, 2021" loading="lazy" width="1800" height="1350"><figcaption><b>Spacelab</b><span>Brand Identity · Packaging System · 2021</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-1000greetings" tabindex="0" role="button" aria-label="Open 1,000 Greetings Published case file" style="cursor:pointer"><img src="ASSETS/work/board-1000greetings.jpg" alt="1,000 Greetings — published print work in the Firebelly Design annual, 2009" loading="lazy" width="1290" height="956"><figcaption><b>1,000 Greetings</b><span>Print · Published · 2009</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-logofolio" tabindex="0" role="button" aria-label="Open Logofolio case file" style="cursor:pointer"><img src="ASSETS/work/board-logofolio.jpg" alt="Logofolio — six of twenty identity marks: iatric, TalentSky, Renew Healthcare, Codex, User Experience, Reveal" loading="lazy" width="1600" height="1236"><figcaption><b>Logofolio</b><span>Identity Design · 20 Marks · 2001–2018</span></figcaption></figure>
   </div>
@@ -1282,7 +1287,7 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Avant Communications · B2B Technology · 2021 — 2024</p>
     <h2 class="cf-title">Pathfinder <em>Design System</em></h2>
-    <p class="cf-sub">Avant's first unified design system — dual-themed, built from zero, and owned end to end for three years.</p>
+    <p class="cf-sub">Avant's first unified design system — dual-themed, built from zero, and owned end to end for two and a half years.</p>
     <p class="cf-loop">The six-step loop on the front page isn't a diagram — it's how this was built. Pathfinder is the long version.</p>
     <div class="cf-meta">
       <span><b>Role</b>Senior Design Systems Lead — end to end</span>
@@ -1291,7 +1296,7 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-stats">
       <div><div class="n">350<i>+</i></div><div class="l">Contributors enabled</div></div>
-      <div><div class="n">3<i>yr</i></div><div class="l">Owned end to end · v1 → 3.0</div></div>
+      <div><div class="n">2.5<i>yr</i></div><div class="l">Owned end to end · v1 → 3.0</div></div>
       <div><div class="n">2<i>×</i></div><div class="l">Systems from one foundation</div></div>
       <div><div class="n">5<i>→1</i></div><div class="l">Primary blues to one language</div></div>
     </div>
@@ -1813,6 +1818,48 @@ body.cf-lock{overflow:hidden}
         <div class="cf-img"><img src="ASSETS/work/spacelab-name-lakehouse.jpg" alt="Lake House name direction staged over mountain photography" loading="lazy" width="1200" height="927"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-name-campfire.jpg" alt="Campfire name direction — delicious tasting, perfect dosage lockup" loading="lazy" width="1200" height="927"></div>
       </figure>
+      <p><b>The full deck, page by page.</b> Thirty-eight boards, exactly as presented — every name staged in context before the field narrowed to one.</p>
+      <div class="cf-deck" aria-label="Brand exploration deck, 38 pages">
+        <img src="ASSETS/work/spacelab-deck/deck-01.jpg" alt="Brand exploration deck, page 1 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-02.jpg" alt="Brand exploration deck, page 2 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-03.jpg" alt="Brand exploration deck, page 3 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-04.jpg" alt="Brand exploration deck, page 4 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-05.jpg" alt="Brand exploration deck, page 5 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-06.jpg" alt="Brand exploration deck, page 6 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-07.jpg" alt="Brand exploration deck, page 7 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-08.jpg" alt="Brand exploration deck, page 8 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-09.jpg" alt="Brand exploration deck, page 9 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-10.jpg" alt="Brand exploration deck, page 10 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-11.jpg" alt="Brand exploration deck, page 11 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-12.jpg" alt="Brand exploration deck, page 12 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-13.jpg" alt="Brand exploration deck, page 13 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-14.jpg" alt="Brand exploration deck, page 14 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-15.jpg" alt="Brand exploration deck, page 15 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-16.jpg" alt="Brand exploration deck, page 16 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-17.jpg" alt="Brand exploration deck, page 17 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-18.jpg" alt="Brand exploration deck, page 18 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-19.jpg" alt="Brand exploration deck, page 19 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-20.jpg" alt="Brand exploration deck, page 20 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-21.jpg" alt="Brand exploration deck, page 21 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-22.jpg" alt="Brand exploration deck, page 22 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-23.jpg" alt="Brand exploration deck, page 23 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-24.jpg" alt="Brand exploration deck, page 24 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-25.jpg" alt="Brand exploration deck, page 25 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-26.jpg" alt="Brand exploration deck, page 26 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-27.jpg" alt="Brand exploration deck, page 27 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-28.jpg" alt="Brand exploration deck, page 28 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-29.jpg" alt="Brand exploration deck, page 29 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-30.jpg" alt="Brand exploration deck, page 30 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-31.jpg" alt="Brand exploration deck, page 31 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-32.jpg" alt="Brand exploration deck, page 32 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-33.jpg" alt="Brand exploration deck, page 33 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-34.jpg" alt="Brand exploration deck, page 34 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-35.jpg" alt="Brand exploration deck, page 35 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-36.jpg" alt="Brand exploration deck, page 36 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-37.jpg" alt="Brand exploration deck, page 37 of 38" loading="lazy" width="1600" height="1237">
+        <img src="ASSETS/work/spacelab-deck/deck-38.jpg" alt="Brand exploration deck, page 38 of 38" loading="lazy" width="1600" height="1237">
+      </div>
+      <div class="cf-deck-note"><span>Scroll sideways to flip through</span><span>38 pages · 2021</span></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Mark</span></div>
@@ -1848,6 +1895,8 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
       <p>A complete shelf presence from nothing — name, mark, system, and packaging line speaking one language. The exploration deck did its job twice: it sold the direction, and it documented every road not taken.</p>
+      <p><b>The decided system, one board.</b> Geometric pattern in slate blue, ochre, and burnt red; the helmet mark and black label bar holding every format — tin, jar, pouch, tube, and box — down to the helmet embossed on the gummies themselves.</p>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-final-board.jpg" alt="Spacelab final brand board — logo and palette, patterned tin, jar, stand-up pouch, dosing tube, and boxes, with helmet-embossed gummies and the Tasty, Precise, Reliable values row" loading="lazy" width="1536" height="1024"></figure>
       <blockquote class="cf-quote">A name can only be judged wearing its typography — so every candidate got dressed before the vote.</blockquote>
     </div>
     <p class="cf-note">Independent freelance engagement. Client details generalized per confidentiality.</p>
