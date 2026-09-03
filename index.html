@@ -457,9 +457,19 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-imgrow .cf-img{margin:0}
 .cf-deck{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:26px 0 4px;padding:2px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--cream-25) transparent}
 .cf-deck::-webkit-scrollbar{height:6px}
-.cf-deck::-webkit-scrollbar-thumb{background:rgba(var(--cream-rgb),.25);border-radius:3px}
+.cf-deck::-webkit-scrollbar-thumb{background:var(--cream-25);border-radius:3px}
 .cf-deck img{height:clamp(240px,44vh,500px);width:auto;flex:0 0 auto;scroll-snap-align:start;display:block;border-radius:3px;outline:1px solid var(--line);outline-offset:-1px;background:var(--ink-2)}
 .cf-deck-note{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);margin-top:6px}
+.cf-flow{margin:26px 0 8px}
+.cf-flow svg{width:100%;height:auto;display:block}
+.cf-flow .fl-box{fill:var(--ink-2);stroke:var(--line);stroke-width:1}
+.cf-flow .fl-rail{fill:none;stroke:var(--line);stroke-width:1}
+.cf-flow .fl-n{font-family:var(--serif);font-style:italic;font-size:30px;fill:var(--coral)}
+.cf-flow .fl-t{font-family:var(--sans);font-weight:500;font-size:27px;letter-spacing:.14em;fill:var(--cream)}
+.cf-flow .fl-b{font-family:var(--sans);font-weight:300;font-size:21px;fill:var(--cream-70)}
+.cf-flow .fl-r{font-family:var(--sans);font-weight:400;font-size:19px;letter-spacing:.22em;fill:rgba(241,232,214,.62)}
+.cf-flow .fl-ln{stroke:var(--coral);stroke-width:1.5;fill:none}
+.cf-flow .fl-dash{stroke:rgba(241,232,214,.4);stroke-width:1.5;fill:none;stroke-dasharray:5 6}
 .cf-loop{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(241,232,214,.72);border-left:2px solid var(--coral);padding-left:16px;margin:20px 0 0;max-width:60ch}
 .cf-note{margin-top:clamp(40px,6vh,64px);padding-top:18px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.14em;color:var(--cream-45)}
 body.cf-lock{overflow:hidden}
@@ -821,7 +831,7 @@ body.cf-lock{overflow:hidden}
       <span class="split-l" data-kinetic="-4"><span><span class="ghost">built to scale.</span></span></span>
     </h1>
     <div class="hero-sub" id="heroSub">
-      <p><b>Twenty-three years</b> of product design, visual craft, and design systems — for Google, GE&nbsp;Healthcare, Blue&nbsp;Cross&nbsp;Blue&nbsp;Shield, Verizon, TransUnion, and Avant. AI-forward in how I work, hand-finished in what ships.</p>
+      <p><b>Twenty-three years</b> of product design, visual craft, and design systems for Google, GE&nbsp;Healthcare, Blue&nbsp;Cross&nbsp;Blue&nbsp;Shield, Verizon, TransUnion, and Avant. I work with AI every day. What ships is finished by hand.</p>
       <div class="hero-scroll"><span>Scroll</span><span class="wire"></span></div>
     </div>
   </div>
@@ -846,13 +856,13 @@ body.cf-lock{overflow:hidden}
       <em>AI just changed its economics.</em>
     </h2>
     <div class="mani-side">
-      <p class="reveal">Twenty-three years refined this into six steps. What used to take a sprint of static comps now takes an afternoon of working code — <b>so more of the loop happens in the real thing, and the craft gets the hours back.</b></p>
-      <div class="mani-rule reveal"><span class="k">1.</span><span class="v">Frame the problem — the real goal, the user, the constraints. Before any pixels.</span></div>
-      <div class="mani-rule reveal"><span class="k">2.</span><span class="v">Map the flow — architecture, states, and the path a person actually takes.</span></div>
-      <div class="mani-rule reveal"><span class="k">3.</span><span class="v">Explore wide — AI multiplies the directions; taste decides. Teams pick from options, not opinions.</span></div>
-      <div class="mani-rule reveal"><span class="k">4.</span><span class="v">Design to the pixel — type, spacing, color, motion. Every state: loading, empty, error, edge.</span></div>
-      <div class="mani-rule reveal"><span class="k">5.</span><span class="v">Make it a system — components and rules a whole team can build from.</span></div>
-      <div class="mani-rule reveal"><span class="k">6.</span><span class="v">Build it for real — prototype to production front-end with Claude Code, shipped alongside engineering.</span></div>
+      <p class="reveal">Twenty-three years of shipping boiled it down to six steps. What used to take a sprint of static comps now takes an afternoon of working code, <b>so more of the loop happens in the real thing and the craft gets those hours back.</b></p>
+      <div class="mani-rule reveal"><span class="k">1.</span><span class="v">Frame the problem. The real goal, the user, the constraints, before any pixels.</span></div>
+      <div class="mani-rule reveal"><span class="k">2.</span><span class="v">Map the flow. Architecture, states, and the path a person takes through it.</span></div>
+      <div class="mani-rule reveal"><span class="k">3.</span><span class="v">Explore wide. AI multiplies the directions. Taste decides. The team gets real options to pick from.</span></div>
+      <div class="mani-rule reveal"><span class="k">4.</span><span class="v">Design to the pixel. Type, spacing, color, motion. Every state: loading, empty, error, edge.</span></div>
+      <div class="mani-rule reveal"><span class="k">5.</span><span class="v">Make it a system. Components and rules a whole team can build from.</span></div>
+      <div class="mani-rule reveal"><span class="k">6.</span><span class="v">Build it for real. Prototype to production front-end with Claude Code, shipped alongside engineering.</span></div>
     </div>
   </div>
 </section>
@@ -863,7 +873,7 @@ body.cf-lock{overflow:hidden}
   <div class="sec-tag"><span class="no">02</span><span>The Systems · 2016 — 2026</span></div>
   <div class="index-head">
     <h2 class="reveal">Ten years on step five: <em>make it a system.</em></h2>
-    <p class="reveal">Run at enterprise scale for Avant, BCBS, GE&nbsp;Healthcare, SurePeople, and TransUnion — architecture, governance, and a language whole organizations ship from. Some I founded. Some I inherited, and made stronger.</p>
+    <p class="reveal">Run at enterprise scale for Avant, BCBS, GE&nbsp;Healthcare, SurePeople, and TransUnion: architecture, governance, and a language whole organizations ship from. Some I founded. Some I inherited and made stronger.</p>
   </div>
   <div class="sys-grid">
     <figure class="sys-card reveal" data-case="cf-pathfinder" tabindex="0" role="button" aria-label="Open Pathfinder case file">
@@ -906,7 +916,7 @@ body.cf-lock{overflow:hidden}
           <div class="work-no">01</div>
           <p class="work-kicker">Avant · Product Platform · 2021–2024</p>
           <h3 class="feat-title">Pathfinder</h3>
-          <p class="work-desc">Design vision and system for a B2B telecom-intelligence platform — connectivity mapping, project dashboards, and configuration tools unified under one component framework used by 350+ trusted advisors.</p>
+          <p class="work-desc">Design vision and system for a B2B telecom-intelligence platform: connectivity mapping, project dashboards, and configuration tools, all on one component framework used by 350+ trusted advisors.</p>
           <p class="feat-fact">Senior Product / Systems Designer · Product vision · Design system · Data viz</p>
         </div>
         <figure class="feat-media"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder 2.0 dashboard on the dark theme" loading="lazy" width="1683" height="1800"></figure>
@@ -917,7 +927,7 @@ body.cf-lock{overflow:hidden}
           <div class="work-no">02</div>
           <p class="work-kicker">Spacelab · Brand &amp; Packaging · 2021</p>
           <h3 class="feat-title">Spacelab</h3>
-          <p class="work-desc">A full identity and packaging system for an artisan edibles brand — cosmic illustration language, midnight blues cut with burnt orange, carried across boxes, tins, foils, and jars.</p>
+          <p class="work-desc">A full identity and packaging system for an artisan edibles brand. Cosmic illustration, midnight blue cut with burnt orange, carried across boxes, tins, foils, and jars.</p>
           <p class="feat-fact">Creative Direction · Identity · Packaging · Freelance</p>
         </div>
         <figure class="feat-media"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin — geometric pattern lid in ochre, slate, and red with the astronaut-helmet wordmark on a deep blue field" loading="lazy" width="1800" height="1350"></figure>
@@ -928,7 +938,7 @@ body.cf-lock{overflow:hidden}
           <div class="work-no">03</div>
           <p class="work-kicker">SurePeople · HR Tech · 2020</p>
           <h3 class="feat-title">PRISM</h3>
-          <p class="work-desc">Product design lead for a psychometric intelligence platform — translating dense personality data into humane, readable dashboards for coaches and teams.</p>
+          <p class="work-desc">Product design lead for a psychometric intelligence platform. Dense personality data turned into readable, humane dashboards for coaches and teams.</p>
           <p class="feat-fact">Product Design Lead · Dashboards · Data visualization · Mobile UX</p>
         </div>
         <figure class="feat-media"><img src="ASSETS/design-systems/board-prism.jpg" alt="PRISM Psychometric Consumer App — presentation board with laptop and mobile mockups" loading="lazy" width="1800" height="1012"></figure>
@@ -939,7 +949,7 @@ body.cf-lock{overflow:hidden}
           <div class="work-no">04</div>
           <p class="work-kicker">TransUnion · Fintech · 2018</p>
           <h3 class="feat-title">TrueCredit</h3>
-          <p class="work-desc">Rebrand and product ideation for a consumer credit platform — an "art of the possible" vision that reframed credit data as something people could actually feel good reading.</p>
+          <p class="work-desc">Rebrand and product ideation for a consumer credit platform. An "art of the possible" vision that made credit data something people could feel okay reading.</p>
           <p class="feat-fact">Design Systems Lead · Rebrand · Product vision · Enterprise system</p>
         </div>
         <figure class="feat-media"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit rebrand — mobile, tablet, and desktop dashboard designs" loading="lazy" width="1600" height="1236"></figure>
@@ -950,7 +960,7 @@ body.cf-lock{overflow:hidden}
           <div class="work-no">05</div>
           <p class="work-kicker">Avant · Brand System · 2022–2024</p>
           <h3 class="feat-title">Avant Marketing System</h3>
-          <p class="work-desc">A Figma-first marketing design system — campaign templates, social kits, and brand components that let a lean team produce at agency volume without agency drift.</p>
+          <p class="work-desc">A Figma-first marketing design system: campaign templates, social kits, and brand components that let a small team produce at agency volume without the drift.</p>
           <p class="feat-fact">Brand Direction · Systems Design · Campaign kit · Figma library</p>
         </div>
         <figure class="feat-media"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system overview" loading="lazy" width="1800" height="728"></figure>
@@ -974,7 +984,7 @@ body.cf-lock{overflow:hidden}
   <div class="sec-tag"><span class="no">03.5</span><span>The Index · 2009 — 2024</span></div>
   <div class="index-head">
     <h2 class="reveal">Fifteen years of shipped products, <em>one board at a time.</em></h2>
-    <p class="reveal">Case boards and client sites from the archive — fintech, healthcare, real estate, luxury retail. Most open a full case file.</p>
+    <p class="reveal">Case boards and client sites from the archive: fintech, healthcare, real estate, luxury retail. Most open a full case file.</p>
   </div>
   <div class="idx-grid">
     <figure class="idx-card reveal" data-case="cf-truecredit" tabindex="0" role="button" aria-label="Open TrueCredit case file" style="cursor:pointer"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit — TransUnion fintech rebrand across mobile, tablet, and desktop, 2018" loading="lazy" width="1600" height="1236"><figcaption><b>TrueCredit</b><span>Fintech Rebrand · 2018</span></figcaption></figure>
@@ -997,7 +1007,7 @@ body.cf-lock{overflow:hidden}
     <figure class="idx-card reveal" data-case="cf-logofolio" tabindex="0" role="button" aria-label="Open Logofolio case file" style="cursor:pointer"><img src="ASSETS/work/board-logofolio.jpg" alt="Logofolio — six of twenty identity marks: iatric, TalentSky, Renew Healthcare, Codex, User Experience, Reveal" loading="lazy" width="1600" height="1236"><figcaption><b>Logofolio</b><span>Identity Design · 20 Marks · 2001–2018</span></figcaption></figure>
   </div>
 
-  <div class="idx-sub reveal"><span>The web work — client sites, concept through deployment · 2022 — 2024</span></div>
+  <div class="idx-sub reveal"><span>The web work · client sites, concept through deployment · 2022 — 2024</span></div>
   <div class="idx-grid">
     <figure class="idx-card reveal"><a href="https://socomcm.pitchblacknight.com" target="_blank" rel="noopener" aria-label="Visit the SoCoMCM website"><img src="ASSETS/work/web-socomcm.jpg" alt="SoCoMCM — architecture firm website, 2024" loading="lazy" width="1200" height="900"><figcaption><b>SoCoMCM</b><span>Web Design · Architecture · 2024</span></figcaption></a></figure>
     <figure class="idx-card reveal"><a href="https://david.pitchblacknight.com" target="_blank" rel="noopener" aria-label="Visit the For David website"><img src="ASSETS/work/web-david.jpg" alt="For David — multimedia tribute website, 2024" loading="lazy" width="1200" height="750"><figcaption><b>For David</b><span>Web Design · Multimedia · 2024</span></figcaption></a></figure>
@@ -1020,9 +1030,9 @@ body.cf-lock{overflow:hidden}
     <div class="stat reveal"><div class="n"><span data-count="156">0</span></div><div class="lbl">Motion works since 1990</div></div>
   </div>
   <div class="awards">
-    <div class="award reveal"><span class="medal">✦ Red Dot Award</span><h4>Edison Design System</h4><p>International design excellence for GE Healthcare's clinical platform language.</p></div>
-    <div class="award reveal"><span class="medal">✦ Fast Company</span><h4>Innovation by Design</h4><p>Recognized for design innovation in enterprise healthcare tooling.</p></div>
-    <div class="award reveal"><span class="medal">✦ dmi : DVA</span><h4>Interface Design</h4><p>Design Management Institute award for interface design excellence.</p></div>
+    <div class="award reveal"><span class="medal">✦ Red Dot Award</span><h4>Edison Design System</h4><p>2020, Interface Design, for the Edison Design System at GE Healthcare.</p></div>
+    <div class="award reveal"><span class="medal">✦ Fast Company</span><h4>Innovation by Design</h4><p>Recognized for the same Edison system work at GE Healthcare.</p></div>
+    <div class="award reveal"><span class="medal">✦ dmi : DVA</span><h4>Interface Design</h4><p>Design Management Institute award for the Edison interface work.</p></div>
   </div>
 </section>
 
@@ -1036,7 +1046,7 @@ body.cf-lock{overflow:hidden}
         <span class="proc-no">i.</span><h3 class="proc-name">Vision</h3><span class="proc-x" aria-hidden="true"></span>
       </div>
       <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Find the unmistakable idea.</b> Deep listening, brand and product audit, ambition-setting. Before a single pixel: what should this feel like, and why would anyone remember it?</p>
+        <p><b>Find the idea worth remembering.</b> Listen hard, audit the brand and the product, and set the ambition. Before a single pixel: what should this feel like, and why would anyone remember it?</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Synchronization.jpg" data-src="ASSETS/motion-art/v/Synchronization.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
       </div></div>
     </div>
@@ -1045,7 +1055,7 @@ body.cf-lock{overflow:hidden}
         <span class="proc-no">ii.</span><h3 class="proc-name">Clarify</h3><span class="proc-x" aria-hidden="true"></span>
       </div>
       <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Name the real problem.</b> Define success in measurable terms, cut the noise, and get every stakeholder pointed at the same north star — in writing.</p>
+        <p><b>Name the real problem.</b> Define success in numbers, cut the noise, and get every stakeholder pointed at the same goal. In writing.</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Twisting%20vector.jpg" data-src="ASSETS/motion-art/v/Twisting%20vector.mp4" muted loop playsinline preload="none" width="499" height="416"></video>
       </div></div>
     </div>
@@ -1054,7 +1064,7 @@ body.cf-lock{overflow:hidden}
         <span class="proc-no">iii.</span><h3 class="proc-name">Map</h3><span class="proc-x" aria-hidden="true"></span>
       </div>
       <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Architecture before decoration.</b> Foundations, component inventories, user flows, narrative arcs — the skeleton that lets beauty scale without breaking.</p>
+        <p><b>Architecture before decoration.</b> Foundations, component inventories, user flows, narrative arcs. The skeleton that lets the visual layer scale without breaking.</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Graph%20builds.jpg" data-src="ASSETS/motion-art/v/Graph%20builds.mp4" muted loop playsinline preload="none" width="800" height="600"></video>
       </div></div>
     </div>
@@ -1063,7 +1073,7 @@ body.cf-lock{overflow:hidden}
         <span class="proc-no">iv.</span><h3 class="proc-name">Execute</h3><span class="proc-x" aria-hidden="true"></span>
       </div>
       <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Craft at full volume.</b> Art direction, pixels, motion, sound — executed to production quality, not concept quality. AI compresses the mechanical passes; the judgment calls and the finish stay mine.</p>
+        <p><b>Craft at full volume.</b> Art direction, pixels, motion, sound, all finished to production quality rather than concept quality. AI compresses the mechanical passes. The judgment calls and the finish stay mine.</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Keep%20building.jpg" data-src="ASSETS/motion-art/v/Keep%20building.mp4" muted loop playsinline preload="none" width="256" height="256"></video>
       </div></div>
     </div>
@@ -1072,7 +1082,7 @@ body.cf-lock{overflow:hidden}
         <span class="proc-no">v.</span><h3 class="proc-name">Deliver</h3><span class="proc-x" aria-hidden="true"></span>
       </div>
       <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Systems teams actually use.</b> Documentation, governance, Figma libraries, developer handoff — the unglamorous 20% that makes the other 80% survive contact with reality.</p>
+        <p><b>Systems teams keep using.</b> Documentation, governance, Figma libraries, developer handoff. The unglamorous part of the job, and the part that decides whether the rest of it lasts.</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Forever%20drop.jpg" data-src="ASSETS/motion-art/v/Forever%20drop.mp4" muted loop playsinline preload="none" width="490" height="392"></video>
       </div></div>
     </div>
@@ -1084,9 +1094,9 @@ body.cf-lock{overflow:hidden}
   <video class="secfx on-light tr rot-l mv" poster="ASSETS/motion-art/v/Can%20you%20see%20me.jpg" data-src="ASSETS/motion-art/v/Can%20you%20see%20me.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
   <div class="sec-tag"><span class="no">06</span><span>The Practice · 2003 — 2026</span></div>
   <div class="prac-head">
-    <h2 class="reveal">One practice, <em>every discipline</em> — and a shared language for all of them.</h2>
+    <h2 class="reveal">One practice, <em>every discipline,</em> and a shared language for all of them.</h2>
     <div class="prac-side">
-      <p class="reveal">The range most teams staff across three or four hires — product, systems, brand, art direction, motion, and sound — carried by one person. On a team, that means I plug in wherever the work needs me and speak every specialist’s language while I’m there. <b>AI is in the workflow, not the credits:</b> Claude Code for working prototypes and production front-end, Figma Make for taking a direction to a clickable prototype in an afternoon, and agent workflows for the multi-step passes — audits, variant production, documentation. It buys back the hours that go into finish. Over the past year that has matured into AI-assisted design engineering — I design and build in one pass, taking an idea to production-grade front-end rather than stopping at comps. This very site and my Morning Intel dashboard were built that way.</p>
+      <p class="reveal">Most teams staff this range across three or four hires: product, systems, brand, art direction, motion, and sound. I carry it as one person. On a team, that means I plug in wherever the work needs me and can speak every specialist’s language while I’m there. <b>AI is in the workflow, not in the credits.</b> I use Claude Code for working prototypes and production front-end, Figma Make to take a direction to a clickable prototype in an afternoon, and agent workflows for the multi-step passes like audits, variant production, and documentation. That buys back the hours that go into finish. Over the past year this has turned into AI-assisted design engineering. I design and build in one pass and take an idea to production-grade front-end instead of stopping at comps. This site and my Morning Intel dashboard were both built that way.</p>
       <div class="chips reveal">
         <span>Art Direction</span><span>Design Systems</span><span>Brand-to-Product</span><span>Visual Leadership</span><span>CX Audit + Strategy</span><span>Cross-Functional Leadership</span><span>Figma-First Workflows</span><span>Design Engineering</span><span>Accessibility + Craft</span><span>Voice &amp; Narrative</span>
       </div>
@@ -1096,74 +1106,74 @@ body.cf-lock{overflow:hidden}
   <div class="cv">
     <div class="cv-row reveal">
       <span class="co">PBK Studio<small>Principal Designer</small></span>
-      <span class="role">Independent multidisciplinary studio — composable design systems, product, brand identity, web, motion, voice performance, and original music. Governance, accessibility, and developer handoff built into every deliverable.</span>
+      <span class="role">Independent multidisciplinary studio: composable design systems, product, brand identity, web, motion, voice performance, and original music. Governance, accessibility, and developer handoff are built into every deliverable.</span>
       <span class="yr">May 2026 — Now</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Verizon<small>Senior Design System Designer II · Contract</small></span>
-      <span class="role">Scoped contract on the post-rebrand enterprise system — designed and delivered the calendar component: full states and accessibility, built on the system's tokens and variables, handed off complete. A month of scope, shipped inside the first week.</span>
+      <span class="role">Scoped contract on the post-rebrand enterprise system. I designed and delivered the calendar component with full states and accessibility, built on the system's tokens and variables, and handed it off complete. A month of scope, shipped inside the first week.</span>
       <span class="yr">2025</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">The Bettering Company<small>Brand Designer · Freelance</small></span>
-      <span class="role">New brand identity and a lightweight design system — company values translated into a cohesive visual language with shipping-ready guidelines.</span>
+      <span class="role">New brand identity and a lightweight design system. Company values translated into one visual language, with guidelines ready to ship from.</span>
       <span class="yr">2024 — 25</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Avant<small>Senior Product · UI/UX &amp; Design Systems</small></span>
-      <span class="role">Led the Pathfinder™ Design System and a marketing design library spanning product and brand — themeable components and one consistent language for 350+ marketers.</span>
+      <span class="role">Led the Pathfinder™ Design System and a marketing design library spanning product and brand: themeable components and one consistent language for 350+ marketers.</span>
       <span class="yr">2021 — 24</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">GE Healthcare<small>Senior UX/UI · Design Systems · Contract</small></span>
-      <span class="role">Designed, built, and evangelized the award-winning Edison Design System™ — a single foundation unifying 40+ regulated enterprise products. Red Dot, Fast Company, and dmi:DVA honored.</span>
+      <span class="role">Designed, built, and evangelized the Edison Design System™, a single foundation unifying 40+ regulated enterprise products. Honored by Red Dot, Fast Company, and dmi:DVA.</span>
       <span class="yr">2020 — 21</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">SurePeople<small>Lead UX/UI Visual Product Designer · Contract</small></span>
-      <span class="role">Led the PRISM™ psychometric platform — behavior analytics translated into a cohesive, scalable UI framework with modular kits.</span>
+      <span class="role">Led the PRISM™ psychometric platform. Behavior analytics translated into one scalable UI framework with modular kits.</span>
       <span class="yr">2020</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Blue Cross Blue Shield<small>Senior Product / Design Systems · Contract</small></span>
-      <span class="role">Created and maintained the FIBER™ Design System — a React-compatible framework that accelerated product-to-market timelines across web and mobile.</span>
+      <span class="role">Created and maintained the FIBER™ Design System, a React-compatible framework that shortened product-to-market timelines across web and mobile.</span>
       <span class="yr">2018 — 19</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">TransUnion<small>Senior UX Designer · Design Systems · Contract</small></span>
-      <span class="role">Designed the global TUCM Design System™ and visual identity for customer-facing and internal applications — integrated design-to-code workflows.</span>
+      <span class="role">Designed the global TUCM Design System™ and visual identity for customer-facing and internal applications, with design-to-code workflows built in.</span>
       <span class="yr">2018 — 19</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Maven Wave<small>UX Team Senior Lead · Design Systems</small></span>
-      <span class="role">Directed conceptual and visual direction across Fortune 500 engagements — Google, AT&amp;T, Nike — establishing scalable workflows and early design-system patterns; mentored design teams.</span>
+      <span class="role">Directed concept and visual direction across Fortune 500 engagements (Google, AT&amp;T, Nike), set up scalable workflows and early design-system patterns, and mentored design teams.</span>
       <span class="yr">2005 — 18</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Biersma Creative<small>Senior Designer &amp; UX Lead</small></span>
-      <span class="role">Visual brand and UX direction across healthcare, retail, and entertainment — Aflac, AbbVie, Crate &amp; Barrel, Disney, Herman Miller, Salesforce.</span>
+      <span class="role">Visual brand and UX direction across healthcare, retail, and entertainment: Aflac, AbbVie, Crate &amp; Barrel, Disney, Herman Miller, Salesforce.</span>
       <span class="yr">2006 — 13</span>
     </div>
     <div class="cv-row reveal">
       <span class="co">Firebelly Design<small>Senior Graphic Designer</small></span>
-      <span class="role">Concept-to-execution brand and web design — print and digital for ComEd, Petco, Harris Bank, and Scholastic.</span>
+      <span class="role">Brand and web design from concept to execution, print and digital, for ComEd, Petco, Harris Bank, and Scholastic.</span>
       <span class="yr">2003 — 05</span>
     </div>
   </div>
 
   <div class="range">
     <div class="range-card reveal"><h4><i>a.</i>Figma</h4><p>I build systems that scale and visuals that behave.</p></div>
-    <div class="range-card reveal"><h4><i>b.</i>AI</h4><p>Fast iteration, smart automation, and future-proofing by design.</p></div>
-    <div class="range-card reveal"><h4><i>c.</i>CX</h4><p>I find the friction, the confusion, and the quiet reasons customers leave — then fix them.</p></div>
-    <div class="range-card reveal"><h4><i>d.</i>Brand</h4><p>Turning identity into interface rhythm, interaction, and cohesion — concept to system, in one continuous arc.</p></div>
-    <div class="range-card reveal"><h4><i>e.</i>Platforms</h4><p>Slack, Jira, Confluence, GitHub, Notion, Miro — whatever your team uses.</p></div>
-    <div class="range-card reveal"><h4><i>f.</i>Fluxus</h4><p>Video, motion, animation, music and sound, spatial concepts, projection mapping — first take, always.</p></div>
+    <div class="range-card reveal"><h4><i>b.</i>AI</h4><p>Fast iteration and automation where it earns its keep. The work has to hold up as the tools change.</p></div>
+    <div class="range-card reveal"><h4><i>c.</i>CX</h4><p>I find the friction, the confusion, and the quiet reasons customers leave. Then I fix them.</p></div>
+    <div class="range-card reveal"><h4><i>d.</i>Brand</h4><p>Identity carried into the interface: rhythm, interaction, cohesion. Concept to system in one arc.</p></div>
+    <div class="range-card reveal"><h4><i>e.</i>Platforms</h4><p>Slack, Jira, Confluence, GitHub, Notion, Miro. Whatever your team uses.</p></div>
+    <div class="range-card reveal"><h4><i>f.</i>Fluxus</h4><p>Video, motion, animation, music and sound, spatial concepts, projection mapping. First take, always.</p></div>
     <div class="range-card reveal"><h4><i>g.</i>Body</h4><p>Dancer. Operatic voice. Precision whistler. Ambidextrous. The instrument is the instrument.</p></div>
-    <div class="range-card reveal"><h4><i>h.</i>Sound</h4><p>Phonetic mimic — human, animal, mechanical. Absorbs accents, dialects, and textures after a single exposure.</p></div>
+    <div class="range-card reveal"><h4><i>h.</i>Sound</h4><p>Phonetic mimic: human, animal, mechanical. I pick up accents, dialects, and textures after one exposure.</p></div>
   </div>
 
   <div class="prac-foot reveal">
-    <p class="prac-edu"><b>Missouri State University</b><br>BFA, Summa Cum Laude — Electronic Arts &amp; Design · Minor in Mass Media &amp; Communications</p>
+    <p class="prac-edu"><b>Missouri State University</b><br>BFA, Summa Cum Laude · Electronic Arts &amp; Design · Minor in Mass Media &amp; Communications</p>
     <a class="btn-resume" href="ASSETS/Mikel_Rosenthal_Resume_2026.pdf" download data-magnetic>Download the resume <span class="arr">↓</span></a>
   </div>
 </section>
@@ -1176,19 +1186,19 @@ body.cf-lock{overflow:hidden}
     <div class="tier reveal">
       <span class="t-no">i.</span>
       <h3>The Sprint<span>2–4 weeks</span></h3>
-      <p>A focused engagement: design audit, creative direction, and a <b>north-star concept</b> your team can rally around. Strategy with pictures — not a deck that dies in a drive.</p>
+      <p>A focused engagement: design audit, creative direction, and a <b>concept your team can rally around.</b> Strategy with pictures, made to be built from rather than filed in a drive.</p>
       <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=The%20Sprint" data-magnetic>Start a sprint</a>
     </div>
     <div class="tier feature reveal">
       <span class="t-no">ii.</span>
       <h3>Embedded Lead<span>3–12 months · most requested</span></h3>
-      <p>I join your team as <b>design systems lead or art director</b> — the same seat I've held at GE Healthcare, BCBS, TransUnion, and Avant. Vision through governance, inside your stack, alongside your people.</p>
+      <p>I join your team as <b>design systems lead or art director</b>, the same seat I've held at GE Healthcare, BCBS, TransUnion, and Avant. Vision through governance, inside your stack, alongside your people.</p>
       <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Embedded%20Lead" data-magnetic>Reserve the seat</a>
     </div>
     <div class="tier reveal">
       <span class="t-no">iii.</span>
       <h3>Studio Build<span>Full world · PBK Studio</span></h3>
-      <p>The whole visual world: <b>identity → design system → website → motion → sound.</b> One coherent voice from logo to interface to the music in the launch film.</p>
+      <p>The whole visual world: <b>identity, design system, website, motion, sound.</b> One voice from the logo to the interface to the music in the launch film.</p>
       <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Studio%20Build" data-magnetic>Build a world</a>
     </div>
   </div>
@@ -1205,7 +1215,7 @@ body.cf-lock{overflow:hidden}
   <div class="sec-tag"><span class="no">08</span><span>The Motion Archive</span></div>
   <div class="archive-head">
     <h2 class="reveal">156 generative works. <em>Every one begins with a constraint.</em></h2>
-    <p class="reveal">A daily practice since 1990 — geometry, orbit, and patience. Full archive at pitchblacknight.com.</p>
+    <p class="reveal">A daily practice since 1990: geometry, orbit, and patience. Full archive at pitchblacknight.com.</p>
   </div>
   <div class="gif-river" id="gifRiver" aria-label="Selected motion works">
     <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Cosmos.jpg" data-src="ASSETS/motion-art/v/Cosmos.mp4" muted loop playsinline preload="none" width="400" height="300" aria-label="Cosmos"></video><figcaption>Cosmos</figcaption></figure>
@@ -1267,7 +1277,7 @@ body.cf-lock{overflow:hidden}
   <div class="final-inner">
     <div class="sec-tag"><span class="no">10</span><span>The Invitation</span></div>
     <h2 id="finalTitle">Let&rsquo;s make something <em>unmistakable.</em></h2>
-    <p class="final-note reveal">If your team has reached the point where design needs to do more — anchor a system, define a brand, or hold a complex product experience together — that's the work I do best. Available for focused engagements and open to the right full- or part-time role.</p>
+    <p class="final-note reveal">If your team has reached the point where design needs to do more, whether that's anchoring a system, defining a brand, or holding a complex product together, that's the work I do best. I'm available for focused engagements and open to the right full- or part-time role.</p>
     <div class="final-row reveal">
       <a class="btn-mail" href="mailto:mikelrosenthal@me.com" data-magnetic>mikelrosenthal@me.com <span class="arr">→</span></a>
       <div class="final-links">
@@ -1287,10 +1297,10 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Avant Communications · B2B Technology · 2021 — 2024</p>
     <h2 class="cf-title">Pathfinder <em>Design System</em></h2>
-    <p class="cf-sub">Avant's first unified design system — dual-themed, built from zero, and owned end to end for two and a half years.</p>
-    <p class="cf-loop">The six-step loop on the front page isn't a diagram — it's how this was built. Pathfinder is the long version.</p>
+    <p class="cf-sub">Avant's first unified design system. Dual-themed, built from zero, and owned end to end for two and a half years.</p>
+    <p class="cf-loop">The six-step loop on the front page is how this was built. Pathfinder is the long version.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Senior Design Systems Lead — end to end</span>
+      <span><b>Role</b>Senior Design Systems Lead, end to end</span>
       <span><b>Scope</b>Research · Foundations · Components · Theming · A11y · Governance</span>
       <span><b>Stack</b>Figma Variables · React handoff · Dev Mode</span>
     </div>
@@ -1302,17 +1312,17 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>Frame the Problem</span></div>
-      <p>Pathfinder is where technology advisors research, quote, and close enterprise deals — and it had grown faster than its design language. Three years of separate teams had layered <b>five primary blues, three button shapes, and mixed type stacks</b> into production, while marketing shipped at high volume with no shared foundations.</p>
-      <p>I didn't start with components. I started with the audit — every production surface, inventoried. The mess became countable, and countable meant fundable: <b>the system had a business case before a single component existed.</b> In a tool where advisors make six-figure recommendations in front of clients, inconsistency reads as unreliability. The problem was trust, not tidiness.</p>
+      <p>Pathfinder is where technology advisors research, quote, and close enterprise deals, and it had grown faster than its design language. Three years of separate teams had layered <b>five primary blues, three button shapes, and mixed type stacks</b> into production, while marketing shipped at high volume with no shared foundations.</p>
+      <p>I didn't start with components. I started with an audit of every production surface. Once the mess was countable it was fundable, so <b>the system had a business case before a single component existed.</b> Advisors use this tool to make six-figure recommendations in front of clients. In that room, inconsistency reads as unreliability. That made it a trust problem more than a tidiness problem.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-audit.jpg" alt="Pathfinder interface audit — five primary blues, three button shapes, and mixed type stacks found across production surfaces" loading="lazy" width="1600" height="860"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>Map the Flow</span></div>
-      <p>Before pixels, the terrain. The system had to serve a dark analytical product where advisors compare providers and close deals, a light high-volume marketing operation, and a live data layer — charts of real revenue — shared by both. Mapping those flows set the architecture early: <b>two themes resolving from one source</b>, and components proven against the platform's densest screens, not its simplest.</p>
+      <p>The system had to serve three things at once: a dark analytical product where advisors compare providers and close deals, a light high-volume marketing operation, and a live data layer of real revenue charts shared by both. Mapping those flows set the architecture early. <b>Two themes resolving from one source</b>, and components proven against the platform's densest screens rather than its simplest.</p>
       <figure class="cf-img"><img src="ASSETS/work/pathfinder-connectivity.jpg" alt="Pathfinder connectivity intelligence — one of the platform's densest surfaces, the stress test every component had to survive" loading="lazy" width="1800" height="1226"></figure>
-      <p><b>The spine that came out of it: one tracked project, five states.</b> Advisors were running six-figure deals out of inboxes and spreadsheets. Mapping the work end to end gave the product a shape — every screen answering for one state of one project, and every state a different problem:</p>
-      <p><b>Project Information</b> — where the advisor lives between deals. It has to answer "what needs me today?" in five seconds without becoming a wall of numbers. <b>Configuration</b> — the screen the client sees. It turns a market of dozens of providers into a defensible shortlist, one dense comparison row each.</p>
-      <p><b>Discovery</b> — the longest state and the likeliest to stall, where assessments sit with engineers for days; waiting had to read as legible, not anxious. <b>Registration</b> — the irreversible step, which is exactly why the register control lives inside Configuration, next to the reasoning that justifies it. <b>Contract</b> — the state that has to survive: a signed deal becomes a deployment, then a billing relationship, then a renewal handled by someone who was never in the room.</p>
+      <p><b>The spine that came out of it: one tracked project, five states.</b> Advisors were running six-figure deals out of inboxes and spreadsheets. Mapping the work end to end gave the product a shape. Every screen answers for one state of one project, and every state is a different problem:</p>
+      <p><b>Project Information</b> is where the advisor lives between deals. It has to answer "what needs me today?" in five seconds without becoming a wall of numbers. <b>Configuration</b> is the screen the client sees. It turns a market of dozens of providers into a defensible shortlist, one dense comparison row each.</p>
+      <p><b>Discovery</b> is the longest state and the likeliest to stall, because assessments sit with engineers for days. The waiting had to read as clear progress, not anxiety. <b>Registration</b> is the irreversible step, which is exactly why the register control lives inside Configuration, next to the reasoning that justifies it. <b>Contract</b> is the state that has to outlive everyone. A signed deal becomes a deployment, then a billing relationship, then a renewal handled by someone who was never in the room.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/pathfinder-project.jpg" alt="Pathfinder Project Information — the advisor's home state, standing context above and live project files below" loading="lazy" width="1800" height="1200"></div>
         <div class="cf-img"><img src="ASSETS/work/pathfinder-config.jpg" alt="Pathfinder Configuration — provider comparison with fit scores, suggested and saved matrices" loading="lazy" width="1800" height="1200"></div>
@@ -1320,19 +1330,19 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>Explore Wide</span></div>
-      <p>Direction got decided in the open. Style tiles put real directions side by side — palette, type, data density, both themes — so <b>the team chose from options, not opinions.</b> The tiles that lost still earned their keep: every rejection sharpened the rationale for what won.</p>
+      <p>Direction got decided in the open. Style tiles put real directions side by side, with palette, type, data density, and both themes on each one, so <b>the team chose between options instead of arguing opinions.</b> The tiles that lost still earned their keep. Every rejection sharpened the case for what won.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder style tile — dark product direction with booked MRC, commissions, and loyalty modules" loading="lazy" width="1683" height="1800"></div>
         <div class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-05.jpg" alt="Pathfinder style tile — dark direction stressed against task management and pipeline density" loading="lazy" width="1683" height="1800"></div>
       </figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-23.jpg" alt="Pathfinder style tile — light theme direction with palette, map hero, and analytics widgets" loading="lazy" width="1800" height="1257"></figure>
-      <p><b>The model went to advisors before it went to build.</b> The five states shipped first as a clickable prototype. The concept held — advisors described the states back in their own words, unprompted, and stopped asking "where's the assessment I ran?", the question that had defined the old process.</p>
-      <p><b>The details didn't hold, which is the point of testing.</b> The first Configuration table gave the fit score and the provider logo equal weight, so advisors scanned past the evidence and made a brand-recognition decision — precisely what the screen existed to prevent. I rebuilt the row hierarchy until the score and the differentiator outweighed the logo. Registration moved for the same reason: I'd treated it as a light confirmation, advisors treated it as a commitment, so it went where the reasoning lives.</p>
+      <p><b>The model went to advisors before it went to build.</b> The five states shipped first as a clickable prototype. The concept held. Advisors described the states back in their own words, unprompted, and stopped asking "where's the assessment I ran?", which was the question that had defined the old process.</p>
+      <p><b>The details didn't hold, which is the point of testing.</b> The first Configuration table gave the fit score and the provider logo equal weight, so advisors scanned past the evidence and picked on brand recognition, the exact thing the screen existed to prevent. I rebuilt the row hierarchy until the score and the differentiator outweighed the logo. Registration moved for the same reason. I'd treated it as a light confirmation, advisors treated it as a commitment, so it went where the reasoning lives.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>Design to the Pixel</span></div>
-      <p><b>Designed or it isn't done.</b> Every component shipped with loading, empty, error, and disabled states — in a platform full of in-progress assessments, the in-between states are the product.</p>
-      <p>The chart library carried the credibility layer: line, bar, area, stream, radar, and hex — themeable, consistent, and legible with live revenue data on the screen in front of a client.</p>
+      <p><b>Every state, or it isn't done.</b> Every component shipped with loading, empty, error, and disabled states. In a platform full of in-progress assessments, the in-between states are most of what people see.</p>
+      <p>The chart library carried the credibility: line, bar, area, stream, radar, and hex, all themeable, consistent, and legible with live revenue numbers on the screen in front of a client.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-system-2026.jpg" alt="Pathfinder Design System — color palette, type scale, buttons, inputs, badges, chips, alerts and data display, alongside partner announcement and dashboard screens" loading="lazy" width="1609" height="977"></figure>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/design-systems/avant-charts-bar.jpg" alt="Pathfinder chart library — bar charts resolving light and dark from one shared color logic" loading="lazy" width="1800" height="956"></div>
@@ -1341,21 +1351,21 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">05</span><span>Make It a System</span></div>
-      <p>Three tiers of tokens: <b>primitives → semantic → component.</b> Engineers consume intent, never hex codes. Dark product and light marketing resolve from one semantic layer — re-theme at the primitive layer and nothing downstream changes.</p>
+      <p>Three tiers of tokens: <b>primitives, semantic, component.</b> Engineers consume intent, never hex codes. Dark product and light marketing resolve from one semantic layer. Re-theme at the primitive layer and nothing downstream changes.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-tokens.jpg" alt="Pathfinder token architecture — primitives to semantic to component, with the same semantic layer resolving the dark product and light marketing themes" loading="lazy" width="1600" height="950"></figure>
-      <p><b>Governance built for adoption, not enforcement.</b> Federated contribution. Docs written for the person shipping at 4pm on a Friday. Weekly office hours that caught edge cases before they became forks. Semantic releases with migration notes, so an upgrade never surprised anyone.</p>
+      <p><b>Governance built for adoption rather than enforcement.</b> Contribution was federated. The docs were written for the person shipping at 4pm on a Friday. Weekly office hours caught edge cases before they became forks, and semantic releases came with migration notes so an upgrade never surprised anyone.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">06</span><span>Build It for Real</span></div>
-      <p>Systems prove themselves in shipped product. Components went to engineering as a React-ready library through Dev Mode — named, specced, and versioned so design intent survived the handoff. Clickable prototypes went in front of advisors before build; <b>when something didn't hold, it got rebuilt before it shipped.</b></p>
-      <p>Adoption was the metric that mattered — the library became the default path, not a mandate.</p>
+      <p>Systems prove themselves in shipped product. Components went to engineering as a React-ready library through Dev Mode, named, specced, and versioned so design intent survived the handoff. Clickable prototypes went in front of advisors before build, and <b>when something didn't hold, it got rebuilt before it shipped.</b></p>
+      <p>Adoption was the metric that mattered. The library became the default path because it was the easier one, without a mandate.</p>
       <figure class="cf-img"><img src="ASSETS/work/pathfinder-dark.jpg" alt="Pathfinder in production — the shipped dark theme assembled entirely from system components" loading="lazy" width="1800" height="1125"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">→</span><span>The Outcome</span></div>
-      <p>Brand reviews shifted from policing basics to discussing ideas. New surfaces shipped visually consistent on day one. Accessibility findings stopped recurring, because the fixes lived at the foundation level. And the architecture held: <b>2.0 to 3.0 on the same foundations, no rebuild</b> — 3.0 is in development now, a deeper dark theme and denser data visualization resolving from the same layer that shipped 2.0.</p>
+      <p>Brand reviews shifted from policing basics to discussing ideas. New surfaces shipped visually consistent on day one. Accessibility findings stopped recurring because the fixes lived at the foundation level. And the architecture held: <b>2.0 to 3.0 on the same foundations, no rebuild.</b> 3.0 is in development now, with a deeper dark theme and denser data visualization resolving from the same layer that shipped 2.0.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-30-concept.jpg" alt="Pathfinder 3.0 exploration — evolved dark theme with sales dashboard, yearly figures, and product cards" loading="lazy" width="1800" height="1257"></figure>
-      <blockquote class="cf-quote">When the same feedback keeps arriving, the fix is upstream in the system — not in the individual deliverables.</blockquote>
+      <blockquote class="cf-quote">When the same feedback keeps arriving, the fix belongs upstream in the system, not in each deliverable.</blockquote>
     </div>
     <p class="cf-note">Product imagery © Avant Communications. Some names and details generalized per confidentiality.</p>
   </div>
@@ -1366,11 +1376,11 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Avant Communications · System Extension · 2024</p>
     <h2 class="cf-title">Marketing <em>Design Library</em></h2>
-    <p class="cf-sub">The Pathfinder system's foundations, extended into a self-serve marketing library — 350+ managers producing on-brand work without a designer in the loop.</p>
+    <p class="cf-sub">The Pathfinder system's foundations, extended into a self-serve marketing library. 350+ managers producing on-brand work without a designer in the loop.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Senior Design Systems Lead — library owner</span>
+      <span><b>Role</b>Senior Design Systems Lead, library owner</span>
       <span><b>Scope</b>Campaign systems · Report templates · Social kits · Enablement</span>
-      <span><b>Foundation</b>Same foundations as the product system — one visual language</span>
+      <span><b>Foundation</b>Same foundations as the product system, one visual language</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">350<i>+</i></div><div class="l">Marketers trained &amp; shipping</div></div>
@@ -1380,18 +1390,18 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Problem</span></div>
-      <p>After the product system unified Pathfinder, marketing was the next bottleneck: high asset volume, no shared foundations, every campaign re-litigating the basics. The design problem wasn't creating a new system — it was <b>adapting one for non-designers</b>, who need harder rails and warmer documentation.</p>
+      <p>After the product system unified Pathfinder, marketing was the next bottleneck: high asset volume, no shared foundations, and every campaign re-litigating the basics. The job was <b>adapting the existing system for non-designers</b>, who need harder rails and warmer documentation.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
-      <p><b>One template, infinite expression.</b> "Forge the Future" set the model: a locked typographic and brand structure with expressive visual fields, so campaign variants multiply without drift — dozens of banner and social formats from one template logic.</p>
+      <p><b>One template, a lot of room inside it.</b> "Forge the Future" set the model: a locked typographic and brand structure with expressive visual fields, so campaign variants multiply without drift. Dozens of banner and social formats came from one template logic.</p>
       <figure class="cf-img"><img src="ASSETS/work/avant-forge-hero.jpg" alt="Forge the Future key art — neon light rings with the Ignite Your X-Factor lockup and Avant logo" loading="lazy" width="1600" height="743"></figure>
-      <p><b>From campaign to calendar.</b> The same template logic carried event creative and the social calendar — the NSP Advisory Board '24 package ran from stage screens to badges to email from one Figma system, and holiday socials shipped on-brand without a designer bottleneck.</p>
+      <p><b>From campaign to calendar.</b> The same template logic carried event creative and the social calendar. The NSP Advisory Board '24 package ran from stage screens to badges to email out of one Figma system, and holiday socials shipped on-brand without waiting on a designer.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/avant-branding.jpg" alt="NSP Advisory Board '24 — full Figma system: welcome and sponsor boards, web and email headers, agendas, member cards, and digital loop screens" loading="lazy" width="1800" height="1074"></div>
         <div class="cf-img"><img src="ASSETS/work/avant-earthday.jpg" alt="Happy Earth Day social — globe of foliage with type cut from greenery on the Avant mark" loading="lazy" width="1200" height="628"></div>
       </figure>
-      <p><b>Beyond banners.</b> The library covered the unglamorous, high-volume work: 40-page industry reports, partner enablement, and event material — templates carrying the brand's editorial layer so a report and a LinkedIn banner read as one company. The pattern throughout: <b>I created the materials first</b> — covers, reports, campaign assets — then refined each into the library as templates the team could ship from.</p>
+      <p><b>Beyond banners.</b> The library covered the unglamorous, high-volume work: 40-page industry reports, partner enablement, and event material, with templates carrying the brand's editorial layer so a report and a LinkedIn banner read as one company. The pattern throughout: <b>I made the materials first</b> (covers, reports, campaign assets), then refined each one into the library as a template the team could ship from.</p>
       <p><b>Enablement over enforcement.</b> Adoption ran through training sessions and self-serve guides written for non-designers. The training did more for scale than any template.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system" loading="lazy" width="1800" height="728"></div>
@@ -1400,18 +1410,18 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Flagship Report</span></div>
-      <p><b>A worked example.</b> The 2024 Colo &amp; Cloud Report became the library's proof case for editorial work — a 40-page industry report designed on the same rails as the campaign and social kits.</p>
-      <p><b>Exploration inside the rails.</b> Dozens of cover concepts, all drawn from the same brand palette — geometric, gradient, and fluid-wave directions — before the final was selected. The system constrained the exploration without flattening it.</p>
+      <p><b>A worked example.</b> The 2024 Colo &amp; Cloud Report became the library's proof case for editorial work: a 40-page industry report designed on the same rails as the campaign and social kits.</p>
+      <p><b>Exploration inside the rails.</b> Dozens of cover concepts in geometric, gradient, and fluid-wave directions, all drawn from the same brand palette, before the final was picked. The system constrained the exploration without flattening it.</p>
       <figure class="cf-img" style="max-width:460px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-cover-final.jpg" alt="2024 Colo &amp; Cloud Report — final cover, fluid wave direction, co-branded for partner distribution" loading="lazy" width="900" height="1164"></figure>
-      <p><b>Built to travel.</b> The final cover shipped production-ready and co-branded for partner distribution, with interior templates carrying the brand's editorial voice across every page — so the report and a LinkedIn banner read as one company.</p>
+      <p><b>Built to travel.</b> The final cover shipped production-ready and co-branded for partner distribution, with interior templates carrying the brand's editorial voice across every page.</p>
       <p><b>Refined back in.</b> As with the campaign work, the finished report was distilled into library templates, so the next report started at eighty percent instead of zero.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>The library became the default path because it was faster than the old way. Marketing stopped rebuilding basics, revision cycles on routine assets collapsed, and brand consistency stopped depending on any one person's vigilance — including mine.</p>
-      <blockquote class="cf-quote">Marketing libraries are design systems with a different user — the architecture is the same, the empathy is different.</blockquote>
+      <p>The library became the default path because it was faster than the old way. Marketing stopped rebuilding basics, revision cycles on routine assets collapsed, and brand consistency stopped depending on any one person's vigilance, including mine.</p>
+      <blockquote class="cf-quote">A marketing library is a design system with a different user. Same architecture, different empathy.</blockquote>
     </div>
-      <p><b>Pinnacle.</b> The loyalty program microsite — tiered rewards told through altitude, from base level to summit, built entirely inside the library's template logic.</p>
+      <p><b>Pinnacle.</b> The loyalty program microsite: tiered rewards told through altitude, from base level to summit, built entirely inside the library's template logic.</p>
       <figure class="cf-img" style="max-width:500px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-pinnacle.jpg" alt="Pinnacle loyalty program microsite — Welcome to the Program with mountaineering hero and blue, silver, and gold tier levels" loading="lazy" width="900" height="1886"></figure>
     <p class="cf-note">Imagery © Avant Communications. Some details generalized per confidentiality.</p>
   </div>
@@ -1422,33 +1432,89 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Blue Cross Blue Shield · Healthcare &amp; Insurance · 2018 — 2019</p>
     <h2 class="cf-title">FIBER <em>Design System</em></h2>
-    <p class="cf-sub">BCBS's first unified design system — React-compatible foundations spanning consumer enrollment, member tools, and marketing.</p>
+    <p class="cf-sub">BCBS's first unified design system. React-compatible foundations spanning consumer enrollment, member tools, and marketing.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Design System Founder / Lead — contract</span>
+      <span><b>Role</b>Design System Founder / Lead, contract</span>
       <span><b>Scope</b>Foundations · Components · System guide · Web + Mobile · Enrollment</span>
       <span><b>Stack</b>Sketch libraries · React-compatible coded components</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">1<i>st</i></div><div class="l">Unified system at BCBS</div></div>
-      <div><div class="n">2<i>×</i></div><div class="l">Platforms — web + mobile, one foundation</div></div>
+      <div><div class="n">2<i>×</i></div><div class="l">Platforms, web + mobile, one foundation</div></div>
       <div><div class="n">40<i>+</i></div><div class="l">Screens unified across enrollment</div></div>
       <div><div class="n"><i>→</i>Dev</div><div class="l">Design to development, no re-drawing</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Problem</span></div>
-      <p>BCBS member and enrollment experiences were built by many hands across many vendors — and it showed. Components were disjointed, specifications lived nowhere, and every new flow reconstructed the basics. For a healthcare brand whose entire promise is trust, <b>the seams were the problem.</b></p>
+      <p>BCBS member and enrollment experiences were built by many hands across many vendors, and it showed. Components were disjointed, specifications lived nowhere, and every new flow rebuilt the basics. For a healthcare brand whose whole promise is trust, <b>the seams were the problem.</b></p>
       <figure class="cf-img"><img src="ASSETS/design-systems/board-fiber.jpg" alt="BCBSIL FIBER Design System 2020 — presentation board with style guide, gradient brand panel, and patient-provider mobile experience" loading="lazy" width="1800" height="1012"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
+      <p><b>The build, end to end.</b> Six moves from audit to adoption, and one rule underneath all of them.</p>
+<figure class="cf-flow" role="img" aria-label="FIBER process flow — audit, foundations, components, document, prove, adopt, with accessibility running under every stage and production learnings feeding back into the system">
+<svg viewBox="0 0 1240 720" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="flArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/></marker>
+  <marker id="flArrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(241,232,214,.4)"/></marker></defs>
+  <rect class="fl-box" x="20" y="20" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="48" y="78">i.</text>
+  <text class="fl-t" x="98" y="76">AUDIT</text>
+  <text class="fl-b" x="48" y="138">Inventory across vendors —</text>
+  <text class="fl-b" x="48" y="172">name the seams, find where</text>
+  <text class="fl-b" x="48" y="206">every flow rebuilds the basics.</text>
+  <rect class="fl-box" x="420" y="20" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="448" y="78">ii.</text>
+  <text class="fl-t" x="498" y="76">FOUNDATIONS</text>
+  <text class="fl-b" x="448" y="138">Color with interaction tiers,</text>
+  <text class="fl-b" x="448" y="172">a type scale for dense content,</text>
+  <text class="fl-b" x="448" y="206">icons, and working grids.</text>
+  <rect class="fl-box" x="820" y="20" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="848" y="78">iii.</text>
+  <text class="fl-t" x="898" y="76">COMPONENTS</text>
+  <text class="fl-b" x="848" y="138">Coded, themeable, React-</text>
+  <text class="fl-b" x="848" y="172">compatible — buttons, forms,</text>
+  <text class="fl-b" x="848" y="206">modals, every state specified.</text>
+  <rect class="fl-box" x="20" y="320" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="48" y="378">iv.</text>
+  <text class="fl-t" x="98" y="376">DOCUMENT</text>
+  <text class="fl-b" x="48" y="438">The FIBER guide — one sheet</text>
+  <text class="fl-b" x="48" y="472">a vendor can build from</text>
+  <text class="fl-b" x="48" y="506">without a meeting.</text>
+  <rect class="fl-box" x="420" y="320" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="448" y="378">v.</text>
+  <text class="fl-t" x="498" y="376">PROVE</text>
+  <text class="fl-b" x="448" y="438">Enrollment, the highest stakes:</text>
+  <text class="fl-b" x="448" y="472">40+ screens on one foundation,</text>
+  <text class="fl-b" x="448" y="506">web and mobile.</text>
+  <rect class="fl-box" x="820" y="320" width="360" height="240" rx="3"/>
+  <text class="fl-n" x="848" y="378">vi.</text>
+  <text class="fl-t" x="898" y="376">ADOPT</text>
+  <text class="fl-b" x="848" y="438">Guide presented in person.</text>
+  <text class="fl-b" x="848" y="472">One vocabulary, one source —</text>
+  <text class="fl-b" x="848" y="506">designers, devs, and vendors.</text>
+  <line class="fl-ln" x1="380" y1="140" x2="414" y2="140" marker-end="url(#flArr)"/>
+  <line class="fl-ln" x1="780" y1="140" x2="814" y2="140" marker-end="url(#flArr)"/>
+  <path class="fl-ln" d="M1000,260 V290 H200 V313" marker-end="url(#flArr)"/>
+  <line class="fl-ln" x1="380" y1="440" x2="414" y2="440" marker-end="url(#flArr)"/>
+  <line class="fl-ln" x1="780" y1="440" x2="814" y2="440" marker-end="url(#flArr)"/>
+  <path class="fl-dash" d="M1180,470 H1214 V170 H1187" marker-end="url(#flArrD)"/>
+  <text class="fl-r" transform="rotate(90 1226,320)" x="1226" y="320" text-anchor="middle">PRODUCTION FEEDS BACK</text>
+  <rect class="fl-rail" x="20" y="630" width="1160" height="64" rx="3"/>
+  <line x1="20" y1="630" x2="20" y2="694" stroke="var(--coral)" stroke-width="3"/>
+  <text class="fl-r" x="600" y="669" text-anchor="middle" style="font-size:16.5px;letter-spacing:.17em">ACCESSIBILITY AS ARCHITECTURE — CONTRAST &#183; FOCUS &#183; PLAIN LANGUAGE — UNDER EVERY STAGE</text>
+  <line class="fl-dash" x1="290" y1="560" x2="290" y2="624" marker-end="url(#flArrD)"/>
+  <line class="fl-dash" x1="690" y1="560" x2="690" y2="624" marker-end="url(#flArrD)"/>
+  <line class="fl-dash" x1="1090" y1="560" x2="1090" y2="624" marker-end="url(#flArrD)"/>
+</svg>
+</figure>
       <p><b>Foundations first.</b> A color system with interaction and accessibility tiers, a typographic scale built for dense insurance content, an icon library, and grids that worked from marketing pages to enrollment forms.</p>
-      <p><b>Accessibility as architecture.</b> In healthcare, accessibility decides whether the product works at all. Contrast, focus, and plain language were baked into the foundation layer, not added after.</p>
-      <p><b>Proven on the highest stakes.</b> Plan selection and enrollment — forms, payment, and confirmation patterns shipped as coded components with theming hooks, with the same foundations carrying the marketing surfaces.</p>
+      <p><b>Accessibility as architecture.</b> In healthcare, accessibility decides whether the product works at all. Contrast, focus, and plain language went into the foundation layer from the start instead of getting patched in after.</p>
+      <p><b>Proven where the stakes were highest.</b> Plan selection and enrollment came first. Forms, payment, and confirmation patterns shipped as coded components with theming hooks, and the same foundations carried the marketing surfaces.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-color.jpg" alt="FIBER color system — brand colors, primary blue interaction tiers, neutrals, five interaction color families with dark/default/light/lighter steps, and brand gradients" loading="lazy" width="1600" height="1967"></figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-typography.jpg" alt="FIBER typography — Open Sans on a Major Second scale, Display 41px through Legal 14px, specified across light, brand, muted, and dark contexts" loading="lazy" width="1600" height="791"></figure>
-      <p><b>Documented like a product.</b> Corner radii, modals, shadows, buttons and states, form fields, spacing steps, the multi-plan logo matrix, and responsive minimums — one sheet a vendor could build from without a meeting.</p>
+      <p><b>Documented like a product.</b> Corner radii, modals, shadows, buttons and states, form fields, spacing steps, the multi-plan logo matrix, and responsive minimums, on one sheet a vendor could build from without a meeting.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-components.jpg" alt="FIBER component sheet — corner radius scale, modal variants, drop shadows, button system with states, frames, gradients, the BCBS five-state logo matrix, device minimums, and phone mockups" loading="lazy" width="1600" height="4044"></figure>
-      <p><b>The system in production.</b> The under-65 shopping experience rebuilt as a conversation — one question per screen, plain language, progress you can leave and return to. Every screen below is assembled from FIBER foundations.</p>
+      <p><b>The system in production.</b> The under-65 shopping experience rebuilt as a conversation: one question per screen, plain language, and progress you can leave and come back to. Every screen below is assembled from FIBER foundations.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-03.jpg" alt="BCBSIL enrollment — Do you prefer an HMO or PPO, one question per screen" loading="lazy" width="1600" height="964"></div>
         <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-11.jpg" alt="BCBSIL enrollment — What is your date of birth, with accessible dropdown selection" loading="lazy" width="1600" height="964"></div>
@@ -1458,16 +1524,16 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>Making It Stick</span></div>
-      <p><b>A system is only as good as its adoption.</b> FIBER shipped with a guide I authored and presented myself — not a spec dump, but an argument: here is the problem, here is the vocabulary, here is exactly how to build with it.</p>
+      <p><b>A system is only as good as its adoption.</b> FIBER shipped with a guide I wrote and presented myself. It was built as an argument rather than a spec dump: here is the problem, here is the vocabulary, here is exactly how to build with it.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-guide-cover.jpg" alt="FIBER Design System guide — Protection, Guidance, and Compassion — the presentation cover authored for the rollout" loading="lazy" width="1600" height="899"></figure>
-      <p><b>The brief, in the system's own words</b> — "disjointed components with no real visible path to constructing the design to developers' specifications." The fix was a single source of elements and code that let any team produce mockups, prototypes, or production sites without error or question.</p>
-      <p><b>Shared vocabulary, communicated often.</b> Designers, developers, and vendors named things the same way and pulled from the same sources. When a question came up, the guide answered it — and the meeting never happened.</p>
-      <p><b>Beyond enrollment.</b> The same foundations carried BCBS's outward-facing marketing surfaces — homepage through plan selection to payment — so the brand read as one product, not a federation of vendors.</p>
+      <p><b>The brief, in the system's own words:</b> "disjointed components with no real visible path to constructing the design to developers' specifications." The fix was a single source of elements and code that let any team produce mockups, prototypes, or production sites without error or question.</p>
+      <p><b>Shared vocabulary, communicated often.</b> Designers, developers, and vendors named things the same way and pulled from the same sources. When a question came up, the guide answered it and the meeting never happened.</p>
+      <p><b>Beyond enrollment.</b> The same foundations carried BCBS's public marketing surfaces, homepage through plan selection to payment, so the brand read as one product instead of a federation of vendors.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>Teams stopped reconstructing the basics. Enrollment flows shipped visually consistent. The guide gave designers and developers one vocabulary — and the system accelerated concept-to-completion across BCBS's multi-product ecosystem.</p>
-      <blockquote class="cf-quote">Healthcare taught me accessibility discipline — a standard I've carried into every system since.</blockquote>
+      <p>Teams stopped rebuilding the basics. Enrollment flows shipped visually consistent. The guide gave designers and developers one vocabulary, and concept-to-completion got faster across BCBS's product line.</p>
+      <blockquote class="cf-quote">Healthcare taught me accessibility discipline. I've carried that standard into every system since.</blockquote>
     </div>
     <p class="cf-note">Product imagery © Blue Cross Blue Shield. Some details generalized per confidentiality.</p>
   </div>
@@ -1478,28 +1544,28 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">GE Healthcare · Regulated Clinical Software · 2020 — 2021</p>
     <h2 class="cf-title">Edison <em>Design System</em></h2>
-    <p class="cf-sub">Contributing to the foundation unifying 40+ regulated clinical products — as part of the team that earned the 2020 Red Dot Award for Interface Design.</p>
+    <p class="cf-sub">Contributing to the foundation unifying 40+ regulated clinical products, as part of the team that earned the 2020 Red Dot Award for Interface Design.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Senior UX/UI Product Designer, Design Systems — contract, core contributor</span>
+      <span><b>Role</b>Senior UX/UI Product Designer, Design Systems · contract, core contributor</span>
       <span><b>Scope</b>Component libraries · Theming · Iconography · Documentation · A11y</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">40<i>+</i></div><div class="l">Regulated products unified</div></div>
-      <div><div class="n">4</div><div class="l">Theme targets — light/dark × desktop/touch</div></div>
+      <div><div class="n">4</div><div class="l">Theme targets: light/dark × desktop/touch</div></div>
       <div><div class="n">3</div><div class="l">Major design awards in 2020</div></div>
       <div><div class="n">100<i>%</i></div><div class="l">Components documented with a11y behavior</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Context</span></div>
-      <p>GE Healthcare's products span imaging, monitoring, and clinical workflow — software used in life-and-death contexts, built by teams across the globe. Edison unifies them: modular, accessible UI patterns rigorous enough for regulated environments, flexible enough for everything from radiology workstations to touch-screen devices.</p>
+      <p>GE Healthcare's products span imaging, monitoring, and clinical workflow. This is software used in life-and-death settings, built by teams around the world. Edison unifies them with modular, accessible UI patterns that hold up in regulated environments and still flex from radiology workstations to touch-screen devices.</p>
       <p>Edison was a team effort that predated and outlasted my engagement. My focus: <b>scalable component libraries, theming, and documentation</b> that let diverse product teams adopt the system without translation loss.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Contributed</span></div>
-      <p><b>Four themes from one semantic layer.</b> Clinical software runs in radiology reading rooms at 2am and on bright surgical floors — light and dark themes across desktop and touch targets, resolved from shared foundations so components never fork.</p>
-      <p><b>Components for regulated review.</b> Notification patterns, steppers and progress, form controls, and the icon library — each with full state coverage and accessibility behavior documented for regulated review. When WCAG compliance is a legal requirement, accessibility stops being a checklist and becomes architecture.</p>
+      <p><b>Four themes from one semantic layer.</b> Clinical software runs in radiology reading rooms at 2am and on bright surgical floors. So: light and dark themes across desktop and touch targets, resolved from shared foundations so components never fork.</p>
+      <p><b>Components for regulated review.</b> Notification patterns, steppers and progress, form controls, and the icon library, each with full state coverage and accessibility behavior documented for regulated review. When WCAG compliance is a legal requirement, accessibility has to be built into the architecture, because a checklist at the end won't pass.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/edison-showcase.jpg" alt="Edison Design System showcase — clinical UI components on the dark theme" loading="lazy" width="1600" height="1219"></figure>
-      <p><b>Shipped as a kit.</b> Edison went to teams as an installable system — GE typeface, Sketch libraries, theme files, and a written guide walking designers from setup through overriding symbols. The component menu alone reads like a product catalog.</p>
+      <p><b>Shipped as a kit.</b> Edison went to teams as an installable system: GE typeface, Sketch libraries, theme files, and a written guide walking designers from setup through overriding symbols. The component menu alone reads like a product catalog.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-intro.jpg" alt="Edison Design System guide — Introduction: symbol library, artboards, guidelines, and fundamentals index" loading="lazy" width="1400" height="1706"></div>
         <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-kit.jpg" alt="Edison guide — Kit Basics: theme files and the full menu of components, layout, navigation, and typography symbols" loading="lazy" width="1400" height="1919"></div>
@@ -1508,22 +1574,22 @@ body.cf-lock{overflow:hidden}
         <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-global.jpg" alt="Edison guide — Global Kit and updates: character counts, error passages, field labels, and layout cards" loading="lazy" width="1400" height="2780"></div>
         <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-usage.jpg" alt="Edison guide — Usage: the process of overriding symbols, measurements and spacing increments" loading="lazy" width="1400" height="2053"></div>
       </figure>
-      <p><b>Specified to the pixel.</b> Every control shipped with full guidance — anatomy, states, spacing, do-and-don't — written so clinical product teams could build without interpretation. The checkbox guideline alone, lights-off theme:</p>
+      <p><b>Specified to the pixel.</b> Every control shipped with full guidance on anatomy, states, spacing, and do-and-don't, written so clinical product teams could build without guessing. The checkbox guideline alone, lights-off theme:</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/edison-checkbox-guide.jpg" alt="Edison checkbox guideline, lights-off theme — anatomy, states, sizing, spacing, and usage rules at 1440 spec width" loading="lazy" width="1400" height="5292"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>Adoption at Scale</span></div>
-      <p><b>The kit was half the job — adoption was the product.</b> Forty-plus teams across the globe don't align because a system exists; they align when the path of least resistance runs through it. Edison's documentation hub became the single source of truth — one site serving designers and developers alike, from UI patterns and best practices to framework-agnostic Web Components ready to drop into any product stack.</p>
-      <p><b>Libraries that keep themselves honest.</b> Sketch libraries installed by theme and device tier — dark, global, light — meant every designer's local file stayed in sync with the source, updates flowing downstream without manual chasing. Version drift, the quiet killer of design systems, never got a foothold.</p>
-      <p><b>Documentation written for adoption, not posterity.</b> Every page answered a working question — what is this, when do I use it, how do I override it — rather than archiving decisions. That's the difference between a system teams comply with and one they reach for.</p>
+      <p><b>The kit was half the job. Adoption was the product.</b> Forty-plus teams around the world don't align because a system exists. They align when using it is easier than not using it. Edison's documentation hub became the single source of truth: one site for designers and developers, covering UI patterns, best practices, and framework-agnostic Web Components ready to drop into any product stack.</p>
+      <p><b>Libraries that keep themselves honest.</b> Sketch libraries installed by theme and device tier (dark, global, light) kept every designer's local file in sync with the source. Updates flowed downstream without anyone chasing them, and version drift never got a foothold.</p>
+      <p><b>Documentation written for the person using it.</b> Every page answered a working question: what is this, when do I use it, how do I override it. That's the difference between a system teams comply with and one they reach for.</p>
       <figure class="cf-img"><img src="ASSETS/work/edison-system.jpg" alt="Edison Design System hub, v1.5.2 — the single source of truth with Design and Develop entry points, style guide navigation, and 2020 award credentials" loading="lazy" width="1600" height="1158"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>The team's work earned the <b>2020 Red Dot Award for Interface Design</b>, alongside Fast Company Innovation by Design and the dmi:DVA — I played a central role in the system work behind that recognition, alongside designers, engineers, and accessibility specialists across GE Healthcare.</p>
-      <blockquote class="cf-quote">Big systems are social systems. The hardest problems weren't visual — they were alignment across dozens of teams.</blockquote>
+      <p>The team's work earned the <b>2020 Red Dot Award for Interface Design</b>, along with Fast Company Innovation by Design and the dmi:DVA. I played a central role in the system work behind that recognition, working with designers, engineers, and accessibility specialists across GE Healthcare.</p>
+      <blockquote class="cf-quote">The hardest problems on Edison weren't visual. They were getting dozens of teams to agree.</blockquote>
     </div>
-    <p class="cf-note">Product imagery © GE Healthcare. Edison is a team achievement — role described as contributor, per the record.</p>
+    <p class="cf-note">Product imagery © GE Healthcare. Edison is a team achievement. Role described as contributor, per the record.</p>
   </div>
 </article>
 
@@ -1532,27 +1598,27 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">SurePeople · HR Tech · 2020</p>
     <h2 class="cf-title">PRISM <em>Psychometrics</em></h2>
-    <p class="cf-sub">End-to-end design of a psychometric platform — complex behavioral analytics translated into dashboards, mobile experiences, and a modular UI framework people actually act on.</p>
+    <p class="cf-sub">End-to-end design of a psychometric platform. Complex behavioral analytics translated into dashboards, mobile experiences, and a modular UI framework people can act on.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Lead UX/UI Visual Product Designer — contract</span>
+      <span><b>Role</b>Lead UX/UI Visual Product Designer, contract</span>
       <span><b>Scope</b>IA · Interaction models · Data visualization · Modular UI kit · Mobile + Desktop</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">1</div><div class="l">Cohesive UI framework, full platform</div></div>
-      <div><div class="n">2<i>×</i></div><div class="l">Platforms — desktop + mobile, one kit</div></div>
+      <div><div class="n">2<i>×</i></div><div class="l">Platforms, desktop + mobile, one kit</div></div>
       <div><div class="n"><i>→</i>IA</div><div class="l">Interaction models for complex data viz</div></div>
       <div><div class="n"><i>+</i>Kit</div><div class="l">Modular kits the team could extend</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Problem</span></div>
-      <p>PRISM measures how people think, work, and relate — psychometric data that's genuinely complex and personally sensitive. The design problem: <b>visualize it so a manager can act on it in thirty seconds</b>, without flattening the nuance or making anyone feel reduced to a chart.</p>
+      <p>PRISM measures how people think, work, and relate. That data is complex and personally sensitive. The design problem: <b>visualize it so a manager can act on it in thirty seconds</b> without flattening the nuance or making anyone feel reduced to a chart.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
-      <p><b>Visualization as vocabulary.</b> Relationship maps, trait spectrums, and team composites — each a reusable pattern with defined anatomy, not a one-off chart. The same components scale from an individual profile to a team view.</p>
-      <p><b>Desktop depth, mobile moments.</b> Desktop carries the analytical depth; mobile carries onboarding, check-ins, and quick reads before a meeting. One modular kit, shared foundations, hierarchy re-tuned per context.</p>
-      <p><b>Warm by design.</b> Psychometrics border on the personal — typography, color, and language did as much emotional work as the data itself.</p>
-      <p><b>PRISM Connect.</b> The social layer — compare personalities, processing styles, motivation, and conflict management across your network, on any device.</p>
+      <p><b>Visualization as vocabulary.</b> Relationship maps, trait spectrums, and team composites, each a reusable pattern with defined anatomy rather than a one-off chart. The same components scale from an individual profile to a team view.</p>
+      <p><b>Desktop depth, mobile moments.</b> Desktop carries the analytical depth. Mobile carries onboarding, check-ins, and quick reads before a meeting. One modular kit and shared foundations, with the hierarchy re-tuned for each context.</p>
+      <p><b>Warm by design.</b> Psychometrics get personal fast, so typography, color, and language did as much emotional work as the data itself.</p>
+      <p><b>PRISM Connect.</b> The social layer: compare personalities, processing styles, motivation, and conflict management across your network, on any device.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/prism-connect-mobile.jpg" alt="PRISM Connect on mobile — connection list with invites from LinkedIn and Facebook" loading="lazy" width="900" height="1948"></div>
         <div class="cf-img"><img src="ASSETS/work/prism-progress-mobile.jpg" alt="PRISM Progress on mobile — 35% complete radial over the brand gradient" loading="lazy" width="900" height="1948"></div>
@@ -1561,16 +1627,16 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Data Language</span></div>
-      <p><b>Chart anatomy, treated like component anatomy.</b> Every visualization got the same spec a button would — defined states, sizes, and usage rules. That's the difference between a dashboard that reads as a designed language and one that reads as chart soup.</p>
-      <p><b>Approachable by design.</b> The Portrait onboards users one step at a time — a guided reveal from Primary Personality through Decision-Making and Conflict Management, each with plain-language strengths and a short video — so dense psychometric data never reads like a test.</p>
+      <p><b>Chart anatomy, treated like component anatomy.</b> Every visualization got the same spec a button would: defined states, sizes, and usage rules. That's the difference between a dashboard that reads as one language and one that reads as chart soup.</p>
+      <p><b>Approachable by design.</b> The Portrait onboards users one step at a time, a guided reveal from Primary Personality through Decision-Making and Conflict Management, each with plain-language strengths and a short video, so dense psychometric data never reads like a test.</p>
       <figure class="cf-img"><img src="ASSETS/work/prism-personality.jpg" alt="PRISM Portrait — the Primary Personality reveal, with step navigation, an intro video, and plain-language strengths on the light theme" loading="lazy" width="1600" height="900"></figure>
-      <p><b>Relationship Advisor — data becomes guidance.</b> The system's payoff: side-by-side psychometrics translated into concrete advice for working with a specific colleague. Not "here's your score" — here's what to do in your next conversation.</p>
-      <p><b>Navigable, not overwhelming.</b> Anatomy, states, and hierarchy designed as a system are what keep genuinely dense behavioral data legible at a glance — the thirty-second read the platform promised.</p>
+      <p><b>Relationship Advisor: data becomes guidance.</b> The system's payoff. Side-by-side psychometrics translated into concrete advice for working with a specific colleague, so instead of "here's your score" you get "here's what to do in your next conversation."</p>
+      <p><b>Navigable, not overwhelming.</b> Anatomy, states, and hierarchy designed as a system are what keep dense behavioral data legible at a glance. That's the thirty-second read the platform promised.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>A cohesive UI framework across the full platform, with interaction models and information architecture defined for complex data visualization — and modular kits the team could keep building on after my engagement.</p>
-      <blockquote class="cf-quote">Data visualization is a component problem. Define the grammar, and the data speaks for itself.</blockquote>
+      <p>One UI framework across the full platform, with interaction models and information architecture defined for complex data visualization, and modular kits the team could keep building on after I left.</p>
+      <blockquote class="cf-quote">Data visualization is a component problem. Define the grammar once and every chart after that is easy.</blockquote>
     </div>
     <p class="cf-note">Product imagery © SurePeople. Some details generalized per confidentiality.</p>
   </div>
@@ -1583,23 +1649,23 @@ body.cf-lock{overflow:hidden}
     <h2 class="cf-title">TUCM <em>Design System</em></h2>
     <p class="cf-sub">TransUnion's global design system, built from audit to adoption: responsive symbol libraries, a written guide, and the white-label SCVD guide that let any partner brand re-skin credit dashboards.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Senior UX Designer, Design Systems — contract</span>
+      <span><b>Role</b>Senior UX Designer, Design Systems · contract</span>
       <span><b>Scope</b>Audit · Grid &amp; symbols · System guide · Marketing library · TrueCredit rebrand</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">1<i>st</i></div><div class="l">Global system for credit-view products</div></div>
       <div><div class="n">100<i>%</i></div><div class="l">Responsive symbol coverage</div></div>
-      <div><div class="n">2</div><div class="l">Systems — product + marketing library</div></div>
+      <div><div class="n">2</div><div class="l">Systems: product + marketing library</div></div>
       <div><div class="n"><i>+</i>Brand</div><div class="l">TrueCredit rebrand on system foundations</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>Audit First</span></div>
-      <p>TUCM started the way every honest system does: with an audit. I mapped every component, color, and pattern in production into a single research artifact that made the fragmentation undeniable — and gave the system its priorities. <b>The audit doubled as the business case: once the fragmentation was countable, the system was fundable.</b></p>
+      <p>TUCM started the way every honest system does: with an audit. I mapped every component, color, and pattern in production into one research document that made the fragmentation undeniable and gave the system its priorities. <b>The audit doubled as the business case. Once the fragmentation was countable, the system was fundable.</b></p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
-      <p><b>The system.</b> Fully responsive symbol libraries — years before Figma variants, this was disciplined Sketch architecture — with foundations tuned for data-dense credit dashboards.</p>
-      <p><b>Documented as a product: the SCVD guide.</b> The Standard Credit View Dashboard shipped with its own written system guide — libraries, color, typography, icons, buttons and inputs, plugins — built so a partner team could take it and run.</p>
+      <p><b>The system.</b> Fully responsive symbol libraries (this was years before Figma variants, so it meant disciplined Sketch architecture) with foundations tuned for data-dense credit dashboards.</p>
+      <p><b>Documented as a product: the SCVD guide.</b> The Standard Credit View Dashboard shipped with its own written system guide covering libraries, color, typography, icons, buttons and inputs, and plugins, built so a partner team could take it and run.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/scvd-cover.jpg" alt="SCVD Design System Guide V1.5 cover — Standard Credit View Dashboard with the TU mark" loading="lazy" width="1500" height="1041"></figure>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/design-systems/scvd-colors.jpg" alt="SCVD guide — solid color system: main, highlight, and score colors with swap instructions" loading="lazy" width="1500" height="1041"></div>
@@ -1607,19 +1673,19 @@ body.cf-lock{overflow:hidden}
       </figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/scvd-buttons.jpg" alt="SCVD guide — buttons and inputs with available sizes via symbol overrides" loading="lazy" width="1500" height="1041"></figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/scvd-type.jpg" alt="SCVD guide — typographic style and TU type library text styles" loading="lazy" width="1500" height="1894"></figure>
-      <p><b>White-label by design.</b> Change the generic logo once on the symbols page and it updates through every screen in the document — colors and type re-theme the same way. One system, any partner brand.</p>
+      <p><b>White-label by design.</b> Change the generic logo once on the symbols page and it updates on every screen in the document. Colors and type re-theme the same way. One system, any partner brand.</p>
       <figure class="cf-img"><img src="ASSETS/design-systems/scvd-logo.jpg" alt="SCVD guide — customize logo: swap the generic mark once and it propagates across all instances" loading="lazy" width="1500" height="1041"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The System at Work</span></div>
-      <p><b>A system is only proven when it ships a product.</b> TUCM's proof was TrueCredit — a full rebrand and design pass on TransUnion's consumer credit experience, built entirely on system foundations. Credit scores, calculators, and monitoring walkthroughs, assembled from the same symbols and libraries the guide documented.</p>
+      <p><b>A system is only proven when it ships a product.</b> TUCM's proof was TrueCredit, a full rebrand and design pass on TransUnion's consumer credit experience, built entirely on system foundations. Credit scores, calculators, and monitoring walkthroughs were assembled from the same symbols and libraries the guide documented.</p>
       <figure class="cf-img"><img src="ASSETS/work/truecredit-devices-3.jpg" alt="TrueCredit — credit utilization dashboard and free-to-premium membership tiers across desktop and mobile, shipped on TUCM system foundations" loading="lazy" width="1600" height="838"></figure>
-      <p><b>One system, every screen size.</b> Because the symbols were responsive from day one, the TrueCredit family — dashboard, calculator, pricing — moved from desktop to mobile without a redesign pass. The breakpoints were already in the components.</p>
-      <p><b>Financial UI is trust UI.</b> Hierarchy and plain numbers decide whether someone believes their own credit score. Building the consumer product on the system made that discipline structural, not a per-screen style choice.</p>
+      <p><b>One system, every screen size.</b> Because the symbols were responsive from day one, the TrueCredit family (dashboard, calculator, pricing) moved from desktop to mobile without a redesign pass. The breakpoints were already in the components.</p>
+      <p><b>People have to believe the number.</b> Hierarchy and plain numbers decide whether someone trusts their own credit score. Building the consumer product on the system made that discipline structural instead of a per-screen style choice.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>Design-to-code workflows got a shared vocabulary. The marketing library unified brand touchpoints. Credit data — some of the most anxiety-inducing content on the internet — got an interface language built for clarity. The pattern of <b>audit → argument → architecture</b> has carried into every system since.</p>
+      <p>Design-to-code workflows got a shared vocabulary. The marketing library unified the brand touchpoints. Credit data, some of the most stressful content on the internet, got an interface language built for clarity. The pattern of <b>audit, then argument, then architecture</b> has carried into every system since.</p>
       <blockquote class="cf-quote">People flinch at credit data. Clear hierarchy and plain numbers are what let them believe it.</blockquote>
     </div>
     <p class="cf-note">Product imagery © TransUnion. Some details generalized per confidentiality.</p>
@@ -1632,7 +1698,7 @@ body.cf-lock{overflow:hidden}
     <h2 class="cf-title">TrueCredit <em>Rebrand</em></h2>
     <p class="cf-sub">TransUnion&rsquo;s consumer credit experience, rebranded and redesigned: credit scores, calculators, and monitoring made to feel navigable instead of intimidating.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Design Systems Lead / Senior Product Designer — contract</span>
+      <span><b>Role</b>Design Systems Lead / Senior Product Designer · contract</span>
       <span><b>Scope</b>Rebrand &middot; Product vision &middot; Visual ideation &middot; Desktop + mobile</span>
       <span><b>Stack</b>Sketch &middot; TUCM foundations &middot; brand exploration</span>
     </div>
@@ -1640,16 +1706,16 @@ body.cf-lock{overflow:hidden}
       <div><div class="n">5</div><div class="l">Visual directions, desktop and mobile each</div></div>
       <div><div class="n">2<i>&times;</i></div><div class="l">Platforms from one design language</div></div>
       <div><div class="n">890</div><div class="l">Point score range made legible at a glance</div></div>
-      <div><div class="n">1</div><div class="l">System underneath — built on TUCM</div></div>
+      <div><div class="n">1</div><div class="l">System underneath, built on TUCM</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Brief</span></div>
-      <p>Credit data is some of the most anxiety-inducing content on the internet. TrueCredit needed a brand and product language that made a score feel like <b>information, not judgment</b> — friendly enough for a first-time user, precise enough to be trusted with $149,316 of credit balances.</p>
+      <p>Credit data is some of the most stressful content on the internet. TrueCredit needed a brand and product language that made a score feel like <b>information instead of judgment</b>: friendly enough for a first-time user, precise enough to be trusted with $149,316 of credit balances.</p>
       <figure class="cf-img"><img src="ASSETS/work/truecredit-hero.jpg" alt="TrueCredit dashboard on a MacBook — +741 credit score gauge, score elements, and credit changes chart" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Art of Possible</span></div>
-      <p>Five visual directions pushed the rebrand from safe to decisive — photography under brand marks, isometric illustration, saturated color fields — each carried across desktop and mobile before one was chosen.</p>
+      <p>Five visual directions pushed the rebrand from safe to decisive: photography under brand marks, isometric illustration, saturated color fields. Each was carried across desktop and mobile before one was chosen.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-02.jpg" alt="TrueCredit ideation concept I — lifestyle photography under translucent teal brand marks" loading="lazy" width="1600" height="900"></div>
         <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-03.jpg" alt="TrueCredit ideation concept II — isometric dashboard illustration with violet gradient CTA" loading="lazy" width="1600" height="900"></div>
@@ -1662,7 +1728,7 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Product</span></div>
-      <p>The chosen direction carried into the full product — <b>walkthroughs and a credit calculator</b> for first-time users, <b>credit lock, reports, and theft alerts</b> for daily monitoring, and a <b>free-to-premium pricing path</b> — every screen paired desktop and mobile from day one.</p>
+      <p>The chosen direction carried into the full product: <b>walkthroughs and a credit calculator</b> for first-time users, <b>credit lock, reports, and theft alerts</b> for daily monitoring, and a <b>free-to-premium pricing path.</b> Every screen was paired desktop and mobile from day one.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/truecredit-devices-1.jpg" alt="TrueCredit walkthrough and credit calculator on MacBook and iPhone" loading="lazy" width="1600" height="839"></div>
         <div class="cf-img"><img src="ASSETS/work/truecredit-devices-2.jpg" alt="TrueCredit credit lock, credit report, and theft alert dashboard with monitoring checklist" loading="lazy" width="1600" height="838"></div>
@@ -1688,26 +1754,26 @@ body.cf-lock{overflow:hidden}
     <h2 class="cf-title">Maven Wave <em>Brand Identity</em></h2>
     <p class="cf-sub">A ground-up identity exploration for a Google Cloud consulting partner: four complete brand directions, each with its own mark, typeface, and story.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer / Art Direction — identity &amp; presentation</span>
+      <span><b>Role</b>Designer / Art Direction · identity &amp; presentation</span>
       <span><b>Scope</b>Logo concepts &middot; Typography &middot; Lockups &middot; Mockups &middot; Brand rationale</span>
       <span><b>Stack</b>Illustrator &middot; Photoshop &middot; brand strategy deck</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">4</div><div class="l">Complete brand directions</div></div>
-      <div><div class="n">4</div><div class="l">Typefaces cast to match — Rotis, Flux, Cosmos, Barmeno</div></div>
+      <div><div class="n">4</div><div class="l">Typefaces cast to match: Rotis, Flux, Cosmos, Barmeno</div></div>
       <div><div class="n">31</div><div class="l">Page presentation, strategy through mockup</div></div>
       <div><div class="n">1</div><div class="l">Identity a growing firm could scale into</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Brief</span></div>
-      <p>Maven Wave needed a visual brand that could hold a hard middle ground: <b>professional, high-quality, innovative, likable, and smart</b> — a traditional consulting firm on one side, a cloud brokerage and technology firm on the other. The identity had to represent real capability and leave room to grow.</p>
-      <p>The presentation opened by teaching the client how to judge a logo — Paul Rand, the Citi case study, and the rule that a mark earns meaning by association: <b>simple, memorable, timeless, versatile, appropriate.</b></p>
+      <p>Maven Wave needed a visual brand that could hold a hard middle ground: <b>professional, high-quality, innovative, likable, and smart.</b> A traditional consulting firm on one side, a cloud brokerage and technology firm on the other. The identity had to show real capability and leave room to grow.</p>
+      <p>The presentation opened by teaching the client how to judge a logo: Paul Rand, the Citi case study, and the rule that a mark earns meaning by association. <b>Simple, memorable, timeless, versatile, appropriate.</b></p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>Four Directions</span></div>
-      <p>Each concept was built as a complete system, not a sketch — construction logic, mark, lockups on light and dark, a typeface cast to match the personality, and a physical mockup to make it real.</p>
+      <p>Each concept was built out as a complete system rather than a sketch: construction logic, mark, lockups on light and dark, a typeface cast to match the personality, and a physical mockup to make it real.</p>
       <figure class="cf-img"><img src="ASSETS/work/mavenwave-concepts.jpg" alt="Maven Wave logo construction — four concepts: M+W ribbon wave, sine-wave flux sphere, M+W chevron cube, and interlocking infinity loops" loading="lazy" width="1600" height="971"></figure>
-      <p><b>The ribbon wave</b> — M and W woven into a rising pulse, set in Rotis Semi Serif. <b>The flux sphere</b> — motion and orbit, with its own modern grotesque. <b>The chevron cube</b> — an expert&rsquo;s M built from dimensional planes, set in Cosmos. <b>The loops</b> — interconnection between consultants and clients, set in Barmeno.</p>
+      <p><b>The ribbon wave:</b> M and W woven into a rising pulse, set in Rotis Semi Serif. <b>The flux sphere:</b> motion and orbit, with its own modern grotesque. <b>The chevron cube:</b> an expert&rsquo;s M built from dimensional planes, set in Cosmos. <b>The loops:</b> interconnection between consultants and clients, set in Barmeno.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-emboss.jpg" alt="Ribbon wave concept — embossed letterhead mockup" loading="lazy" width="1200" height="728"></div>
         <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-sign.jpg" alt="Flux sphere concept — dimensional office signage mockup" loading="lazy" width="1200" height="728"></div>
@@ -1719,9 +1785,9 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Outcome</span></div>
-      <p>Four directions, presented as one argument about what a brand is for. The lineup gave Maven Wave a real decision to make — mark, voice, and material presence together — and the firm carried its identity into becoming one of Google Cloud&rsquo;s premier partners, later acquired by Atos.</p>
+      <p>Four directions, presented as one argument about what a brand is for. The lineup gave Maven Wave a real decision to make, with mark, voice, and material presence considered together. The firm went on to become one of Google Cloud&rsquo;s premier partners and was later acquired by Atos.</p>
       <figure class="cf-img"><img src="ASSETS/work/mavenwave-lineup.jpg" alt="Final lineup — all four Maven Wave lockups side by side on dark" loading="lazy" width="1540" height="935"></figure>
-      <blockquote class="cf-quote">A logo derives its meaning from the quality of what it symbolizes — the deck taught the principle, then proved it four ways.</blockquote>
+      <blockquote class="cf-quote">A logo gets its meaning from the quality of what it stands for. The deck taught that principle, then proved it four ways.</blockquote>
     </div>
     <p class="cf-note">Presented January 2014. Client imagery &copy; Maven Wave Partners.</p>
   </div>
@@ -1733,18 +1799,18 @@ body.cf-lock{overflow:hidden}
     <h2 class="cf-title">Logofolio <em>Twenty Marks</em></h2>
     <p class="cf-sub">Two decades of identity work in one place: software, healthcare, finance, staffing, manufacturing, and print, each mark built to survive a business card and a billboard alike.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Identity Designer — concept through final art</span>
+      <span><b>Role</b>Identity Designer · concept through final art</span>
       <span><b>Scope</b>Marks &middot; Wordmarks &middot; Naming support &middot; Vector finals</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">20</div><div class="l">Marks shipped, shown as delivered</div></div>
       <div><div class="n">9</div><div class="l">Industries, one discipline</div></div>
       <div><div class="n">17<i>yr</i></div><div class="l">Span of the collection</div></div>
-      <div><div class="n">1<i>&times;</i></div><div class="l">Rule — legible at 16 pixels</div></div>
+      <div><div class="n">1<i>&times;</i></div><div class="l">Rule: legible at 16 pixels</div></div>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Discipline</span></div>
-      <p>A logo derives its meaning from what it symbolizes — the job is a mark that is <b>simple, memorable, timeless, versatile, and appropriate</b>, then getting out of its way. These twenty are shown as delivered: no mockup theatre, just the marks.</p>
+      <p>A logo gets its meaning from what it stands for. The job is a mark that is <b>simple, memorable, timeless, versatile, and appropriate</b>, and then getting out of its way. These twenty are shown as delivered: no mockup theatre, just the marks.</p>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Marks</span></div>
@@ -1799,26 +1865,26 @@ body.cf-lock{overflow:hidden}
     <h2 class="cf-title">Spacelab <em>Brand &amp; Packaging</em></h2>
     <p class="cf-sub">A confections brand built from a blank page: naming, identity, and a packaging system that held one language across boxes, tins, and jars.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Creative Direction &middot; Identity &middot; Packaging — Freelance</span>
+      <span><b>Role</b>Creative Direction &middot; Identity &middot; Packaging &middot; Freelance</span>
       <span><b>Scope</b>Naming &middot; Logo exploration &middot; Brand system &middot; Packaging line</span>
       <span><b>Stack</b>Illustrator &middot; Photoshop &middot; dielines &amp; mockups</span>
     </div>
     <div class="cf-stats">
       <div><div class="n">20<i>+</i></div><div class="l">Names explored, lockups drawn for each</div></div>
       <div><div class="n">38</div><div class="l">Page brand exploration deck</div></div>
-      <div><div class="n">1</div><div class="l">Name that said it all — Spacelab</div></div>
+      <div><div class="n">1</div><div class="l">Name that said it all: Spacelab</div></div>
       <div><div class="n">4</div><div class="l">Package formats, one visual language</div></div>
     </div>
     <div class="cf-sec">
-      <div class="cf-tag"><span class="no">01</span><span>Naming — The Wide Net</span></div>
-      <p>Before a mark, a name. The exploration ran wide on purpose — <b>Cozzi, Adore, Halos, Lake House, Campfire, Clean Harvest, Tastelab, Varsity</b> and a dozen more — each drawn as a real lockup and staged in context, because a name can only be judged wearing its typography.</p>
+      <div class="cf-tag"><span class="no">01</span><span>Naming: The Wide Net</span></div>
+      <p>Before a mark, a name. The exploration ran wide on purpose: <b>Cozzi, Adore, Halos, Lake House, Campfire, Clean Harvest, Tastelab, Varsity</b> and a dozen more, each drawn as a real lockup and staged in context, because a name can only be judged wearing its typography.</p>
       <figure class="cf-img"><img src="ASSETS/work/spacelab-names-grid.jpg" alt="Naming exploration — ten candidate wordmarks drawn as finished lockups: Cozzi, Lakehouse, Maria's, Campfire, Clean Harvest, Andiamo!, Whole Harvest, Tastelab, Varsity, and spacelab" loading="lazy" width="2000" height="500">
         <figcaption class="cf-thumbs-note">Ten of the twenty names, each drawn as a finished lockup</figcaption></figure>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-name-lakehouse.jpg" alt="Lake House name direction staged over mountain photography" loading="lazy" width="1200" height="927"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-name-campfire.jpg" alt="Campfire name direction — delicious tasting, perfect dosage lockup" loading="lazy" width="1200" height="927"></div>
       </figure>
-      <p><b>The full deck, page by page.</b> Thirty-eight boards, exactly as presented — every name staged in context before the field narrowed to one.</p>
+      <p><b>The full deck, page by page.</b> Thirty-eight boards, exactly as presented. Every name staged in context before the field narrowed to one.</p>
       <div class="cf-deck" aria-label="Brand exploration deck, 38 pages">
         <img src="ASSETS/work/spacelab-deck/deck-01.jpg" alt="Brand exploration deck, page 1 of 38" loading="lazy" width="1600" height="1237">
         <img src="ASSETS/work/spacelab-deck/deck-02.jpg" alt="Brand exploration deck, page 2 of 38" loading="lazy" width="1600" height="1237">
@@ -1863,7 +1929,7 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Mark</span></div>
-      <p><b>Spacelab won because it carried the promise:</b> science meets delicious — precise dosage, playful spirit. The astronaut-helmet mark and stencil-cut wordmark held up from a foil stamp to a storefront, and the system flexed from lab-clean white to deep-space color.</p>
+      <p><b>Spacelab won because it carried the promise:</b> science meets delicious, precise dosage with a playful spirit. The astronaut-helmet mark and stencil-cut wordmark held up from a foil stamp to a storefront, and the system flexed from lab-clean white to deep-space color.</p>
       <figure class="cf-img"><img src="ASSETS/work/spacelab-name-hero.jpg" alt="Spacelab wordmark in spectrum letters on black — all natural artisan edibles" loading="lazy" width="1500" height="1159"></figure>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-color-chips.jpg" alt="Spacelab color system — wordmark tested across blue, orange, green, and gradient chip sets" loading="lazy" width="1200" height="927"></div>
@@ -1873,9 +1939,9 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Packaging System</span></div>
-      <p>The mark had to survive every format the line would ship in. One celestial artwork language — star fields, orbital arcs, the helmet — carried across <b>drawer boxes, square boxes, tins, and jars,</b> with the wordmark and its clean-label line holding the same position on every face.</p>
+      <p>The mark had to survive every format the line would ship in. One celestial artwork language (star fields, orbital arcs, the helmet) carried across <b>drawer boxes, square boxes, tins, and jars,</b> with the wordmark and its clean-label line holding the same position on every face.</p>
       <figure class="cf-img"><img src="ASSETS/work/spacelab-pkg-hero.jpg" alt="Spacelab square box — deep navy star field with burnt orange edge, clean label and whole minimal ingredients" loading="lazy" width="1600" height="1068"></figure>
-      <p><b>One structure, many colorways.</b> The same drawer box, re-skinned: midnight blue for the core line, burnt orange for the seasonal. Structure, type, and lockup never move — only the field behind them.</p>
+      <p><b>One structure, many colorways.</b> The same drawer box, re-skinned: midnight blue for the core line, burnt orange for the seasonal. Structure, type, and lockup never move. Only the field behind them changes.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-blue.jpg" alt="Spacelab drawer box in midnight blue, slid open" loading="lazy" width="1400" height="933"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-orange.jpg" alt="The same drawer box in burnt orange, slid open" loading="lazy" width="1400" height="933"></div>
@@ -1884,20 +1950,20 @@ body.cf-lock{overflow:hidden}
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-violet.jpg" alt="Spacelab standing carton in violet with the helmet mark" loading="lazy" width="1400" height="920"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-lid.jpg" alt="Spacelab lidded box in deep violet with orbital artwork" loading="lazy" width="1400" height="1050"></div>
       </figure>
-      <p><b>Down to the small formats.</b> Tins and jars get the same treatment at a fraction of the surface — the test any identity has to pass.</p>
+      <p><b>Down to the small formats.</b> Tins and jars get the same treatment at a fraction of the surface, which is the test any identity has to pass.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-tin.jpg" alt="Spacelab rectangular tin in blue — delicious tasting, perfect dosage" loading="lazy" width="1200" height="1200"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-jar.jpg" alt="Spacelab round jar in midnight blue with the helmet mark" loading="lazy" width="1200" height="960"></div>
       </figure>
-      <p><b>And a second artwork direction.</b> Running alongside the star fields: flat geometry — half-circles, wedges, and triangles in ochre, slate, and red. Same helmet, same black label bar, same rules. It became the face of the line.</p>
+      <p><b>And a second artwork direction.</b> Running alongside the star fields: flat geometry, with half-circles, wedges, and triangles in ochre, slate, and red. Same helmet, same black label bar, same rules. It became the face of the line.</p>
       <figure class="cf-img"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin — geometric pattern lid in ochre, slate, and red with the astronaut-helmet wordmark on a deep blue field" loading="lazy" width="1800" height="1350"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
-      <p>A complete shelf presence from nothing — name, mark, system, and packaging line speaking one language. The exploration deck did its job twice: it sold the direction, and it documented every road not taken.</p>
-      <p><b>The decided system, one board.</b> Geometric pattern in slate blue, ochre, and burnt red; the helmet mark and black label bar holding every format — tin, jar, pouch, tube, and box — down to the helmet embossed on the gummies themselves.</p>
+      <p>A complete shelf presence from nothing: name, mark, system, and packaging line speaking one language. The exploration deck did its job twice. It sold the direction, and it documented every road not taken.</p>
+      <p><b>The decided system, one board.</b> Geometric pattern in slate blue, ochre, and burnt red, with the helmet mark and black label bar holding every format (tin, jar, pouch, tube, and box), down to the helmet embossed on the gummies themselves.</p>
       <figure class="cf-img"><img src="ASSETS/work/spacelab-final-board.jpg" alt="Spacelab final brand board — logo and palette, patterned tin, jar, stand-up pouch, dosing tube, and boxes, with helmet-embossed gummies and the Tasty, Precise, Reliable values row" loading="lazy" width="1536" height="1024"></figure>
-      <blockquote class="cf-quote">A name can only be judged wearing its typography — so every candidate got dressed before the vote.</blockquote>
+      <blockquote class="cf-quote">A name can only be judged wearing its typography, so every candidate got dressed before the vote.</blockquote>
     </div>
     <p class="cf-note">Independent freelance engagement. Client details generalized per confidentiality.</p>
   </div>
@@ -1907,9 +1973,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Self-Initiated · Information Design · 2016</p>
     <h2 class="cf-title">Google <em>Information Dashboard</em></h2>
-    <p class="cf-sub">A self-initiated study in taming information density — one dashboard surfacing search, analytics, and account signals in a single calm view.</p>
+    <p class="cf-sub">A self-initiated study in taming information density: one dashboard surfacing search, analytics, and account signals in a single calm view.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Product / Visual Designer — self-initiated</span>
+      <span><b>Role</b>Product / Visual Designer · self-initiated</span>
       <span><b>Scope</b>Dashboard design · Data visualization · Component logic</span>
     </div>
     <div class="cf-sec">
@@ -1930,7 +1996,7 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Aflac · Insurance · 2010</p>
     <h2 class="cf-title">Aflac <em>CRM Application</em></h2>
-    <p class="cf-sub">A mobile and desktop CRM for the people who sell the duck — policies, claims, and client books in an era when "mobile app" was still a new sentence.</p>
+    <p class="cf-sub">A mobile and desktop CRM for the people who sell the duck: policies, claims, and client books, back when "mobile app" was still a new phrase.</p>
     <div class="cf-meta">
       <span><b>Role</b>UX / UI Designer</span>
       <span><b>Scope</b>CRM application · Mobile + desktop · Workflow design</span>
@@ -1953,7 +2019,7 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Porter · Luxury Beauty · 2015</p>
     <h2 class="cf-title">Porter <em>Concierge App</em></h2>
-    <p class="cf-sub">A luxury hair-care concierge in an app — booking, products, and personal styling with the polish of the salons it served.</p>
+    <p class="cf-sub">A luxury hair-care concierge in an app: booking, products, and personal styling with the polish of the salons it served.</p>
     <div class="cf-meta">
       <span><b>Role</b>Product / Visual Designer</span>
       <span><b>Scope</b>Mobile application · Brand-led UI · Service design</span>
@@ -1965,7 +2031,7 @@ body.cf-lock{overflow:hidden}
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Takeaway</span></div>
-      <p>The screens stay quiet on purpose. The service is the luxury; the interface just holds the door.</p>
+      <p>The screens stay quiet on purpose. The service is the luxury, and the interface just holds the door.</p>
     </div>
     <p class="cf-note">Some details generalized; imagery &copy; respective clients.</p>
   </div>
@@ -1976,14 +2042,14 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Dremel · Consumer Tools · 2011</p>
     <h2 class="cf-title">Dremel <em>Mobile Storefront</em></h2>
-    <p class="cf-sub">A maker brand’s catalog in your pocket — early m-commerce for rotary tools, attachments, and the projects behind them.</p>
+    <p class="cf-sub">A maker brand’s catalog in your pocket: early m-commerce for rotary tools, attachments, and the projects behind them.</p>
     <div class="cf-meta">
       <span><b>Role</b>UX / UI Designer</span>
       <span><b>Scope</b>Mobile storefront · Application design · Catalog UX</span>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Work</span></div>
-      <p>Years before responsive frameworks made it routine, this storefront put Dremel’s full tool and accessory catalog on the phone — browsing by project as much as by product; makers start with the thing they want to build.</p>
+      <p>Years before responsive frameworks made it routine, this storefront put Dremel’s full tool and accessory catalog on the phone. You could browse by project as much as by product, because makers start with the thing they want to build.</p>
       <figure class="cf-img"><img src="ASSETS/work/board-dremel.jpg" alt="Dremel mobile storefront and application design across five phone screens, 2011" loading="lazy" width="1200" height="927"></figure>
     </div>
     <div class="cf-sec">
@@ -1999,14 +2065,14 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Reveal · Media Technology · 2017</p>
     <h2 class="cf-title">Reveal <em>Rebrand &amp; UI</em></h2>
-    <p class="cf-sub">Logo, website, and product UI in one motion — a rebrand carried straight through to the interface it had to live in.</p>
+    <p class="cf-sub">Logo, website, and product UI in one motion: a rebrand carried straight through to the interface it had to live in.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — identity through UI</span>
+      <span><b>Role</b>Designer · identity through UI</span>
       <span><b>Scope</b>Logo · Website rebrand · Product UI</span>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Work</span></div>
-      <p>Identity and interface shipped as one system: a sharpened mark, a site rebuilt around it, and product screens that inherited the same geometry and palette — so the brand didn’t stop at the marketing page.</p>
+      <p>Identity and interface shipped as one system: a sharpened mark, a site rebuilt around it, and product screens that inherited the same geometry and palette, so the brand didn’t stop at the marketing page.</p>
       <figure class="cf-img"><img src="ASSETS/work/board-reveal.jpg" alt="Reveal logo, website rebrand and UI design across devices, 2017" loading="lazy" width="1200" height="927"></figure>
     </div>
     <div class="cf-sec">
@@ -2022,14 +2088,14 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">TransUnion Era · Fintech · 2018</p>
     <h2 class="cf-title">Credit Freeze <em>Brand Ideation</em></h2>
-    <p class="cf-sub">Brand exploration for the credit-freeze moment — when a security feature suddenly became a consumer product everyone needed to understand.</p>
+    <p class="cf-sub">Brand exploration for the credit-freeze moment, when a security feature suddenly became a consumer product everyone needed to understand.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — brand ideation</span>
+      <span><b>Role</b>Designer · brand ideation</span>
       <span><b>Scope</b>Brand exploration · Visual identity · Fintech</span>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Work</span></div>
-      <p>After 2017’s breach era, freezing your credit went from an obscure safeguard to a mainstream act. This ideation explored how a freeze product could look approachable instead of bureaucratic — friendly geometry, clear states, and a visual temperature that says protected, not punished.</p>
+      <p>After the 2017 breaches, freezing your credit went from an obscure safeguard to something everyone was doing. This ideation explored how a freeze product could look approachable instead of bureaucratic: friendly geometry, clear states, and a visual temperature that says protected rather than punished.</p>
       <figure class="cf-img"><img src="ASSETS/work/board-creditfreeze.jpg" alt="Credit Freeze fintech brand ideation — identity concepts and product screens, 2018" loading="lazy" width="1200" height="927"></figure>
     </div>
     <div class="cf-sec">
@@ -2045,14 +2111,14 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Arrow · Consumer Hardware · 2014</p>
     <h2 class="cf-title">Arrow <em>Storefront</em></h2>
-    <p class="cf-sub">Desktop and mobile storefront for an American workshop staple — bold, red, and built to sell fasteners without fuss.</p>
+    <p class="cf-sub">Desktop and mobile storefront for an American workshop staple. Bold, red, and built to sell fasteners without fuss.</p>
     <div class="cf-meta">
       <span><b>Role</b>UX / UI Designer</span>
       <span><b>Scope</b>E-commerce · Desktop + mobile storefront</span>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Work</span></div>
-      <p>Arrow’s brand is industrial confidence, and the storefront leaned into it — big product photography, unmissable red, and a catalog structure that gets a contractor from need to checkout in as few taps as the hardware aisle has steps.</p>
+      <p>Arrow’s brand is industrial confidence, and the storefront leaned into it: big product photography, unmissable red, and a catalog structure that gets a contractor from need to checkout in as few taps as the hardware aisle has steps.</p>
       <figure class="cf-img"><img src="ASSETS/work/board-arrow.jpg" alt="Arrow desktop and mobile storefront design, 2014" loading="lazy" width="1200" height="927"></figure>
     </div>
     <div class="cf-sec">
@@ -2068,9 +2134,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">TalentSky · HR Technology · 2013</p>
     <h2 class="cf-title">TalentSky <em>Rebrand</em></h2>
-    <p class="cf-sub">Logo, website, and infographics for a skills-network startup — making a new category legible at first glance.</p>
+    <p class="cf-sub">Logo, website, and infographics for a skills-network startup, making a new category legible at first glance.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — identity &amp; web</span>
+      <span><b>Role</b>Designer · identity &amp; web</span>
       <span><b>Scope</b>Logo · Website rebrand · Infographics</span>
     </div>
     <div class="cf-sec">
@@ -2091,9 +2157,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Devine Capital · Financial Services · 2012</p>
     <h2 class="cf-title">Devine Capital <em>Rebrand</em></h2>
-    <p class="cf-sub">Identity, website, and infographics for a capital firm — credibility built pixel by pixel.</p>
+    <p class="cf-sub">Identity, website, and infographics for a capital firm. Credibility built pixel by pixel.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — identity &amp; web</span>
+      <span><b>Role</b>Designer · identity &amp; web</span>
       <span><b>Scope</b>Logo · Website rebrand · Infographics</span>
     </div>
     <div class="cf-sec">
@@ -2114,9 +2180,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Catamaran · Healthcare / PBM · 2014</p>
     <h2 class="cf-title">My Catamaran <em>Member App</em></h2>
-    <p class="cf-sub">Branding and application design for a pharmacy-benefits member experience — prescriptions, pricing, and coverage without the insurance-speak.</p>
+    <p class="cf-sub">Branding and application design for a pharmacy-benefits member experience: prescriptions, pricing, and coverage without the insurance-speak.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — brand &amp; application</span>
+      <span><b>Role</b>Designer · brand &amp; application</span>
       <span><b>Scope</b>Branding · Mobile application · Health UX</span>
     </div>
     <div class="cf-sec">
@@ -2137,9 +2203,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Whirlpool · Connected Home · 2015</p>
     <h2 class="cf-title">Whirlpool <em>Vision App</em></h2>
-    <p class="cf-sub">A connected-appliance vision — your washer, dryer, and kitchen reporting in through one companion app.</p>
+    <p class="cf-sub">A connected-appliance vision: your washer, dryer, and kitchen reporting in through one companion app.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Product Designer — vision &amp; UI</span>
+      <span><b>Role</b>Product Designer · vision &amp; UI</span>
       <span><b>Scope</b>IoT companion app · Product design · 2015</span>
     </div>
     <div class="cf-sec">
@@ -2160,9 +2226,9 @@ body.cf-lock{overflow:hidden}
     <button class="cf-close" aria-label="Close case file"></button>
     <p class="cf-eyebrow">Published Print · Firebelly Design · 2009</p>
     <h2 class="cf-title">1,000 Greetings <em>Published</em></h2>
-    <p class="cf-sub">Holiday correspondence design published in the 1,000 Greetings collection — foil, pattern, and letterpress-era craft, in print for good.</p>
+    <p class="cf-sub">Holiday correspondence design published in the 1,000 Greetings collection. Foil, pattern, and letterpress-era craft, in print for good.</p>
     <div class="cf-meta">
-      <span><b>Role</b>Designer — credited, Firebelly Design</span>
+      <span><b>Role</b>Designer · credited, Firebelly Design</span>
       <span><b>Scope</b>Print · Greeting design · Published work</span>
     </div>
     <div class="cf-sec">
@@ -2184,7 +2250,7 @@ body.cf-lock{overflow:hidden}
 
 <footer class="footer">
   <span>© 2026 Mikel Rosenthal · PBK Studio · Chicago</span>
-  <span>Art direction, systems &amp; motion — all works original</span>
+  <span>Art direction, systems &amp; motion · all works original</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
