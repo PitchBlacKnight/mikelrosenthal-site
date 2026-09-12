@@ -38,68 +38,6 @@
 <div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="assets/follow-the-leader.jpg" src="assets/follow-the-leader.mp4"></video></div>
 
 
-<!-- Line art lives only in the gutters outside the 1200px column: each wrapper is
-     pinned to the space beyond 50% ± 600px, so when the viewport narrows the gutter
-     collapses to zero width and the art clips away rather than running under type. -->
-<div style="position:fixed;top:0;bottom:0;left:0;right:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
-  <svg style="position:absolute;top:0;right:0;height:100%;width:460px;" viewBox="0 0 460 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
-    <defs>
-      <filter id="sl-haze-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
-        <feGaussianBlur stdDeviation="13" />
-      </filter>
-      <filter id="sl-soft-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
-        <feGaussianBlur stdDeviation="4.5" />
-      </filter>
-    </defs>
-    <g fill="none" stroke="#2f2f2f" stroke-width="7" opacity="0.1" filter="url(#sl-haze-l)">
-      <circle cx="-140" cy="690" r="330" />
-      <circle cx="-140" cy="690" r="470" />
-      <circle cx="-140" cy="690" r="610" />
-      <circle cx="-140" cy="690" r="750" />
-    </g>
-    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.2" filter="url(#sl-soft-l)">
-      <circle cx="-140" cy="690" r="260" />
-      <circle cx="-140" cy="690" r="330" />
-      <circle cx="-140" cy="690" r="400" />
-      <circle cx="-140" cy="690" r="470" />
-      <circle cx="-140" cy="690" r="540" />
-      <circle cx="-140" cy="690" r="610" />
-      <circle cx="-140" cy="690" r="680" />
-      <circle cx="-140" cy="690" r="750" />
-      <circle cx="-140" cy="690" r="820" />
-    </g>
-    <circle cx="-140" cy="690" r="365" fill="none" stroke="#d1ffca" stroke-width="3.5" opacity="0.85" filter="url(#sl-soft-l)" />
-    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.14" filter="url(#sl-soft-l)">
-      <path d="M460 120 L120 120" /><path d="M460 152 L196 152" /><path d="M460 184 L268 184" /><path d="M460 216 L336 216" />
-    </g>
-  </svg>
-</div>
-<div style="position:fixed;top:0;bottom:0;right:0;left:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
-  <svg style="position:absolute;top:0;left:0;height:100%;width:460px;" viewBox="0 0 460 900" preserveAspectRatio="xMinYMid slice" focusable="false">
-    <defs>
-      <filter id="sl-haze-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
-        <feGaussianBlur stdDeviation="11" />
-      </filter>
-      <filter id="sl-soft-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
-        <feGaussianBlur stdDeviation="4.5" />
-      </filter>
-    </defs>
-    <g stroke="#2f2f2f" stroke-width="8" opacity="0.09" filter="url(#sl-haze-r)">
-      <path d="M540 40 L-60 470" /><path d="M540 40 L-60 690" /><path d="M540 40 L110 960" />
-    </g>
-    <g stroke="#2f2f2f" stroke-width="1.5" opacity="0.19" filter="url(#sl-soft-r)">
-      <path d="M540 40 L-60 250" /><path d="M540 40 L-60 360" /><path d="M540 40 L-60 470" />
-      <path d="M540 40 L-60 580" /><path d="M540 40 L-60 690" /><path d="M540 40 L-60 800" />
-      <path d="M540 40 L-20 960" /><path d="M540 40 L110 960" /><path d="M540 40 L240 960" />
-    </g>
-    <path d="M540 40 L-60 525" stroke="#d1ffca" stroke-width="3.5" opacity="0.85" filter="url(#sl-soft-r)" />
-    <path d="M112 612 L244 612" stroke="#fff100" stroke-width="4" opacity="0.8" filter="url(#sl-soft-r)" />
-    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.13" filter="url(#sl-soft-r)">
-      <path d="M0 742 L300 742" /><path d="M0 774 L232 774" /><path d="M0 806 L164 806" /><path d="M0 838 L96 838" />
-    </g>
-  </svg>
-</div>
-
 <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 96px;">
 
   <a href="#main" style="position:fixed;left:16px;top:-80px;z-index:20;background:#000000;color:#ffffff;padding:12px 20px;border-radius:8px;font-size:16px;font-weight:500;transition:top 0.15s;" class="fc1">Skip to content</a>
