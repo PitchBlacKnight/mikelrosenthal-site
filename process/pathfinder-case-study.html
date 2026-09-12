@@ -72,7 +72,7 @@
     <div style="flex:1 1 min(100%,520px);">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px;">Case study · AVANT Communications</div>
       <h1 style="font-size:clamp(44px,7vw,80px);line-height:1.0;letter-spacing:-0.03em;margin:0 0 24px;max-width:16ch;">Pathfinder 2.0, audited against itself</h1>
-      <p style="font-size:clamp(17px,2vw,20px);line-height:1.55;max-width:56ch;margin:0 0 28px;color:color-mix(in srgb, var(--color-text) 88%, transparent);">I built the design system for AVANT's partner portal. Then I ran the nine skills from the library against it and wrote down what they found, including the five things that are wrong. Every count on this page came out of the shipped source.</p>
+      <p style="font-size:clamp(17px,2vw,20px);line-height:1.55;max-width:56ch;margin:0 0 28px;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The design system for AVANT's partner portal, run through the nine skills from the library, with the findings written down, including the five things that are wrong. Every count on this page came out of the shipped source.</p>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         <span class="tag tag-accent">Partner portal</span>
         <span class="tag tag-outline">Dark, data-dense</span>
@@ -91,7 +91,7 @@
       </div>
       <div>
         <div style="font-size:clamp(40px,5vw,60px);line-height:0.95;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--color-accent-100);">4</div>
-        <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">things I still can't source</div>
+        <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">things still unsourced</div>
       </div>
     </div>
   </header>
@@ -107,7 +107,7 @@
     </div>
     <div class="card elev-sm" style="flex:1 1 min(100%,240px);padding:20px;gap:6px;">
       <span class="card-kicker">Two timelines</span>
-      <span style="font-size:15px;line-height:1.45;">I was at Avant from May 2021 to August 2024. Pathfinder 2.0 shipped June to August 2026. I don't claim results from one for the other.</span>
+      <span style="font-size:15px;line-height:1.45;">The Avant tenure ran May 2021 to August 2024. Pathfinder 2.0 shipped June to August 2026. Results from one are not claimed for the other.</span>
     </div>
   </div>
 
@@ -121,9 +121,9 @@
     <div style="flex:1 1 min(100%,520px);">
       <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:22ch;">What the system is for</h2>
       <p style="font-size:16px;line-height:1.6;margin:0 0 14px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">AVANT's partners log into the portal to run their business: pipelines, orders, analytics, reporting. The screens are dense and dark, and there are a lot of them. Pathfinder's job is to keep them consistent enough that a partner doesn't relearn the interface on every page.</p>
-      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The second job is maintenance. I was the only person on the system, working with three engineers and a PM, so anything that needed me in the room to stay correct was going to rot.</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The second job is maintenance. One person owned the system, working with three engineers and a PM, so anything that needed that person in the room to stay correct was going to rot.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;">
-        <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Constraints</span><span style="font-size:14px;line-height:1.5;">Dark first, two themes. Token names had to sit alongside an enterprise convention already in the stack, which is why the alias layer looks like a platform API instead of something I'd have designed from scratch.</span></div>
+        <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Constraints</span><span style="font-size:14px;line-height:1.5;">Dark first, two themes. Token names had to sit alongside an enterprise convention already in the stack, which is why the alias layer looks like a platform API instead of something designed from scratch.</span></div>
         <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Success measure</span><span style="font-size:14px;line-height:1.5;">One pattern per problem, and a theme you can change by editing tokens instead of components.</span></div>
         <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Non-goals</span><span style="font-size:14px;line-height:1.5;">A rebrand. Components for screens nobody has designed. Component count as a scoreboard.</span></div>
       </div>
@@ -199,7 +199,7 @@
     </div>
     <div style="flex:1 1 min(100%,520px);">
       <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">Five findings, each with a file behind it</h2>
-      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The severities are my call. The evidence isn't. Each one names where it lives, so the team can argue about the ranking without arguing about the facts.</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The severities are a judgment call. The evidence isn't. Each one names where it lives, so the team can argue about the ranking without arguing about the facts.</p>
 
       <div style="display:flex;flex-direction:column;gap:16px;">
         <div class="card elev-md" style="padding:0;flex-direction:row;overflow:hidden;">
@@ -209,7 +209,7 @@
               <span class="tag tag-accent">Sev 1</span>
               <span style="font-size:18px;font-weight:500;line-height:1.3;">Two semantic layers, and components use the wrong one</span>
             </div>
-            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Tier 2 is documented as the layer components consume. They don't. Every component I checked reads from the alias layer instead. So the 243 tokens a maintainer is told to edit aren't the ones painting the screen.</p>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Tier 2 is documented as the layer components consume. They don't. Every component checked reads from the alias layer instead. So the 243 tokens a maintainer is told to edit aren't the ones painting the screen.</p>
             <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);"><strong>Cost:</strong> someone changes a token correctly, nothing happens, and they conclude the cascade is broken rather than bypassed.</p>
             <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: the tier-2 block in src/index.css against var(--pfContent_*) usage across src/pages.</span>
           </div>
@@ -266,7 +266,7 @@
       </div>
 
       <div style="margin-top:32px;padding:26px 28px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-neutral-800);">
-        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px;">What I'd do first</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px;">First fix</div>
         <p style="margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;font-weight:500;max-width:40ch;">Name the alias layer as the public API and mark tier 2 internal. Then generate the contrast table from the tokens it describes.</p>
         <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:62ch;">That clears the first finding, turns the third into a scoped build task, and makes the accessibility claim something a release can fail on. The cleaner option, moving all 29 components onto tier 2, takes weeks and no partner would see a difference.</p>
       </div>
@@ -304,7 +304,7 @@
         <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:repeating-linear-gradient(90deg,var(--color-neutral-400) 0 6px,transparent 6px 8px);"></span>Exports to</span>
       </div>
 
-      <p style="font-size:16px;line-height:1.6;margin:0;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The map encodes a path: learn the cascade, use components, compose patterns, build dashboards. That is also the order in which a new engineer stops asking me questions. That's the only adoption signal this artifact supports, and it's a soft one.</p>
+      <p style="font-size:16px;line-height:1.6;margin:0;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The map encodes a path: learn the cascade, use components, compose patterns, build dashboards. That is also the order in which a new engineer stops asking questions. That's the only adoption signal this artifact supports, and it's a soft one.</p>
     </div>
   </section>
 
@@ -355,7 +355,7 @@
           <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Tick marks the 4.5:1 AA line. Quoted from the system as published. Findings two and five apply, so read these as documented rather than measured.</span>
         </div>
         <div class="card elev-sm" style="padding:24px;gap:12px;">
-          <span class="card-kicker">Rules I'd add before the next release</span>
+          <span class="card-kicker">Rules to add before the next release</span>
           <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.55;display:flex;flex-direction:column;gap:8px;">
             <li>Status never travels by color alone. Every semantic fill gets a label or an icon.</li>
             <li>An error says what happened and what to do next. "Something went wrong" is a bug, not a string.</li>
@@ -380,7 +380,7 @@
       <div style="display:flex;flex-direction:column;gap:0;max-width:72ch;">
         <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);">
           <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"1,146 tokens for 29 components means the system is serving its own documentation."</div>
-          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">Fair. That ratio comes from mirroring an enterprise token API rather than deriving one from the product. It bought interoperability and cost legibility. I'd defend the 51 primitives underneath, which is what makes the other 1,095 mechanical. I wouldn't defend publishing all three tiers as if they were equally public.</div>
+          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">Fair. That ratio comes from mirroring an enterprise token API rather than deriving one from the product. It bought interoperability and cost legibility. The 51 primitives underneath are defensible, since they are what make the other 1,095 mechanical. Publishing all three tiers as if they were equally public is not.</div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);">
           <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"Six releases in ten weeks is velocity, not adoption."</div>
@@ -388,7 +388,7 @@
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);border-bottom:1px solid var(--color-neutral-800);">
           <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"A system with one contributor is a single point of failure."</div>
-          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">True here and true at Avant. I documented decisions, dated the deprecations, and exported tokens for Figma, but none of that erases the risk. The findings above are what one author's blind spots look like when someone finally audits them. I'd rather say this in week one than have a client find it at handoff.</div>
+          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">True here and true at Avant. Decisions were documented, deprecations dated, and tokens exported for Figma, but none of that erases the risk. The findings above are what one author's blind spots look like when someone finally audits them. Better said in week one than found by a client at handoff.</div>
         </div>
       </div>
     </div>
@@ -404,7 +404,7 @@
     </div>
     <div style="flex:1 1 min(100%,520px);">
       <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">Six releases, dated, with the breakage written down</h2>
-      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The strongest governance evidence in Pathfinder is its release record. It's versioned, dated, and specific about what changed. I'd carry this part into a client system unchanged.</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The strongest governance evidence in Pathfinder is its release record. It's versioned, dated, and specific about what changed. This part transfers to a client system unchanged.</p>
       <div style="position:relative;padding-left:30px;">
         <div style="position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom, var(--color-accent) 0%, var(--color-accent-700) 40%, transparent);"></div>
         <div style="display:flex;flex-direction:column;gap:22px;">
@@ -451,8 +451,8 @@
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">the honest ending</div>
     </div>
     <div style="flex:1 1 min(100%,520px);">
-      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">What I'd instrument, and the rule set before the first reading</h2>
-      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">A case study usually ends with a percentage here. I don't have one for Pathfinder that I can source, so it ends with the part that transfers instead: the instrument, and what we agree to do about the result before anyone sees it. Agreeing afterward is how a metric ends up decorating a decision that was already made.</p>
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">What to instrument, and the rule set before the first reading</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">A case study usually ends with a percentage here. There isn't one for Pathfinder that can be sourced, so it ends with the part that transfers instead: the instrument, and what is agreed about the result before anyone sees it. Agreeing afterward is how a metric ends up decorating a decision that was already made.</p>
       <table class="table" style="width:100%;font-size:14px;">
         <thead><tr><th style="width:22%;">Metric</th><th style="width:28%;">Instrument</th><th>Rule, agreed in advance</th></tr></thead>
         <tbody>
@@ -473,13 +473,13 @@
   <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">09 · Gaps</div>
-      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">what I can't source</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">unsourced</div>
     </div>
     <div style="flex:1 1 min(100%,520px);">
-      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 22px;max-width:20ch;">Four things I don't know</h2>
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 22px;max-width:20ch;">Four open questions</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;">
-        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">01</span><span style="font-size:16px;font-weight:500;line-height:1.35;">How much of the portal ran on system components by 2024</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">I can't evidence it, so I'm not claiming a share. An import census per repo would settle it.</span></div>
-        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">02</span><span style="font-size:16px;font-weight:500;line-height:1.35;">Whether any of this improved a partner outcome</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">It was never instrumented in a form I can cite. Section 08 is what I'd have built instead.</span></div>
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">01</span><span style="font-size:16px;font-weight:500;line-height:1.35;">How much of the portal ran on system components by 2024</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">It can't be evidenced, so no share is claimed. An import census per repo would settle it.</span></div>
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">02</span><span style="font-size:16px;font-weight:500;line-height:1.35;">Whether any of this improved a partner outcome</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">It was never instrumented in a citable form. Section 08 is what should have been built instead.</span></div>
         <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">03</span><span style="font-size:16px;font-weight:500;line-height:1.35;">The real component count</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">29 documented, 24 have pages, 18 exist as classes. Three numbers, three meanings, one of them published.</span></div>
         <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">04</span><span style="font-size:16px;font-weight:500;line-height:1.35;">Whether Figma and the coded tokens agree</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">The system exports a tokens.json, but nothing checks the two directions against each other. Until something does, parity is an intention.</span></div>
       </div>
@@ -492,7 +492,7 @@
   <section style="background:var(--color-section);border-radius:var(--radius-lg);padding:clamp(32px,5vw,56px);">
     <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-100);margin-bottom:20px;">What transfers</div>
     <h2 style="font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 20px;max-width:22ch;">Count it, cite it, say what you don't know</h2>
-    <p style="font-size:17px;line-height:1.55;max-width:60ch;margin:0 0 28px;color:var(--color-neutral-100);">Dense B2B software rewards the same few habits. Inventory before you propose anything. Attach a file to every finding so the argument stays about the work. End on an instrument rather than a number you'd have to defend. The skill library is that method written down, and this page is what happens when I point it at my own system.</p>
+    <p style="font-size:17px;line-height:1.55;max-width:60ch;margin:0 0 28px;color:var(--color-neutral-100);">Dense B2B software rewards the same few habits. Inventory before you propose anything. Attach a file to every finding so the argument stays about the work. End on an instrument rather than a number you'd have to defend. The skill library is that method written down, and this page is what happens when it is pointed at its author's own system.</p>
     <div style="display:flex;flex-wrap:wrap;gap:12px;">
       <a class="btn btn-primary" href="skill-library.html">Read the skill library</a>
       <a class="btn btn-secondary" href="process-walkthrough.html">See the process deck</a>
