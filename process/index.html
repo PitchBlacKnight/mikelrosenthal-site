@@ -7,8 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
-<title>Mikel Rosenthal, start here</title>
+<title>Mikel Rosenthal, process</title>
 <style>
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
     margin: 0; background: #e5e5e5; color: #000000;
     font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -16,12 +18,13 @@
     text-wrap: pretty; -webkit-font-smoothing: antialiased;
   }
   ul, ol { margin: 0; padding: 0; list-style: none; }
-  h1, h2, h3 { text-wrap: balance; }
+  h1, h2, h3 { text-wrap: balance; word-spacing: 0.08em; }
   a { color: #000000; text-decoration: none; }
   a:focus-visible { outline: 2px solid #000000; outline-offset: 3px; }
   ::selection { background: #d1ffca; }
 </style>
 <style>
+.fc1:focus{top:16px;}
 .hv1:hover{background:#f3f3f3;}
 .hv2:hover{background:#2f2f2f;}
 .hv3:hover{background:#f3f3f3;}
@@ -31,103 +34,213 @@
 .hv7:hover{background:#f3f3f3;}
 .hv8:hover{background:#f3f3f3;}
 .hv9:hover{background:#f3f3f3;}
+.phase-card{border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);align-items:flex-start;}
+.phase-card-light{background:#ffffff;color:#000000;}
+.phase-card-dark{background:#000000;color:#ffffff;}
+.phase-main{flex:1 1 420px;min-width:0;}
+.phase-gate{flex:1 1 260px;border-radius:24px;padding:24px;}
+.phase-gate-light{background:#f3f3f3;color:#444444;}
+.phase-gate-dark{background:#1f1f1f;color:#ffffff;}
 </style>
 </head>
 <body>
 
 <div style="max-width:1200px;margin:0 auto;padding:0 24px 96px;">
 
+  <a href="#main" style="position:fixed;left:16px;top:-80px;z-index:20;background:#000000;color:#ffffff;padding:12px 20px;border-radius:8px;font-size:16px;font-weight:500;transition:top 0.15s;" class="fc1">Skip to content</a>
+
   <nav aria-label="Identity" style="min-height:8rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;">
     <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Mikel Rosenthal · Chicago · Remote, US Central</span>
     <div style="background:#ffffff;border-radius:48px;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-      <a href="working-with-me.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Method</a>
+      <a href="#method" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Method</a>
+      <a href="#artifacts" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Artifacts</a>
+      <a href="working-with-me.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Detailed method</a>
       <a href="process-walkthrough.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Deck</a>
       <a href="skill-library.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Skills</a>
       <a href="pathfinder-case-study.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Case study</a>
+      <a href="intake.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Intake</a>
       <a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Files ↗</a>
     </div>
   </nav>
 
   <header style="background:#000000;color:#ffffff;border-radius:32px;padding:clamp(28px,4vw,48px);margin:24px 0 24px;display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);align-items:stretch;overflow:hidden;">
-    <div style="flex:1 1 min(100%,420px);display:flex;flex-direction:column;position:relative;z-index:1;">
-    <span style="display:inline-block;align-self:flex-start;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:40px;">Start here</span>
-    <h1 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(56px,10vw,120px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 40px;">Complex<br />software,<br />made<br />beautiful</h1>
-    <p style="font-size:clamp(20px,2.6vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;max-width:26ch;margin:0 0 24px;">And the systems that keep it that way</p>
-    <p style="font-size:16px;line-height:1.25;color:#979797;max-width:68ch;margin:0;">Twenty-three years designing enterprise software that people are required to use. Five design systems built from scratch and two mature ones evolved, including Edison at GE Healthcare, which won the 2020 Red Dot for interface design. Four things below: the method, the process end to end, the skills that run it, and one system audited with them.</p>
+    <div style="flex:1 1 min(100%,440px);display:flex;flex-direction:column;position:relative;z-index:1;">
+      <span style="display:inline-block;align-self:flex-start;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:40px;">Process</span>
+      <h1 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(56px,10vw,120px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 40px;">Brief<br />to build,<br />without<br />the drift</h1>
+      <p style="font-size:clamp(20px,2.6vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;max-width:28ch;margin:0 0 24px;">A practical method for complex product and design systems work</p>
+      <p style="font-size:16px;line-height:1.25;color:#979797;max-width:68ch;margin:0;">I use one repeatable loop: clarify the outcome, map the system, explore with evidence, turn decisions into reusable parts, and stay with the build until it ships. It is structured enough for enterprise teams and flexible enough for the messy middle of real work.</p>
+      <p style="font-size:16px;line-height:1.25;color:#979797;max-width:68ch;margin:16px 0 0;">AI speeds the research synthesis, variation, prototyping, and documentation passes. It does not replace judgment. The goal is fewer handoff gaps and a clearer path from business need to working interface.</p>
     </div>
-    <div style="flex:1 1 min(100%,440px);position:relative;min-height:360px;overflow:hidden;border-radius:24px;">
+    <div style="flex:1 1 min(100%,400px);position:relative;min-height:360px;overflow:hidden;border-radius:24px;">
       <img src="assets/spectral-arc.gif" alt="" aria-hidden="true" style="position:absolute;top:50%;left:50%;width:126%;max-width:none;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:#000000;pointer-events:none;" />
     </div>
   </header>
 
   <main id="main">
 
-  <section aria-label="The three artifacts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;margin-bottom:24px;">
+  <section aria-label="At a glance" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:24px;margin-bottom:80px;">
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Years designing complex software</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">23</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Design systems built from scratch</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">5</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">FIBER components documented</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">54</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Avant marketers enabled</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">350+</p></div>
+    <div style="background:#000000;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;margin:0 0 12px;">Edison, GE Healthcare</p><p style="font-size:clamp(18px,2.4vw,28px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;color:#ffffff;margin:0;">Red Dot<br />2020</p></div>
+  </section>
+
+  <section id="method" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Methodology</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;max-width:14ch;">The working model</h2>
+    <p style="font-size:18px;line-height:1.33;color:#444444;max-width:68ch;margin:0 0 40px;">The method follows the same logic used by strong product teams: understand the problem, make the structure visible, explore alternatives, test the decision, and document what should scale. Each phase ends with a gate so the work moves forward because the decision is clear, not because the calendar says so.</p>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+
+      <article class="phase-card phase-card-light">
+        <div class="phase-main">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 16px;">01 · Clarify</p>
+          <h3 style="font-size:clamp(28px,4vw,48px);line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0 0 16px;">Name the outcome</h3>
+          <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Turn the request into a measurable problem. I capture the audience, business goal, constraints, risks, and the decisions the work has to settle. If the brief contradicts itself, the contradiction is written down and resolved before the project pretends to be simple.</p>
+        </div>
+        <div class="phase-gate phase-gate-light">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Decision gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">A shared problem statement, success metric, and assumption list with owners.</p>
+        </div>
+      </article>
+
+      <article class="phase-card phase-card-light">
+        <div class="phase-main">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 16px;">02 · Map</p>
+          <h3 style="font-size:clamp(28px,4vw,48px);line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0 0 16px;">See the whole system</h3>
+          <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Before visual design, I map the flow, state model, content model, data dependencies, and component inventory. The goal is to see the product as a connected system so the team can estimate the right shape, not just the visible screen.</p>
+        </div>
+        <div class="phase-gate phase-gate-light">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Decision gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Critical paths, edge states, and technical constraints reviewed with product and engineering.</p>
+        </div>
+      </article>
+
+      <article class="phase-card phase-card-light">
+        <div class="phase-main">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 16px;">03 · Explore</p>
+          <h3 style="font-size:clamp(28px,4vw,48px);line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0 0 16px;">Compare real options</h3>
+          <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Develop a small set of meaningfully different directions, using real content and the hardest screens. AI can multiply the draft options. Taste, evidence, and feasibility decide which one survives.</p>
+        </div>
+        <div class="phase-gate phase-gate-light">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Decision gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">One recommended direction, the trade-offs behind it, and the alternatives rejected.</p>
+        </div>
+      </article>
+
+      <article class="phase-card phase-card-light">
+        <div class="phase-main">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 16px;">04 · Systemize</p>
+          <h3 style="font-size:clamp(28px,4vw,48px);line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0 0 16px;">Make decisions reusable</h3>
+          <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Design the interface as a system while designing the screens. Tokens, components, interaction states, accessibility behavior, and content rules are captured where the team will use them.</p>
+        </div>
+        <div class="phase-gate phase-gate-light">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Decision gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Reusable decisions live in the library or the spec before they appear in the finished screen.</p>
+        </div>
+      </article>
+
+      <article class="phase-card phase-card-dark">
+        <div class="phase-main">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#979797;margin:0 0 16px;">05 · Ship</p>
+          <h3 style="font-size:clamp(28px,4vw,48px);line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0 0 16px;color:#ffffff;">Stay through the build</h3>
+          <p style="font-size:18px;line-height:1.33;color:#979797;margin:0;max-width:62ch;">Handoff is active participation: walkthroughs, QA, staging review, and governance for what changes next. The work is not done when the file is tidy. It is done when the product can keep improving without drifting.</p>
+        </div>
+        <div class="phase-gate phase-gate-dark">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">Decision gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">Engineering confirms the build path, design QA signs off, and the next-system backlog is clear.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-label="What the method gives a team" style="margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Why it works</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 40px;">A clearer path through messy work</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);">
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 16px;">Decisions are easier to make</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Every recommendation names the option, the trade-off, and the reason. Stakeholders choose with context instead of reacting to taste.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);">
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 16px;">The team sees risk earlier</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Assumptions, constraints, edge states, and feasibility questions are surfaced before high fidelity makes them expensive to change.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);">
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 16px;">Handoff becomes buildable</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Engineers get behavior, states, tokens, accessibility notes, and content rules. The spec explains how the interface should survive real data.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);">
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 16px;">The system lasts past launch</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Components, documentation, decision logs, and governance keep the product from drifting the next time new work enters the pipeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="artifacts" aria-label="Supporting artifacts" style="scroll-margin-top:120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;margin-bottom:24px;">
     <a href="working-with-me.html" style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;min-height:320px;" class="hv1">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">01 · Four-minute read</span>
-      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">The method</h2>
-      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">Five phases, one decision gate each. The weekly rhythm, the handoff package, and how contradictions in a brief are resolved.</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">Detailed method</h2>
+      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">The full operating model: working agreements, phase gates, weekly cadence, handoff requirements, ambiguity protocol, and the first 30 days inside a team.</p>
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Read the method →</span>
     </a>
     <a href="process-walkthrough.html" style="background:#000000;color:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;min-height:320px;" class="hv2">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#979797;">02 · 26 slides, 20 minutes</span>
       <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">From brief to build</h2>
-      <p style="font-size:16px;line-height:1.25;color:#979797;margin:0;flex:1;">The presentation. What happens between requirements landing and an engineer starting: intake, the fork between system work and product work, six directions of mapping, and handoff. Speaker notes on every slide.</p>
+      <p style="font-size:16px;line-height:1.25;color:#979797;margin:0;flex:1;">The presentation version of the process: intake, the fork between system work and product work, mapping directions, and the handoff package developers receive.</p>
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#ffffff;">Open the deck →</span>
     </a>
     <a href="skill-library.html" style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;min-height:320px;" class="hv3">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">03 · 34 files, loadable</span>
-      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">The skill library</h2>
-      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">Nine skills that carry a brief to developer handoff, with the rubrics, the templates and seven worked examples. Each one lists what it refuses to do. The documentation, a ten-minute demo runbook, and the files themselves.</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">Skill library</h2>
+      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">Nine documented skills that move from brief intake to developer handoff, with rubrics, templates, and worked examples for repeatable AI-assisted design work.</p>
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Read the docs →</span>
     </a>
     <a href="pathfinder-case-study.html" style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;min-height:320px;" class="hv4">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">04 · Case study, eight-minute read</span>
-      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">Pathfinder, audited</h2>
-      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">The nine skills run against a design system built from scratch. Every count from source, five findings with files behind them, and four things the evidence can’t yet prove.</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.5vw,48px);line-height:0.9;letter-spacing:-0.03em;margin:0;">Pathfinder audited</h2>
+      <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;flex:1;">A design system built from scratch, then evaluated with the skill library: source-backed counts, findings, evidence, and what the audit still cannot prove.</p>
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Read the case study →</span>
     </a>
   </section>
 
-  <section aria-label="Quick links" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;margin-bottom:80px;">
+  <section aria-label="Files and examples" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;margin-bottom:80px;">
     <a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="background:#d1ffca;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv5">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Google Drive ↗</span>
-      <span style="font-size:18px;line-height:1.33;font-weight:500;">The skill files</span>
-      <span style="font-size:14px;line-height:1.3;color:#444444;">45 files, folder structure intact. Download and drop into a Claude project</span>
+      <span style="font-size:18px;line-height:1.33;font-weight:500;">The source files</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">Skill files, examples, and folder structure ready to review or reuse.</span>
+    </a>
+    <a href="intake.html" style="background:#ffffff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv6">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Interactive</span>
+      <span style="font-size:18px;line-height:1.33;font-weight:500;">The intake form</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">Seven steps from raw brief to project file, with a sample to walk through</span>
     </a>
     <a href="skills/DEMO.md" style="background:#ffffff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv6">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Runbook</span>
       <span style="font-size:18px;line-height:1.33;font-weight:500;">Ten-minute live demo</span>
-      <span style="font-size:14px;line-height:1.3;color:#444444;">Four beats, with the exact prompts</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">Four beats, with the exact prompts.</span>
     </a>
     <a href="skills/examples/02-drift-report.md" style="background:#ffffff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv7">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Worked example</span>
-      <span style="font-size:18px;line-height:1.33;font-weight:500;">A design-system drift report</span>
-      <span style="font-size:14px;line-height:1.3;color:#444444;">One primitive fix closing eleven findings</span>
+      <span style="font-size:18px;line-height:1.33;font-weight:500;">Design-system drift report</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">One primitive fix closing eleven findings.</span>
     </a>
     <a href="skills/examples/07-critique.md" style="background:#ffffff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv8">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Worked example</span>
       <span style="font-size:18px;line-height:1.33;font-weight:500;">Critique of the work</span>
-      <span style="font-size:14px;line-height:1.3;color:#444444;">Seven fronts, ranked, each with a proposal</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">Seven fronts, ranked, each with a proposal.</span>
     </a>
     <a href="assets/Mikel_Rosenthal_Resume_StaffVisualDS.pdf" style="background:#ffffff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;" class="hv9">
       <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">PDF</span>
       <span style="font-size:18px;line-height:1.33;font-weight:500;">Résumé</span>
-      <span style="font-size:14px;line-height:1.3;color:#444444;">Staff visual product design · design systems</span>
+      <span style="font-size:14px;line-height:1.3;color:#444444;">Staff visual product design and design systems.</span>
     </a>
   </section>
 
-  <section aria-label="Standing" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:24px;margin-bottom:80px;">
-    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Years</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">23</p></div>
-    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Systems built</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">5</p></div>
-    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">FIBER components</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">54</p></div>
-    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Marketers unblocked</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">350+</p></div>
-    <div style="background:#000000;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;margin:0 0 12px;">Edison, GE Healthcare</p><p style="font-size:clamp(18px,2.4vw,28px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;color:#ffffff;margin:0;">Red Dot<br />2020</p></div>
-  </section>
-
   <section style="background:#000000;color:#ffffff;border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);">
-    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 32px;max-width:18ch;">A method built for the long term</h2>
-    <p style="font-size:clamp(18px,2.4vw,28px);line-height:1.3;color:#979797;max-width:46ch;margin:0 0 40px;">Not a system to hand off at the end of a statement of work. Given a brief and an hour, the whole method runs live on your product.</p>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 32px;max-width:17ch;">Run the method on your product</h2>
+    <p style="font-size:clamp(18px,2.4vw,28px);line-height:1.3;color:#979797;max-width:46ch;margin:0 0 40px;">Send the brief, the product URL, or the system that is drifting. I will turn it into a structured path: what to learn, what to map, what to build, and what to hand off.</p>
     <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;letter-spacing:-0.03em;margin:0;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
       <a href="mailto:mikelrosenthal@me.com" style="background:#fff100;color:#000000;padding:8px 12px;border-radius:4px;">mikelrosenthal@me.com</a>
       <a href="https://mikelrosenthal.com" target="_blank" rel="noopener" style="color:#ffffff;">mikelrosenthal.com</a>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Intake form, Mikel Rosenthal</title>
+<style>
+  :root{--canvas:#e5e5e5;--paper:#fff;--mist:#f3f3f3;--ash:#c6c6c6;--smoke:#979797;--slate:#444;--graphite:#2f2f2f;--carbon:#000;--mint:#d1ffca;--mint-2:#c2f5ba;--volt:#fff100;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  html{scroll-behavior:smooth;scroll-padding-top:120px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--canvas);color:var(--carbon);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:inherit;text-decoration:none}
+  a:hover{background:var(--mint)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--carbon);outline-offset:2px}
+  input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--carbon);outline-offset:0}
+  ::selection{background:var(--mint)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:var(--slate)}
+  .disp{font-family:"Archivo",sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.9;margin:0}
+  nav.top{min-height:8rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0}
+  .pill{background:var(--paper);border-radius:48px;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .pill a{font-size:16px;font-weight:500;color:var(--slate);padding:4px 8px;border-radius:4px}
+  .pill .div{width:1px;height:20px;background:var(--ash)}
+  header.hero{margin:0 0 40px}
+  header.hero h1{font-size:clamp(56px,10vw,120px);margin:24px 0 24px}
+  header.hero .sub{font-size:clamp(20px,2.6vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;max-width:26ch;margin:0 0 20px}
+  header.hero p.lede{color:var(--slate);max-width:68ch;margin:0}
+  .tag{display:inline-block;background:var(--mint);color:var(--carbon);border-radius:64px;padding:8px 16px;font-family:var(--mono);font-size:12px;letter-spacing:-0.03em;text-transform:uppercase}
+
+  .layout{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;align-items:start}
+  @media (max-width:860px){.layout{grid-template-columns:1fr}}
+  .rail{position:sticky;top:24px;background:var(--paper);border-radius:32px;padding:28px;display:flex;flex-direction:column;gap:6px}
+  @media (max-width:860px){.rail{position:static;flex-direction:row;flex-wrap:wrap}}
+  .rail button{all:unset;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:10px 12px;border-radius:12px;font-size:15px;font-weight:500;color:var(--slate)}
+  .rail button .n{font-family:var(--mono);font-size:12px;color:var(--smoke);min-width:2ch}
+  .rail button:hover{background:var(--mist)}
+  .rail button[aria-current="step"]{background:var(--carbon);color:var(--paper)}
+  .rail button[aria-current="step"] .n{color:var(--mint)}
+  .rail button.done .n::after{content:" ✓";color:var(--carbon)}
+  .rail button[aria-current="step"].done .n::after{color:var(--mint)}
+  .rail .meta{margin-top:12px;padding-top:16px;border-top:1px solid var(--ash);font-family:var(--mono);font-size:12px;color:var(--slate);display:flex;flex-direction:column;gap:6px}
+  @media (max-width:860px){.rail .meta{flex-basis:100%;border-top:none;padding-top:0;margin-top:4px}}
+  .rail .meta b{font-weight:400;color:var(--carbon)}
+
+  .card{background:var(--paper);border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px}
+  .step{display:none}
+  .step.active{display:flex;flex-direction:column;gap:24px}
+  .step h2{font-size:clamp(32px,4.5vw,56px)}
+  .step .why{color:var(--slate);max-width:62ch;margin:0}
+  .rule{background:var(--mist);border-radius:16px;padding:16px 20px;font-size:14px;color:var(--slate);max-width:70ch}
+  .rule b{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--carbon);font-weight:400;display:block;margin-bottom:6px}
+  .field{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .field label,.field .lbl{font-family:var(--mono);font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:var(--slate)}
+  .field .hint{font-size:14px;color:var(--smoke);margin:-2px 0 0}
+  input[type=text],input[type=date],textarea,select{font:inherit;font-size:16px;letter-spacing:-0.011em;color:var(--carbon);background:var(--mist);border:0;border-radius:12px;padding:14px 16px;width:100%;box-sizing:border-box}
+  textarea{min-height:110px;resize:vertical;line-height:1.35}
+  textarea.quote{font-style:normal;background:var(--volt)}
+  select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--carbon) 50%),linear-gradient(135deg,var(--carbon) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px 20px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px 20px}
+  .choices{display:flex;flex-wrap:wrap;gap:10px}
+  .choice{position:relative}
+  .choice input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .choice span{display:inline-block;border:1.5px solid var(--ash);border-radius:64px;padding:10px 16px;font-size:15px;font-weight:500;color:var(--slate);cursor:pointer;user-select:none}
+  .choice input:checked+span{background:var(--carbon);border-color:var(--carbon);color:var(--paper)}
+  .choice input:focus-visible+span{outline:2px solid var(--carbon);outline-offset:2px}
+  .unres{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--slate);cursor:pointer}
+  .unres input{width:16px;height:16px;margin:0;accent-color:#000}
+
+  .rows{display:flex;flex-direction:column;gap:12px}
+  .row{background:var(--mist);border-radius:20px;padding:16px;display:grid;gap:12px;align-items:end}
+  .row input,.row select,.row textarea{background:var(--paper)}
+  .row .del{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--slate);padding:12px 10px;border-radius:8px;justify-self:end;align-self:end}
+  .row .del:hover{background:var(--paper)}
+  .row.users{grid-template-columns:1fr 1.4fr 1fr auto}
+  .row.cons{grid-template-columns:1.6fr 1fr 1fr auto}
+  .row.asm{grid-template-columns:1.8fr 1fr .8fr .8fr auto}
+  @media (max-width:760px){.row.users,.row.cons,.row.asm{grid-template-columns:1fr 1fr}.row .del{grid-column:1/-1;justify-self:start}}
+  .add{all:unset;cursor:pointer;font-family:var(--mono);font-size:14px;padding:10px 14px;border-radius:8px;background:var(--mist);align-self:flex-start}
+  .add:hover{background:var(--mint)}
+
+  .bank{display:flex;flex-direction:column;gap:14px}
+  .bank h3{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--slate);margin:0;font-weight:400}
+  .bank .q{all:unset;display:block;cursor:pointer;background:var(--mist);border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.3}
+  .bank .q:hover{background:var(--mint)}
+  .bank .q.used{background:var(--carbon);color:var(--paper)}
+  .qslots{display:grid;gap:12px}
+  .qslot{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+  .qslot .n{font-family:"Archivo",sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;padding-top:6px}
+  .qslot textarea{min-height:64px}
+
+  .actions{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--ash)}
+  .btn{all:unset;cursor:pointer;font-size:16px;font-weight:500;padding:14px 22px;border-radius:64px;background:var(--carbon);color:var(--paper)}
+  .btn:hover{background:var(--graphite)}
+  .btn.ghost{background:var(--mist);color:var(--carbon)}
+  .btn.ghost:hover{background:var(--ash)}
+  .btn.mint{background:var(--mint);color:var(--carbon)}
+  .btn.mint:hover{background:var(--mint-2)}
+  .btn:disabled{opacity:.4;cursor:default}
+
+  /* output */
+  .brief{background:var(--paper);border-radius:32px;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:28px}
+  .brief h2.disp{font-size:clamp(36px,6vw,72px)}
+  .brief h3{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--slate);font-weight:400;margin:0 0 10px;padding-top:20px;border-top:1px solid var(--ash)}
+  .brief p{margin:0 0 8px;max-width:72ch}
+  .brief blockquote{margin:0 0 10px;padding:16px 20px;background:var(--volt);border-radius:16px;font-size:18px;line-height:1.3;max-width:72ch}
+  .brief .mine{color:var(--slate);font-size:15px}
+  .brief table{width:100%;border-collapse:collapse;font-size:15px}
+  .brief th{text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--slate);font-weight:400;padding:8px 10px;border-bottom:1px solid var(--ash)}
+  .brief td{padding:10px;border-bottom:1px solid var(--mist);vertical-align:top}
+  .brief .tbl{overflow-x:auto}
+  .u{display:inline-block;background:var(--volt);font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px}
+  .brief ol{margin:0;padding-left:22px}
+  .brief ol li{margin:0 0 8px;font-size:18px;line-height:1.3}
+  .brief .gaps{background:var(--carbon);color:var(--paper);border-radius:24px;padding:24px 28px}
+  .brief .gaps h3{color:var(--smoke);border:0;padding:0}
+  .brief .gaps ul{margin:0;padding-left:20px;color:var(--paper)}
+  .brief .gaps li{margin:4px 0}
+  .brief .src{font-family:var(--mono);font-size:12px;color:var(--slate)}
+  pre.md{display:none}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--carbon);color:var(--paper);font-family:var(--mono);font-size:13px;padding:10px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .toast.show{opacity:1}
+  .skip{position:fixed;left:16px;top:-80px;z-index:20;background:var(--carbon);color:var(--paper);padding:12px 20px;border-radius:8px;font-weight:500;transition:top .15s}
+  .skip:focus{top:16px}
+  .foot{background:var(--carbon);color:var(--paper);border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);margin-top:80px}
+  .foot h2{font-size:clamp(40px,8vw,104px);margin:0 0 24px}
+  .foot p{color:var(--smoke);font-size:clamp(18px,2.4vw,28px);line-height:1.2;max-width:46ch;margin:0 0 32px}
+  .foot .links{font-family:var(--mono);font-size:14px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .foot .links a{color:var(--paper)}
+  .foot .links a.em{background:var(--volt);color:var(--carbon);padding:8px 12px;border-radius:4px}
+  @media print{nav.top,.rail,.actions,.foot,.skip,.toolbar{display:none!important}.layout{display:block}.brief{border-radius:0;padding:0}body{background:#fff}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill">
+      <a href="working-with-me.html">Method</a>
+      <a href="process-walkthrough.html">Deck</a>
+      <a href="skill-library.html">Skills</a>
+      <a href="pathfinder-case-study.html">Case study</a>
+      <span class="div" aria-hidden="true"></span>
+      <a href="skills/brief-intake/SKILL.md">brief-intake ↗</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="tag">Intake · brief-intake</span>
+    <h1 class="disp">The<br>intake<br>form</h1>
+    <p class="sub">Seven steps that turn a raw brief into one project file</p>
+    <p class="lede">The same questions the brief-intake skill asks, in order. Every later step of the method reads from the file this produces. Answers save in this browser only and nothing is sent anywhere. Gaps are allowed: an honest UNRESOLVED beats an invented number.</p>
+  </header>
+
+  <main id="main" class="layout">
+    <aside class="rail" aria-label="Steps">
+      <button data-go="0"><span class="n">01</span>Engagement</button>
+      <button data-go="1"><span class="n">02</span>Problem</button>
+      <button data-go="2"><span class="n">03</span>Metric</button>
+      <button data-go="3"><span class="n">04</span>Users and jobs</button>
+      <button data-go="4"><span class="n">05</span>Constraints</button>
+      <button data-go="5"><span class="n">06</span>Assumptions</button>
+      <button data-go="6"><span class="n">07</span>Three questions</button>
+      <button data-go="7"><span class="n">→</span>Project brief</button>
+      <div class="meta">
+        <span>Unresolved: <b id="m-unres">0</b></span>
+        <span>Assumptions: <b id="m-asm">0</b></span>
+        <span>Saved: <b id="m-saved">not yet</b></span>
+      </div>
+    </aside>
+
+    <div>
+    <form id="form" class="card" autocomplete="off" novalidate>
+
+      <!-- 01 Engagement -->
+      <section class="step" data-step="0" aria-labelledby="h0">
+        <div><span class="kick">01 · Engagement</span><h2 id="h0" class="disp" style="margin-top:12px">What kind of work this is</h2></div>
+        <p class="why">The engagement type decides which questions matter in step 07. The three people-and-date questions are asked on every project, whatever the type.</p>
+        <div class="grid2">
+          <div class="field"><label for="project">Project</label><input type="text" id="project" data-bind="project" placeholder="Working title"></div>
+          <div class="field"><label for="client">Client or team</label><input type="text" id="client" data-bind="client" placeholder="Who the work is for"></div>
+        </div>
+        <div class="field">
+          <span class="lbl">Engagement type</span>
+          <div class="choices" role="radiogroup" aria-label="Engagement type">
+            <label class="choice"><input type="radio" name="type" value="new" data-bind="type"><span>Net-new product</span></label>
+            <label class="choice"><input type="radio" name="type" value="redesign" data-bind="type"><span>Redesign of something live</span></label>
+            <label class="choice"><input type="radio" name="type" value="system" data-bind="type"><span>Design system</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lbl">Also true</span>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" data-bind="flags.regulated"><span>Regulated or trust-critical</span></label>
+            <label class="choice"><input type="checkbox" data-bind="flags.ai"><span>Has AI features</span></label>
+            <label class="choice"><input type="checkbox" data-bind="flags.disagree"><span>Stakeholders disagree</span></label>
+          </div>
+        </div>
+        <div class="field"><label for="sources">Source material</label><textarea id="sources" data-bind="sources" placeholder="Every document, transcript, deck and email thread the brief came from. One per line."></textarea><p class="hint">Read everything once and produce nothing. Log what it raises before structuring anything.</p></div>
+        <div class="grid2">
+          <div class="field"><label for="decider">Who has final say</label><input type="text" id="decider" data-bind="decider" placeholder="A named person"></div>
+          <div class="field"><label for="bring">Who else has to be brought along</label><input type="text" id="bring" data-bind="bringAlong" placeholder="Names and roles"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label for="hardDate">The hard date</label><input type="date" id="hardDate" data-bind="hardDate"></div>
+          <div class="field"><label for="hardWhy">What makes it hard</label><input type="text" id="hardWhy" data-bind="hardWhy" placeholder="A launch, a contract, a regulator, a conference"></div>
+        </div>
+      </section>
+
+      <!-- 02 Problem -->
+      <section class="step" data-step="1" aria-labelledby="h1">
+        <div><span class="kick">02 · Problem</span><h2 id="h1" class="disp" style="margin-top:12px">Separate the solution from the problem</h2></div>
+        <p class="why">Most briefs arrive describing a solution. The problem underneath it gets written in the client’s own words, quoted. Paraphrase is drift.</p>
+        <div class="field"><label for="solution">What the brief asks for</label><textarea id="solution" data-bind="solution" placeholder="The solution as stated. “Redesign the dashboard.” “Add an AI assistant.”"></textarea></div>
+        <div class="field"><label for="quote">The problem, in the client’s words</label><textarea id="quote" class="quote" data-bind="quote" placeholder="Quote them verbatim. This block is highlighted because it is the only line on the page that is not yours."></textarea></div>
+        <div class="field"><label for="reading">The problem underneath, as read by the designer</label><textarea id="reading" data-bind="reading" placeholder="One sentence. Labelled as a reading, not as theirs."></textarea></div>
+        <div class="rule"><b>Rule</b>If the material contradicts itself, record both positions and what each costs. Do not quietly pick one.</div>
+      </section>
+
+      <!-- 03 Metric -->
+      <section class="step" data-step="2" aria-labelledby="h2">
+        <div><span class="kick">03 · Metric</span><h2 id="h2" class="disp" style="margin-top:12px">What number this has to move</h2></div>
+        <p class="why">If the material does not say, that is an open question, not something to invent. Mark it unresolved and it becomes one of the three questions.</p>
+        <div class="field"><label for="mname">Primary metric</label><input type="text" id="mname" data-bind="metric.name" placeholder="Application completion rate, time to first order, support contacts per week"></div>
+        <div class="grid3">
+          <div class="field"><label for="mbase">Baseline today</label><input type="text" id="mbase" data-bind="metric.baseline" placeholder="The number now"><label class="unres"><input type="checkbox" data-bind="metric.baselineUnres">Unresolved</label></div>
+          <div class="field"><label for="mtarget">Target</label><input type="text" id="mtarget" data-bind="metric.target" placeholder="The number it must reach"><label class="unres"><input type="checkbox" data-bind="metric.targetUnres">Unresolved</label></div>
+          <div class="field"><label for="msrc">Source</label><input type="text" id="msrc" data-bind="metric.source" placeholder="Who said so, and where"></div>
+        </div>
+        <div class="field"><label for="guard">Guardrail metrics</label><textarea id="guard" data-bind="metric.guardrails" placeholder="What must not get worse while this moves. One per line."></textarea></div>
+        <div class="rule"><b>Rule</b>Never fill a metric you were not given. UNRESOLVED is the correct answer.</div>
+      </section>
+
+      <!-- 04 Users -->
+      <section class="step" data-step="3" aria-labelledby="h3">
+        <div><span class="kick">04 · Users and jobs</span><h2 id="h3" class="disp" style="margin-top:12px">Who, and what they are hiring it to finish</h2></div>
+        <p class="why">Not personas. Jobs. Each row names a person, the thing they are trying to get done, and how that is known rather than assumed.</p>
+        <div class="rows" id="users"></div>
+        <button type="button" class="add" data-add="users">+ Add a user</button>
+      </section>
+
+      <!-- 05 Constraints -->
+      <section class="step" data-step="4" aria-labelledby="h4">
+        <div><span class="kick">05 · Constraints</span><h2 id="h4" class="disp" style="margin-top:12px">What the work has to live inside</h2></div>
+        <p class="why">Platform, data, integrations, compliance, timeline, team. Each one is marked by who confirmed it. Anything unconfirmed is flagged for an engineer before it shapes a wireframe.</p>
+        <div class="rows" id="constraints"></div>
+        <button type="button" class="add" data-add="constraints">+ Add a constraint</button>
+        <div class="rule"><b>Why this is here</b>A stated back-end constraint accepted in week one and questioned at hi-fi is the most expensive mistake in the method. The inventory with the lead engineer sits in phase 01 for that reason.</div>
+      </section>
+
+      <!-- 06 Assumptions -->
+      <section class="step" data-step="5" aria-labelledby="h5">
+        <div><span class="kick">06 · Assumptions</span><h2 id="h5" class="disp" style="margin-top:12px">Everything ambiguous, with an owner and a cost</h2></div>
+        <p class="why">Every ambiguity becomes a row. The register sorts itself by cost of being wrong, highest first. Cheap-to-test rows get tested this week. Expensive ones get decided by the client, on the record.</p>
+        <div class="rows" id="assumptions"></div>
+        <button type="button" class="add" data-add="assumptions">+ Add an assumption</button>
+        <div class="rule"><b>Rule</b>Every assumption needs a named owner. “The team” is not an owner.</div>
+      </section>
+
+      <!-- 07 Questions -->
+      <section class="step" data-step="6" aria-labelledby="h6">
+        <div><span class="kick">07 · The three questions</span><h2 id="h6" class="disp" style="margin-top:12px">Three back, not thirty</h2></div>
+        <p class="why">Pick the three whose answers change the shape of the work, not the three that are easiest to answer. The bank below is filtered by the engagement type from step 01. Click one to place it in a slot, or write your own.</p>
+        <div class="grid2" style="align-items:start">
+          <div class="bank" id="bank"></div>
+          <div class="qslots">
+            <div class="qslot"><span class="n">01</span><textarea data-bind="questions.0" placeholder="First question"></textarea></div>
+            <div class="qslot"><span class="n">02</span><textarea data-bind="questions.1" placeholder="Second question"></textarea></div>
+            <div class="qslot"><span class="n">03</span><textarea data-bind="questions.2" placeholder="Third question"></textarea></div>
+            <div class="field"><label for="oos">Out of scope</label><textarea id="oos" data-bind="outOfScope" placeholder="Named explicitly, so nobody is surprised in week eight."></textarea></div>
+            <div class="field"><label for="open">Open and unresolved</label><textarea id="open" data-bind="open" placeholder="Everything that could not be determined from the material."></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Output -->
+      <section class="step" data-step="7" aria-labelledby="h7">
+        <div class="toolbar" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+          <span class="kick">Output · project-brief.md</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="button" class="btn mint" id="copy">Copy as Markdown</button>
+            <button type="button" class="btn ghost" id="print">Print</button>
+          </div>
+        </div>
+        <div id="brief" class="brief" style="padding:0"></div>
+        <pre class="md" id="md"></pre>
+      </section>
+
+      <div class="actions">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" class="btn ghost" id="prev">← Back</button>
+          <button type="button" class="btn ghost" id="sample">Load a sample</button>
+          <button type="button" class="btn ghost" id="reset">Clear</button>
+        </div>
+        <button type="button" class="btn" id="next">Next →</button>
+      </div>
+    </form>
+    </div>
+  </main>
+
+  <section class="foot">
+    <h2 class="disp">The file every later step reads from</h2>
+    <p>Intake ends when the client signs the problem statement and the metric. If the metric can’t be written, the feature isn’t designed yet.</p>
+    <div class="links"><a href="mailto:mikelrosenthal@me.com" class="em">mikelrosenthal@me.com</a><a href="working-with-me.html">The method</a><a href="skill-library.html">Skill library</a></div>
+  </section>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  const KEY='intake_v1';
+  const blank=()=>({project:'',client:'',type:'',flags:{regulated:false,ai:false,disagree:false},sources:'',decider:'',bringAlong:'',hardDate:'',hardWhy:'',
+    solution:'',quote:'',reading:'',metric:{name:'',baseline:'',baselineUnres:false,target:'',targetUnres:false,source:'',guardrails:''},
+    users:[{who:'',job:'',how:''}],constraints:[{text:'',kind:'platform',confirmed:'brief'}],assumptions:[{text:'',owner:'',cost:'3',cheap:'no',status:'open'}],
+    questions:['','',''],outOfScope:'',open:''});
+  let S=blank(), step=0;
+  try{const v=JSON.parse(localStorage.getItem(KEY)||'null'); if(v&&v.S){S=Object.assign(blank(),v.S); step=v.step||0;}}catch(e){}
+
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const get=(o,p)=>p.split('.').reduce((a,k)=>a==null?undefined:a[k],o);
+  const set=(o,p,v)=>{const ks=p.split('.');let a=o;for(let i=0;i<ks.length-1;i++){a=a[ks[i]];}a[ks[ks.length-1]]=v;};
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let saveT; function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify({S,step}));$('#m-saved').textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}catch(e){}},250);}
+  function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800);}
+
+  // bindings
+  function hydrate(root=document){
+    root.querySelectorAll('[data-bind]').forEach(el=>{
+      const v=get(S,el.dataset.bind);
+      if(el.type==='checkbox') el.checked=!!v;
+      else if(el.type==='radio') el.checked=(v===el.value);
+      else el.value=v??'';
+    });
+  }
+  document.addEventListener('input',e=>{const el=e.target;if(!el.dataset.bind)return;
+    set(S,el.dataset.bind,el.type==='checkbox'?el.checked:el.value);
+    if(el.dataset.bind==='type'||el.dataset.bind.startsWith('flags.'))renderBank();
+    meta();save();});
+  document.addEventListener('change',e=>{const el=e.target;if(!el.dataset.bind)return;
+    set(S,el.dataset.bind,el.type==='checkbox'?el.checked:el.value);
+    if(el.dataset.bind==='type'||el.dataset.bind.startsWith('flags.'))renderBank();
+    meta();save();});
+
+  // repeatable rows
+  const KINDS=['platform','data','integration','compliance','timeline','team'];
+  const CONF=[['brief','From the brief'],['engineer','Confirmed by engineer'],['client','Confirmed by client'],['unconfirmed','Unconfirmed, needs an engineer']];
+  const opts=(arr,v)=>arr.map(o=>{const [val,lab]=Array.isArray(o)?o:[o,o];return `<option value="${val}"${val===v?' selected':''}>${lab}</option>`;}).join('');
+  const ROW={
+    users:(r,i)=>`<div class="row users">
+      <div class="field"><label>Who</label><input type="text" data-bind="users.${i}.who" placeholder="A person, by role"></div>
+      <div class="field"><label>The job they’re hiring this for</label><input type="text" data-bind="users.${i}.job" placeholder="What they need finished"></div>
+      <div class="field"><label>How we know</label><input type="text" data-bind="users.${i}.how" placeholder="Interviews, tickets, analytics, assumed"></div>
+      <button type="button" class="del" data-del="users" data-i="${i}" aria-label="Remove user">✕</button></div>`,
+    constraints:(r,i)=>`<div class="row cons">
+      <div class="field"><label>Constraint</label><input type="text" data-bind="constraints.${i}.text" placeholder="What it is"></div>
+      <div class="field"><label>Kind</label><select data-bind="constraints.${i}.kind">${opts(KINDS,r.kind)}</select></div>
+      <div class="field"><label>Confirmed by</label><select data-bind="constraints.${i}.confirmed">${opts(CONF,r.confirmed)}</select></div>
+      <button type="button" class="del" data-del="constraints" data-i="${i}" aria-label="Remove constraint">✕</button></div>`,
+    assumptions:(r,i)=>`<div class="row asm">
+      <div class="field"><label>Assumption</label><input type="text" data-bind="assumptions.${i}.text" placeholder="What is being taken for granted"></div>
+      <div class="field"><label>Owner</label><input type="text" data-bind="assumptions.${i}.owner" placeholder="A named person"></div>
+      <div class="field"><label>Cost if wrong</label><select data-bind="assumptions.${i}.cost">${opts([['5','5 · ruinous'],['4','4 · a sprint'],['3','3 · a week'],['2','2 · a day'],['1','1 · an hour']],r.cost)}</select></div>
+      <div class="field"><label>Cheap to test?</label><select data-bind="assumptions.${i}.cheap">${opts([['yes','Yes, this week'],['no','No, client decides']],r.cheap)}</select></div>
+      <button type="button" class="del" data-del="assumptions" data-i="${i}" aria-label="Remove assumption">✕</button></div>`
+  };
+  function renderRows(k){const el=document.getElementById(k);el.innerHTML=S[k].map(ROW[k]).join('');hydrate(el);}
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('[data-add]');if(a){S[a.dataset.add].push(blank()[a.dataset.add][0]);renderRows(a.dataset.add);meta();save();const last=document.getElementById(a.dataset.add).querySelector('.row:last-child input');last&&last.focus();return;}
+    const d=e.target.closest('[data-del]');if(d){S[d.dataset.del].splice(+d.dataset.i,1);if(!S[d.dataset.del].length)S[d.dataset.del].push(blank()[d.dataset.del][0]);renderRows(d.dataset.del);meta();save();return;}
+    const g=e.target.closest('[data-go]');if(g){go(+g.dataset.go);return;}
+    const q=e.target.closest('.bank .q');if(q){placeQ(q.textContent);return;}
+  });
+
+  // question bank
+  const BANK={
+    always:['What number does this need to move, and what is it today?','Who has final say, and who else has to be brought along?','What is the hard date, and what is it hard because of?'],
+    new:['Who has this problem badly enough to change their behaviour?','What are they doing instead today, including the spreadsheet?','What is the smallest version that would still be worth shipping?','Which part are you most afraid is wrong?'],
+    redesign:['What does the analytics say people actually do, versus what you designed for?','What breaks most often in support tickets?','What must not change, and who would object if it did?','Has this been redesigned before? What happened?'],
+    system:['Who are the consumers, and can they be made to adopt it?','Is there a coded library today, and does it match the design source?','Who owns it after we leave, and do they have the time?','What is the release and deprecation process, or is there none?'],
+    regulated:['Which decisions require a compliance or legal reviewer, and how long do they take?','What happens to a user when the system is wrong? Who absorbs it?','What must be auditable, logged, or reversible?'],
+    ai:['What does the product do when the model is unsure, wrong, or unavailable?','Can the user correct it, and does the correction persist?','What is the human-in-the-loop step, and who is that human?'],
+    disagree:['If we could only fix one thing this quarter, which?','What would make you say, in six months, that this was a waste?','Who is the user you’d most hate to lose?']
+  };
+  const LABEL={always:'Always',new:'Net-new product',redesign:'Redesign of something live',system:'Design system',regulated:'Regulated or trust-critical',ai:'AI features',disagree:'Ambiguity probes, when stakeholders disagree'};
+  function renderBank(){
+    const groups=['always'];if(S.type)groups.push(S.type);if(S.flags.regulated)groups.push('regulated');if(S.flags.ai)groups.push('ai');if(S.flags.disagree)groups.push('disagree');
+    const used=new Set(S.questions.map(q=>q.trim()));
+    $('#bank').innerHTML=groups.map(g=>`<div><h3>${LABEL[g]}</h3><div style="display:flex;flex-direction:column;gap:8px">${BANK[g].map(q=>`<button type="button" class="q${used.has(q)?' used':''}">${esc(q)}</button>`).join('')}</div></div>`).join('')
+      +(S.type?'':'<p class="hint">Pick an engagement type in step 01 to see its questions.</p>');
+  }
+  function placeQ(q){
+    let i=S.questions.findIndex(x=>x.trim()===q);
+    if(i>-1){S.questions[i]='';}else{i=S.questions.findIndex(x=>!x.trim());if(i<0){toast('All three slots are full. Clear one first.');return;}S.questions[i]=q;}
+    hydrate($('.qslots'));renderBank();meta();save();
+  }
+
+  // meta counts
+  function unresolved(){
+    const u=[];
+    if(!S.quote.trim())u.push('Problem statement, in the client’s words');
+    if(!S.metric.name.trim())u.push('Primary metric');
+    if(S.metric.baselineUnres||!S.metric.baseline.trim())u.push('Metric baseline');
+    if(S.metric.targetUnres||!S.metric.target.trim())u.push('Metric target');
+    if(!S.decider.trim())u.push('Who has final say');
+    if(!S.hardDate)u.push('The hard date');
+    S.constraints.filter(c=>c.text.trim()&&c.confirmed==='unconfirmed').forEach(c=>u.push('Constraint needs an engineer: '+c.text.trim()));
+    S.assumptions.filter(a=>a.text.trim()&&(!a.owner.trim()||/^the team$/i.test(a.owner.trim()))).forEach(a=>u.push('Assumption has no named owner: '+a.text.trim()));
+    if(S.questions.filter(q=>q.trim()).length<3)u.push('Fewer than three questions');
+    return u;
+  }
+  function meta(){
+    $('#m-unres').textContent=unresolved().length;
+    $('#m-asm').textContent=S.assumptions.filter(a=>a.text.trim()).length;
+    const done=[S.type&&S.project,S.quote.trim(),S.metric.name.trim(),S.users.some(u=>u.who.trim()),S.constraints.some(c=>c.text.trim()),S.assumptions.some(a=>a.text.trim()&&a.owner.trim()),S.questions.filter(q=>q.trim()).length===3];
+    $$('.rail [data-go]').forEach((b,i)=>b.classList.toggle('done',!!done[i]));
+  }
+
+  // navigation
+  function go(n){
+    step=Math.max(0,Math.min(7,n));
+    $$('.step').forEach(s=>s.classList.toggle('active',+s.dataset.step===step));
+    $$('.rail [data-go]').forEach(b=>{if(+b.dataset.go===step)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+    $('#prev').disabled=step===0;$('#next').textContent=step===6?'Build the brief →':step===7?'Start over':'Next →';
+    if(step===7)renderBrief();
+    save();
+    const c=$('.card');if(c.getBoundingClientRect().top<0)c.scrollIntoView({block:'start'});
+  }
+  $('#prev').onclick=()=>go(step-1);
+  $('#next').onclick=()=>{if(step===7){go(0);return;}go(step+1);};
+  $('#reset').onclick=()=>{if(!confirm('Clear every answer on this form?'))return;S=blank();try{localStorage.removeItem(KEY);}catch(e){}hydrate();['users','constraints','assumptions'].forEach(renderRows);renderBank();meta();go(0);toast('Cleared');};
+  $('#print').onclick=()=>window.print();
+  $('#copy').onclick=async()=>{const t=$('#md').textContent;try{await navigator.clipboard.writeText(t);toast('Copied project-brief.md');}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();toast('Copied project-brief.md');}};
+
+  // sample for a live walkthrough
+  $('#sample').onclick=()=>{
+    S=Object.assign(blank(),{project:'Meridian payoff flow',client:'Meridian Lending (composite, for demonstration)',type:'redesign',flags:{regulated:true,ai:false,disagree:true},
+      sources:'Kickoff deck, 14 slides\nCall transcript, 3 Sep, product lead and head of servicing\nSupport ticket export, last 90 days\nEmail thread “payoff quote redesign”',
+      decider:'Dana Reyes, VP Servicing',bringAlong:'Head of compliance; the servicing call-center lead; the front-end lead',hardDate:'2026-12-01',hardWhy:'Regulator-facing disclosure changes take effect 1 December',
+      solution:'“Redesign the payoff quote screen so it looks like the rest of the new brand.”',
+      quote:'“People get their payoff number and then call us anyway. The screen is supposed to stop the call and it starts one.”',
+      reading:'The screen ends without telling the borrower what to do next, so a completed task turns into a support contact. The brand mismatch is real but secondary.',
+      metric:{name:'Payoff-related support calls per 100 quotes',baseline:'',baselineUnres:true,target:'',targetUnres:true,source:'Head of servicing, on the 3 Sep call. Analytics access was denied for this engagement.',guardrails:'Quote completion rate must not fall\nTime to quote must not rise'},
+      users:[{who:'Borrower paying off a loan early',job:'Get a number they can act on today, and know what happens after they pay',how:'Support tickets, 90-day export'},{who:'Servicing agent',job:'Answer a payoff question in one call without escalating',how:'Call-center lead, kickoff'}],
+      constraints:[{text:'Payoff amounts come from the core servicing system with a 24-hour validity window',kind:'data',confirmed:'brief'},{text:'Disclosure text is fixed by compliance and cannot be shortened',kind:'compliance',confirmed:'client'},{text:'The quote endpoint sometimes returns a partial figure when fees are pending',kind:'integration',confirmed:'unconfirmed'},{text:'Two front-end engineers, shared with two other squads',kind:'team',confirmed:'brief'}],
+      assumptions:[{text:'Most calls are about what to do after the quote, not the number itself',owner:'Dana Reyes',cost:'5',cheap:'yes',status:'open'},{text:'A reference number on the screen would end the “which quote is this” calls',owner:'Call-center lead',cost:'3',cheap:'yes',status:'open'},{text:'The new brand system already has the components this screen needs',owner:'Front-end lead',cost:'2',cheap:'yes',status:'open'}],
+      questions:['What number does this need to move, and what is it today?','What breaks most often in support tickets?','What must not change, and who would object if it did?'],
+      outOfScope:'The loan detail page and the payment scheduling flow. Any change to the disclosure wording.',
+      open:'Analytics access. Whether the partial-figure case is real or a rumor from support.'});
+    hydrate();['users','constraints','assumptions'].forEach(renderRows);renderBank();meta();save();go(0);toast('Sample loaded. Every number in it is invented.');
+  };
+
+  // brief output
+  function fmtDate(d){if(!d)return null;const [y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
+  const U='<span class="u">UNRESOLVED</span>';
+  const orU=(v)=>v&&v.trim()?esc(v):U;
+  function renderBrief(){
+    const asm=S.assumptions.filter(a=>a.text.trim()).slice().sort((a,b)=>+b.cost-+a.cost);
+    const users=S.users.filter(u=>u.who.trim()||u.job.trim());
+    const cons=S.constraints.filter(c=>c.text.trim());
+    const unconf=cons.filter(c=>c.confirmed==='unconfirmed');
+    const qs=S.questions.map(q=>q.trim()).filter(Boolean);
+    const gaps=unresolved();
+    const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    const CONFL=Object.fromEntries(CONF);
+    const lines=s=>esc(s).split('\n').filter(Boolean).map(l=>`<p>${l}</p>`).join('');
+    $('#brief').innerHTML=`
+      <div><span class="kick">${esc(S.client)||'Client'} · ${({new:'Net-new product',redesign:'Redesign of something live',system:'Design system'})[S.type]||'Engagement type unresolved'}${S.flags.regulated?' · regulated':''}${S.flags.ai?' · AI features':''}</span>
+      <h2 class="disp" style="margin-top:12px">${esc(S.project)||'Project'}<br>project brief</h2>
+      <p class="src" style="margin-top:16px">Source material: ${esc(S.sources).split('\n').filter(Boolean).join(' · ')||U}<br>Written: ${today} · Decides: ${orU(S.decider)} · Hard date: ${S.hardDate?esc(fmtDate(S.hardDate))+(S.hardWhy?', '+esc(S.hardWhy):''):U}</p></div>
+      <div><h3>Problem</h3>${S.solution.trim()?`<p class="mine">Asked for: ${esc(S.solution)}</p>`:''}<blockquote>${S.quote.trim()?esc(S.quote):U}</blockquote>${S.reading.trim()?`<p class="mine">Designer’s reading: ${esc(S.reading)}</p>`:''}</div>
+      <div><h3>Success metric</h3><div class="tbl"><table><tr><th>Metric</th><th>Baseline</th><th>Target</th><th>Source</th></tr>
+        <tr><td>${orU(S.metric.name)}</td><td>${S.metric.baselineUnres?U:orU(S.metric.baseline)}</td><td>${S.metric.targetUnres?U:orU(S.metric.target)}</td><td>${orU(S.metric.source)}</td></tr></table></div>
+        ${S.metric.guardrails.trim()?`<p class="mine" style="margin-top:10px">Guardrails: ${esc(S.metric.guardrails).split('\n').filter(Boolean).join(' · ')}</p>`:''}</div>
+      <div><h3>Users and jobs</h3>${users.length?`<div class="tbl"><table><tr><th>Who</th><th>The job they’re hiring this for</th><th>How we know</th></tr>${users.map(u=>`<tr><td>${esc(u.who)}</td><td>${esc(u.job)}</td><td>${orU(u.how)}</td></tr>`).join('')}</table></div>`:`<p>${U}</p>`}</div>
+      <div><h3>Constraints</h3>${cons.length?`<div class="tbl"><table><tr><th>Constraint</th><th>Kind</th><th>Confirmed by</th></tr>${cons.map(c=>`<tr><td>${esc(c.text)}</td><td>${c.kind}</td><td>${c.confirmed==='unconfirmed'?U:esc(CONFL[c.confirmed])}</td></tr>`).join('')}</table></div>`:`<p>${U}</p>`}
+        ${unconf.length?`<p class="mine" style="margin-top:10px">Needs an engineer before wireframes: ${unconf.map(c=>esc(c.text)).join(' · ')}</p>`:''}</div>
+      <div><h3>Assumption register, by cost of being wrong</h3>${asm.length?`<div class="tbl"><table><tr><th>#</th><th>Assumption</th><th>Owner</th><th>Cost</th><th>Cheap to test?</th></tr>${asm.map((a,i)=>`<tr><td>${i+1}</td><td>${esc(a.text)}</td><td>${a.owner.trim()&&!/^the team$/i.test(a.owner.trim())?esc(a.owner):U}</td><td>${a.cost} / 5</td><td>${a.cheap==='yes'?'Yes, test this week':'No, client decides'}</td></tr>`).join('')}</table></div>`:`<p>${U}</p>`}</div>
+      <div><h3>The three questions</h3>${qs.length?`<ol>${qs.map(q=>`<li>${esc(q)}</li>`).join('')}</ol>`:`<p>${U}</p>`}${qs.length<3?`<p class="mine">${3-qs.length} slot${qs.length===2?'':'s'} still empty.</p>`:''}</div>
+      <div><h3>Out of scope</h3>${S.outOfScope.trim()?lines(S.outOfScope):`<p>${U}</p>`}</div>
+      <div class="gaps"><h3>Open and unresolved</h3><ul>${gaps.map(g=>`<li>${esc(g)}</li>`).join('')}${S.open.trim()?esc(S.open).split('\n').filter(Boolean).map(l=>`<li>${l}</li>`).join(''):''}${!gaps.length&&!S.open.trim()?'<li>Nothing. Check that again.</li>':''}</ul></div>`;
+    // markdown
+    const un='UNRESOLVED', m=[];
+    m.push(`# ${S.project||'Project'} — project brief`,'',`> Source material: ${S.sources.split('\n').filter(Boolean).join('; ')||un}`,`> Written: ${today} · Decides: ${S.decider||un} · Hard date: ${S.hardDate?fmtDate(S.hardDate)+(S.hardWhy?', '+S.hardWhy:''):un}`,'','## Problem','');
+    if(S.solution.trim())m.push(`Asked for: ${S.solution.trim()}`,'');
+    m.push(`> ${S.quote.trim()||un}`,'');
+    if(S.reading.trim())m.push(`Designer's reading: ${S.reading.trim()}`,'');
+    m.push('## Success metric','','| Metric | Baseline | Target | Source |','|---|---|---|---|',`| ${S.metric.name||un} | ${S.metric.baselineUnres?un:(S.metric.baseline||un)} | ${S.metric.targetUnres?un:(S.metric.target||un)} | ${S.metric.source||un} |`,'');
+    if(S.metric.guardrails.trim())m.push(`Secondary / guardrail metrics: ${S.metric.guardrails.split('\n').filter(Boolean).join('; ')}`,'');
+    m.push('## Users and jobs','','| Who | The job they\'re hiring this for | How we know |','|---|---|---|',...users.map(u=>`| ${u.who} | ${u.job} | ${u.how||un} |`),'');
+    m.push('## Constraints','','| Constraint | Kind | Confirmed by |','|---|---|---|',...cons.map(c=>`| ${c.text} | ${c.kind} | ${c.confirmed==='unconfirmed'?un:CONFL[c.confirmed]} |`),'');
+    if(unconf.length)m.push(`Unconfirmed constraints needing an engineer: ${unconf.map(c=>c.text).join('; ')}`,'');
+    m.push('## Assumption register','','Sorted by cost of being wrong, descending.','','| # | Assumption | Owner | Cost if wrong | Cheap to test? | Status |','|---|---|---|---|---|---|',...asm.map((a,i)=>`| ${i+1} | ${a.text} | ${a.owner.trim()&&!/^the team$/i.test(a.owner.trim())?a.owner:un} | ${a.cost}/5 | ${a.cheap==='yes'?'yes':'no'} | open |`),'');
+    m.push('## The three questions','',...[0,1,2].map(i=>`${i+1}. ${qs[i]||un}`),'');
+    m.push('## Out of scope','',S.outOfScope.trim()||un,'');
+    m.push('## Open — unresolved','',...gaps.map(g=>`- ${g}`),...S.open.split('\n').filter(Boolean).map(l=>`- ${l}`),'');
+    $('#md').textContent=m.join('\n');
+  }
+
+  // keyboard: don't submit on Enter in inputs
+  $('#form').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT')e.preventDefault();});
+
+  hydrate();['users','constraints','assumptions'].forEach(renderRows);renderBank();meta();go(step);
+})();
+</script>
+</body>
+</html>
