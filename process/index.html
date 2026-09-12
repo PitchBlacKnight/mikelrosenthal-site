@@ -22,6 +22,11 @@
   a { color: #000000; text-decoration: none; }
   a:focus-visible { outline: 2px solid #000000; outline-offset: 3px; }
   ::selection { background: #d1ffca; }
+
+  /* Follow the leader: animated cube lattice behind the page, kept faint */
+  .ftl{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#e5e5e5}
+  .ftl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply;opacity:.14}
+  @media (prefers-reduced-motion:reduce){.ftl video{display:none}}
 </style>
 <style>
 .fc1:focus{top:16px;}
@@ -44,6 +49,8 @@
 </style>
 </head>
 <body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="assets/follow-the-leader.jpg" src="assets/follow-the-leader.mp4"></video></div>
+
 
 <div style="max-width:1200px;margin:0 auto;padding:0 24px 96px;">
 
