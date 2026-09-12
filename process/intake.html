@@ -13,7 +13,7 @@
     --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{margin:0;background:#0a1020;color:var(--carbon);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  body{margin:0;background:var(--canvas);color:var(--carbon);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;text-wrap:pretty}
   a{color:inherit;text-decoration:none}
   a:hover{background:var(--mint)}
   a:focus-visible,button:focus-visible{outline:2px solid var(--carbon);outline-offset:2px}
@@ -127,35 +127,25 @@
   .toast.show{opacity:1}
   .skip{position:fixed;left:16px;top:-80px;z-index:20;background:var(--carbon);color:var(--paper);padding:12px 20px;border-radius:8px;font-weight:500;transition:top .15s}
   .skip:focus{top:16px}
-  .foot{background:var(--carbon);color:var(--paper);border:1px solid rgba(255,255,255,.08);border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);margin-top:80px}
+  .foot{background:var(--carbon);color:var(--paper);border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);margin-top:80px}
   .foot h2{font-size:clamp(40px,8vw,104px);margin:0 0 24px}
   .foot p{color:var(--smoke);font-size:clamp(18px,2.4vw,28px);line-height:1.2;max-width:46ch;margin:0 0 32px}
   .foot .links{font-family:var(--mono);font-size:14px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
   .foot .links a{color:var(--paper)}
   .foot .links a.em{background:var(--volt);color:var(--carbon);padding:8px 12px;border-radius:4px}
-  .sea{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#0a1020}
-  .sea video,.sea img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.4) brightness(1.05) contrast(1.05)}
-  .sea .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,58,168,.72) 0%,rgba(18,44,130,.62) 55%,rgba(8,16,48,.7) 100%);mix-blend-mode:screen}
-  .sea .veil{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 0%,rgba(0,0,0,0) 40%,rgba(4,8,24,.55) 100%)}
-  @media (prefers-reduced-motion:reduce){.sea video{display:none}}
+  .ftl{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#e5e5e5}
+  .ftl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply;opacity:.14}
+  @media (prefers-reduced-motion:reduce){.ftl video{display:none}}
   .wrap{position:relative;z-index:1}
-  .on-sea,.on-sea a.kick{color:#fff}
-  .on-sea .kick{color:#b9c6ff}
-  .on-sea p.lede{color:#cdd6ff}
-  nav.top a.kick:hover{color:var(--carbon)}
-  @media print{.sea{display:none}body{color:#000}nav.top,.rail,.actions,.foot,.skip,.toolbar{display:none!important}.layout{display:block}.brief{border-radius:0;padding:0}body{background:#fff}}
+  @media print{.ftl{display:none}nav.top,.rail,.actions,.foot,.skip,.toolbar{display:none!important}.layout{display:block}.brief{border-radius:0;padding:0}body{background:#fff}}
 </style>
 <link rel="stylesheet" href="process.css">
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
-<div class="sea" aria-hidden="true">
-  <video autoplay muted loop playsinline poster="assets/black-sea.jpg" src="assets/black-sea.mp4"></video>
-  <div class="tint"></div>
-  <div class="veil"></div>
-</div>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="assets/follow-the-leader.jpg" src="assets/follow-the-leader.mp4"></video></div>
 <div class="wrap">
-  <nav class="top on-sea" aria-label="Sections">
+  <nav class="top" aria-label="Sections">
     <a href="index.html" class="kick">← Main · Mikel Rosenthal</a>
     <div class="pill">
       <a href="working-with-me.html">Method</a>
@@ -167,7 +157,7 @@
     </div>
   </nav>
 
-  <header class="hero on-sea">
+  <header class="hero">
     <span class="tag">Intake · brief-intake</span>
     <h1 class="disp">The<br>intake<br>form</h1>
     <p class="sub">Seven steps that turn a raw brief into one project file</p>
