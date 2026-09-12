@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<title>Design practice skills, library documentation</title>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: #e5e5e5; color: #000000;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.25; letter-spacing: -0.011em;
+    text-wrap: pretty; -webkit-font-smoothing: antialiased;
+  }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3 { text-wrap: balance; }
+  a { color: #000000; text-decoration: none; }
+  a:hover { background: #d1ffca; }
+  a:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }
+  ::selection { background: #d1ffca; }
+</style>
+<style>
+.fc1:focus{top:16px;}
+</style>
+</head>
+<body>
+
+<!-- Line art lives only in the gutters outside the 1200px column: each wrapper is
+     pinned to the space beyond 50% ± 600px, so when the viewport narrows the gutter
+     collapses to zero width and the art clips away rather than running under type. -->
+<div style="position:fixed;top:0;bottom:0;left:0;right:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
+  <svg style="position:absolute;top:0;right:0;height:100%;width:460px;" viewBox="0 0 460 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+    <defs>
+      <filter id="sl-haze-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feGaussianBlur stdDeviation="13" />
+      </filter>
+      <filter id="sl-soft-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feGaussianBlur stdDeviation="4.5" />
+      </filter>
+    </defs>
+    <g fill="none" stroke="#2f2f2f" stroke-width="7" opacity="0.1" filter="url(#sl-haze-l)">
+      <circle cx="-140" cy="690" r="330" />
+      <circle cx="-140" cy="690" r="470" />
+      <circle cx="-140" cy="690" r="610" />
+      <circle cx="-140" cy="690" r="750" />
+    </g>
+    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.2" filter="url(#sl-soft-l)">
+      <circle cx="-140" cy="690" r="260" />
+      <circle cx="-140" cy="690" r="330" />
+      <circle cx="-140" cy="690" r="400" />
+      <circle cx="-140" cy="690" r="470" />
+      <circle cx="-140" cy="690" r="540" />
+      <circle cx="-140" cy="690" r="610" />
+      <circle cx="-140" cy="690" r="680" />
+      <circle cx="-140" cy="690" r="750" />
+      <circle cx="-140" cy="690" r="820" />
+    </g>
+    <circle cx="-140" cy="690" r="365" fill="none" stroke="#d1ffca" stroke-width="3.5" opacity="0.85" filter="url(#sl-soft-l)" />
+    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.14" filter="url(#sl-soft-l)">
+      <path d="M460 120 L120 120" /><path d="M460 152 L196 152" /><path d="M460 184 L268 184" /><path d="M460 216 L336 216" />
+    </g>
+  </svg>
+</div>
+<div style="position:fixed;top:0;bottom:0;right:0;left:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
+  <svg style="position:absolute;top:0;left:0;height:100%;width:460px;" viewBox="0 0 460 900" preserveAspectRatio="xMinYMid slice" focusable="false">
+    <defs>
+      <filter id="sl-haze-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feGaussianBlur stdDeviation="11" />
+      </filter>
+      <filter id="sl-soft-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feGaussianBlur stdDeviation="4.5" />
+      </filter>
+    </defs>
+    <g stroke="#2f2f2f" stroke-width="8" opacity="0.09" filter="url(#sl-haze-r)">
+      <path d="M540 40 L-60 470" /><path d="M540 40 L-60 690" /><path d="M540 40 L110 960" />
+    </g>
+    <g stroke="#2f2f2f" stroke-width="1.5" opacity="0.19" filter="url(#sl-soft-r)">
+      <path d="M540 40 L-60 250" /><path d="M540 40 L-60 360" /><path d="M540 40 L-60 470" />
+      <path d="M540 40 L-60 580" /><path d="M540 40 L-60 690" /><path d="M540 40 L-60 800" />
+      <path d="M540 40 L-20 960" /><path d="M540 40 L110 960" /><path d="M540 40 L240 960" />
+    </g>
+    <path d="M540 40 L-60 525" stroke="#d1ffca" stroke-width="3.5" opacity="0.85" filter="url(#sl-soft-r)" />
+    <path d="M112 612 L244 612" stroke="#fff100" stroke-width="4" opacity="0.8" filter="url(#sl-soft-r)" />
+    <g fill="none" stroke="#2f2f2f" stroke-width="1.5" opacity="0.13" filter="url(#sl-soft-r)">
+      <path d="M0 742 L300 742" /><path d="M0 774 L232 774" /><path d="M0 806 L164 806" /><path d="M0 838 L96 838" />
+    </g>
+  </svg>
+</div>
+
+<div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 96px;">
+
+  <a href="#main" style="position:fixed;left:16px;top:-80px;z-index:20;background:#000000;color:#ffffff;padding:12px 20px;border-radius:8px;font-size:16px;font-weight:500;transition:top 0.15s;" class="fc1">Skip to content</a>
+  <nav aria-label="Sections" style="min-height:8rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;">
+    <a href="index.html" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">← Main · Mikel Rosenthal</a>
+    <div style="background:#ffffff;border-radius:48px;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+      <a href="#why" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Why</a>
+      <a href="#proof" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Proof</a>
+      <a href="#install" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Install</a>
+      <a href="#skills" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Skills</a>
+      <a href="#examples" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Examples</a>
+      <a href="#demo" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Demo</a>
+      <a href="#governance" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Governance</a>
+      <span aria-hidden="true" style="width:1px;height:20px;background:#c6c6c6;"></span>
+      <a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="font-size:16px;font-weight:500;color:#000000;padding:4px 8px;border-radius:4px;background:#d1ffca;">Files ↗</a>
+    </div>
+  </nav>
+
+  <header style="padding:40px 0 80px;">
+    <span style="display:inline-block;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:40px;">Claude skill library · v1</span>
+    <h1 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(56px,12vw,130px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 40px;">Nine skills<br />from brief<br />to build</h1>
+    <p style="font-size:clamp(20px,2.6vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;max-width:24ch;margin:0 0 24px;">The method, written down so it runs the same way every time</p>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0;">Nine skills that carry a product engagement from a raw brief to a developer handoff. Each one is a procedure, a rubric and an output format, versioned like code rather than retyped. They encode twenty-three years and five design systems built from scratch, so the output is the same shape whoever runs it.</p>
+  </header>
+
+  <main id="main">
+
+  <section aria-label="Standing" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:24px;margin-bottom:80px;">
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Years</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">23</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Systems built</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">5</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">FIBER components</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">54</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Edison products</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">40+</p></div>
+    <div style="background:#000000;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;margin:0 0 12px;">Edison, GE Healthcare</p><p style="font-size:clamp(18px,2.4vw,28px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;color:#ffffff;margin:0;">Red Dot<br />2020</p></div>
+  </section>
+
+  <section id="why" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Why this exists</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;text-wrap:balance;margin:24px 0 24px;">Speed was never the problem</h2>
+    <p style="font-size:clamp(18px,2.2vw,28px);line-height:1.3;letter-spacing:-0.02em;max-width:52ch;margin:0 0 40px;">A model will give you fourteen findings in nine seconds. Checking all fourteen costs more than writing five yourself. The bottleneck was never generation. It was trust.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">The failure</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Confidently wrong</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Invented percentages, findings with no evidence, and a cheerful tone over all of it. The output reads finished, so the error is expensive to catch and embarrassing to pass to a client.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">The mechanism</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Refusals, written down</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Every skill carries rules about what it must <em>not</em> do: never invent a number, never report a count you didn’t count, always name what you couldn’t determine. The refusals do more work than the procedures.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">The result</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">You check judgment, not facts</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Same shape every time, with the gaps declared. I read it for whether the recommendation is right, not to find out which three numbers were fabricated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Same brief, both ways</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;text-wrap:balance;margin:24px 0 16px;">What the difference looks like</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 40px;">One product, one question: “audit this checkout flow”. Left is an unguided ask. Right is <code style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#f3f3f3;padding:3px 8px;border-radius:4px;">heuristic-audit</code>.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;">
+        <span style="align-self:flex-start;background:#f3f3f3;color:#444444;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Unguided</span>
+        <ul style="display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.25;color:#444444;">
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#444444;">•</span>“The navigation could be more intuitive.”</li>
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#444444;">•</span>“Consider improving the visual hierarchy.”</li>
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#444444;">•</span>“Studies show 70% of carts are abandoned due to friction.”</li>
+        </ul>
+        <div style="height:1px;background:#c6c6c6;"></div>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Fourteen findings, no severity, no evidence, no cost. Three statistics with no source. Nothing says which to fix first, and nothing admits what wasn’t tested.</p>
+        <p style="font-size:16px;line-height:1.25;font-weight:500;margin:0;">You have to verify every line.</p>
+      </div>
+      <div style="background:#000000;color:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:20px;">
+        <span style="align-self:flex-start;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">heuristic-audit</span>
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;line-height:1.6;background:#2f2f2f;border-radius:12px;padding:20px;">
+          <div style="color:#d1ffca;">SEV 4 · HIGH FREQ</div>
+          <div style="margin-top:8px;">Payoff quote dead-ends on “please call us”, no reference number.</div>
+          <div style="color:#979797;margin-top:8px;">Cost: the top-ranked task generates the call it was meant to prevent.</div>
+          <div style="color:#979797;">Fix lands on: flow. Closes findings 1, 2, 14.</div>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.25;color:#979797;">
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#d1ffca;">✓</span>Severity scale defined before the audit ran</li>
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#d1ffca;">✓</span>Frequency labeled an estimate. Analytics access was denied</li>
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#d1ffca;">✓</span>Fixes sequenced by where they land, not by severity alone</li>
+          <li style="padding-left:20px;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;color:#fff100;">!</span>Closes with three things it could not determine</li>
+        </ul>
+        <p style="font-size:16px;line-height:1.25;font-weight:500;margin:0;color:#ffffff;">You check the judgment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" style="scroll-margin-top:120px;background:#000000;color:#ffffff;border-radius:32px;padding:clamp(32px,5vw,64px);margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#979797;">Install</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 32px;">Drop the folder in</h2>
+    <p style="font-size:16px;line-height:1.25;color:#979797;max-width:64ch;margin:0 0 32px;">Copy <code style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#2f2f2f;padding:3px 8px;border-radius:4px;color:#ffffff;">skills/</code> into a Claude project. Each subdirectory is one skill. Only the description line of each <code style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#2f2f2f;padding:3px 8px;border-radius:4px;color:#ffffff;">SKILL.md</code> sits in context at rest. The procedure and its bundled files load only when a task matches, so the whole library costs almost nothing until one is needed.</p>
+    <pre style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;line-height:1.6;background:#2f2f2f;border-radius:24px;padding:32px;margin:0;overflow-x:auto;color:#ffffff;">skills/
+├── README.md
+├── DEMO.md
+├── PROJECT-INSTRUCTIONS.md
+├── examples/            7 finished artifacts
+├── brief-intake/
+│   ├── SKILL.md
+│   ├── templates/project-brief.md
+│   └── reference/question-bank.md
+├── heuristic-audit/
+├── ds-inventory/
+├── research-synthesis/
+├── flow-map/
+├── copy-standards/
+├── a11y-spec/
+├── handoff-spec/
+└── critique/</pre>
+  </section>
+
+  <section id="anatomy" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Anatomy</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;text-wrap:balance;margin:24px 0 16px;">What’s inside one file</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 40px;">Every skill is the same six parts in the same order. Predictable structure is why a second designer can pick one up and get comparable output.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:start;">
+      <pre style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;line-height:1.6;background:#000000;color:#ffffff;border-radius:24px;padding:32px;margin:0;overflow-x:auto;">---
+<span style="color:#d1ffca;">name</span>: heuristic-audit
+<span style="color:#d1ffca;">description</span>: Evaluate a live product
+  against usability heuristics and
+  WCAG 2.2, producing severity-rated
+  findings with a cost...
+---
+
+# Heuristic audit
+## When to use
+## Procedure
+## Severity scale
+## Rules
+## Bundled files</pre>
+      <ol style="display:flex;flex-direction:column;gap:16px;">
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">Frontmatter</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;"><strong style="color:#000000;font-weight:500;">The only part in context at rest</strong>, roughly forty words per skill. Nine skills cost less to carry than one paragraph of a brief.</p></li>
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">When to use</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Named trigger conditions, so it fires on the right task and stays quiet on the wrong one.</p></li>
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">Procedure</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Numbered and ordered. The order is the opinion: inventory before diffing, structure before fidelity.</p></li>
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">Rubric</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">The scale that makes two audits comparable. Without it, “major” means whatever the model felt that morning.</p></li>
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">Rules</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">The refusals. These are the part I revise most, and the part that makes the output safe to show a client.</p></li>
+        <li style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);padding:24px;"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 8px;">Bundled files</p><p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Templates and reference tables loaded on demand, versioned like code, not retyped each engagement.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="sequence" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">The sequence</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 40px;">The order they run in</h2>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;padding:0 24px 12px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">
+        <span>Phase</span><span>Skill</span><span>Produces</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Intake</span><a href="#brief-intake" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">brief-intake</a><span style="color:#444444;">The structured project file</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Evaluate · A</span><a href="#ds-inventory" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">ds-inventory</a><span style="color:#444444;">Component inventory, token diff, drift report</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Evaluate · B</span><a href="#heuristic-audit" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">heuristic-audit</a><span style="color:#444444;">Severity-rated findings against a live product</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Evaluate</span><a href="#research-synthesis" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">research-synthesis</a><span style="color:#444444;">Ten insights, each with a design implication</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Map</span><a href="#flow-map" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">flow-map</a><span style="color:#444444;">Flows plus the full state matrix</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Design</span><a href="#copy-standards" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">copy-standards</a><span style="color:#444444;">Errors, empty states, labels in the product’s voice</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Design</span><a href="#a11y-spec" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">a11y-spec</a><span style="color:#444444;">Focus order, roles, contrast pairs per screen</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Design</span><a href="#critique" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">critique</a><span style="color:#444444;">An argument against the work before the team sees it</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Hand off</span><a href="#handoff-spec" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">handoff-spec</a><span style="color:#444444;">The developer package</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracks" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Two entry points</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 40px;">Which fork you’re on</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:40px;display:flex;flex-direction:column;gap:20px;">
+        <span style="align-self:flex-start;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Track A</span>
+        <h3 style="font-size:clamp(24px,3.2vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">Evaluating a design system</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">The question is coverage and consistency, so start with artifacts: the code, the library, every screen that ships. A counting exercise before it is a taste one: what exists, what’s duplicated, what has drifted, what has no owner.</p>
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;margin:0;">→ <a href="#ds-inventory">ds-inventory</a></p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:40px;display:flex;flex-direction:column;gap:20px;">
+        <span style="align-self:flex-start;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Track B</span>
+        <h3 style="font-size:clamp(24px,3.2vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">A product design overview</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">The question is whether the thing does the right job, so start with people: who uses it, what they’re trying to finish, where they give up. Artifacts come second. A perfectly consistent product can still be the wrong product.</p>
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;margin:0;">→ <a href="#heuristic-audit">heuristic-audit</a>, <a href="#research-synthesis">research-synthesis</a></p>
+      </div>
+    </div>
+    <p style="font-size:16px;line-height:1.25;color:#444444;margin:24px 0 0;"><a href="#brief-intake" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">brief-intake</a> runs before either.</p>
+  </section>
+
+  <section id="skills" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Reference</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 40px;">The nine</h2>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+
+      <article id="brief-intake" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">brief-intake</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Intake</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Turn raw client material into one structured project file: problem, metric, users, constraints, ranked assumptions, open questions.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Read everything once, produce nothing</li>
+              <li>Separate solution from problem, in their words</li>
+              <li>Find the metric, or mark it UNRESOLVED</li>
+              <li>Pull constraints and flag what needs an engineer</li>
+              <li>Rank assumptions by cost of being wrong</li>
+              <li>Write the three questions that change the work</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/brief-intake/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/brief-intake/templates/project-brief.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">project-brief.md</a></li>
+              <li><a href="skills/brief-intake/reference/question-bank.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">question-bank.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="heuristic-audit" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">heuristic-audit</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Evaluate · B</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Evaluate a live product against usability heuristics and WCAG 2.2. Severity-rated findings, each with a cost, sequenced into a fix list.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Audit against the job, not generic best practice</li>
+              <li>Pick two or three critical paths, end to end</li>
+              <li>Walk each in every reachable state</li>
+              <li>Score against the 14-heuristic rubric</li>
+              <li>Run the WCAG pass separately</li>
+              <li>Sequence fixes by where they land</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/heuristic-audit/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/heuristic-audit/reference/rubric.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">rubric.md</a></li>
+              <li><a href="skills/heuristic-audit/templates/audit-report.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">audit-report.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="ds-inventory" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">ds-inventory</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Evaluate · A</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Inventory a design system from what actually ships, diff the tokens in real use against what the system declares, and report drift with a cost attached.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Inventory from production screens and source</li>
+              <li>Extract the tokens in real use, not the declared set</li>
+              <li>Diff both directions: unused, undeclared, misnamed</li>
+              <li>Coverage matrix: library / detached / bespoke</li>
+              <li>Score each component on five axes</li>
+              <li>Verify parity in Dev Mode with an engineer</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/ds-inventory/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/ds-inventory/reference/token-schema.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">token-schema.md</a></li>
+              <li><a href="skills/ds-inventory/templates/drift-report.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">drift-report.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="research-synthesis" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">research-synthesis</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Evaluate</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Turn transcripts, tickets or analytics into at most ten insights, each with a participant count, one verbatim quote, and a sentence starting “so we should”.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Tag observations only, no interpretation yet</li>
+              <li>Cluster by cause, never by topic</li>
+              <li>Count every cluster as n of N</li>
+              <li>Write the design implication, or it isn’t finished</li>
+              <li>Triangulate against analytics</li>
+              <li>Cut to ten and park the rest in writing</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/research-synthesis/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/research-synthesis/reference/evidence-rules.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">evidence-rules.md</a></li>
+              <li><a href="skills/research-synthesis/templates/insight.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">insight.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="flow-map" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">flow-map</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Map</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Annotated flow diagrams plus a complete state matrix: empty, loading, partial, error, permission-denied, offline. Every state skipped is a decision an engineer makes alone.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Story map, then site map, then flows</li>
+              <li>Label every edge with its condition</li>
+              <li>Walk the state checklist per screen</li>
+              <li>“Not applicable” always needs a reason</li>
+              <li>Content model: late, partial, absent data</li>
+              <li>Feasibility check with an engineer before hi-fi</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/flow-map/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/flow-map/reference/state-checklist.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">state-checklist.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="copy-standards" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">copy-standards</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Design</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Errors, empty states, labels and confirmations in the product’s own voice, tested at the longest string in the database. Lorem in an error state is an unfinished design.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Voice from what the product already says</li>
+              <li>Inventory every string in the flow</li>
+              <li>Rewrite: what happened, why, what to do now</li>
+              <li>Test at longest and shortest realistic length</li>
+              <li>Review compliance language with the client</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/copy-standards/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/copy-standards/reference/message-patterns.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">message-patterns.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="a11y-spec" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">a11y-spec</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Design</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Per-screen focus order, roles, accessible names, contrast pairs with measured ratios and target sizes, plus a criterion-by-criterion WCAG 2.2 AA record.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Number focus order on every frame</li>
+              <li>Write name, role and value per control</li>
+              <li>Measure every contrast pair, record the ratio</li>
+              <li>44px design standard, 24px WCAG floor</li>
+              <li>Walk the whole flow with no pointer</li>
+              <li>Reduced-motion alternative for anything moving</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/a11y-spec/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/a11y-spec/reference/wcag22-checklist.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">wcag22-checklist.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="handoff-spec" style="scroll-margin-top:120px;background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">handoff-spec</h3>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Hand off</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">The developer package: token export, component state matrix, behavior written as rules, accessibility spec, real strings, and the design-QA checklist you’ll run on staging.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Procedure</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Export tokens named exactly as the front end names them</li>
+              <li>State matrix with gaps marked, never omitted</li>
+              <li>Rules, not redlines: condition and consequence</li>
+              <li>Real content at shipping length</li>
+              <li>Write the QA checklist before the build starts</li>
+              <li>Present live, then stay in the sprint</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/handoff-spec/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">SKILL.md</a></li>
+              <li><a href="skills/handoff-spec/templates/handoff.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">handoff.md</a></li>
+              <li><a href="skills/handoff-spec/reference/qa-checklist.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;">qa-checklist.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article id="critique" style="scroll-margin-top:120px;background:#000000;color:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(20px,2.6vw,28px);letter-spacing:-0.03em;margin:0;">critique</h3>
+          <span style="background:#fff100;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">The gate</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;">Argue against the work before the team or the client sees it. If the output is encouraging, it has failed.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#979797;margin:0 0 12px;">Seven fronts</p>
+            <ol style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;color:#979797;">
+              <li>Does it move the metric? Trace the path</li>
+              <li>Which state was skipped?</li>
+              <li>What is it taking for granted?</li>
+              <li>What structurally different approach was never considered?</li>
+              <li>The edges: longest string, keyboard, no network</li>
+              <li>What will the engineer ask that the spec doesn’t answer?</li>
+              <li>Where is this the average solution?</li>
+            </ol>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#979797;margin:0 0 12px;">Bundled</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3;">
+              <li><a href="skills/critique/SKILL.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;color:#ffffff;">SKILL.md</a></li>
+              <li><a href="skills/critique/reference/failure-modes.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;color:#ffffff;">failure-modes.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <section id="examples" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Worked examples</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Seven finished artifacts</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 24px;">A blank template proves nothing. These are the same nine skills run end to end on one project, so the output shape is visible before anyone runs a prompt.</p>
+    <div style="background:#000000;color:#ffffff;border-radius:24px;padding:32px;margin-bottom:24px;">
+      <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#fff100;margin:0 0 12px;">Read this first</p>
+      <p style="font-size:16px;line-height:1.25;color:#979797;max-width:68ch;margin:0;">“Meridian” is a composite, assembled from the shape of real work with every client specific removed and every number invented for illustration. Nothing here is confidential and nothing here is a real measurement. Say that out loud in a demo: being visibly careful with a former client’s data is worth more than the example itself.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <a href="skills/examples/01-project-brief.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">01</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Project brief</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">brief-intake</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">UNRESOLVED metrics, ranked assumptions, three questions back</span>
+      </a>
+      <a href="skills/examples/02-drift-report.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">02</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Drift report</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">ds-inventory</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">Token diff, coverage, one primitive closing eleven findings</span>
+      </a>
+      <a href="skills/examples/03-audit-report.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">03</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Audit report</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">heuristic-audit</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">Severity times frequency, the cost column, sequenced fixes</span>
+      </a>
+      <a href="skills/examples/04-synthesis.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">04</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Synthesis</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">research-synthesis</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">n of N, signal strength, contradicting the brief</span>
+      </a>
+      <a href="skills/examples/05-state-matrix.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">05</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">State matrix</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">flow-map</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">Full state coverage, “n/a” always with a reason</span>
+      </a>
+      <a href="skills/examples/06-handoff.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">06</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Handoff</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">handoff-spec</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">Rules not redlines, gaps marked as gaps</span>
+      </a>
+      <a href="skills/examples/07-critique.md" style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">07</span>
+        <span style="font-size:clamp(20px,2.6vw,28px);line-height:1.3;letter-spacing:-0.03em;">Critique</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:#000000;">critique</span>
+        <span style="font-size:14px;line-height:1.3;color:#444444;">Seven fronts, ranked, each with a proposal attached</span>
+      </a>
+    </div>
+    <p style="font-size:16px;line-height:1.25;color:#444444;margin:24px 0 0;">Reading order for a demo: <strong style="font-weight:500;">01 → 02 → 07</strong>. Intake shows the discipline, the drift report shows the analysis, the critique shows the self-skepticism.</p>
+  </section>
+
+  <section id="demo" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Runbook</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Ten minutes, live</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">The point isn’t to show that a model can write. Everyone knows that. It’s to show that the output has a fixed shape, that the shape came from a rubric someone wrote deliberately, and that the skill refuses to make things up. Full script in <a href="skills/DEMO.md" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">DEMO.md</a>.</p>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Beat 1 · 0:30</span>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Structure</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">The library is cheap until it isn’t</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Show the README, then one SKILL.md. Point at the frontmatter versus the body. Only the description line is in context at rest, about forty words a skill.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Beat 2 · 3:00</span>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Intake</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">Run it on their brief</h3>
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#f3f3f3;border-radius:8px;padding:16px;margin:0;">Run brief-intake on this.</p>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Point at <strong style="font-weight:500;color:#000000;">UNRESOLVED</strong> in the metric row. “It didn’t invent a number. That’s the most important thing on this screen.” Then the assumption register, sorted by cost, each with an owner. Then exactly three questions back, not thirty.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Beat 3 · 3:00</span>
+          <span style="background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">The fork</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">System, or product</h3>
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#f3f3f3;border-radius:8px;padding:16px;margin:0;">Run ds-inventory against these screens.<br />Run heuristic-audit on the checkout flow. Two critical paths.</p>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Point at the <strong style="font-weight:500;color:#000000;">Cost</strong> column. A finding without a cost is trivia, and nobody funds trivia. If time is short, open the finished drift report instead of running it.</p>
+      </div>
+      <div style="background:#000000;color:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;">Beat 4 · 3:00</span>
+          <span style="background:#fff100;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">The one that lands</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;margin:0;">Critique my own work, in the room</h3>
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:#2f2f2f;border-radius:8px;padding:16px;margin:0;color:#ffffff;">Run critique on that audit. Attack it on all seven fronts.</p>
+        <p style="font-size:16px;line-height:1.25;color:#979797;margin:0;">“It’s arguing against my own work before anyone else has to. If the output is encouraging, the skill has failed. That’s written into it.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rules" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">House rules</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Every skill inherits these</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 40px;">These are what make the library trustworthy in front of a client. A skill that breaks one of them produces output I would have to check line by line, which defeats the point of having it.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:24px;padding:32px;">
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 16px;">01</p>
+        <p style="font-size:18px;line-height:1.33;margin:0 0 12px;font-weight:500;">Never invent a number</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Every quantity traces to a named source, or it gets cut.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;">
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 16px;">02</p>
+        <p style="font-size:18px;line-height:1.33;margin:0 0 12px;font-weight:500;">Say what you couldn’t determine</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">An honest gap beats a confident guess, every time.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;">
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 16px;">03</p>
+        <p style="font-size:18px;line-height:1.33;margin:0 0 12px;font-weight:500;">Attach a cost to every finding</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Findings without a cost are trivia, and nobody funds trivia.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;">
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 16px;">04</p>
+        <p style="font-size:18px;line-height:1.33;margin:0 0 12px;font-weight:500;">Recommend, don’t enumerate</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">One recommendation, its trade, and the alternative you rejected.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;">
+        <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 16px;">05</p>
+        <p style="font-size:18px;line-height:1.33;margin:0 0 12px;font-weight:500;">Output is a file, not a reply</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Written artifacts are the only part of a call that survives it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Where it stops</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;text-wrap:balance;margin:24px 0 16px;">What I never delegate</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 40px;">A practice that can’t say where its tools stop isn’t a practice. These four are mine, every time, on every project.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-size:18px;line-height:1.33;font-weight:500;margin:0 0 12px;">The problem statement</p><p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">If I didn’t argue it with a human, it isn’t agreed.</p></div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-size:18px;line-height:1.33;font-weight:500;margin:0 0 12px;">Talking to users</p><p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">A synthesis skill is worthless without transcripts someone earned.</p></div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-size:18px;line-height:1.33;font-weight:500;margin:0 0 12px;">The final visual call</p><p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Models average toward the mean. Hand-finished is the whole difference.</p></div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-size:18px;line-height:1.33;font-weight:500;margin:0 0 12px;">Anything stated as fact</p><p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Every number in a deliverable traces to a source, or it gets cut.</p></div>
+    </div>
+  </section>
+
+  <section id="governance" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Governance</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;text-wrap:balance;margin:24px 0 16px;">Documented like a product, not like a wiki</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:64ch;margin:0 0 40px;">A skill library is a design system with prose instead of components, and it rots the same way if nobody owns intake, release and deprecation.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Intake</span>
+        <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">A rule earns its place by failing first</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Nothing goes into a rubric because it sounds right. Every line traces to a specific engagement where its absence cost something. That’s the admission price.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Release</span>
+        <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Versioned, dated, changelogged</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Currently <strong style="color:#000000;font-weight:500;">v1.0</strong>. When a rubric changes, prior outputs record which version produced them. Otherwise two audits stop being comparable and the whole point is lost.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Deprecation</span>
+        <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Skills that stop earning it come out</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Same discipline as an unused component. A library nobody trims becomes a library nobody reads, and an unread rule is worse than no rule.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#000000;color:#ffffff;border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);">
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 32px;max-width:16ch;">The tooling compresses the loop</h2>
+    <p style="font-size:clamp(18px,2.4vw,28px);line-height:1.3;color:#979797;max-width:44ch;margin:0 0 40px;">It doesn’t decide what the loop is for. What I never delegate: the problem statement, talking to users, the final visual call, and anything stated as fact.</p>
+    <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;letter-spacing:-0.03em;margin:0;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+      <a href="mailto:mikelrosenthal@me.com" style="background:#fff100;color:#000000;padding:8px 12px;border-radius:4px;">mikelrosenthal@me.com</a>
+      <a href="https://mikelrosenthal.com" target="_blank" rel="noopener" style="color:#ffffff;">mikelrosenthal.com</a>
+    </p>
+  </section>
+
+  </main>
+
+</div>
+</body>
+</html>

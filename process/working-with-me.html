@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<title>How I work with a team, Mikel Rosenthal</title>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: #e5e5e5; color: #000000;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.25; letter-spacing: -0.011em;
+    text-wrap: pretty; -webkit-font-smoothing: antialiased;
+  }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3 { text-wrap: balance; }
+  a { color: #000000; text-decoration: none; }
+  a:hover { background: #d1ffca; }
+  a:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }
+  ::selection { background: #d1ffca; }
+</style>
+<style>
+.fc1:focus{top:16px;}
+</style>
+</head>
+<body>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 24px 96px;">
+
+  <a href="#main" style="position:fixed;left:16px;top:-80px;z-index:20;background:#000000;color:#ffffff;padding:12px 20px;border-radius:8px;font-size:16px;font-weight:500;transition:top 0.15s;" class="fc1">Skip to content</a>
+
+  <nav aria-label="Sections" style="min-height:8rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;">
+    <a href="index.html" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">← Main · Mikel Rosenthal</a>
+    <div style="background:#ffffff;border-radius:48px;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+      <a href="#commitments" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Commitments</a>
+      <a href="#phases" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Phases</a>
+      <a href="#cadence" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Cadence</a>
+      <a href="#handoff" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Handoff</a>
+      <a href="#others" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">With others</a>
+      <a href="#ambiguity" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Ambiguity</a>
+      <a href="#practice" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">In practice</a>
+      <a href="#first-30" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">First 30 days</a>
+      <span aria-hidden="true" style="width:1px;height:20px;background:#c6c6c6;"></span>
+      <a href="skill-library.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Skills</a>
+      <a href="process-walkthrough.html" style="font-size:16px;font-weight:500;color:#444444;padding:4px 8px;border-radius:4px;">Deck</a>
+    </div>
+  </nav>
+
+  <header style="padding:40px 0 80px;">
+    <span style="display:inline-block;background:#d1ffca;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:40px;">Working with me</span>
+    <h1 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(56px,12vw,130px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 40px;">Decide first.<br />Draw second.</h1>
+    <p style="font-size:clamp(20px,2.6vw,40px);line-height:1.1;letter-spacing:-0.02em;text-transform:uppercase;font-weight:450;max-width:26ch;margin:0 0 24px;">Five phases, one decision gate each, and what comes out of every one</p>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0;">This is how I run an engagement: remote, in front of the client, on a Figma source of truth, handing off to engineers who build it exactly as shown. Four-minute read. Every phase fits on one screen, and the gate is the only line that matters.</p>
+  </header>
+
+  <main id="main">
+
+  <section aria-label="At a glance" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:24px;margin-bottom:80px;">
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Phases, one gate each</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">5</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Weeks, aligned to dev milestones</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">6–12</p></div>
+    <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;margin:0 0 12px;">Daily overlap with LA, minimum</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;">4h</p></div>
+    <div style="background:#000000;border-radius:32px;padding:clamp(28px,4vw,40px);"><p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;margin:0 0 12px;">Decisions living only in my head</p><p style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:0.9;letter-spacing:-0.03em;margin:0;color:#ffffff;">0</p></div>
+  </section>
+
+  <section id="commitments" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Four commitments</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 40px;">What you can hold me to</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">01</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">No screen without a metric behind it</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">If we can’t say what number the feature is supposed to move, that’s a strategy conversation, not a design task. I’d rather spend an hour finding the metric than two weeks designing the wrong thing.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">02</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Everything is written down, in the file</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Decisions, assumptions and open questions live next to the frames they affect, not in a call I was on and you weren’t. A remote team runs on written artifacts or it runs on re-litigation.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">03</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">A recommendation, not a menu</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Clients hold final say. That’s their right and their risk. My job is to make the choice easy: the option I’d ship, what it trades, and the one I rejected and why.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">04</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Handoff is a conversation, not a delivery</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">I stay in the sprint. Office hours for engineers, design review on staging, and I fix the spec when reality disagrees with it. It will.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="phases" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">The method</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Each phase ends in a decision, not a deliverable</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">The phases compress or stretch with scope. An MVP runs this in six weeks. An enterprise platform takes twelve. The order never changes, and no phase closes without its gate. The gate protects the budget. It’s cheap to be wrong in phase 01 and ruinous in phase 05.</p>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+
+      <article style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-size:clamp(24px,4vw,48px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0;">01 Frame</h3>
+          <span style="background:#f3f3f3;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Week 1</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Agree on the problem before anyone opens Figma. Most briefs arrive describing a solution. My first job is to find the problem underneath it and write down how we’ll know we solved it.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What I run</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>A 90-minute stakeholder alignment workshop</li>
+              <li>A constraints inventory with the lead engineer</li>
+              <li>A competitive teardown of three to five products</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What you get</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>A one-page problem statement, in the client’s words</li>
+              <li>Success metrics mapped to business KPIs</li>
+              <li>A ranked assumption register, each with an owner</li>
+              <li>A research plan scoped to the decisions it informs</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#000000;border-radius:24px;padding:24px;">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">The gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">The client signs the problem statement and the metrics. If we can’t write the metric, we don’t design the feature yet. We go back to strategy.</p>
+        </div>
+      </article>
+
+      <article style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-size:clamp(24px,4vw,48px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0;">02 Learn</h3>
+          <span style="background:#f3f3f3;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Weeks 1–2</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Replace the loudest opinion in the room with evidence, sized to the risk. Research is scoped to the decision it informs, never run as a checkbox.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What I run</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Five to eight interviews, or a moderated pass on what exists</li>
+              <li>A heuristic evaluation of the current experience</li>
+              <li>Analytics review wherever there’s data</li>
+              <li>A card sort when IA is the actual question</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What you get</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Ten insights maximum, each with a design implication</li>
+              <li>A current-state journey map with friction marked</li>
+              <li>A friction list ranked by frequency times severity</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#000000;border-radius:24px;padding:24px;">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">The gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">Findings review with the client and PM. Every insight becomes a design constraint or gets parked on the record. Nothing sits in a deck doing nothing.</p>
+        </div>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;max-width:64ch;">On timeline pressure: a two-day audit is right for a mature product with analytics. A week of interviews is right for a new flow with no users yet. I’ll tell you which one I’m buying and what it costs to skip the other.</p>
+      </article>
+
+      <article style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-size:clamp(24px,4vw,48px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0;">03 Architect</h3>
+          <span style="background:#f3f3f3;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Weeks 2–4</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Get the structure right while it’s still cheap to change. Low fidelity on purpose. Grey boxes invite structural objections. Polished screens invite opinions about color.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What I run</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Story map, then site map, then flows for the critical paths</li>
+              <li>Lo-fi wireframes of every state, not just the happy path</li>
+              <li>A content model pass: what data each screen needs</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What you get</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Annotated flow diagrams an engineer can estimate from</li>
+              <li>A complete lo-fi wireframe set</li>
+              <li>An edge-case matrix, the screens nobody asks for</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#000000;border-radius:24px;padding:24px;">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">The gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">Feasibility check with engineering, then a client walkthrough on lo-fi. Structural objections are free at this gate and expensive at the next one.</p>
+        </div>
+      </article>
+
+      <article style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-size:clamp(24px,4vw,48px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0;">04 Design</h3>
+          <span style="background:#f3f3f3;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Weeks 4–8</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">High-fidelity screens built on a system, not a pile of artboards. The library gets built as the screens get built. That’s the only way it survives contact with a deadline.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What I run</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Two visual directions maximum, one recommended</li>
+              <li>Atomic order: tokens, then primitives, then components, then screens</li>
+              <li>Hi-fi screens for every state the wireframes named</li>
+              <li>A clickable prototype of the critical paths</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What you get</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>A Figma library on variables and variants, named to match code</li>
+              <li>Visual guidelines: type, color roles, icons, imagery, motion</li>
+              <li>An interactive prototype, the thing that ends arguments</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#000000;border-radius:24px;padding:24px;">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">The gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">Internal design critique first, client review second. The team tears it apart before the client sees it. That’s the point of having a design team.</p>
+        </div>
+      </article>
+
+      <article style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;">
+          <h3 style="font-size:clamp(24px,4vw,48px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;margin:0;">05 Validate</h3>
+          <span style="background:#f3f3f3;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Weeks 8–12</span>
+        </div>
+        <p style="font-size:18px;line-height:1.33;margin:0;max-width:62ch;">Prove it works, then make it hard to build wrong. Usability testing before development is the cheapest insurance on the project. Friction found here costs hours, not sprints.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What I run</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>A five-participant moderated test, then a fix pass</li>
+              <li>A handoff walkthrough, where I present the system live</li>
+              <li>Office hours through the build, design QA on staging</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;margin:0 0 12px;">What you get</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.3;color:#444444;">
+              <li>Usability findings with severity ratings and a fix log</li>
+              <li>Annotated specs: spacing, behavior, breakpoints, accessibility</li>
+              <li>Token export, state matrix, and a design-QA checklist</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#000000;border-radius:24px;padding:24px;">
+          <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#d1ffca;margin:0 0 12px;">The gate</p>
+          <p style="font-size:16px;line-height:1.25;color:#ffffff;margin:0;">Engineering confirms in writing that it can be built as specified. Then design QA signs off on staging before anything ships.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="cadence" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Cadence</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">What a week with me looks like</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">Remote work fails on rhythm, not on talent. These five rituals are fixed on every project. They’re how I hold three engagements at once without anything going quiet.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;padding:0 24px 12px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">
+        <span>Day</span><span>Ritual</span><span>Who’s in it</span><span>What comes out</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Mon</span><span style="font-weight:500;">Written status and open decisions</span><span style="color:#444444;">PM, client</span><span style="color:#444444;">Five bullets: shipped, in progress, blocked, decisions needed, risk</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Tue</span><span style="font-weight:500;">Working session in the live file</span><span style="color:#444444;">Client stakeholders</span><span style="color:#444444;">Decisions logged next to the frames. No follow-up recap needed</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Wed</span><span style="font-weight:500;">Internal design critique</span><span style="color:#444444;">Design team, design lead</span><span style="color:#444444;">Revisions, plus one thing I got wrong, said out loud</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Thu</span><span style="font-weight:500;">Engineering office hours</span><span style="color:#444444;">Engineers, QA</span><span style="color:#444444;">Answered specs and updated annotations, same day</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;">Fri</span><span style="font-weight:500;">Demo and decision-log update</span><span style="color:#444444;">Everyone, async-friendly</span><span style="color:#444444;">A five-minute recorded walkthrough anyone can watch later</span>
+      </div>
+    </div>
+    <p style="font-size:14px;line-height:1.3;color:#444444;margin:24px 0 0;max-width:68ch;">Time zones: my day carries at least four hours of overlap with Los Angeles. The synchronous hours go to the things that need a human: workshops, critiques, client reviews. Everything else is async by default. That’s what makes three projects possible.</p>
+  </section>
+
+  <section id="handoff" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Handoff contract</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Exactly what an engineer gets</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">When the promise to a client is that development builds it exactly as shown, the spec has to be good enough to make that true. This is the checklist I hand over, every time.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Tokens</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;">Named to match code</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Color roles, type scale, spacing, radii, elevation, as Figma Variables with the same names the front end uses. Exportable, not screenshotable.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Components</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;">Every state, defined</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Default, hover, focus-visible, active, disabled, loading, error, empty. If a state isn’t in the library it isn’t designed, and it will get invented in code.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Behavior</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;">Rules, not redlines</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Written as conditions, like “the rail collapses when the content column drops under 480px”, so layouts survive content the mockup never had.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Accessibility</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;">Specified, not assumed</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Focus order, roles and labels, contrast pairs recorded with their ratios, targets at 44px. WCAG 2.2 held as a gate, not a final-week audit.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Content</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;">Real strings, real lengths</p>
+        <p style="font-size:14px;line-height:1.3;color:#444444;margin:0;">Microcopy written by me and reviewed with the client, including the error messages, the empty states, and the longest name in the database.</p>
+      </div>
+      <div style="background:#000000;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#979797;">Presence</span>
+        <p style="font-size:18px;line-height:1.33;font-weight:500;margin:0;color:#ffffff;">Me, during the build</p>
+        <p style="font-size:14px;line-height:1.3;color:#979797;margin:0;">A live walkthrough at handoff, weekly office hours, and design review on staging. The spec starts a conversation. It isn’t a wall to throw work over.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="others" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Working with others</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Who I work with, and how</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">The part of the method that isn’t on a timeline. Six relationships, and what each one gets from me.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Engineers</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">I work in their tools</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Dev Mode, Code Connect, Storybook, the repo. I validate the design source against what shipped, not against the library’s own claims. At Verizon I diffed tokens and variables against production code across two platform teams and caught the drift before release.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Product and business partners</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">A working screen beats a principle</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">I’d rather show a screen that works than argue a principle. When I recommend something, I say what it gives up and why. The client still decides. My job is to make the trade visible before they do.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Other designers</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Adoption is the metric, not compliance</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Reviews, office hours, and mentoring on correct usage and accessibility. FIBER’s 54 components were adopted by three product teams because the library answered their questions, not because a policy required it. Edison ran the same way across GE Healthcare’s matrixed org and 40-plus products.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Embedded and self-directed</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">The one systems person on a small team</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">At Avant I was the only design-systems contributor on a product team of three, with three engineers and a PM. Day to day that meant designing the application and servicing flows, proving each pattern in a real screen, and moving it into the library the same week. Nobody assigned the library work. It came out of the product work.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Handoff</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Teams run the system without me</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Standards, documentation and recorded reviews, so the system keeps working after I leave. FIBER had intake, a release cadence, versioning and deprecation written down. That’s what let three teams keep using it without a call to me.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#444444;">Remote</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">A distributed team stays in step on paper</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Async docs, recorded walkthroughs, and written decisions next to the frames they affect. Every Friday ends with a five-minute recorded demo anyone can watch later. [MIKEL: add one specific remote habit here]</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ambiguity" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">Ambiguity protocol</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">When the brief contradicts itself</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">Client work means digesting information that is incomplete, changing, and sometimes contradicts itself. That isn’t a failure of the client. It’s the normal condition of the job. Four moves, in order.</p>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">01</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Write the contradiction down, in their words</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">Two stakeholders wanting opposite things is a business decision wearing a design costume. I don’t quietly split the difference. I name both positions, show what each costs, and hand the choice back with a recommendation attached.</p>
+        </div>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">02</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Separate the assumption from the constraint</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">Everything ambiguous goes on the assumption register with an owner and a cost of being wrong. Cheap-to-test assumptions get tested this week. Expensive ones get decided by the client, on the record, so nobody relitigates them in month three.</p>
+        </div>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">03</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Build the smallest thing that settles it</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">A one-day clickable prototype ends arguments that a two-week email thread only deepens. When a debate has gone two rounds without new information, I stop debating and build the artifact that answers it.</p>
+        </div>
+      </div>
+      <div style="background:#000000;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#fff100;flex:0 0 64px;">04</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;color:#ffffff;">Push back with a proposal attached</h3>
+          <p style="font-size:16px;line-height:1.25;color:#979797;margin:0;max-width:62ch;">“I don’t think that works” is noise. “That will cost us the onboarding funnel. Here’s the alternative, here’s what it trades, here’s how we’d know in two weeks” is the job. Pushing back on a brief only earns trust when you arrive with the replacement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">In practice</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">Where the method came from</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">Five design systems built from scratch and two mature ones evolved. The gates above aren’t theory. Each one exists because skipping it cost something on one of these.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:40px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;padding:0 24px 12px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">
+        <span>System</span><span>Where</span><span>What I owned</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Edison</span><span style="color:#444444;">GE Healthcare · 40+ clinical products</span><span style="color:#444444;">Core contributor · Red Dot 2020</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">FIBER</span><span style="color:#444444;">Blue Cross Blue Shield · three teams</span><span style="color:#444444;">Built from nothing to 54 components</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">TUCM</span><span style="color:#444444;">TransUnion · global, multi-region</span><span style="color:#444444;">System and visual identity</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Pathfinder</span><span style="color:#444444;">Avant · regulated lending</span><span style="color:#444444;">Sole design-systems contributor</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;background:#ffffff;border-radius:12px;padding:24px;align-items:baseline;">
+        <span style="font-weight:500;">Enterprise</span><span style="color:#444444;">Verizon · iOS, Android, web</span><span style="color:#444444;">Post-rebrand audit and token layer</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;">
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="align-self:flex-start;background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">Pathfinder · Avant</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">The system shipped alongside the product, never ahead of it</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Sole design-systems contributor, embedded with a product team of three, three engineers and a PM, on a regulated lender. Every pattern was proven in a real screen before it entered the library. That’s why phase 04 builds the system <em>as</em> the screens get built rather than in front of them. The number that mattered was whether a borrower finished the application or abandoned it.</p>
+      </div>
+      <div style="background:#ffffff;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="align-self:flex-start;background:#d1ffca;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">FIBER · BCBS</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;">Fifty-four components, and a coded library that matched them</h3>
+        <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;">Built from nothing, adopted by three product teams, documented like a product: intake, release cadence, versioning and deprecation. The coded library matched the design source in naming, structure and behavior. That parity is why the handoff contract above is as specific as it is. A component that doesn’t match its code is a suggestion.</p>
+      </div>
+      <div style="background:#000000;border-radius:32px;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:16px;">
+        <span style="align-self:flex-start;background:#fff100;color:#000000;border-radius:64px;padding:8px 16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;">What I got wrong</span>
+        <h3 style="font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0;color:#ffffff;">I used to take constraints into wireframes without testing them</h3>
+        <p style="font-size:16px;line-height:1.25;color:#979797;margin:0;">I accepted a stated back-end constraint in week one, carried it into the structure, and only questioned it at hi-fi, where changing it is expensive. That is why a constraints inventory with the lead engineer is now part of phase 01 instead of something I get to the week after.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="first-30" style="scroll-margin-top:120px;margin-bottom:80px;">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444444;">First 30 days</span>
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(36px,6vw,80px);line-height:0.9;letter-spacing:-0.03em;margin:24px 0 16px;">What I’d do in the first month</h2>
+    <p style="font-size:16px;line-height:1.25;color:#444444;max-width:68ch;margin:0 0 40px;">For a hiring manager picturing me in the seat. Nothing here needs a reorg.</p>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">01</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Week one: read everything, then sit with an engineer</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">I read the brief, the library, the docs and the backlog with no design tool open. Then I sit with the lead engineer and inventory what actually ships against what the library claims. The gap between those two is the plan.</p>
+        </div>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">02</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Week two: one visible fix</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">I pick the drift with the highest cost and fix the primitive once. A missing focus state, greys off the ramp, a component with three button variants in code. Small, shipped, and something the team can see.</p>
+        </div>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">03</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Week three: a written plan</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">What I found, what I’d sequence, what each item costs and what it closes. One page, with the trade-offs stated, so the team can argue about the ranking without arguing about the facts.</p>
+        </div>
+      </div>
+      <div style="background:#ffffff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px 32px;">
+        <span style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;font-size:40px;line-height:0.9;color:#000000;flex:0 0 64px;">04</span>
+        <div style="flex:1 1 380px;min-width:0;">
+          <h3 style="font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:-0.03em;margin:0 0 12px;">Week four: a rhythm</h3>
+          <p style="font-size:16px;line-height:1.25;color:#444444;margin:0;max-width:62ch;">Weekly critique, engineering office hours, and a decision log next to the frames. By day 30 the team knows where to find the answer without asking me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#000000;color:#ffffff;border-radius:64px 64px 32px 32px;padding:clamp(40px,7vw,96px) clamp(28px,5vw,64px);">
+    <h2 style="font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0 0 32px;max-width:16ch;">The three-minute version</h2>
+    <p style="font-size:clamp(18px,2.4vw,28px);line-height:1.3;color:#979797;max-width:46ch;margin:0 0 40px;">One project against these five phases: the brief as it arrived, the problem underneath it, the gate where we changed direction, and the screen that came out. Then the part I got wrong, and what the second version fixed.</p>
+    <p style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;letter-spacing:-0.03em;margin:0;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+      <a href="mailto:mikelrosenthal@me.com" style="background:#fff100;color:#000000;padding:8px 12px;border-radius:4px;">mikelrosenthal@me.com</a>
+      <a href="https://mikelrosenthal.com" target="_blank" rel="noopener" style="color:#ffffff;">mikelrosenthal.com</a>
+    </p>
+  </section>
+
+  </main>
+</div>
+</body>
+</html>

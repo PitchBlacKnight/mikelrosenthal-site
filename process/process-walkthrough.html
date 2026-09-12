@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<title>From brief to build, process walkthrough</title>
+<style>
+deck-stage {
+  --carbon: #000000; --paper: #ffffff; --canvas: #e5e5e5; --mist: #f3f3f3;
+  --ash: #c6c6c6; --smoke: #979797; --slate: #444444; --graphite: #2f2f2f;
+  --mint: #d1ffca; --voltage: #fff100;
+  --pad-x: 120px; --pad-y: 96px;
+  --f-disp: "Archivo", "Anton", "Barlow Condensed", sans-serif;
+  --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  counter-reset: page;
+}
+.slide {
+  display: flex; flex-direction: column; counter-increment: page;
+  background: var(--canvas); color: var(--carbon);
+  font-family: var(--f-body); text-wrap: pretty;
+  padding: var(--pad-y) var(--pad-x);
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.slide.dark { background: var(--carbon); color: var(--paper); }
+
+/* Condensed display voice — uppercase, 0.9 leading, tight tracking */
+.disp-xl, .disp, .title {
+  font-family: var(--f-disp); font-variation-settings: "wdth" 62;
+  font-weight: 700; text-transform: uppercase; line-height: 0.9;
+  letter-spacing: -0.03em; margin: 0;
+}
+.disp-xl { font-size: 190px; }
+.disp { font-size: 128px; }
+.title { font-size: 76px; }
+.sub {
+  font-size: 40px; line-height: 1.1; letter-spacing: -0.02em;
+  text-transform: uppercase; font-weight: 450; margin: 0;
+}
+
+.mono {
+  font-family: var(--f-mono); font-weight: 400; font-size: 24px;
+  letter-spacing: -0.03em; text-transform: uppercase; color: var(--slate);
+}
+.dark .mono { color: var(--smoke); }
+.tag {
+  display: inline-block; background: var(--mint); color: var(--carbon);
+  border-radius: 64px; padding: 10px 24px;
+  font-family: var(--f-mono); font-size: 24px; letter-spacing: -0.03em; text-transform: uppercase;
+}
+
+.kicker { position: absolute; top: var(--pad-y); left: var(--pad-x); }
+.foot {
+  position: absolute; right: var(--pad-x); bottom: 44px;
+  font-family: var(--f-mono); font-size: 24px; letter-spacing: -0.03em;
+  color: var(--slate); text-transform: uppercase;
+}
+.dark .foot { color: var(--smoke); }
+.foot::before { content: counter(page) " / 26 · "; }
+deck-stage[data-no-page-furniture] .foot { display: none !important; }
+
+.body { display: flex; flex-direction: column; height: 100%; }
+.body-center { box-sizing: border-box; padding-top: 76px; justify-content: center; gap: 48px; }
+.head { margin: 72px 0 64px; }
+.content .title { max-width: 24ch; }
+
+/* Bullets — mint square markers, no rules */
+.bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 32px; max-width: 1400px; }
+.bullets li { position: relative; padding-left: 52px; font-size: 34px; line-height: 1.25; letter-spacing: -0.011em; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 13px; width: 22px; height: 22px; border-radius: 6px; background: var(--mint); }
+.bullets strong { font-weight: 500; }
+
+/* Flat white cards on canvas — no shadow, no border */
+.cards { display: grid; gap: 24px; }
+.cards-2 { grid-template-columns: 1fr 1fr; }
+.cards-3 { grid-template-columns: repeat(3, 1fr); }
+.card { background: var(--paper); border-radius: 32px; padding: 40px; display: flex; flex-direction: column; gap: 20px; }
+.card h3 { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 450; margin: 0; }
+.card p { font-size: 28px; line-height: 1.3; letter-spacing: -0.011em; color: var(--slate); margin: 0; }
+
+/* Tables as stacked white blocks — surface contrast, never borders */
+.t { width: 100%; border-collapse: separate; border-spacing: 0 8px; font-size: 28px; }
+.t th {
+  font-family: var(--f-mono); font-weight: 400; font-size: 24px; letter-spacing: -0.03em;
+  text-transform: uppercase; color: var(--slate); text-align: left; padding: 0 32px 12px; vertical-align: bottom;
+}
+.t td { background: var(--paper); padding: 28px 32px; vertical-align: top; line-height: 1.25; letter-spacing: -0.011em; color: var(--slate); }
+.t td:first-child { border-radius: 12px 0 0 12px; color: var(--carbon); font-weight: 500; }
+.t td:last-child { border-radius: 0 12px 12px 0; }
+.t .num { font-family: var(--f-mono); color: var(--carbon); }
+
+/* Divider slides — inverted, giant numeral, flat geometry */
+.divider { justify-content: flex-end; }
+.ghost { font-family: var(--f-disp); font-variation-settings: "wdth" 62; font-weight: 700; font-size: 300px; line-height: 0.82; letter-spacing: -0.03em; color: var(--paper); }
+.geo { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.geo i { position: absolute; display: block; }
+deck-stage[data-no-geo] .geo { display: none; }
+
+.hero { flex-direction: row; align-items: center; justify-content: flex-start; gap: 100px; }
+.hero-num { font-family: var(--f-disp); font-variation-settings: "wdth" 62; font-weight: 700; font-size: 900px; line-height: 0.75; letter-spacing: -0.04em; margin: 0; flex: none; }
+.hero-cap { font-size: 36px; line-height: 1.3; letter-spacing: -0.011em; max-width: 640px; margin: 0; color: var(--smoke); }
+
+.quote { justify-content: center; }
+.quote blockquote { font-family: var(--f-disp); font-variation-settings: "wdth" 62; font-weight: 700; text-transform: uppercase; font-size: 104px; line-height: 0.9; letter-spacing: -0.03em; margin: 0; max-width: 20ch; }
+.quote figcaption { margin: 56px 0 0; }
+
+.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--f-mono); font-size: 24px; letter-spacing: -0.03em; fill: var(--slate); text-transform: uppercase; }
+.chart .lab { font-family: var(--f-body); font-size: 36px; font-weight: 500; letter-spacing: -0.02em; fill: var(--carbon); text-transform: uppercase; }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-deck-active] .rise { animation: rise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+}
+</style><script src="deck-stage.js"></script>
+</head>
+<body>
+
+<deck-stage>
+
+  <section class="slide" data-label="Title" data-screen-label="01" data-speaker-notes="Open here. The question is 'what is your process'. The answer is that the process is old and boring on purpose, and the speed is new. Don't lead with the AI.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:340px;height:430px;border-radius:64px 64px 0 0;background:#000000;right:120px;bottom:0;"></i>
+      <i style="width:260px;height:300px;border-radius:64px 64px 0 0;background:#2f2f2f;right:500px;bottom:0;"></i>
+      <i style="width:300px;height:300px;border-radius:9999px;background:#d1ffca;right:140px;bottom:500px;"></i>
+      <i style="width:220px;height:220px;border-radius:32px;background:#ffffff;right:520px;bottom:540px;"></i>
+    </div>
+    <div class="mono kicker">Mikel Rosenthal · Senior Designer</div>
+    <a href="index.html" class="mono" style="position:absolute;right:var(--pad-x);top:var(--pad-y);color:#444444;text-decoration:none;">← Main</a>
+    <div class="body body-center rise">
+      <h1 class="disp-xl">From<br />brief<br />to build</h1>
+      <p class="sub" style="max-width:22ch;color:var(--slate);">What I do between the moment requirements land and the moment an engineer starts</p>
+    </div>
+    <div class="mono" style="position:absolute;left:var(--pad-x);bottom:var(--pad-y);">September 2026</div>
+  </section>
+
+  <section class="slide content" data-label="Contents" data-screen-label="02" data-speaker-notes="Four sections, twenty minutes. Offer to jump: if they only want the handoff answer, go to section 04.">
+    <div class="mono kicker">Contents</div>
+    <div class="body rise" style="justify-content:center;">
+      <table class="t" style="max-width:1400px;">
+        <tbody>
+          <tr><td class="num" style="width:120px;">01</td><td style="font-size:40px;text-transform:uppercase;font-weight:450;letter-spacing:-0.02em;color:var(--carbon);">Intake: the first 48 hours</td></tr>
+          <tr><td class="num">02</td><td style="font-size:40px;text-transform:uppercase;font-weight:450;letter-spacing:-0.02em;color:var(--carbon);">The workspace: skills I load</td></tr>
+          <tr><td class="num">03</td><td style="font-size:40px;text-transform:uppercase;font-weight:450;letter-spacing:-0.02em;color:var(--carbon);">Mapping: six directions</td></tr>
+          <tr><td class="num">04</td><td style="font-size:40px;text-transform:uppercase;font-weight:450;letter-spacing:-0.02em;color:var(--carbon);">Handoff: what developers get</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="The claim" data-screen-label="03" data-speaker-notes="The honest framing. If they hear 'AI does my design work' the rest of the deck fails. The process is the same one that worked before. The loop is just shorter.">
+    <div class="mono kicker">The claim</div>
+    <div class="body">
+      <div class="head"><h2 class="title">The process didn’t change. The cycle time did.</h2></div>
+      <ul class="bullets rise">
+        <li>The same order of operations a good designer has always run: problem, evidence, structure, form, proof.</li>
+        <li>Claude is where the thinking gets written down, structured and stress-tested. Not where it gets decided.</li>
+        <li>Everything here is reproducible: same skills, same inputs, same shape of output, whoever runs it.</li>
+        <li>AI-forward in how I work, hand-finished in what ships. Twenty-three years of judgment is the part that doesn’t automate.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Five systems" data-screen-label="04" data-speaker-notes="Standing, in one slide. Don't read the table. Say: five built from scratch, two mature ones evolved, and the method is what's left over after all of them. Then move on.">
+    <div class="mono kicker">Track record</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Where the method came from</h2></div>
+      <table class="t rise">
+        <thead><tr><th style="width:300px;">System</th><th>Where</th><th>What I owned</th></tr></thead>
+        <tbody>
+          <tr><td>Edison</td><td>GE Healthcare · 40+ clinical products</td><td>Core contributor · Red Dot 2020</td></tr>
+          <tr><td>FIBER</td><td>Blue Cross Blue Shield · three teams</td><td>Built from nothing to 54 components</td></tr>
+          <tr><td>TUCM</td><td>TransUnion · global, multi-region</td><td>System and visual identity</td></tr>
+          <tr><td>Pathfinder</td><td>Avant · regulated lending</td><td>Sole design-systems contributor</td></tr>
+          <tr><td>Enterprise</td><td>Verizon · iOS, Android, web</td><td>Post-rebrand audit and token layer</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="The arc" data-screen-label="05" data-speaker-notes="Ten weeks, which fits a typical six-to-twelve week design window. Point out that the first week produces no screens on purpose.">
+    <div class="mono kicker">The arc</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Ten weeks, end to end</h2></div>
+      <div class="rise">
+        <svg class="chart" viewBox="0 0 1680 250" role="img" aria-label="Timeline: day one intake, week one evaluate, week three map, week six design, week ten handoff">
+          <line x1="8" y1="96" x2="1456" y2="96" stroke="#c6c6c6" stroke-width="2"/>
+          <text x="0" y="56">Day 1</text>
+          <text x="360" y="56">Week 1</text>
+          <text x="720" y="56">Week 3</text>
+          <text x="1080" y="56">Week 6</text>
+          <text x="1440" y="56">Week 10</text>
+          <circle cx="8" cy="96" r="11" fill="#000000"/>
+          <circle cx="368" cy="96" r="11" fill="#000000"/>
+          <circle cx="728" cy="96" r="11" fill="#000000"/>
+          <circle cx="1088" cy="96" r="11" fill="#000000"/>
+          <circle cx="1448" cy="96" r="20" fill="#000000"/>
+          <text class="lab" x="0" y="168">Intake</text>
+          <text class="lab" x="360" y="168">Evaluate</text>
+          <text class="lab" x="720" y="168">Map</text>
+          <text class="lab" x="1080" y="168">Design</text>
+          <text class="lab" x="1440" y="168">Hand off</text>
+          <text x="0" y="222">Brief becomes context</text>
+          <text x="360" y="222">Audit or overview</text>
+          <text x="720" y="222">Six directions</text>
+          <text x="1080" y="222">System, then screens</text>
+          <text x="1440" y="222">Spec, QA, release</text>
+        </svg>
+        <p style="font-size:28px;line-height:1.3;letter-spacing:-0.011em;color:var(--slate);max-width:70ch;margin:56px 0 0;">The first week produces no screens on purpose. It produces the context everything after it is generated and judged against.</p>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide dark divider" data-label="01 Intake" data-screen-label="06" data-speaker-notes="Section one. Two slides. This is the part most designers skip and most projects die of.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:300px;height:420px;border-radius:64px 64px 0 0;background:#ffffff;right:120px;bottom:0;"></i>
+      <i style="width:300px;height:640px;border-radius:64px 64px 0 0;background:#d1ffca;right:452px;bottom:0;"></i>
+      <i style="width:300px;height:280px;border-radius:64px 64px 0 0;background:#2f2f2f;right:784px;bottom:0;"></i>
+    </div>
+    <div class="rise">
+      <div class="ghost">01</div>
+      <h2 class="title" style="margin-top:40px;">Intake</h2>
+    </div>
+  </section>
+
+  <section class="slide content" data-label="First 48 hours" data-screen-label="07" data-speaker-notes="Read these as things I physically do, in order. The fifth one is the one clients remember: three questions back, not thirty.">
+    <div class="mono kicker">01 · Intake</div>
+    <div class="body">
+      <div class="head"><h2 class="title">The first 48 hours</h2></div>
+      <ul class="bullets rise">
+        <li>Read everything once with no design tool open, and log every question it raises.</li>
+        <li>Rewrite the brief as one structured file: problem, metric, users, constraints, assumptions.</li>
+        <li>Take the real constraints from an engineer before trusting a single requirement.</li>
+        <li>Rank every assumption by what it costs us to be wrong about it.</li>
+        <li>Send back the three questions whose answers change the shape of the work.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="The intake file" data-screen-label="08" data-speaker-notes="This is the pivot into the AI part. The file is the context. Say plainly: a model amplifies whatever context it is handed, so the quality of this one file sets the ceiling on everything downstream.">
+    <div class="mono kicker">01 · Intake</div>
+    <div class="body">
+      <div class="head"><h2 class="title">One file, not a folder</h2></div>
+      <div class="cards cards-2 rise">
+        <div class="card">
+          <span class="tag" style="align-self:flex-start;">What’s in it</span>
+          <p>The problem in the client’s own words. The metric it has to move. The users and the job they’re hiring the product for. Hard constraints from engineering. Assumptions, ranked. Open questions, owned and dated.</p>
+        </div>
+        <div class="card">
+          <span class="tag" style="align-self:flex-start;">Why it’s first</span>
+          <p>It is the context every later step reads from, and the thing I re-read when scope drifts. A model amplifies whatever context it is given, so a vague brief buys confident, plausible, wrong output at speed.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide dark divider" data-label="02 The workspace" data-screen-label="09" data-speaker-notes="Section two, the part they asked about directly. Five slides: what a skill is, the library in two tables, then the fork between design-system work and product work.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:220px;height:220px;border-radius:32px;background:#ffffff;right:120px;top:120px;"></i>
+      <i style="width:220px;height:220px;border-radius:9999px;background:#2f2f2f;right:372px;top:120px;"></i>
+      <i style="width:220px;height:220px;border-radius:32px;background:#2f2f2f;right:624px;top:120px;"></i>
+      <i style="width:220px;height:220px;border-radius:9999px;background:#2f2f2f;right:120px;top:372px;"></i>
+      <i style="width:220px;height:220px;border-radius:32px;background:#d1ffca;right:372px;top:372px;"></i>
+      <i style="width:220px;height:220px;border-radius:9999px;background:#ffffff;right:624px;top:372px;"></i>
+    </div>
+    <div class="rise">
+      <div class="ghost">02</div>
+      <h2 class="title" style="margin-top:40px;">The workspace</h2>
+    </div>
+  </section>
+
+  <section class="slide content" data-label="Anatomy of a skill" data-screen-label="10" data-speaker-notes="Explain progressive disclosure in one breath: only the description sits in context at rest, so a library of ten skills costs almost nothing until one is needed. That's why it scales.">
+    <div class="mono kicker">02 · The workspace</div>
+    <div class="body">
+      <div class="head"><h2 class="title">What a skill actually is</h2></div>
+      <div class="cards cards-3 rise">
+        <div class="card">
+          <h3>A description</h3>
+          <p>What the skill does and when to use it. At rest, this is the only part in context. It is how the model knows the capability exists at all.</p>
+        </div>
+        <div class="card">
+          <h3>A procedure</h3>
+          <p>The steps, the rubric, the output format. Loaded only when a task matches, so a library of ten costs almost nothing until one is needed.</p>
+        </div>
+        <div class="card">
+          <h3>Bundled files</h3>
+          <p>Templates, checklists, schemas and scripts it opens on demand. My rubrics and report formats live here, versioned like code, not retyped.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Skills: evaluate" data-screen-label="11" data-speaker-notes="Four evaluation skills. The point of the third column: the judgment lives in the bundled rubric, so the output is consistent across projects and other designers can run it too.">
+    <div class="mono kicker">02 · The workspace</div>
+    <div class="body">
+      <div class="head"><h2 class="title">The library: evaluating</h2></div>
+      <table class="t rise">
+        <thead><tr><th style="width:400px;">Skill</th><th>What it does</th><th>What ships with it</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:var(--f-mono);">brief-intake</td><td>Turns a raw brief into the structured project file</td><td>Intake template, question bank</td></tr>
+          <tr><td style="font-family:var(--f-mono);">heuristic-audit</td><td>Rates a live product against heuristics and WCAG 2.2</td><td>Rubric, severity scale, report format</td></tr>
+          <tr><td style="font-family:var(--f-mono);">ds-inventory</td><td>Inventories components, extracts tokens, reports drift</td><td>Token schema, coverage matrix</td></tr>
+          <tr><td style="font-family:var(--f-mono);">research-synthesis</td><td>Transcripts into insights with counts and implications</td><td>Evidence rules, insight template</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Skills: make and ship" data-screen-label="12" data-speaker-notes="Five making skills. Flag critique specifically: it argues against my own work before the team sees it, which is the cheapest quality gate I have.">
+    <div class="mono kicker">02 · The workspace</div>
+    <div class="body">
+      <div class="head"><h2 class="title">The library: making and shipping</h2></div>
+      <table class="t rise">
+        <thead><tr><th style="width:400px;">Skill</th><th>What it does</th><th>What ships with it</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:var(--f-mono);">flow-map</td><td>Flows, plus the full state matrix for every screen</td><td>State checklist, notation</td></tr>
+          <tr><td style="font-family:var(--f-mono);">copy-standards</td><td>Errors, empty states and labels in the product’s voice</td><td>Voice guide, message patterns</td></tr>
+          <tr><td style="font-family:var(--f-mono);">a11y-spec</td><td>Focus order, roles, labels and contrast pairs per screen</td><td>WCAG 2.2 checklist</td></tr>
+          <tr><td style="font-family:var(--f-mono);">handoff-spec</td><td>Annotated spec, token export, state matrix, QA list</td><td>Spec template, QA checklist</td></tr>
+          <tr><td style="font-family:var(--f-mono);">critique</td><td>Argues against my own work before the team sees it</td><td>Rubric, common-failure list</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Two entry points" data-screen-label="13" data-speaker-notes="This answers their design-system-versus-product-overview question head on. The distinction: one is a counting exercise, the other is a people exercise. Getting this fork wrong wastes the first two weeks.">
+    <div class="mono kicker">02 · The workspace</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Two entry points, two first moves</h2></div>
+      <div class="cards cards-2 rise">
+        <div class="card">
+          <h3>Evaluating a design system</h3>
+          <p>The question is coverage and consistency, so I start with artifacts: the code, the library, every screen that ships. It is a counting exercise before it is a taste one: what exists, what’s duplicated, what has drifted, what has no owner. Verizon’s post-rebrand system started exactly here.</p>
+        </div>
+        <div class="card">
+          <h3>A product design overview</h3>
+          <p>The question is whether the thing does the right job, so I start with people: who uses it, what they are trying to finish, where they give up. Artifacts come second. A perfectly consistent product can still be the wrong product. SurePeople’s PRISM platform started here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Track A: DS audit" data-screen-label="14" data-speaker-notes="Order matters here. Inventory from what ships, never from the library's own table of contents. The library always claims more coverage than it has. This is the Verizon engagement in five lines: two platform teams, drift caught before release.">
+    <div class="mono kicker">02 · Track A</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Auditing a design system, in order</h2></div>
+      <ul class="bullets rise">
+        <li>Inventory what actually ships, from the code and the screens, not the library’s contents page.</li>
+        <li>Diff the token layer against what engineering shipped, in Dev Mode and Code Connect, with a front-end engineer.</li>
+        <li>Build a coverage matrix: which screens use components, which use detached copies.</li>
+        <li>Score each component on states, accessibility, documentation and adoption.</li>
+        <li>Report drift with a cost attached and a sequenced fix list, not a list of sins.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="The drift report" data-screen-label="15" data-speaker-notes="Say 'illustrative shape, not one client's numbers', then move to the Cost column, which is what earns the room. Findings without a cost are trivia, and nobody funds trivia.">
+    <div class="mono kicker">02 · Track A</div>
+    <div class="body">
+      <div class="head"><h2 class="title">What the drift report says</h2></div>
+      <table class="t rise">
+        <thead><tr><th style="width:480px;">Finding</th><th style="width:160px;">Count</th><th>Cost</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Greys not on the ramp</td><td class="num">23</td><td>Re-theming is impossible</td><td>Map to four steps</td></tr>
+          <tr><td>Button variants in code</td><td class="num">9</td><td>Every screen re-decides</td><td>Collapse to three</td></tr>
+          <tr><td>Components with no focus state</td><td class="num">14</td><td>Keyboard users stall</td><td>Fix the primitive once</td></tr>
+          <tr><td>Screens with detached instances</td><td class="num">31%</td><td>Fixes stop propagating</td><td>Re-link the top ten flows</td></tr>
+          <tr><td>Spacing values in use</td><td class="num">17</td><td>Rhythm reads accidental</td><td>Snap to the 8-point scale</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Track B: product overview" data-screen-label="16" data-speaker-notes="The other fork. PRISM is the example: dense psychometric data that a non-expert had to read and act on. The last line protects the timeline: everything outside the top two flows gets parked in writing, so nobody is surprised in week eight.">
+    <div class="mono kicker">02 · Track B</div>
+    <div class="body">
+      <div class="head"><h2 class="title">A product overview, in order</h2></div>
+      <ul class="bullets rise">
+        <li>Name the jobs: what someone hires this product to finish today, in their language.</li>
+        <li>Map the current journey end to end, including the parts that happen outside the product.</li>
+        <li>Draw the information architecture as it is, then as it should be, and diff the two.</li>
+        <li>Build the metric tree: the business number on top, the behaviors that move it beneath.</li>
+        <li>Pick the two flows carrying the most value and park everything else, in writing.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide dark divider" data-label="03 Mapping" data-screen-label="17" data-speaker-notes="Section three is the systems-thinking answer. Frame it as: a screen is a node, and a node with only one connection is a screen you will redesign next quarter.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:680px;height:680px;border-radius:9999px;background:#2f2f2f;right:-120px;top:120px;"></i>
+      <i style="width:460px;height:460px;border-radius:9999px;background:#000000;right:-10px;top:230px;"></i>
+      <i style="width:240px;height:240px;border-radius:9999px;background:#d1ffca;right:100px;top:340px;"></i>
+      <i style="width:64px;height:64px;border-radius:9999px;background:#fff100;right:760px;top:428px;"></i>
+    </div>
+    <div class="rise">
+      <div class="ghost">03</div>
+      <h2 class="title" style="margin-top:40px;">Mapping</h2>
+    </div>
+  </section>
+
+  <section class="slide content" data-label="Up, down, across" data-screen-label="18" data-speaker-notes="First three directions. 'Across' is the one most designers miss. The pattern usually already exists somewhere in the product, and adopting beats inventing.">
+    <div class="mono kicker">03 · Mapping</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Up, down, across</h2></div>
+      <div class="cards cards-3 rise">
+        <div class="card">
+          <h3>Up: the business</h3>
+          <p>Every screen resolves to a number someone is accountable for. If I can’t trace the path from pixel to P&amp;L, I’m decorating.</p>
+        </div>
+        <div class="card">
+          <h3>Down: the system</h3>
+          <p>Every element resolves to a token and a component. Anything that can’t is either a gap in the system or an indulgence.</p>
+        </div>
+        <div class="card">
+          <h3>Across: siblings</h3>
+          <p>The same pattern wherever it already appears. Most problems have been solved once in this product already. Adopt, don’t invent a second one.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Back, forward, out" data-screen-label="19" data-speaker-notes="The three that separate seniors from mids. 'Back' is why I sit with an engineer in week one. The API's real behavior is a design input, not a detail.">
+    <div class="mono kicker">03 · Mapping</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Back, forward, out</h2></div>
+      <div class="cards cards-3 rise">
+        <div class="card">
+          <h3>Back: the data</h3>
+          <p>What the API actually returns: slowly, partially, stale, or not at all. The data model is a design input, not an implementation detail.</p>
+        </div>
+        <div class="card">
+          <h3>Forward: time</h3>
+          <p>Every state the screen will pass through, and what it looks like at ten times the content and three years of accumulated cruft.</p>
+        </div>
+        <div class="card">
+          <h3>Out: the edges</h3>
+          <p>Keyboard, screen reader, small screen, long strings, other languages, no network. The edges are where the product loses people quietly.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="Worked example" data-screen-label="20" data-speaker-notes="Pathfinder at Avant: a regulated lender, three years, and I was the only design-systems contributor. Same six directions, one line each. This is the slide to slow down on.">
+    <div class="mono kicker">03 · Mapping</div>
+    <div class="body">
+      <div class="head"><h2 class="title">Pathfinder, mapped six ways</h2></div>
+      <ul class="bullets rise">
+        <li><strong>Up:</strong> the number was whether a borrower finishes the application or abandons it.</li>
+        <li><strong>Down:</strong> the system shipped alongside the product, never ahead of it. Patterns earned their place.</li>
+        <li><strong>Across:</strong> states carried from application into servicing rather than solved a second time.</li>
+        <li><strong>Back:</strong> a regulated lender’s constraints. What underwriting can return, and when, is a design input.</li>
+        <li><strong>Forward &amp; out:</strong> error handling and edge cases, with WCAG 2.2 held as a gate, not a cleanup pass.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide dark hero" data-label="Fifty-four" data-screen-label="21" data-speaker-notes="Let this one sit. The point is parity, not the count. Naming, structure and behavior matching between the design source and the coded library is what makes a system survive its second year.">
+    <div class="mono kicker">03 · Mapping</div>
+    <p class="hero-num rise">54</p>
+    <p class="hero-cap rise">Production components in FIBER, adopted by three teams, with a coded library that matched the design source in naming, structure and behavior. Parity is the whole point. A component that doesn’t match its code is a suggestion.</p>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide dark divider" data-label="04 Handoff" data-screen-label="22" data-speaker-notes="Final section. Their FAQ says development executes the approved design exactly as shown, so the spec has to be good enough to make that promise true.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:720px;height:200px;border-radius:9999px;background:#2f2f2f;right:-80px;top:150px;"></i>
+      <i style="width:720px;height:200px;border-radius:9999px;background:#ffffff;right:40px;top:390px;"></i>
+      <i style="width:720px;height:200px;border-radius:9999px;background:#d1ffca;right:-80px;top:630px;"></i>
+    </div>
+    <div class="rise">
+      <div class="ghost">04</div>
+      <h2 class="title" style="margin-top:40px;">Handoff</h2>
+    </div>
+  </section>
+
+  <section class="slide content" data-label="The package" data-screen-label="23" data-speaker-notes="Walk the third column, not the first. Every artifact exists to prevent a specific failure. Mention that I present this live rather than posting a link.">
+    <div class="mono kicker">04 · Handoff</div>
+    <div class="body">
+      <div class="head"><h2 class="title">What a developer gets from me</h2></div>
+      <table class="t rise">
+        <thead><tr><th style="width:380px;">Artifact</th><th>What’s in it</th><th>What it prevents</th></tr></thead>
+        <tbody>
+          <tr><td>Token export</td><td>Color, type, spacing, radius, elevation</td><td>Translation and eyeballing</td></tr>
+          <tr><td>State matrix</td><td>Default, hover, focus, active, disabled, loading, error, empty</td><td>States invented in code</td></tr>
+          <tr><td>Annotated flows</td><td>Behavior written as rules, not redlines</td><td>Breakage on real content</td></tr>
+          <tr><td>Accessibility spec</td><td>Focus order, roles, labels, contrast ratios, 44px targets</td><td>A final-week audit panic</td></tr>
+          <tr><td>Design QA list</td><td>What I check on staging before release</td><td>Handoff ending at delivery</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide content" data-label="What I never delegate" data-screen-label="24" data-speaker-notes="Close the AI loop honestly. This is the slide that makes the rest credible. It shows I know where the tool stops. Expect the follow-up question here.">
+    <div class="mono kicker">04 · Handoff</div>
+    <div class="body">
+      <div class="head"><h2 class="title">What I never delegate</h2></div>
+      <ul class="bullets rise">
+        <li>The problem statement. If I didn’t argue it with a human, it isn’t agreed.</li>
+        <li>Talking to users. A synthesis skill is worthless without transcripts someone earned.</li>
+        <li>The final visual call. Models average toward the mean. Hand-finished is the whole difference.</li>
+        <li>Anything stated as fact. Every number in a deliverable traces to a source, or it gets cut.</li>
+      </ul>
+    </div>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide quote" data-label="Quote" data-screen-label="25" data-speaker-notes="The one line to leave them with. Then stop talking and let them ask.">
+    <div class="mono kicker">04 · Handoff</div>
+    <figure class="rise" style="margin:0;">
+      <blockquote>The tooling compresses the loop. It doesn’t decide what the loop is for.</blockquote>
+      <figcaption class="mono">The short version, if we only have a minute</figcaption>
+    </figure>
+    <div class="foot" aria-hidden="true">Process walkthrough</div>
+  </section>
+
+  <section class="slide" data-label="Close" data-screen-label="26" data-speaker-notes="Offer the two follow-ups: walk one real project through all four sections, or screen-share the actual skill folder and run one live against their own brief.">
+    <div class="geo" aria-hidden="true">
+      <i style="width:340px;height:340px;border-radius:9999px;background:#000000;right:120px;bottom:120px;"></i>
+      <i style="width:340px;height:360px;border-radius:64px 64px 0 0;background:#d1ffca;right:500px;bottom:0;"></i>
+      <i style="width:260px;height:260px;border-radius:32px;background:#ffffff;right:160px;bottom:540px;"></i>
+    </div>
+    <div class="mono kicker">Mikel Rosenthal · Senior Designer</div>
+    <div class="body body-center rise">
+      <h2 class="disp">Happy<br />to run<br />it live</h2>
+      <p class="sub" style="max-width:20ch;color:var(--slate);">Give me a brief and an hour and I’ll show you the intake file, the skills that fire, and the first map, on your product</p>
+      <p style="margin:0;font-family:var(--f-mono);font-size:28px;letter-spacing:-0.03em;"><span style="background:var(--voltage);padding:6px 12px;">mikelrosenthal@me.com</span>&nbsp;&nbsp;mikelrosenthal.com</p>
+      <p style="margin:24px 0 0;font-family:var(--f-mono);font-size:24px;letter-spacing:-0.03em;display:flex;gap:32px;flex-wrap:wrap;"><a href="index.html" style="color:#000000;">← Main</a><a href="skill-library.html" style="color:#444444;">Skill library</a><a href="pathfinder-case-study.html" style="color:#444444;">Case study</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="color:#444444;">Files ↗</a></p>
+    </div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

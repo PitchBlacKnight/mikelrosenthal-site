@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Barlow+Condensed:wght@800&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="nocturne/styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-300); text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+</style></head>
+<body>
+
+<div>
+<div style="position:fixed;top:0;bottom:0;left:0;right:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
+  <svg style="position:absolute;top:0;right:0;height:100%;width:480px;" viewBox="0 0 480 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+    <defs>
+      <filter id="pf-haze-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="14"></feGaussianBlur></filter>
+      <filter id="pf-soft-l" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+    </defs>
+    <g fill="none" style="stroke:var(--color-accent);" stroke-width="9" opacity="0.10" filter="url(#pf-haze-l)">
+      <circle cx="-120" cy="640" r="340"></circle><circle cx="-120" cy="640" r="500"></circle><circle cx="-120" cy="640" r="660"></circle>
+    </g>
+    <g fill="none" style="stroke:var(--color-neutral-400);" stroke-width="1.5" opacity="0.22" filter="url(#pf-soft-l)">
+      <circle cx="-120" cy="640" r="260"></circle><circle cx="-120" cy="640" r="340"></circle><circle cx="-120" cy="640" r="420"></circle><circle cx="-120" cy="640" r="500"></circle><circle cx="-120" cy="640" r="580"></circle><circle cx="-120" cy="640" r="660"></circle><circle cx="-120" cy="640" r="740"></circle>
+    </g>
+    <circle cx="-120" cy="640" r="380" fill="none" style="stroke:var(--color-accent);" stroke-width="3" opacity="0.7" filter="url(#pf-soft-l)"></circle>
+    <g fill="none" style="stroke:var(--color-neutral-400);" stroke-width="1.5" opacity="0.16" filter="url(#pf-soft-l)">
+      <path d="M480 110 L140 110"></path><path d="M480 142 L210 142"></path><path d="M480 174 L280 174"></path><path d="M480 206 L350 206"></path>
+    </g>
+  </svg>
+</div>
+<div style="position:fixed;top:0;bottom:0;right:0;left:calc(50% + 600px);overflow:hidden;z-index:0;pointer-events:none;" aria-hidden="true">
+  <svg style="position:absolute;top:0;left:0;height:100%;width:480px;" viewBox="0 0 480 900" preserveAspectRatio="xMinYMid slice" focusable="false">
+    <defs>
+      <filter id="pf-haze-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="12"></feGaussianBlur></filter>
+      <filter id="pf-soft-r" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+    </defs>
+    <g style="stroke:var(--color-accent);" stroke-width="9" opacity="0.09" filter="url(#pf-haze-r)">
+      <path d="M560 60 L-60 450"></path><path d="M560 60 L-60 690"></path><path d="M560 60 L120 960"></path>
+    </g>
+    <g style="stroke:var(--color-neutral-400);" stroke-width="1.5" opacity="0.2" filter="url(#pf-soft-r)">
+      <path d="M560 60 L-60 240"></path><path d="M560 60 L-60 350"></path><path d="M560 60 L-60 450"></path><path d="M560 60 L-60 570"></path><path d="M560 60 L-60 690"></path><path d="M560 60 L-60 810"></path><path d="M560 60 L-20 960"></path><path d="M560 60 L120 960"></path><path d="M560 60 L260 960"></path>
+    </g>
+    <path d="M560 60 L-60 510" style="stroke:var(--color-accent);" stroke-width="3" opacity="0.7" filter="url(#pf-soft-r)"></path>
+    <g fill="none" style="stroke:var(--color-neutral-400);" stroke-width="1.5" opacity="0.15" filter="url(#pf-soft-r)">
+      <path d="M0 740 L300 740"></path><path d="M0 772 L232 772"></path><path d="M0 804 L164 804"></path><path d="M0 836 L96 836"></path>
+    </g>
+  </svg>
+</div>
+</div>
+
+<div style="position:relative;z-index:1;background:transparent;color:var(--color-text);font-family:var(--font-body);min-height:100vh;">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,40px) 96px;">
+
+  <nav class="nav" style="padding:20px 0;gap:20px;flex-wrap:wrap;">
+    <span class="nav-brand" style="font-weight:600;letter-spacing:-0.01em;">Mikel Rosenthal</span>
+    <span style="flex:1 1 auto;"></span>
+    <a href="index.html" style="font-size:13px;">← Main</a>
+    <a href="working-with-me.html" style="font-size:13px;">Method</a>
+    <a href="process-walkthrough.html" style="font-size:13px;">Deck</a>
+    <a href="skill-library.html" style="font-size:13px;">Skills</a>
+    <a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="font-size:13px;">Files ↗</a>
+  </nav>
+
+  <header style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);align-items:flex-end;padding:clamp(40px,7vw,88px) 0 clamp(32px,5vw,56px);">
+    <div style="flex:1 1 min(100%,520px);">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px;">Case study · AVANT Communications</div>
+      <h1 style="font-size:clamp(44px,7vw,80px);line-height:1.0;letter-spacing:-0.03em;margin:0 0 24px;max-width:16ch;">Pathfinder 2.0, audited against itself</h1>
+      <p style="font-size:clamp(17px,2vw,20px);line-height:1.55;max-width:56ch;margin:0 0 28px;color:color-mix(in srgb, var(--color-text) 88%, transparent);">I built the design system for AVANT's partner portal. Then I ran the nine skills from the library against it and wrote down what they found, including the five things that are wrong. Every count on this page came out of the shipped source.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="tag tag-accent">Partner portal</span>
+        <span class="tag tag-outline">Dark, data-dense</span>
+        <span class="tag tag-outline">Sole systems designer</span>
+        <span class="tag tag-outline">v2.1.0</span>
+      </div>
+    </div>
+    <div style="flex:0 1 300px;display:flex;flex-direction:column;gap:22px;padding-left:24px;border-left:1px solid;border-image:linear-gradient(to bottom, transparent, var(--color-accent-700) 20%, var(--color-accent-700) 80%, transparent) 1;">
+      <div>
+        <div style="font-size:clamp(40px,5vw,60px);line-height:0.95;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--color-accent-100);">1,146</div>
+        <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">tokens declared in one stylesheet</div>
+      </div>
+      <div>
+        <div style="font-size:clamp(40px,5vw,60px);line-height:0.95;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--color-accent-100);">5</div>
+        <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">findings, each traced to a file</div>
+      </div>
+      <div>
+        <div style="font-size:clamp(40px,5vw,60px);line-height:0.95;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--color-accent-100);">4</div>
+        <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">things I still can't source</div>
+      </div>
+    </div>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:24px;">
+    <div class="card elev-sm" style="flex:1 1 min(100%,240px);padding:20px;gap:6px;">
+      <span class="card-kicker">Counted, not recalled</span>
+      <span style="font-size:15px;line-height:1.45;">Token, class and page counts come from a grep of the exported build. None of them are estimates.</span>
+    </div>
+    <div class="card elev-sm" style="flex:1 1 min(100%,240px);padding:20px;gap:6px;">
+      <span class="card-kicker">Quoted from the system</span>
+      <span style="font-size:15px;line-height:1.45;">Versions, release dates and the "350+ / 29 / 6 / 2" figures are Pathfinder's own published claims.</span>
+    </div>
+    <div class="card elev-sm" style="flex:1 1 min(100%,240px);padding:20px;gap:6px;">
+      <span class="card-kicker">Two timelines</span>
+      <span style="font-size:15px;line-height:1.45;">I was at Avant from May 2021 to August 2024. Pathfinder 2.0 shipped June to August 2026. I don't claim results from one for the other.</span>
+    </div>
+  </div>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">01 · Intake</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">brief-intake</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:22ch;">What the system is for</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 14px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">AVANT's partners log into the portal to run their business: pipelines, orders, analytics, reporting. The screens are dense and dark, and there are a lot of them. Pathfinder's job is to keep them consistent enough that a partner doesn't relearn the interface on every page.</p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The second job is maintenance. I was the only person on the system, working with three engineers and a PM, so anything that needed me in the room to stay correct was going to rot.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;">
+        <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Constraints</span><span style="font-size:14px;line-height:1.5;">Dark first, two themes. Token names had to sit alongside an enterprise convention already in the stack, which is why the alias layer looks like a platform API instead of something I'd have designed from scratch.</span></div>
+        <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Success measure</span><span style="font-size:14px;line-height:1.5;">One pattern per problem, and a theme you can change by editing tokens instead of components.</span></div>
+        <div class="card elev-sm" style="padding:20px;gap:8px;"><span class="card-kicker">Non-goals</span><span style="font-size:14px;line-height:1.5;">A rebrand. Components for screens nobody has designed. Component count as a scoreboard.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">02 · Inventory</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">ds-inventory</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:22ch;">Count what's actually there</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">This step is a grep, not a guess. The stylesheet declares 1,146 custom properties. Here is how they split.</p>
+
+      <div style="margin-bottom:8px;display:flex;justify-content:space-between;font-size:12px;color:color-mix(in srgb, var(--color-text) 65%, transparent);"><span>Three tiers, one sheet</span><span style="font-variant-numeric:tabular-nums;">1,146 total</span></div>
+      <div style="display:flex;height:34px;border-radius:var(--radius-sm);overflow:hidden;gap:2px;margin-bottom:12px;">
+        <div style="flex:0 0 4.45%;background:var(--color-accent-200);"></div>
+        <div style="flex:0 0 21.2%;background:var(--color-accent-500);"></div>
+        <div style="flex:1 1 auto;background:var(--color-accent-800);border:1px solid var(--color-accent-700);"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:14px;margin-bottom:32px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;"><span style="flex:0 0 10px;height:10px;margin-top:8px;border-radius:2px;background:var(--color-accent-200);"></span><div><div style="font-size:24px;line-height:1;font-variant-numeric:tabular-nums;">51</div><div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:4px;">Primitives. Small and closed. The healthiest part of the inventory.</div></div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;"><span style="flex:0 0 10px;height:10px;margin-top:8px;border-radius:2px;background:var(--color-accent-500);"></span><div><div style="font-size:24px;line-height:1;font-variant-numeric:tabular-nums;">243</div><div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:4px;">Semantic layer. Documented as the one components use. They don't. See the first finding.</div></div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;"><span style="flex:0 0 10px;height:10px;margin-top:8px;border-radius:2px;background:var(--color-accent-800);border:1px solid var(--color-accent-700);"></span><div><div style="font-size:24px;line-height:1;font-variant-numeric:tabular-nums;">852</div><div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:4px;">Alias layer. What components actually read. The real public API.</div></div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:20px;margin-bottom:28px;">
+        <div class="card elev-sm" style="padding:20px;gap:10px;">
+          <span class="card-kicker">Depth of the second theme</span>
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:32px;line-height:1;font-variant-numeric:tabular-nums;">75</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent);">of 1,146 tokens overridden</span></div>
+          <div style="height:8px;border-radius:4px;background:var(--color-neutral-800);overflow:hidden;"><div style="width:6.5%;height:100%;background:var(--color-accent);"></div></div>
+          <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);">The true size of "2 themes." The rest of the sheet still has dark values baked in.</span>
+        </div>
+        <div class="card elev-sm" style="padding:20px;gap:10px;">
+          <span class="card-kicker">Components you can import</span>
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:32px;line-height:1;font-variant-numeric:tabular-nums;">18</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent);">of 29 documented exist as classes</span></div>
+          <div style="height:8px;border-radius:4px;background:var(--color-neutral-800);overflow:hidden;"><div style="width:62%;height:100%;background:var(--color-accent);"></div></div>
+          <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);">The other eleven are built inline in their own docs pages. Readable, not reusable.</span>
+        </div>
+        <div class="card elev-sm" style="padding:20px;gap:10px;">
+          <span class="card-kicker">Docs vs. system</span>
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:32px;line-height:1;font-variant-numeric:tabular-nums;">69</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent);">documentation-only classes</span></div>
+          <div style="height:8px;border-radius:4px;background:var(--color-neutral-800);overflow:hidden;display:flex;gap:2px;"><div style="width:20.7%;height:100%;background:var(--color-accent);"></div><div style="width:79.3%;height:100%;background:var(--color-neutral-600);"></div></div>
+          <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);">Against 18 component classes. The site explaining the system is bigger than the system.</span>
+        </div>
+      </div>
+
+      <div style="padding:22px 24px;border-radius:var(--radius-lg);background:var(--color-accent-900);border:1px solid var(--color-accent-800);">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-200);margin-bottom:12px;">Claims that don't match the code</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px;">
+          <div>
+            <div style="font-size:22px;line-height:1.2;margin-bottom:6px;"><span style="color:color-mix(in srgb, var(--color-text) 55%, transparent);text-decoration:line-through;">350+</span> <span style="color:var(--color-accent-100);font-variant-numeric:tabular-nums;">1,146</span> <span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent);">tokens</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 85%, transparent);">The homepage says one, the stylesheet ships the other. Either is arguable depending on what you count. Publishing one and shipping the other isn't.</p>
+          </div>
+          <div>
+            <div style="font-size:22px;line-height:1.2;margin-bottom:6px;"><span style="font-variant-numeric:tabular-nums;">6</span> <span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent);">foundations, then</span> <span style="font-variant-numeric:tabular-nums;color:var(--color-accent-100);">9</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 85%, transparent);">The stat row and the card forty pixels below it disagree. Nobody downstream can quote the system's own size.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">03 · Audit</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">heuristic-audit</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">Five findings, each with a file behind it</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The severities are my call. The evidence isn't. Each one names where it lives, so the team can argue about the ranking without arguing about the facts.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card elev-md" style="padding:0;flex-direction:row;overflow:hidden;">
+          <div style="flex:0 0 6px;background:var(--color-accent);"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span class="tag tag-accent">Sev 1</span>
+              <span style="font-size:18px;font-weight:500;line-height:1.3;">Two semantic layers, and components use the wrong one</span>
+            </div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Tier 2 is documented as the layer components consume. They don't. Every component I checked reads from the alias layer instead. So the 243 tokens a maintainer is told to edit aren't the ones painting the screen.</p>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);"><strong>Cost:</strong> someone changes a token correctly, nothing happens, and they conclude the cascade is broken rather than bypassed.</p>
+            <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: the tier-2 block in src/index.css against var(--pfContent_*) usage across src/pages.</span>
+          </div>
+        </div>
+
+        <div class="card elev-md" style="padding:0;flex-direction:row;overflow:hidden;">
+          <div style="flex:0 0 6px;background:var(--color-accent);"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span class="tag tag-accent">Sev 1</span>
+              <span style="font-size:18px;font-weight:500;line-height:1.3;">The contrast table cites tokens this system doesn't define</span>
+            </div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Six ratios are listed against foreground names from the upstream enterprise system, not Pathfinder's own. The numbers may well be right. There's no way to check them from the page.</p>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);"><strong>Cost:</strong> WCAG AA is the headline compliance claim, resting on a table that can't be traced to a token in this codebase.</p>
+            <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: src/pages/foundations/Accessibility.tsx, lines 24–30.</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;">
+          <div class="card elev-sm" style="padding:0;flex-direction:row;overflow:hidden;">
+            <div style="flex:0 0 6px;background:var(--color-accent-700);"></div>
+            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span class="tag tag-outline">Sev 2</span>
+                <span style="font-size:16px;font-weight:500;line-height:1.3;">29 documented, 18 you can use</span>
+              </div>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The rest are built inline inside their own documentation pages. You can read them. You can't import them. Adoption quietly becomes copy-paste, which is how drift starts.</p>
+              <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: 18 distinct .pf-* classes in src/index.css; 24 component pages on disk.</span>
+            </div>
+          </div>
+          <div class="card elev-sm" style="padding:0;flex-direction:row;overflow:hidden;">
+            <div style="flex:0 0 6px;background:var(--color-accent-700);"></div>
+            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span class="tag tag-outline">Sev 2</span>
+                <span style="font-size:16px;font-weight:500;line-height:1.3;">The light theme is 75 tokens deep</span>
+              </div>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Seventy-five overrides out of 1,146 is a proof of concept. "2 themes" promises something the token layer can't deliver yet, and the breakage lands wherever nobody demoed in light mode.</p>
+              <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: the [data-theme="light"] block in src/index.css.</span>
+            </div>
+          </div>
+          <div class="card elev-sm" style="padding:0;flex-direction:row;overflow:hidden;">
+            <div style="flex:0 0 6px;background:var(--color-neutral-600);"></div>
+            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span class="tag tag-neutral">Sev 3</span>
+                <span style="font-size:16px;font-weight:500;line-height:1.3;">The contrast ratios are typed in by hand</span>
+              </div>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 88%, transparent);">They sit in a page file as text, so they can't go stale and they can't fail. If a pair drops below AA, the badge stays green. Cheapest fix on this list.</p>
+              <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Evidence: the contrastRows literal in Accessibility.tsx.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;padding:26px 28px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-neutral-800);">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px;">What I'd do first</div>
+        <p style="margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;font-weight:500;max-width:40ch;">Name the alias layer as the public API and mark tier 2 internal. Then generate the contrast table from the tokens it describes.</p>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:62ch;">That clears the first finding, turns the third into a scoped build task, and makes the accessibility claim something a release can fail on. The cleaner option, moving all 29 components onto tier 2, takes weeks and no partner would see a difference.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">04 · Map</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">flow-map</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:22ch;">How people actually move through it</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Pathfinder ships a map of itself, and the part worth keeping is that the arrows are typed. If every line on a diagram means the same thing, it can't tell you what breaks when you change a token.</p>
+
+      <div style="position:relative;padding:8px 0;margin-bottom:22px;">
+        <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right, transparent, var(--color-accent-600) 12%, var(--color-accent-600) 88%, transparent);"></div>
+        <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;">
+          <div class="card elev-sm" style="padding:16px;gap:6px;border-color:var(--color-accent-700);"><span class="card-kicker" style="color:var(--color-accent);">01 · Entry</span><span style="font-size:14px;line-height:1.45;">Overview: what's new, quick start</span></div>
+          <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">02 · Foundations</span><span style="font-size:14px;line-height:1.45;">Tokens, type, grid, motion, accessibility</span></div>
+          <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">03 · Components</span><span style="font-size:14px;line-height:1.45;">Form controls, data display, navigation, overlays</span></div>
+          <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">04 · Patterns</span><span style="font-size:14px;line-height:1.45;">Forms, data viz, search, empty, loading, error</span></div>
+          <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">05 · Dashboards</span><span style="font-size:14px;line-height:1.45;">Executive, partner analytics, sales pipeline</span></div>
+          <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">06 · Resources</span><span style="font-size:14px;line-height:1.45;">tokens.json, migration guides, changelog</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px 22px;margin-bottom:24px;font-size:13px;color:color-mix(in srgb, var(--color-text) 75%, transparent);">
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:var(--color-accent);"></span>Reading order</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:var(--color-accent-300);"></span>Token dependency</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:repeating-linear-gradient(90deg,var(--color-accent-500) 0 5px,transparent 5px 8px);"></span>Composition</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:repeating-linear-gradient(90deg,var(--color-neutral-300) 0 2px,transparent 2px 5px);"></span>Renders in</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:22px;height:2px;background:repeating-linear-gradient(90deg,var(--color-neutral-400) 0 6px,transparent 6px 8px);"></span>Exports to</span>
+      </div>
+
+      <p style="font-size:16px;line-height:1.6;margin:0;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The map encodes a path: learn the cascade, use components, compose patterns, build dashboards. That is also the order in which a new engineer stops asking me questions. That's the only adoption signal this artifact supports, and it's a soft one.</p>
+    </div>
+  </section>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">05 · Standards</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">copy-standards · a11y-spec</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:22ch;">Type and contrast are part of the library</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">Five roles carry the whole portal, shown here in their own faces. The rule that does the most work is the last one: every number, ID and timestamp is monospaced, which is what makes a dense table scannable.</p>
+
+      <div style="border:1px solid var(--color-neutral-800);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:28px;">
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--color-neutral-800);">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(30px,4vw,44px);line-height:0.95;letter-spacing:0.01em;">Display XL</div>
+          <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);"><span style="color:var(--color-text);font-variant-numeric:tabular-nums;">56 · 800</span> · Barlow Condensed<br>Page heroes, one per screen</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--color-neutral-800);">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(22px,3vw,30px);line-height:1;letter-spacing:0.02em;">Display M</div>
+          <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);"><span style="color:var(--color-text);font-variant-numeric:tabular-nums;">32 · 800</span> · Barlow Condensed<br>Dashboard and card headings</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--color-neutral-800);">
+          <div style="font-size:14px;line-height:1.55;">Body M, the default. Table cells, form values, most prose.</div>
+          <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);"><span style="color:var(--color-text);font-variant-numeric:tabular-nums;">13 · 400</span> · Inter</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--color-neutral-800);">
+          <div style="font-size:12px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;">Label · section headers, table heads, metadata keys</div>
+          <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);"><span style="color:var(--color-text);font-variant-numeric:tabular-nums;">11 · 700</span> · Inter, uppercase</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:center;padding:18px 22px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:var(--color-accent-200);">--pfContent_ForegroundColor · 2026-08-06 · $38,900</div>
+          <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 70%, transparent);"><span style="color:var(--color-text);font-variant-numeric:tabular-nums;">12 · 400</span> · JetBrains Mono<br>Every number, token, ID, timestamp</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px;">
+        <div class="card elev-sm" style="padding:24px;gap:14px;">
+          <span class="card-kicker">Contrast, as documented</span>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:color-mix(in srgb, var(--color-text) 75%, transparent);">Foreground on base</span><span style="font-variant-numeric:tabular-nums;">16.1:1 · AAA</span></div><div style="height:6px;border-radius:3px;background:var(--color-neutral-800);position:relative;"><div style="width:100%;height:100%;border-radius:3px;background:var(--color-accent-300);"></div><div style="position:absolute;left:28%;top:-3px;width:1px;height:12px;background:var(--color-neutral-300);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:color-mix(in srgb, var(--color-text) 75%, transparent);">Label on base</span><span style="font-variant-numeric:tabular-nums;">7.4:1 · AA</span></div><div style="height:6px;border-radius:3px;background:var(--color-neutral-800);position:relative;"><div style="width:46%;height:100%;border-radius:3px;background:var(--color-accent-400);"></div><div style="position:absolute;left:28%;top:-3px;width:1px;height:12px;background:var(--color-neutral-300);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:color-mix(in srgb, var(--color-text) 75%, transparent);">Highlight on base</span><span style="font-variant-numeric:tabular-nums;">5.8:1 · AA</span></div><div style="height:6px;border-radius:3px;background:var(--color-neutral-800);position:relative;"><div style="width:36%;height:100%;border-radius:3px;background:var(--color-accent-500);"></div><div style="position:absolute;left:28%;top:-3px;width:1px;height:12px;background:var(--color-neutral-300);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:color-mix(in srgb, var(--color-text) 75%, transparent);">Positive on base</span><span style="font-variant-numeric:tabular-nums;">4.7:1 · AA</span></div><div style="height:6px;border-radius:3px;background:var(--color-neutral-800);position:relative;"><div style="width:29%;height:100%;border-radius:3px;background:var(--color-accent-500);"></div><div style="position:absolute;left:28%;top:-3px;width:1px;height:12px;background:var(--color-neutral-300);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:color-mix(in srgb, var(--color-text) 75%, transparent);">Disabled on base</span><span style="font-variant-numeric:tabular-nums;">3.1:1 · AA Large</span></div><div style="height:6px;border-radius:3px;background:var(--color-neutral-800);position:relative;"><div style="width:19%;height:100%;border-radius:3px;background:var(--color-neutral-500);"></div><div style="position:absolute;left:28%;top:-3px;width:1px;height:12px;background:var(--color-neutral-300);"></div></div></div>
+          </div>
+          <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Tick marks the 4.5:1 AA line. Quoted from the system as published. Findings two and five apply, so read these as documented rather than measured.</span>
+        </div>
+        <div class="card elev-sm" style="padding:24px;gap:12px;">
+          <span class="card-kicker">Rules I'd add before the next release</span>
+          <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.55;display:flex;flex-direction:column;gap:8px;">
+            <li>Status never travels by color alone. Every semantic fill gets a label or an icon.</li>
+            <li>An error says what happened and what to do next. "Something went wrong" is a bug, not a string.</li>
+            <li>Numeric columns are monospaced, right-aligned, one unit per column.</li>
+            <li>Contrast pairs are generated from their tokens and block the release when they fail.</li>
+            <li>Focus stays visible at 2px in both themes, checked in light mode too.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div>
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">06 · Critique</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">critique</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 24px;max-width:24ch;">The three best arguments against this work</h2>
+      <div style="display:flex;flex-direction:column;gap:0;max-width:72ch;">
+        <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);">
+          <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"1,146 tokens for 29 components means the system is serving its own documentation."</div>
+          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">Fair. That ratio comes from mirroring an enterprise token API rather than deriving one from the product. It bought interoperability and cost legibility. I'd defend the 51 primitives underneath, which is what makes the other 1,095 mechanical. I wouldn't defend publishing all three tiers as if they were equally public.</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);">
+          <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"Six releases in ten weeks is velocity, not adoption."</div>
+          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">Right, and the changelog can't tell the two apart. It shows the system was maintained, not that anyone used it. That's why section 08 is a measurement plan instead of a results section.</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px 32px;padding:22px 0;border-top:1px solid var(--color-neutral-800);border-bottom:1px solid var(--color-neutral-800);">
+          <div style="flex:1 1 min(100%,240px);font-size:19px;font-weight:500;line-height:1.35;">"A system with one contributor is a single point of failure."</div>
+          <div style="flex:1.4 1 min(100%,280px);font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 85%, transparent);">True here and true at Avant. I documented decisions, dated the deprecations, and exported tokens for Figma, but none of that erases the risk. The findings above are what one author's blind spots look like when someone finally audits them. I'd rather say this in week one than have a client find it at handoff.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">07 · Governance</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">handoff-spec</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">Six releases, dated, with the breakage written down</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 28px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">The strongest governance evidence in Pathfinder is its release record. It's versioned, dated, and specific about what changed. I'd carry this part into a client system unchanged.</p>
+      <div style="position:relative;padding-left:30px;">
+        <div style="position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom, var(--color-accent) 0%, var(--color-accent-700) 40%, transparent);"></div>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <div style="position:relative;">
+            <div style="position:absolute;left:-30px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 10px var(--color-accent-500);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-accent">v2.1.0</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Aug 6, 2026</span><span style="font-size:16px;font-weight:500;">The full token suite</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Semantic, field, shell, chart, avatar and indication colors land together. Nav grows to five sections and 29 items.</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-28px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--color-neutral-600);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-outline">v2.0.5</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Jul 22, 2026</span><span style="font-size:16px;font-weight:500;">Component expansion</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Badge, notification, avatar, tabs, and an eight-state input playground. Two fixes logged against named tokens rather than "polish".</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-28px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--color-neutral-600);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-outline">v2.0.4</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Jul 10, 2026</span><span style="font-size:16px;font-weight:500;">Showcase mode</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Six preset layouts assembled from the library, for showing a stakeholder that the parts fit together.</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-28px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--color-neutral-600);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-outline">v2.0.3</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Jun 28, 2026</span><span style="font-size:16px;font-weight:500;">Interactive foundations</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Motion becomes tokens: durations and easing curves. Spacing renamed to match the platform convention.</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-28px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--color-neutral-600);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-outline">v2.0.2</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Jun 14, 2026</span><span style="font-size:16px;font-weight:500;">Dark theme refinements</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Disabled text brought up to AA Large, focus width unified at 2px, one token deprecated with its replacement named.</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-28px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--color-neutral-600);"></div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;"><span class="tag tag-outline">v2.0.0</span><span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums;">Jun 1, 2026</span><span style="font-size:16px;font-weight:500;">Initial release</span></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:60ch;">Four foundations, the core components, and theme switching by data attribute from the start rather than retrofitted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div>
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">08 · Measurement</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">the honest ending</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 16px;max-width:24ch;">What I'd instrument, and the rule set before the first reading</h2>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 24px;max-width:62ch;color:color-mix(in srgb, var(--color-text) 88%, transparent);">A case study usually ends with a percentage here. I don't have one for Pathfinder that I can source, so it ends with the part that transfers instead: the instrument, and what we agree to do about the result before anyone sees it. Agreeing afterward is how a metric ends up decorating a decision that was already made.</p>
+      <table class="table" style="width:100%;font-size:14px;">
+        <thead><tr><th style="width:22%;">Metric</th><th style="width:28%;">Instrument</th><th>Rule, agreed in advance</th></tr></thead>
+        <tbody>
+          <tr><td>Token coverage</td><td>Lint for raw hex and px in component source</td><td>A new literal fails the build. Existing ones go on a dated list that only shrinks.</td></tr>
+          <tr><td>Theme parity</td><td>Tokens the light theme overrides, against the total</td><td>Published as a number. Below the agreed floor, "2 themes" comes off the homepage.</td></tr>
+          <tr><td>Contrast</td><td>Ratios computed from tokens at build time, both themes</td><td>A pair under its target blocks the release.</td></tr>
+          <tr><td>Adoption</td><td>Imports of library components per release, by repo</td><td>Flat while releases keep shipping means the library is being read, not used. That stops feature work until it's understood.</td></tr>
+          <tr><td>Patterns per problem</td><td>A quarterly re-run of the inventory in section 02</td><td>Two implementations of one problem becomes a ticket with an owner and a date.</td></tr>
+          <tr><td>Support contacts</td><td>Partner tickets tagged with the pattern vocabulary</td><td>Whatever generates the most contact is next. It's the cheapest research the business already pays for.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  </div>
+
+  <div>
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+    <div style="flex:0 0 140px;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">09 · Gaps</div>
+      <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">what I can't source</div>
+    </div>
+    <div style="flex:1 1 min(100%,520px);">
+      <h2 style="font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0 0 22px;max-width:20ch;">Four things I don't know</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;">
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">01</span><span style="font-size:16px;font-weight:500;line-height:1.35;">How much of the portal ran on system components by 2024</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">I can't evidence it, so I'm not claiming a share. An import census per repo would settle it.</span></div>
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">02</span><span style="font-size:16px;font-weight:500;line-height:1.35;">Whether any of this improved a partner outcome</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">It was never instrumented in a form I can cite. Section 08 is what I'd have built instead.</span></div>
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">03</span><span style="font-size:16px;font-weight:500;line-height:1.35;">The real component count</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">29 documented, 24 have pages, 18 exist as classes. Three numbers, three meanings, one of them published.</span></div>
+        <div class="card elev-sm" style="padding:22px;gap:8px;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">04</span><span style="font-size:16px;font-weight:500;line-height:1.35;">Whether Figma and the coded tokens agree</span><span style="font-size:14px;line-height:1.55;color:color-mix(in srgb, var(--color-text) 78%, transparent);">The system exports a tokens.json, but nothing checks the two directions against each other. Until something does, parity is an intention.</span></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+
+  <section style="background:var(--color-section);border-radius:var(--radius-lg);padding:clamp(32px,5vw,56px);">
+    <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-100);margin-bottom:20px;">What transfers</div>
+    <h2 style="font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 20px;max-width:22ch;">Count it, cite it, say what you don't know</h2>
+    <p style="font-size:17px;line-height:1.55;max-width:60ch;margin:0 0 28px;color:var(--color-neutral-100);">Dense B2B software rewards the same few habits. Inventory before you propose anything. Attach a file to every finding so the argument stays about the work. End on an instrument rather than a number you'd have to defend. The skill library is that method written down, and this page is what happens when I point it at my own system.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;">
+      <a class="btn btn-primary" href="skill-library.html">Read the skill library</a>
+      <a class="btn btn-secondary" href="process-walkthrough.html">See the process deck</a>
+    </div>
+  </section>
+
+</div>
+</div>
+</body>
+</html>
