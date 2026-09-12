@@ -18,12 +18,13 @@ section[id] [style*="background:#f3f3f3"]{background:var(--p-paper)!important}
 
 /* ── Buttons ────────────────────────────────────────────── */
 /* card link-lines on the front page become pills */
-a[class^="hv"] > span:last-child{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--p-ink);color:var(--p-paper);padding:12px 20px;border-radius:64px;font-size:14px;transition:background .15s,transform .15s}
-a[class^="hv"]:hover > span:last-child{background:var(--p-cobalt);transform:translateX(2px)}
-a[class^="hv"][style*="background:#000000"] > span:last-child{background:var(--p-mint);color:var(--p-ink)}
-a[class^="hv"][style*="background:#000000"]:hover > span:last-child{background:var(--p-volt)}
+#artifacts a[class^="hv"] > span:last-child{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--p-ink);color:var(--p-paper);padding:12px 20px;border-radius:64px;font-size:14px;transition:background .15s,transform .15s}
+#artifacts a[class^="hv"]:hover > span:last-child{background:var(--p-cobalt);transform:translateX(2px)}
+#artifacts a[class^="hv"][style*="background:#000000"] > span:last-child{background:var(--p-mint);color:var(--p-ink)}
+#artifacts a[class^="hv"][style*="background:#000000"]:hover > span:last-child{background:var(--p-volt)}
 /* small file cards: the title line reads as the action */
 section[aria-label="Files and examples"] a > span:nth-child(2){text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+section[aria-label="Files and examples"] a > span:nth-child(2)::after{content:" →";font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px}
 /* closing block links */
 a[href^="mailto:"]{display:inline-block;padding:14px 22px!important;border-radius:64px!important;font-size:16px;font-weight:500;background:var(--p-volt)!important;color:var(--p-ink)!important}
 a[href^="mailto:"]:hover{background:var(--p-mint)!important}
