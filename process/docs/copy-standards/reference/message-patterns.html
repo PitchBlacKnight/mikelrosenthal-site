@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Message patterns, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../../process.css">
+<link rel="stylesheet" href="../../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../../assets/follow-the-leader.jpg" src="../../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../../index.html">Home</a><a href="../../../working-with-me.html">Method</a><a href="../../../process-walkthrough.html">Deck</a><a href="../../../skill-library.html">Skills</a><a href="../../../pathfinder-case-study.html">Case study</a><a href="../../../intake.html">Intake</a><a href="../../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#d1ffca"><span class="chip">Docs · skills/copy-standards/reference/message-patterns.md</span><h1 class="disp">Message patterns</h1></header><div class="doclayout"><article class="doc"><h2 id="errors">Errors</h2>
+<p><strong>Pattern:</strong> what happened → why → what to do now.</p>
+<div class="tbl"><table><thead><tr><th>Don't</th><th>Do</th></tr></thead><tbody><tr><td>Error 422</td><td>We couldn't save this — the invoice date is before the contract start. Pick a later date.</td></tr><tr><td>Invalid input</td><td>Card numbers are 16 digits. This one has 15.</td></tr><tr><td>Something went wrong</td><td>We couldn't reach the payment service. Nothing was charged. Try again in a moment.</td></tr><tr><td>You failed to complete required fields</td><td>Three fields still need an answer — they're marked below.</td></tr></tbody></table></div>
+<p>Never lose the user's input on an error. Ever.</p>
+<h2 id="partial-failure">Partial failure</h2>
+<p>State the split, name the failures, offer one action.</p>
+<blockquote><p>9 of 10 jobs were rescheduled. <strong>Job 4417</strong> failed — the technician is no longer available that day. [Reschedule job 4417]</p></blockquote>
+<h2 id="empty-states">Empty states</h2>
+<div class="tbl"><table><thead><tr><th>Kind</th><th>Pattern</th></tr></thead><tbody><tr><td>First run</td><td>What this is for · what to do first · the action</td></tr><tr><td>Cleared</td><td>What used to be here · how to get more · the action</td></tr><tr><td>No results</td><td>What was searched · why nothing matched · how to widen it</td></tr><tr><td>Permission</td><td>What this is · who can grant access · how to ask</td></tr></tbody></table></div>
+<h2 id="buttons">Buttons</h2>
+<p>Verb + object, sentence case. "Send invoice", "Delete draft", "Add technician". Not "Submit", "OK", "Yes".</p>
+<p>The confirm button in a destructive dialog names the destruction: "Delete 14 jobs", not "Confirm".</p>
+<h2 id="confirmations">Confirmations</h2>
+<p>Only for the irreversible or the expensive. Name the consequence and the count. If you can offer undo instead, offer undo instead.</p>
+<h2 id="loading">Loading</h2>
+<p>Under 1s: nothing. 1–3s: an indicator. Over 3s: say what is happening and, if you can, how far along it is. Over 10s: let them leave and tell them when it's done.</p>
+<h2 id="voice">Voice</h2>
+<p>Write it like a competent colleague who is slightly in a hurry: plain, specific, never cute in an error. No exclamation marks in failure states. No apology theatre — one "sorry" per product, at most, and not in routine validation.</p></article><aside class="side"><div class="box"><h3>copy-standards</h3><a href="../SKILL.html">Copy standards</a><a href="message-patterns.html" aria-current="page">Message patterns</a><a class="raw" href="../../../skills/copy-standards/reference/message-patterns.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../../docs/index.html">All documents</a><a href="../../../skill-library.html">Skill library page</a><a href="../../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../../skill-library.html">Skill library</a><a href="../../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

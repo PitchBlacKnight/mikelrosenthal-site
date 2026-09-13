@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Heuristic audit, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/heuristic-audit/SKILL.md</span><h1 class="disp">Heuristic audit</h1><p class="desc">Evaluate a live product or a set of screens against usability heuristics and WCAG 2.2, producing severity-rated findings with a cost and a sequenced fix list. Use for a UX audit, a product overview of something that already exists, or a competitive teardown.</p></header><div class="doclayout"><article class="doc"><p>An audit that lists sins is worthless. An audit that ranks findings by frequency × severity, attaches a cost, and sequences the fixes is a plan.</p>
+<h2 id="when-to-use">When to use</h2>
+<ul><li>A product exists and the question is whether it works</li><li>Track B of an evaluation — the product-overview entry point</li><li>Teardown of a competitor, for the same rubric applied consistently</li></ul>
+<h2 id="procedure">Procedure</h2>
+<ol><li><strong>Read <code>project-brief.md</code> first.</strong> Audit against the job the product is supposed to do, not against generic best practice.</li><li><strong>Pick the flows.</strong> Two or three critical paths, end to end. An audit of "the product" is an audit of nothing.</li><li><strong>Walk each flow in every state you can reach</strong> — first run, empty, populated, error, slow network, keyboard only.</li><li><strong>Score against <code>reference/rubric.md</code>.</strong> Every finding gets: heuristic violated, evidence (screen + what happened), severity, frequency, cost.</li><li><strong>Run the accessibility pass separately</strong> using the WCAG 2.2 checklist in <code>a11y-spec/reference/wcag22-checklist.md</code>. Do not fold it into the general pass — it has different evidence rules.</li><li><strong>Sequence the fixes.</strong> Group by where the fix lands (a primitive, a pattern, a screen). Fixing one primitive often closes ten findings — say so.</li><li><strong>Write the report</strong> using <code>templates/audit-report.md</code>.</li></ol>
+<h2 id="severity-scale">Severity scale</h2>
+<div class="tbl"><table><thead><tr><th>Level</th><th>Meaning</th></tr></thead><tbody><tr><td>1 — Cosmetic</td><td>Noticed, not blocking. Fix when nearby.</td></tr><tr><td>2 — Minor</td><td>Slows people down or looks unconsidered.</td></tr><tr><td>3 — Major</td><td>People fail the task or work around it. Fix this release.</td></tr><tr><td>4 — Critical</td><td>Data loss, a dead end, a compliance exposure, or an accessibility barrier. Fix now.</td></tr></tbody></table></div>
+<p>Frequency: how many users hit it, how often. Severity 2 at high frequency outranks severity 3 at the margins — say which you are recommending and why.</p>
+<h2 id="rules">Rules</h2>
+<ul><li>Every finding carries evidence. "Feels cluttered" is not evidence; "seven primary actions compete at equal weight in the header" is.</li><li>Never report a count you did not count.</li><li>Say what you could not test — no account, no data, no device.</li><li>Findings without a cost get cut, not softened.</li></ul>
+<h2 id="bundled-files">Bundled files</h2>
+<ul><li><code>reference/rubric.md</code> — the heuristics, with what evidence each requires</li><li><code>templates/audit-report.md</code> — the output format</li></ul></article><aside class="side"><div class="box"><h3>heuristic-audit</h3><a href="SKILL.html" aria-current="page">Heuristic audit</a><a href="reference/rubric.html">Audit rubric</a><a href="templates/audit-report.html">{Product} — UX audit</a><a class="raw" href="../../skills/heuristic-audit/SKILL.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

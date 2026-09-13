@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Meridian design system — inventory and drift, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#ffd9c2"><span class="chip">Docs · skills/examples/02-drift-report.md</span><h1 class="disp">Meridian design system — inventory and drift</h1></header><div class="doclayout"><article class="doc"><blockquote><p><strong>Composite example.</strong> All numbers invented for illustration.</p></blockquote>
+<blockquote><p>Inventoried from: <code>web-portal</code> @ <code>release/2026.2</code>, <code>agent-console</code> @ <code>main</code>, and 48 production screens captured 2026-03-18 Not inventoried: the native iOS shell (no source access), three admin screens behind a role we were not granted Date: 2026-03-20</p></blockquote>
+<h2 id="headline">Headline</h2>
+<p>Sixty-one per cent of production screens contain at least one detached component, and the portal ships 31 grey values against a declared ramp of 6. Together these mean the announced 2027 rebrand cannot be executed by changing tokens — it would be a manual edit of roughly 400 instances.</p>
+<p><strong>Fix the colour primitives first.</strong> One change — collapsing greys onto the declared ramp and re-pointing components at semantic tokens — closes eleven of the nineteen findings below and is the precondition for every other fix.</p>
+<h2 id="coverage">Coverage</h2>
+<div class="tbl"><table><thead><tr><th></th><th>Count</th></tr></thead><tbody><tr><td>Components in the library</td><td>84</td></tr><tr><td>Components actually used in production</td><td>52</td></tr><tr><td>Library components used nowhere</td><td>32</td></tr><tr><td>Bespoke components not in the library</td><td>27</td></tr><tr><td>Screens audited</td><td>48</td></tr><tr><td>Screens with at least one detached instance</td><td>29 (61%)</td></tr></tbody></table></div>
+<p>Thirty-two unused library components is the more interesting number. Six of them duplicate bespoke components teams built instead — which is a discoverability failure, not a discipline failure.</p>
+<h2 id="token-diff">Token diff</h2>
+<div class="tbl"><table><thead><tr><th>Token</th><th>Declared</th><th>Used</th><th>Finding</th><th>Cost</th></tr></thead><tbody><tr><td>Greys</td><td>6 steps</td><td>31 distinct values</td><td>Used and undeclared</td><td>Re-theming impossible; 400+ manual edits</td></tr><tr><td>Brand blue</td><td><code>color.brand.500</code></td><td>4 near-values (#1B5FD9, #1C5FD9, #1B60DA, #2060D9)</td><td>Copy-paste drift</td><td>Reads as sloppy at scale; no single source</td></tr><tr><td>Spacing</td><td>8px scale</td><td>17 values, 9 off-scale</td><td>Off-scale usage</td><td>Vertical rhythm reads accidental</td></tr><tr><td><code>color.text.primary</code></td><td>declared</td><td>components reference <code>color.neutral.900</code> directly</td><td>Tier bypass</td><td>Dark mode would require touching every component</td></tr><tr><td>Radius</td><td>4 steps</td><td>4 steps</td><td>Clean</td><td>—</td></tr><tr><td><code>button.danger.*</code></td><td>declared</td><td>unused</td><td>Dead weight</td><td>Documented but nobody found it; two teams built their own</td></tr><tr><td>Type scale</td><td>9 steps</td><td>14 sizes</td><td>5 undeclared</td><td>Hierarchy is inconsistent between the two apps</td></tr></tbody></table></div>
+<h2 id="component-scores">Component scores</h2>
+<p>Five axes, 0–3. Anything scoring 0 on states or accessibility is a finding regardless of total. Ten most-used components shown.</p>
+<div class="tbl"><table><thead><tr><th>Component</th><th>States</th><th>A11y</th><th>Docs</th><th>Adoption</th><th>Code parity</th><th>Total</th></tr></thead><tbody><tr><td>Button</td><td>3</td><td>2</td><td>2</td><td>3</td><td>2</td><td>12</td></tr><tr><td>Text input</td><td>2</td><td>2</td><td>2</td><td>3</td><td>2</td><td>11</td></tr><tr><td>Select</td><td>1</td><td>1</td><td>1</td><td>3</td><td>1</td><td>7</td></tr><tr><td>Data table</td><td>1</td><td>0</td><td>1</td><td>2</td><td>1</td><td>5</td></tr><tr><td>Modal</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>8</td></tr><tr><td>Tabs</td><td>1</td><td>0</td><td>0</td><td>2</td><td>1</td><td>4</td></tr><tr><td>Card</td><td>2</td><td>2</td><td>1</td><td>3</td><td>2</td><td>10</td></tr><tr><td>Alert / banner</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1</td><td>7</td></tr><tr><td>Date picker</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td><td>2</td></tr><tr><td>Pagination</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>4</td></tr></tbody></table></div>
+<p>Date picker scores 0 on states, accessibility and code parity while appearing on every payment-related screen. It is the highest-risk component in the system.</p>
+<h2 id="findings">Findings</h2>
+<div class="tbl"><table><thead><tr><th>#</th><th>Finding</th><th>Count</th><th>Cost</th><th>Fix</th><th>Closes</th></tr></thead><tbody><tr><td>1</td><td>Greys off the declared ramp</td><td>31 values</td><td>Re-theming impossible</td><td>Collapse to 6, re-point components</td><td>1, 4, 7, 9, 11, 12, 14, 15, 16, 18, 19</td></tr><tr><td>2</td><td>Detached instances in production</td><td>29 screens</td><td>Library fixes stop propagating</td><td>Re-link the top 10 flows</td><td>2, 6</td></tr><tr><td>3</td><td>Date picker has no keyboard path</td><td>1 component, 14 screens</td><td>WCAG 2.2 failure on a contractual requirement</td><td>Rebuild the primitive</td><td>3, 10</td></tr><tr><td>4</td><td>Components reference primitives directly</td><td>38 instances</td><td>No theming layer; dark mode impossible</td><td>Insert semantic tier</td><td>—</td></tr><tr><td>5</td><td>Data table has no focus management</td><td>1 component, 9 screens</td><td>Keyboard users cannot operate the core screen</td><td>Rebuild</td><td>—</td></tr><tr><td>6</td><td>Two button implementations in code</td><td>2</td><td>Every screen re-decides</td><td>Collapse, deprecate one</td><td>—</td></tr><tr><td>7</td><td>Off-scale spacing</td><td>9 values</td><td>Rhythm reads accidental</td><td>Snap to the 8pt scale</td><td>—</td></tr></tbody></table></div>
+<p><em>(Findings 8–19 continue in the same format.)</em></p>
+<h2 id="sequenced-fixes">Sequenced fixes</h2>
+<h3 id="now-the-primitives">Now — the primitives</h3>
+<ol><li>Collapse the grey ramp and insert the semantic tier. Closes 11 findings.</li><li>Rebuild the date picker. Contractual WCAG exposure on 14 screens.</li><li>Fix data-table focus management.</li></ol>
+<h3 id="this-quarter">This quarter</h3>
+<ol><li>Re-link detached instances across the top ten flows.</li><li>Collapse the two button implementations; deprecate with a dated notice.</li><li>Snap spacing to the 8-point scale.</li></ol>
+<h3 id="parked-with-the-reason">Parked — with the reason</h3>
+<ul><li>Deleting the 32 unused library components. Parked until the discoverability problem is understood; six of them duplicate bespoke work, which suggests the docs are the fault, not the components.</li><li>Type-scale consolidation. Real, but low-cost until the rebrand lands.</li></ul>
+<h2 id="what-i-could-not-determine">What I could not determine</h2>
+<ul><li>The native iOS shell — no source access. Its drift is unmeasured and likely worse, since it has no coded library at all.</li><li>Three admin screens behind a role we were not granted.</li><li>Whether Code Connect is configured; the engineer who set it up has left. Parity scores above are from a manual read of the source, not from tooling, and should be treated as approximate.</li></ul></article><aside class="side"><div class="box"><h3>Worked examples</h3><a href="01-project-brief.html">Meridian servicing portal — project brief</a><a href="02-drift-report.html" aria-current="page">Meridian design system — inventory and drift</a><a href="03-audit-report.html">Meridian servicing portal — UX audit</a><a href="04-synthesis.html">Meridian borrower research — synthesis</a><a href="05-state-matrix.html">Meridian — payoff quote flow, state matrix</a><a href="06-handoff.html">Meridian payoff quote — handoff</a><a href="07-critique.html">Critique — Meridian payoff quote flow</a><a href="README.html">Worked examples</a><a class="raw" href="../../skills/examples/02-drift-report.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

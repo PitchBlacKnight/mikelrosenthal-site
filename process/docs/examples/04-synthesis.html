@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Meridian borrower research — synthesis, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#ffd9c2"><span class="chip">Docs · skills/examples/04-synthesis.md</span><h1 class="disp">Meridian borrower research — synthesis</h1></header><div class="doclayout"><article class="doc"><blockquote><p><strong>Composite example.</strong> All numbers invented for illustration.</p></blockquote>
+<blockquote><p>Method: moderated, remote, 45 min · Participants: 8 borrowers Recruited: from the servicing contact list, screened for a call in the last 90 days <strong>Missing from this sample:</strong> anyone who never calls — that is, the population the portal already works for. Findings describe callers, not borrowers generally. Informs: assumptions 1, 2 and 3 in <code>01-project-brief.md</code></p></blockquote>
+<h2 id="insights">Insights</h2>
+<h3 id="1-people-call-because-the-portal-starts-the-task-and-cannot-finish-it">1. People call because the portal starts the task and cannot finish it</h3>
+<p><strong>Signal:</strong> observed · <strong>7 of 8 participants</strong></p>
+<p>Seven participants attempted a payoff quote or a date change in the portal before calling. All seven reached a screen instructing them to phone. Six described the call as the portal's fault rather than their own — the distinction matters, because it is the portal's design that is generating the contact, not borrower preference.</p>
+<blockquote><p>"I did it online and then it told me to ring anyway. So now I just ring." — P3</p></blockquote>
+<p><strong>Triangulation:</strong> consistent with the RFP's call-reason ranking. No analytics access to confirm sequence.</p>
+<p><strong>So we should:</strong> treat the dead-end states as the primary design problem and add a tracked "requested" state, rather than redesigning the dashboard's appearance.</p>
+<p>---</p>
+<h3 id="2-the-pending-state-is-invisible-so-people-submit-repeatedly">2. The pending state is invisible, so people submit repeatedly</h3>
+<p><strong>Signal:</strong> observed · <strong>4 of 8 participants</strong></p>
+<p>Four participants submitted a payment-date change more than once in the session because nothing on the screen changed after the first submission. Two then called to ask whether they had done it twice.</p>
+<blockquote><p>"Did that go? I can't tell if that went." — P6</p></blockquote>
+<p><strong>Triangulation:</strong> unavailable — no instrumentation on duplicate submissions. <strong>This is worth instrumenting before design begins</strong>, because it would size the problem.</p>
+<p><strong>So we should:</strong> design the queued state explicitly, with a visible pending status and a reference the borrower can quote on a call.</p>
+<p>---</p>
+<h3 id="3-struggling-borrowers-will-not-use-a-self-service-hardship-flow-unaided">3. Struggling borrowers will not use a self-service hardship flow unaided</h3>
+<p><strong>Signal:</strong> observed and stated · <strong>3 of 3 participants who had requested hardship</strong></p>
+<p>All three said they wanted a person. Two attempted the online flow first and abandoned at the disclosure step — one said she was afraid of agreeing to something she did not understand.</p>
+<blockquote><p>"I didn't want to click agree on something I didn't understand. Not with my house." — P7</p></blockquote>
+<p><strong>Triangulation:</strong> unavailable.</p>
+<p><strong>So we should:</strong> design the hardship path as <em>assisted</em> — the portal prepares and saves the request, a person completes it. <strong>Contradicts assumption 3 directly.</strong></p>
+<p>Caveat stated plainly: n=3. The direction is consistent and the cost of ignoring it is high, but this is not a finding I would size a roadmap on without more.</p>
+<p>---</p>
+<h3 id="4-nobody-read-the-dashboard">4. Nobody read the dashboard</h3>
+<p><strong>Signal:</strong> observed · <strong>8 of 8 participants</strong></p>
+<p>Every participant went straight to the navigation or to search. Not one read the dashboard summary cards. Two could not say what was on them after using the portal for ten minutes.</p>
+<blockquote><p>"I don't look at that bit, I just go to payments." — P1</p></blockquote>
+<p><strong>So we should:</strong> stop treating the dashboard as the centrepiece of the redesign. The brief names it first; the evidence does not support it. <strong>Contradicts assumption 1.</strong></p>
+<h2 id="contradicts-the-brief">Contradicts the brief</h2>
+<div class="tbl"><table><thead><tr><th>Assumption #</th><th>What we assumed</th><th>What we found</th><th>Cost of keeping it</th></tr></thead><tbody><tr><td>1</td><td>Call volume is caused by dashboard design</td><td>Caused by tasks that cannot be completed (7 of 8)</td><td>The engagement redesigns the least-used screen and call volume does not move</td></tr><tr><td>3</td><td>Borrowers will complete a hardship request unaided</td><td>3 of 3 wanted a person; 2 abandoned at disclosure</td><td>Vulnerable users abandon at the worst possible moment, and the guardrail metric worsens</td></tr></tbody></table></div>
+<h2 id="parked">Parked</h2>
+<ul><li>Four participants mentioned wanting payment history exported. Real, but informs no current decision. Recorded so it is not rediscovered as new in month four.</li><li>Two mentioned the mobile app. Out of scope per the brief.</li></ul></article><aside class="side"><div class="box"><h3>Worked examples</h3><a href="01-project-brief.html">Meridian servicing portal — project brief</a><a href="02-drift-report.html">Meridian design system — inventory and drift</a><a href="03-audit-report.html">Meridian servicing portal — UX audit</a><a href="04-synthesis.html" aria-current="page">Meridian borrower research — synthesis</a><a href="05-state-matrix.html">Meridian — payoff quote flow, state matrix</a><a href="06-handoff.html">Meridian payoff quote — handoff</a><a href="07-critique.html">Critique — Meridian payoff quote flow</a><a href="README.html">Worked examples</a><a class="raw" href="../../skills/examples/04-synthesis.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

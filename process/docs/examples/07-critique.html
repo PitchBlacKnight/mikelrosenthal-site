@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Critique — Meridian payoff quote flow, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#ffd9c2"><span class="chip">Docs · skills/examples/07-critique.md</span><h1 class="disp">Critique — Meridian payoff quote flow</h1></header><div class="doclayout"><article class="doc"><blockquote><p><strong>Composite example.</strong> Run against my own work before internal review.</p></blockquote>
+<p>Seven fronts, ranked by cost. Every objection carries a proposal.</p>
+<h2 id="1-critical-the-flow-assumes-a-metric-nobody-has-produced">1 — CRITICAL · The flow assumes a metric nobody has produced</h2>
+<p>The brief lists both primary metrics as UNRESOLVED and they are still unresolved at handoff. This flow is being built on the belief that completable tasks reduce calls — which the research supports at 7 of 8, but which has never been measured here.</p>
+<p><strong>Proposal:</strong> do not ship without instrumentation on the three named tasks, in the same release. If the baseline still does not exist, ship the instrumentation <em>first</em>, in a release of its own. Shipping the redesign into an unmeasured environment means we will never know whether it worked, and the next engagement will start with the same argument.</p>
+<h2 id="2-critical-it-depends-on-a-component-we-have-documented-as-broken">2 — CRITICAL · It depends on a component we have documented as broken</h2>
+<p>The flow reuses the date picker. The drift report scores it 0 on states, accessibility and code parity, and finding 3 records that it has no keyboard path — on a contract that names WCAG 2.2 AA.</p>
+<p><strong>Proposal:</strong> the handoff already marks this blocked, which is right, but "blocked" in a spec is weak. Make the primitive rebuild a dependency in the sprint plan with a named owner, or cut the date field from v1 and default to the standard payoff date. The second option is worse design and ships legally.</p>
+<h2 id="3-major-the-partial-state-is-designed-on-an-assumption-engineering-has-not-confirmed">3 — MAJOR · The partial state is designed on an assumption engineering has not confirmed</h2>
+<p>Open question 1 asks whether the batch can return principal without fees. The partial state is already designed, specified and in the state matrix. If the answer is no, that work is wasted; if the answer is yes but the split is different, it is worse than wasted because it is wrong and looks finished.</p>
+<p><strong>Proposal:</strong> get the answer before sprint 12 planning, not during it. This is one conversation and I should have had it during flow-map, not after.</p>
+<h2 id="4-major-the-structurally-different-approach-was-never-on-the-table">4 — MAJOR · The structurally different approach was never on the table</h2>
+<p>The whole flow assumes the borrower waits for a batch. Nobody costed a same-day quote path — an on-demand calculation for the straightforward cases, with the batch as fallback for the complex ones. Most payoffs are probably simple.</p>
+<p><strong>Proposal:</strong> ask engineering what share of loans could be quoted on demand. If it is over half, the pending state becomes an exception rather than the primary path, and the product is substantially better. I did not ask because the batch constraint arrived early and I accepted it as total.</p>
+<h2 id="5-major-research-says-the-dashboard-doesn-t-matter-and-the-engagement-still-leads-with-it">5 — MAJOR · Research says the dashboard doesn't matter, and the engagement still leads with it</h2>
+<p>Insight 4: 8 of 8 participants ignored the dashboard entirely. The brief names the dashboard redesign as the deliverable. We have not formally raised the contradiction — we have just quietly worked on the flows instead.</p>
+<p><strong>Proposal:</strong> raise it in writing, with the evidence, and propose reallocating the dashboard budget to the hardship flow (research insight 3, call-reason rank 2, currently unaudited because it sat behind a flag). Quietly doing the right work is not the same as getting agreement to do it.</p>
+<h2 id="6-moderate-three-outstanding-states-are-carried-into-handoff">6 — MODERATE · Three outstanding states are carried into handoff</h2>
+<p>Partial failure on pending, offline on quote, and the countdown announcement interval. Two have owners and dates; one is a compliance question that has been open since the walkthrough.</p>
+<p><strong>Proposal:</strong> acceptable to hand off with these marked, but the compliance question needs escalating now — it has been open three weeks and it blocks a state, not a detail.</p>
+<h2 id="7-moderate-the-expiry-countdown-is-the-average-solution">7 — MODERATE · The expiry countdown is the average solution</h2>
+<p>A ticking countdown on a financial quote is what every product does. It creates mild urgency on a page where the borrower is making a large, considered decision, and it required an accessibility workaround to keep it from being unusable.</p>
+<p><strong>Proposal:</strong> test a plain expiry statement — "this quote is valid until midnight on 14 May" — against the countdown. If it performs the same, the simpler version is better and the accessibility problem disappears rather than being mitigated.</p>
+<p>---</p>
+<h2 id="the-single-weakest-decision">The single weakest decision</h2>
+<p><strong>Accepting the nightly-batch constraint as total, in week one, without asking what share of quotes could bypass it.</strong> Everything downstream — the pending state, the reference number, the countdown, three of the seven objections above — descends from that unexamined acceptance. It is the same mistake as last time: taking a stated constraint into wireframes without testing its edges with an engineer first.</p></article><aside class="side"><div class="box"><h3>Worked examples</h3><a href="01-project-brief.html">Meridian servicing portal — project brief</a><a href="02-drift-report.html">Meridian design system — inventory and drift</a><a href="03-audit-report.html">Meridian servicing portal — UX audit</a><a href="04-synthesis.html">Meridian borrower research — synthesis</a><a href="05-state-matrix.html">Meridian — payoff quote flow, state matrix</a><a href="06-handoff.html">Meridian payoff quote — handoff</a><a href="07-critique.html" aria-current="page">Critique — Meridian payoff quote flow</a><a href="README.html">Worked examples</a><a class="raw" href="../../skills/examples/07-critique.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

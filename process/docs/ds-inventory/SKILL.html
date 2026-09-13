@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Design system inventory, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/ds-inventory/SKILL.md</span><h1 class="disp">Design system inventory</h1><p class="desc">Inventory a design system from what actually ships, extract the tokens in real use, diff them against what the system declares, and report drift with a cost and a sequenced fix list. Use for a design-system audit, a pre-rebrand assessment, or before contributing to a system you did not build.</p></header><div class="doclayout"><article class="doc"><p>The library always claims more coverage than it has. Inventory from what ships — the code and the screens — never from the library's own contents page.</p>
+<h2 id="when-to-use">When to use</h2>
+<ul><li>Track A of an evaluation — the design-system entry point</li><li>Before a rebrand, a re-theme, or a platform expansion</li><li>Joining a mature system and needing to know what is real</li></ul>
+<h2 id="procedure">Procedure</h2>
+<ol><li><strong>Inventory what ships.</strong> Walk the production screens and the front-end source. Record every component instance: name, where used, whether it comes from the library or is a detached or bespoke copy.</li><li><strong>Extract the tokens in real use.</strong> Every colour, type size, spacing value, radius and shadow that appears in shipped code. Not the declared set — the used set.</li><li><strong>Diff.</strong> Declared versus used, in both directions:<ul><li>Declared and unused → dead weight, or a documentation failure</li><li>Used and undeclared → drift, and the reason re-theming is impossible</li><li>Used under two names → a naming failure that will break Code Connect</li></ul></li><li><strong>Build the coverage matrix.</strong> Screens down, components across. Mark library / detached / bespoke. The detached percentage is the single most predictive number in the report.</li><li><strong>Score each component</strong> on the five axes in <code>heuristic-audit/reference/rubric.md</code> — states, accessibility, documentation, adoption, code parity.</li><li><strong>Check parity properly.</strong> A component matches its code when the <em>name</em>, the <em>structure</em> and the <em>behaviour</em> match — not when it looks the same. Verify through Dev Mode and Code Connect with a front-end engineer, not by eye.</li><li><strong>Attach a cost to every finding</strong> and sequence the fixes. Report using <code>templates/drift-report.md</code>.</li></ol>
+<h2 id="rules">Rules</h2>
+<ul><li>Count, don't estimate. If you cannot count it, say so and say why.</li><li>Never report a component as adopted because it exists in the library.</li><li>Drift is not a moral failing. Report the cost, not the sin — the team has to work with you afterward.</li><li>A fix to a primitive that closes twelve findings is the headline. Lead with it.</li></ul>
+<h2 id="bundled-files">Bundled files</h2>
+<ul><li><code>reference/token-schema.md</code> — the three-tier token architecture to diff against</li><li><code>templates/drift-report.md</code> — the output format</li></ul></article><aside class="side"><div class="box"><h3>ds-inventory</h3><a href="SKILL.html" aria-current="page">Design system inventory</a><a href="reference/token-schema.html">Token schema</a><a href="templates/drift-report.html">{System} — inventory and drift</a><a class="raw" href="../../skills/ds-inventory/SKILL.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

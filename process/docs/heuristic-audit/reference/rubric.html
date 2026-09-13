@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Audit rubric, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../../process.css">
+<link rel="stylesheet" href="../../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../../assets/follow-the-leader.jpg" src="../../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../../index.html">Home</a><a href="../../../working-with-me.html">Method</a><a href="../../../process-walkthrough.html">Deck</a><a href="../../../skill-library.html">Skills</a><a href="../../../pathfinder-case-study.html">Case study</a><a href="../../../intake.html">Intake</a><a href="../../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/heuristic-audit/reference/rubric.md</span><h1 class="disp">Audit rubric</h1></header><div class="doclayout"><article class="doc"><p>Nielsen's ten, sharpened into things you can actually observe, plus four that matter in enterprise and regulated software.</p>
+<div class="tbl"><table><thead><tr><th>#</th><th>Heuristic</th><th>What counts as evidence</th></tr></thead><tbody><tr><td>1</td><td>Visibility of system status</td><td>A state change with no feedback; a wait with no indicator; a saved thing that doesn't say it saved</td></tr><tr><td>2</td><td>Match to the real world</td><td>Interface language that isn't the user's language; ordering that follows the data model, not the task</td></tr><tr><td>3</td><td>User control and freedom</td><td>No undo; no exit from a flow; destructive action with no confirm or no recovery</td></tr><tr><td>4</td><td>Consistency and standards</td><td>The same action named two ways; the same control behaving two ways; platform conventions broken without reason</td></tr><tr><td>5</td><td>Error prevention</td><td>Input that can be wrong but isn't constrained; irreversible action adjacent to a common one</td></tr><tr><td>6</td><td>Recognition over recall</td><td>Information needed here shown only there; codes the user must memorise</td></tr><tr><td>7</td><td>Flexibility and efficiency</td><td>No path for the expert; bulk work only available one row at a time</td></tr><tr><td>8</td><td>Aesthetic and minimalist design</td><td>Competing emphasis; more than one primary action; decoration carrying no information</td></tr><tr><td>9</td><td>Error recovery</td><td>Errors that state a code, not a cause; errors with no next step; errors that lose the user's input</td></tr><tr><td>10</td><td>Help and documentation</td><td>Help that isn't where the task is</td></tr><tr><td>11</td><td>Data density and legibility</td><td>Dense data with no hierarchy; numbers not right-aligned or not tabular; tables with no fixed reference column</td></tr><tr><td>12</td><td>State coverage</td><td>Empty, loading, partial, error, permission-denied, offline — any one missing is a finding</td></tr><tr><td>13</td><td>Trust and explainability</td><td>Automated or AI output with no confidence signal, no source, and no correction path</td></tr><tr><td>14</td><td>Auditability</td><td>An action with consequences that leaves no visible record</td></tr></tbody></table></div>
+<h2 id="scoring-a-component-or-pattern">Scoring a component or pattern</h2>
+<p>Five axes, 0–3 each. Anything scoring 0 on states or accessibility is a finding regardless of total.</p>
+<div class="tbl"><table><thead><tr><th>Axis</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead><tbody><tr><td>States</td><td>Default only</td><td>Some</td><td>Most</td><td>All, documented</td></tr><tr><td>Accessibility</td><td>Barriers</td><td>Partial</td><td>Conformant</td><td>Conformant and documented</td></tr><tr><td>Documentation</td><td>None</td><td>A screenshot</td><td>Usage guidance</td><td>Usage, do/don't, code parity</td></tr><tr><td>Adoption</td><td>Unused</td><td>One team</td><td>Most teams</td><td>Everywhere it should be</td></tr><tr><td>Code parity</td><td>No coded twin</td><td>Exists, diverged</td><td>Matches visually</td><td>Matches in name, structure, behaviour</td></tr></tbody></table></div></article><aside class="side"><div class="box"><h3>heuristic-audit</h3><a href="../SKILL.html">Heuristic audit</a><a href="rubric.html" aria-current="page">Audit rubric</a><a href="../templates/audit-report.html">{Product} — UX audit</a><a class="raw" href="../../../skills/heuristic-audit/reference/rubric.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../../docs/index.html">All documents</a><a href="../../../skill-library.html">Skill library page</a><a href="../../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../../skill-library.html">Skill library</a><a href="../../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

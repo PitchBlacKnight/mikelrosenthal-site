@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Token schema, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../../process.css">
+<link rel="stylesheet" href="../../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../../assets/follow-the-leader.jpg" src="../../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../../index.html">Home</a><a href="../../../working-with-me.html">Method</a><a href="../../../process-walkthrough.html">Deck</a><a href="../../../skill-library.html">Skills</a><a href="../../../pathfinder-case-study.html">Case study</a><a href="../../../intake.html">Intake</a><a href="../../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/ds-inventory/reference/token-schema.md</span><h1 class="disp">Token schema</h1></header><div class="doclayout"><article class="doc"><p>Three tiers. A system that skips the middle tier cannot be re-themed, and a system that skips the third cannot be handed to engineering without a translation layer.</p>
+<h2 id="tier-1-primitive">Tier 1 — Primitive</h2>
+<p>Raw values. No meaning. Never referenced directly by a component.</p>
+<pre><code>color.neutral.100 … 900
+color.brand.100 … 900
+space.1 … 12          (an 8px base, half-steps where density demands)
+radius.none … full
+type.size.100 … 1000
+type.weight.regular … bold</code></pre>
+<h2 id="tier-2-semantic">Tier 2 — Semantic</h2>
+<p>Meaning, no component. This is the tier that makes theming possible — a mode swaps what these point at, and nothing downstream changes.</p>
+<pre><code>color.surface.canvas / raised / inverted / sunken
+color.text.primary / secondary / disabled / inverse / accent
+color.border.default / strong / focus
+color.status.success / warning / danger / info   (each with surface + text + border)
+space.inset.sm / md / lg
+space.stack.sm / md / lg</code></pre>
+<h2 id="tier-3-component">Tier 3 — Component</h2>
+<p>Bound to one component, referencing tier 2 only.</p>
+<pre><code>button.primary.background.default / hover / active / disabled
+button.primary.text.default / …
+input.border.default / focus / error</code></pre>
+<h2 id="naming-rules">Naming rules</h2>
+<ul><li><code>category.role.variant.state</code> — always that order, always lowercase, dot-separated.</li><li>The design source and the coded library use the <strong>same string</strong>. If Figma says <code>color.text.primary</code> and CSS says <code>--text-color-main</code>, you do not have parity — you have a translation layer that someone maintains by hand.</li><li>Never encode a value in a name. <code>color.brand.blue</code> breaks the day the brand changes.</li><li>Never encode a place. <code>color.header.background</code> becomes a lie the first time it's reused.</li></ul>
+<h2 id="what-to-flag-in-a-diff">What to flag in a diff</h2>
+<div class="tbl"><table><thead><tr><th>Finding</th><th>Cost</th></tr></thead><tbody><tr><td>Used and undeclared</td><td>Re-theming is impossible; every instance is a manual edit</td></tr><tr><td>Declared and unused</td><td>Dead weight, or nobody can find it in the docs</td></tr><tr><td>Same value, two names</td><td>Code Connect breaks; two owners diverge</td></tr><tr><td>Two values, one name</td><td>Silent inconsistency; the worse value wins at random</td></tr><tr><td>Component referencing a primitive directly</td><td>Skips the theming layer; will not survive a mode</td></tr><tr><td>Raw hex in shipped code</td><td>The system is advisory, not enforced</td></tr></tbody></table></div></article><aside class="side"><div class="box"><h3>ds-inventory</h3><a href="../SKILL.html">Design system inventory</a><a href="token-schema.html" aria-current="page">Token schema</a><a href="../templates/drift-report.html">{System} — inventory and drift</a><a class="raw" href="../../../skills/ds-inventory/reference/token-schema.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../../docs/index.html">All documents</a><a href="../../../skill-library.html">Skill library page</a><a href="../../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../../skill-library.html">Skill library</a><a href="../../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

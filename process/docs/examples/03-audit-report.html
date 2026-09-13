@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Meridian servicing portal — UX audit, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#ffd9c2"><span class="chip">Docs · skills/examples/03-audit-report.md</span><h1 class="disp">Meridian servicing portal — UX audit</h1></header><div class="doclayout"><article class="doc"><blockquote><p><strong>Composite example.</strong> All numbers invented for illustration.</p></blockquote>
+<blockquote><p>Scope: three critical paths — make a payment, request a payment-date change, request a payoff quote. Walked 2026-03-12 on staging with a seeded test account. Not tested: hardship request (behind a flag), agent console (no access), native iOS. Method: heuristic evaluation against <code>heuristic-audit/reference/rubric.md</code>, plus a separate WCAG 2.2 pass. 34 findings.</p></blockquote>
+<h2 id="headline">Headline</h2>
+<p>The portal can start all three top tasks and finish only one. Payoff quote and payment-date change both dead-end in a state that tells the borrower to call — which is the exact behaviour the engagement is meant to remove. The single most expensive problem is not visual: it is that a task begun in the portal cannot be completed there, and the interface does not warn anyone before they begin.</p>
+<p>Sequence the "quote requested" state first. It converts a dead end into a tracked task, and it is a state design problem rather than a back-end change.</p>
+<h2 id="findings">Findings</h2>
+<p>Severity 3 and 4 only; the full 34 are in the appendix.</p>
+<div class="tbl"><table><thead><tr><th>#</th><th>Finding</th><th>Heuristic</th><th>Sev</th><th>Freq</th><th>Cost</th><th>Fix lands on</th></tr></thead><tbody><tr><td>1</td><td>Payoff quote ends on "please call us" with no reference number</td><td>9, 12</td><td>4</td><td>High</td><td>The top-ranked task generates the call it was meant to prevent</td><td>Flow — add a requested state</td></tr><tr><td>2</td><td>Payment-date change silently queues; no confirmation, no pending state</td><td>1, 12</td><td>4</td><td>High</td><td>Borrowers submit repeatedly, then call to check</td><td>Flow + component</td></tr><tr><td>3</td><td>Session expiry discards a part-completed payment with no warning</td><td>3, 9</td><td>4</td><td>Med</td><td>Data loss on a financial task; direct call driver</td><td>Pattern — global</td></tr><tr><td>4</td><td>Date picker unreachable by keyboard</td><td>2.1.1</td><td>4</td><td>Med</td><td>WCAG failure on a contractual requirement; blocks the core task</td><td>Primitive</td></tr><tr><td>5</td><td>Amount field accepts letters, fails after submit</td><td>5, 9</td><td>3</td><td>High</td><td>Avoidable failure at the last step</td><td>Primitive</td></tr><tr><td>6</td><td>Errors appear only at the top of a long form</td><td>3.3.1</td><td>3</td><td>High</td><td>Users cannot find what to fix</td><td>Pattern</td></tr><tr><td>7</td><td>"Submit" used for four different outcomes</td><td>4</td><td>3</td><td>High</td><td>Nobody knows what will happen</td><td>Copy standard</td></tr><tr><td>8</td><td>Statement table has no fixed reference column</td><td>11</td><td>3</td><td>Med</td><td>Horizontal scroll loses the date</td><td>Component</td></tr><tr><td>9</td><td>Delinquency status carried by red text alone</td><td>1.4.1</td><td>3</td><td>Med</td><td>Invisible to colour-blind users; the most consequential status in the product</td><td>Pattern</td></tr><tr><td>10</td><td>Two primary buttons on the dashboard</td><td>8</td><td>3</td><td>High</td><td>Competing emphasis on the highest-traffic screen</td><td>Screen</td></tr></tbody></table></div>
+<h2 id="sequenced-fixes">Sequenced fixes</h2>
+<h3 id="now-fix-the-primitive-or-the-pattern">Now — fix the primitive or the pattern</h3>
+<ul><li><strong>Date picker rebuild</strong> — closes findings 4, 17, 23, 28.</li><li><strong>Inline field-level error pattern</strong> — closes 6, 11, 19, 25, 31.</li><li><strong>Add a "requested / pending" state to the flow vocabulary</strong> — closes 1, 2, 14. This is the headline fix and is a design change, not a back-end one.</li></ul>
+<h3 id="this-release">This release</h3>
+<ul><li>Session-expiry warning with draft preservation (3).</li><li>Input constraints on the amount field (5).</li><li>Button label standard (7).</li><li>Non-colour delinquency indicator (9).</li></ul>
+<h3 id="next">Next</h3>
+<ul><li>Statement table reference column (8).</li><li>Dashboard emphasis hierarchy (10).</li></ul>
+<h3 id="parked-with-the-reason">Parked — with the reason</h3>
+<ul><li>Full statement-download redesign. Low frequency in the call data; revisit after the three top tasks complete in-portal.</li></ul>
+<h2 id="what-i-could-not-determine">What I could not determine</h2>
+<ul><li>Hardship request is behind a feature flag we were not given. Given it is call-reason rank 2, this is a material gap in the audit and should be closed before design starts.</li><li>No analytics access, so **frequency ratings are my estimates from the RFP's call-reason table, not measurements.** They are labelled High/Med/Low rather than given numbers for that reason.</li><li>Screen-reader testing was done with VoiceOver on macOS only. JAWS on Windows is the likely primary AT for this user base and was not available.</li></ul></article><aside class="side"><div class="box"><h3>Worked examples</h3><a href="01-project-brief.html">Meridian servicing portal — project brief</a><a href="02-drift-report.html">Meridian design system — inventory and drift</a><a href="03-audit-report.html" aria-current="page">Meridian servicing portal — UX audit</a><a href="04-synthesis.html">Meridian borrower research — synthesis</a><a href="05-state-matrix.html">Meridian — payoff quote flow, state matrix</a><a href="06-handoff.html">Meridian payoff quote — handoff</a><a href="07-critique.html">Critique — Meridian payoff quote flow</a><a href="README.html">Worked examples</a><a class="raw" href="../../skills/examples/03-audit-report.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

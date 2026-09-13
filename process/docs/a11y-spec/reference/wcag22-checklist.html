@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>WCAG 2.2 AA — design-side checklist, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../../process.css">
+<link rel="stylesheet" href="../../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../../assets/follow-the-leader.jpg" src="../../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../../index.html">Home</a><a href="../../../working-with-me.html">Method</a><a href="../../../process-walkthrough.html">Deck</a><a href="../../../skill-library.html">Skills</a><a href="../../../pathfinder-case-study.html">Case study</a><a href="../../../intake.html">Intake</a><a href="../../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/a11y-spec/reference/wcag22-checklist.md</span><h1 class="disp">WCAG 2.2 AA — design-side checklist</h1></header><div class="doclayout"><article class="doc"><p>Criteria a designer owns or materially influences. Mark each: <strong>pass</strong>, <strong>fail</strong>, <strong>n/a + reason</strong>, or <strong>engineering-owned</strong>.</p>
+<h2 id="perceivable">Perceivable</h2>
+<div class="tbl"><table><thead><tr><th>SC</th><th>Criterion</th><th>Design check</th></tr></thead><tbody><tr><td>1.1.1</td><td>Non-text content</td><td>Every image, icon and chart has an intended alt or is marked decorative</td></tr><tr><td>1.3.1</td><td>Info and relationships</td><td>Headings are headings; tables have real headers; groups are grouped</td></tr><tr><td>1.3.2</td><td>Meaningful sequence</td><td>Visual order matches DOM order</td></tr><tr><td>1.3.4</td><td>Orientation</td><td>Works in both, unless essential</td></tr><tr><td>1.3.5</td><td>Identify input purpose</td><td>Autocomplete named on personal-data fields</td></tr><tr><td>1.4.1</td><td>Use of colour</td><td>No status, error or category carried by colour alone</td></tr><tr><td>1.4.3</td><td>Contrast (minimum)</td><td>4.5:1 body, 3:1 large — measured, recorded</td></tr><tr><td>1.4.4</td><td>Resize text</td><td>Usable at 200% with no loss of content</td></tr><tr><td>1.4.10</td><td>Reflow</td><td>320 CSS px wide, no two-dimensional scrolling</td></tr><tr><td>1.4.11</td><td>Non-text contrast</td><td>3:1 for controls, states, focus rings, chart strokes</td></tr><tr><td>1.4.12</td><td>Text spacing</td><td>Survives increased line, letter, word and paragraph spacing</td></tr><tr><td>1.4.13</td><td>Content on hover/focus</td><td>Dismissible, hoverable, persistent</td></tr></tbody></table></div>
+<h2 id="operable">Operable</h2>
+<div class="tbl"><table><thead><tr><th>SC</th><th>Criterion</th><th>Design check</th></tr></thead><tbody><tr><td>2.1.1</td><td>Keyboard</td><td>Every action reachable without a pointer</td></tr><tr><td>2.1.2</td><td>No keyboard trap</td><td>Escape from every dialog, embed and menu</td></tr><tr><td>2.2.1</td><td>Timing adjustable</td><td>Any timeout can be extended or turned off</td></tr><tr><td>2.4.3</td><td>Focus order</td><td>Numbered on the frame, matches reading order</td></tr><tr><td>2.4.6</td><td>Headings and labels</td><td>Descriptive, not generic</td></tr><tr><td>2.4.7</td><td>Focus visible</td><td>Designed, 3:1, never the browser default removed</td></tr><tr><td><strong>2.4.11</strong></td><td><strong>Focus not obscured (2.2)</strong></td><td>Sticky headers and toolbars don't cover the focused element</td></tr><tr><td>2.5.3</td><td>Label in name</td><td>Visible label is contained in the accessible name</td></tr><tr><td><strong>2.5.7</strong></td><td><strong>Dragging movements (2.2)</strong></td><td>Every drag has a single-pointer alternative</td></tr><tr><td><strong>2.5.8</strong></td><td><strong>Target size (2.2)</strong></td><td>24×24 CSS px minimum; design to 44</td></tr></tbody></table></div>
+<h2 id="understandable">Understandable</h2>
+<div class="tbl"><table><thead><tr><th>SC</th><th>Criterion</th><th>Design check</th></tr></thead><tbody><tr><td>3.2.3</td><td>Consistent navigation</td><td>Same order, same place, every screen</td></tr><tr><td>3.2.4</td><td>Consistent identification</td><td>The same function named the same way throughout</td></tr><tr><td><strong>3.2.6</strong></td><td><strong>Consistent help (2.2)</strong></td><td>Help sits in the same relative place on every screen</td></tr><tr><td>3.3.1</td><td>Error identification</td><td>Errors named in text, not only in colour</td></tr><tr><td>3.3.2</td><td>Labels or instructions</td><td>Every input labelled; placeholder is never the label</td></tr><tr><td>3.3.3</td><td>Error suggestion</td><td>The fix is offered, not just the failure</td></tr><tr><td>3.3.4</td><td>Error prevention</td><td>Reversible, checked, or confirmed for legal and financial actions</td></tr><tr><td><strong>3.3.7</strong></td><td><strong>Redundant entry (2.2)</strong></td><td>Don't ask twice in one process</td></tr><tr><td><strong>3.3.8</strong></td><td><strong>Accessible authentication (2.2)</strong></td><td>No cognitive-function test with no alternative; allow paste</td></tr></tbody></table></div>
+<h2 id="robust">Robust</h2>
+<div class="tbl"><table><thead><tr><th>SC</th><th>Criterion</th><th>Design check</th></tr></thead><tbody><tr><td>4.1.2</td><td>Name, role, value</td><td>Specified for every custom control</td></tr><tr><td>4.1.3</td><td>Status messages</td><td>Announced without moving focus</td></tr></tbody></table></div>
+<h2 id="recording-format">Recording format</h2>
+<div class="tbl"><table><thead><tr><th>SC</th><th>Result</th><th>Evidence / reason</th><th>Owner</th></tr></thead><tbody></tbody></table></div></article><aside class="side"><div class="box"><h3>a11y-spec</h3><a href="../SKILL.html">Accessibility spec</a><a href="wcag22-checklist.html" aria-current="page">WCAG 2.2 AA — design-side checklist</a><a class="raw" href="../../../skills/a11y-spec/reference/wcag22-checklist.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../../docs/index.html">All documents</a><a href="../../../skill-library.html">Skill library page</a><a href="../../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../../skill-library.html">Skill library</a><a href="../../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

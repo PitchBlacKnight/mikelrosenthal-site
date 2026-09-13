@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>State checklist, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../../process.css">
+<link rel="stylesheet" href="../../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../../assets/follow-the-leader.jpg" src="../../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../../index.html">Home</a><a href="../../../working-with-me.html">Method</a><a href="../../../process-walkthrough.html">Deck</a><a href="../../../skill-library.html">Skills</a><a href="../../../pathfinder-case-study.html">Case study</a><a href="../../../intake.html">Intake</a><a href="../../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#d1ffca"><span class="chip">Docs · skills/flow-map/reference/state-checklist.md</span><h1 class="disp">State checklist</h1></header><div class="doclayout"><article class="doc"><p>Walk every screen against this. Mark: <strong>designed</strong>, <strong>n/a + reason</strong>, or <strong>outstanding</strong>.</p>
+<h2 id="data-states">Data states</h2>
+<div class="tbl"><table><thead><tr><th>State</th><th>The question</th></tr></thead><tbody><tr><td>Empty — first run</td><td>Never had data. What teaches the user what goes here?</td></tr><tr><td>Empty — cleared</td><td>Had data, now none. Different copy from first run.</td></tr><tr><td>Empty — no results</td><td>A filter or search returned nothing. Offers a way back.</td></tr><tr><td>Loading — initial</td><td>Skeleton or spinner, and what the user can do meanwhile</td></tr><tr><td>Loading — more</td><td>Pagination, infinite scroll, background refresh</td></tr><tr><td>Partial</td><td>Some data arrived, some didn't. What is shown, what is marked missing</td></tr><tr><td>Stale</td><td>Data is old. Is the user told, and can they refresh?</td></tr><tr><td>One item</td><td>Layouts tuned for many often break at one</td></tr><tr><td>Maximum</td><td>Ten times the expected content. Where does it break?</td></tr><tr><td>Long strings</td><td>The longest name in the database, in every language you ship</td></tr></tbody></table></div>
+<h2 id="interaction-states">Interaction states</h2>
+<p>Per interactive element: default, hover, focus-visible, active, disabled, loading, selected, read-only. <strong>Focus-visible is not optional and is the one most often missing.</strong></p>
+<h2 id="system-states">System states</h2>
+<div class="tbl"><table><thead><tr><th>State</th><th>The question</th></tr></thead><tbody><tr><td>Error — validation</td><td>Inline, specific, states the cause and the fix, preserves input</td></tr><tr><td>Error — server</td><td>What the user can do now; never a bare code</td></tr><tr><td>Error — partial failure</td><td>Nine of ten succeeded. What does the screen say?</td></tr><tr><td>Permission denied</td><td>Hidden or disabled-with-reason? Decide deliberately</td></tr><tr><td>Offline / reconnecting</td><td>Queued actions, and what happens to them</td></tr><tr><td>Timeout</td><td>Distinct from error. Is the work lost?</td></tr><tr><td>Destructive confirm</td><td>Proportional to the consequence, and reversible if possible</td></tr><tr><td>Success</td><td>Confirmed visibly, and the next action is obvious</td></tr></tbody></table></div>
+<h2 id="environment-states">Environment states</h2>
+<p>Narrowest supported width · largest supported width · keyboard only · screen reader · 200% zoom · reduced motion · dark mode, if shipped · print, if relevant</p>
+<h2 id="the-rule">The rule</h2>
+<p>If a state is not in the library, it is not designed — and it will be invented in code, at 6pm, by someone without the context.</p></article><aside class="side"><div class="box"><h3>flow-map</h3><a href="../SKILL.html">Flow map</a><a href="state-checklist.html" aria-current="page">State checklist</a><a class="raw" href="../../../skills/flow-map/reference/state-checklist.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../../docs/index.html">All documents</a><a href="../../../skill-library.html">Skill library page</a><a href="../../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../../skill-library.html">Skill library</a><a href="../../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

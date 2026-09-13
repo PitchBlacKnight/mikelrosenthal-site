@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Handoff spec, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#dcd6ff"><span class="chip">Docs · skills/handoff-spec/SKILL.md</span><h1 class="disp">Handoff spec</h1><p class="desc">Assemble the developer handoff package — token export, component state matrix, annotated flows written as rules, accessibility spec and a design QA checklist. Use at the end of a design phase, whenever engineering is about to build, and to update the spec when reality disagrees with it.</p></header><div class="doclayout"><article class="doc"><p>When the promise is "development executes it exactly as shown", the spec has to be good enough to make that true. Handoff is a conversation, not a delivery.</p>
+<h2 id="procedure">Procedure</h2>
+<ol><li><strong>Token export.</strong> Every colour, type step, spacing value, radius and elevation, named exactly as the front end names them. Exportable, not screenshotable. See <code>ds-inventory/reference/token-schema.md</code>.</li><li><strong>Component state matrix.</strong> Every component × every state from <code>flow-map/reference/state-checklist.md</code>. Gaps are marked as gaps, not omitted.</li><li><strong>Annotated flows.</strong> Behaviour written as rules, not redlines. Responsive behaviour stated as a condition and a consequence.</li><li><strong>Accessibility spec</strong> from <code>a11y-spec</code>, per screen.</li><li><strong>Real content.</strong> The strings that ship, at the lengths they ship at, from <code>copy-standards</code>.</li><li><strong>Design QA checklist</strong> — <code>reference/qa-checklist.md</code> — what you will check on staging before release, written before the build starts so it is not a surprise.</li><li><strong>Present it live.</strong> Walk engineering through the system in a working session. Do not post a link and leave.</li><li><strong>Stay in the sprint.</strong> Weekly office hours, design review on staging, and you update the spec when reality disagrees with it — which it will.</li></ol>
+<h2 id="rules">Rules</h2>
+<ul><li>A component that does not match its code in <em>name, structure and behaviour</em> is a suggestion, not a component.</li><li>Never hand over a state matrix with silent gaps. An outstanding state marked outstanding is fine; an absent one is a defect.</li><li>Write rules, not measurements, wherever a rule is possible.</li><li>The flow diagrams must match the screens as built. Update them at handoff.</li></ul>
+<h2 id="bundled-files">Bundled files</h2>
+<ul><li><code>templates/handoff.md</code></li><li><code>reference/qa-checklist.md</code></li></ul></article><aside class="side"><div class="box"><h3>handoff-spec</h3><a href="SKILL.html" aria-current="page">Handoff spec</a><a href="reference/qa-checklist.html">Design QA checklist</a><a href="templates/handoff.html">{Feature} — handoff</a><a class="raw" href="../../skills/handoff-spec/SKILL.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

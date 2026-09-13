@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Meridian payoff quote — handoff, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#ffd9c2"><span class="chip">Docs · skills/examples/06-handoff.md</span><h1 class="disp">Meridian payoff quote — handoff</h1></header><div class="doclayout"><article class="doc"><blockquote><p><strong>Composite example.</strong></p></blockquote>
+<blockquote><p>Design source: {Figma link} · Prototype: {link} · Built against: release 2026.3 Walkthrough held: 2026-04-18 — 3 engineers, QA, PM · Office hours: Thursdays 10–11 CT</p></blockquote>
+<h2 id="what-this-is">What this is</h2>
+<p>The borrower-facing flow for requesting and viewing a loan payoff quote. It exists to make the top-ranked call reason completable in the portal; the metric is self-service completion on that task, baselined in <code>01-project-brief.md</code>.</p>
+<h2 id="tokens">Tokens</h2>
+<p>Export: <code>tokens/meridian-2026.3.json</code>. Naming follows <code>category.role.variant.state</code> and matches the front-end variable names exactly.</p>
+<div class="tbl"><table><thead><tr><th>New token</th><th>Value</th><th>Tier</th><th>Why it was needed</th></tr></thead><tbody><tr><td><code>color.status.pending.surface</code></td><td><code>neutral.100</code></td><td>semantic</td><td>No existing status covered "requested, not yet available"</td></tr><tr><td><code>color.status.pending.text</code></td><td><code>neutral.700</code></td><td>semantic</td><td>Contrast 7.4:1 — measured</td></tr><tr><td><code>color.status.pending.border</code></td><td><code>neutral.300</code></td><td>semantic</td><td>3.1:1 against surface — measured</td></tr></tbody></table></div>
+<p>No new primitives. The pending status reuses the neutral ramp deliberately: it is a waiting state, not a warning, and the existing warning colour tested as alarming.</p>
+<h2 id="components">Components</h2>
+<div class="tbl"><table><thead><tr><th>Component</th><th>New / changed / reused</th><th>States delivered</th><th>Outstanding</th></tr></thead><tbody><tr><td>Status chip</td><td>changed — pending variant added</td><td>all 8</td><td>—</td></tr><tr><td>Quote card</td><td>new</td><td>default, loading, partial, stale, expired</td><td>—</td></tr><tr><td>Countdown</td><td>new</td><td>default, &lt;1h, expired</td><td>Screen-reader announcement interval — see below</td></tr><tr><td>Date picker</td><td>reused — <strong>blocked</strong></td><td>—</td><td>Keyboard path missing; see drift report finding 3. <strong>Do not ship this flow until the primitive is fixed.</strong></td></tr></tbody></table></div>
+<h2 id="screens">Screens</h2>
+<h3 id="3-pending">3 — Pending</h3>
+<p>Focus order: 1 back · 2 reference number (copyable) · 3 cancel request · 4 support link.</p>
+<p>Accessible names: "Copy reference number Q-88421" on the copy control — not "Copy". Cancel is "Cancel payoff quote request", not "Cancel".</p>
+<p><strong>Behaviour rules</strong></p>
+<div class="tbl"><table><thead><tr><th>Condition</th><th>Consequence</th></tr></thead><tbody><tr><td>Request older than 24h</td><td>Stale treatment, refresh action appears</td></tr><tr><td>Content column &lt; 480px</td><td>Reference and status stack; reference stays first</td></tr><tr><td>5 concurrent requests on the account</td><td>Request button disabled, reason stated inline</td></tr><tr><td>Principal returned without fees</td><td>Partial state — show principal, mark fees pending, do not show a total</td></tr><tr><td>Loan mid-transfer (200, empty body)</td><td>"No quote available" copy, not a server error</td></tr></tbody></table></div>
+<h3 id="4-quote">4 — Quote</h3>
+<p>Focus order: 1 back · 2 amount · 3 expiry · 4 download · 5 print · 6 support.</p>
+<p>The amount is the page's <code>h1</code> for screen-reader users, visually presented as the largest element. Expiry is announced on load, then at 1 hour remaining — <strong>not continuously.</strong> The continuous countdown is visual only, marked <code>aria-hidden</code>.</p>
+<h2 id="data-and-failure">Data and failure</h2>
+<div class="tbl"><table><thead><tr><th>Screen</th><th>Data needed</th><th>Source</th><th>Late</th><th>Partial</th><th>Absent</th></tr></thead><tbody><tr><td>Pending</td><td>request status, ref</td><td>servicing API</td><td>keep pending, no spinner past 3s</td><td>principal only → partial state</td><td>server error state</td></tr><tr><td>Quote</td><td>principal, fees, escrow, expiry</td><td>nightly batch</td><td>stale state</td><td>hide escrow line, show note</td><td>"no quote available"</td></tr></tbody></table></div>
+<h2 id="accessibility">Accessibility</h2>
+<p>Full record: <code>a11y/meridian-payoff-wcag22.md</code>. 2.2 AA, all criteria recorded. Two marked engineering-owned (4.1.2 name/role/value on the countdown; 4.1.3 status message announcement). One outstanding: the countdown announcement interval.</p>
+<h2 id="content">Content</h2>
+<p>All strings final and client-approved, including the compliance disclosure on screen 2 (approved by Meridian legal 2026-04-11 — do not edit without re-review).</p>
+<p>Longest-case examples marked in the file. Legal entity names run to 60 characters.</p>
+<h2 id="open-questions-for-engineering">Open questions for engineering</h2>
+<div class="tbl"><table><thead><tr><th>#</th><th>Question</th><th>Owner</th><th>Needed by</th></tr></thead><tbody><tr><td>1</td><td>Can the batch return a partial result, or is it all-or-nothing? Design assumes partial is possible.</td><td>Lead eng</td><td>Sprint 12 planning</td></tr><tr><td>2</td><td>Is the quote cached client-side? Decides the offline state and is a compliance question.</td><td>Eng + Compliance</td><td>Sprint 12</td></tr><tr><td>3</td><td>Does the reference number survive a session expiry?</td><td>Lead eng</td><td>Sprint 12</td></tr></tbody></table></div>
+<h2 id="design-qa">Design QA</h2>
+<p><code>qa/meridian-payoff.md</code>, filled before the build started. Sign-off on staging, before release — not after.</p></article><aside class="side"><div class="box"><h3>Worked examples</h3><a href="01-project-brief.html">Meridian servicing portal — project brief</a><a href="02-drift-report.html">Meridian design system — inventory and drift</a><a href="03-audit-report.html">Meridian servicing portal — UX audit</a><a href="04-synthesis.html">Meridian borrower research — synthesis</a><a href="05-state-matrix.html">Meridian — payoff quote flow, state matrix</a><a href="06-handoff.html" aria-current="page">Meridian payoff quote — handoff</a><a href="07-critique.html">Critique — Meridian payoff quote flow</a><a href="README.html">Worked examples</a><a class="raw" href="../../skills/examples/06-handoff.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

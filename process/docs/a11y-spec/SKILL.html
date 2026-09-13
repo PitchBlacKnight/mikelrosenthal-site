@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Accessibility spec, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../../process.css">
+<link rel="stylesheet" href="../../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../../assets/follow-the-leader.jpg" src="../../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../../index.html">Home</a><a href="../../working-with-me.html">Method</a><a href="../../process-walkthrough.html">Deck</a><a href="../../skill-library.html">Skills</a><a href="../../pathfinder-case-study.html">Case study</a><a href="../../intake.html">Intake</a><a href="../../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#cfe4ff"><span class="chip">Docs · skills/a11y-spec/SKILL.md</span><h1 class="disp">Accessibility spec</h1><p class="desc">Produce a per-screen accessibility specification — focus order, roles, names, contrast pairs with measured ratios, target sizes — and audit designs against WCAG 2.2 AA. Use during design and at handoff; accessibility is a spec line, not a final-week audit.</p></header><div class="doclayout"><article class="doc"><p>Held as a gate, not a cleanup pass. A contrast ratio is measured, not eyeballed, and it goes in the spec next to the colour it applies to.</p>
+<h2 id="procedure">Procedure</h2>
+<ol><li><strong>Focus order</strong> for every screen, numbered on the frame. It follows the visual reading order. Where it cannot, say why and what handles it.</li><li><strong>Name, role, value</strong> for every interactive element. The accessible name is written out — not inferred from the visual label, which may be an icon.</li><li><strong>Contrast pairs.</strong> Every foreground/background pair in the design, with the measured ratio and the threshold it must clear:<ul><li>Body text: 4.5:1</li><li>Large text (≥24px, or ≥19px bold): 3:1</li><li>Interface components and graphical objects: 3:1</li><li>Focus indicators: 3:1 against adjacent colours</li></ul></li><li><strong>Target sizes.</strong> 44×44px minimum for touch. WCAG 2.2 AA requires 24×24 CSS px minimum with spacing exceptions — 44 is the design standard, 24 is the floor.</li><li><strong>Keyboard path.</strong> Walk the whole flow with no pointer. Every action reachable, nothing trapped, focus visible at every step, focus moved deliberately after dialogs and route changes.</li><li><strong>Motion and timing.</strong> A reduced-motion alternative for anything that moves. No timeout without a way to extend it.</li><li><strong>Run <code>reference/wcag22-checklist.md</code></strong> and record the result per criterion.</li></ol>
+<h2 id="rules">Rules</h2>
+<ul><li>Never write "AA compliant" without the criterion-by-criterion record behind it.</li><li>Colour is never the only carrier of meaning. Check every status indicator.</li><li>Placeholder text is not a label.</li><li>Disabled controls still need to explain why they're disabled.</li><li>New in 2.2 and most often missed: focus not obscured, dragging alternatives, target size, consistent help, redundant entry, accessible authentication.</li></ul>
+<h2 id="bundled-files">Bundled files</h2>
+<ul><li><code>reference/wcag22-checklist.md</code></li></ul></article><aside class="side"><div class="box"><h3>a11y-spec</h3><a href="SKILL.html" aria-current="page">Accessibility spec</a><a href="reference/wcag22-checklist.html">WCAG 2.2 AA — design-side checklist</a><a class="raw" href="../../skills/a11y-spec/SKILL.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../../docs/index.html">All documents</a><a href="../../skill-library.html">Skill library page</a><a href="../../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../../skill-library.html">Skill library</a><a href="../../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>

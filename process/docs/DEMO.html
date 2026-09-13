@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Demo runbook, Mikel Rosenthal</title>
+<link rel="stylesheet" href="../process.css">
+<link rel="stylesheet" href="../docs/docs.css">
+</head>
+<body>
+<div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="../assets/follow-the-leader.jpg" src="../assets/follow-the-leader.mp4"></video></div>
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <a href="../index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <div class="pill"><a href="../index.html">Home</a><a href="../working-with-me.html">Method</a><a href="../process-walkthrough.html">Deck</a><a href="../skill-library.html">Skills</a><a href="../pathfinder-case-study.html">Case study</a><a href="../intake.html">Intake</a><a href="../docs/index.html">Docs</a><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener">Files ↗</a></div>
+  </nav>
+  <main id="main">
+<header class="dochead" style="--p-tint:#dcd6ff"><span class="chip">Docs · skills/DEMO.md</span><h1 class="disp">Demo runbook</h1></header><div class="doclayout"><article class="doc"><p>Ten minutes, live, on a laptop. The point is not to show that a model can write — everyone knows that. The point is to show that the <strong>output has a fixed shape</strong>, that the shape came from a rubric someone wrote deliberately, and that the skill refuses to make things up.</p>
+<h2 id="before-you-start">Before you start</h2>
+<ol><li>Open a Claude project with <code>skills/</code> loaded.</li><li>Have a real brief to hand — theirs is best. A paragraph of a job description or a product page works if they don't offer one.</li><li>Have <code>examples/</code> open in a second window, so you can jump to a finished artifact if the room wants to see the end state rather than watch it build.</li></ol>
+<h2 id="the-four-beats">The four beats</h2>
+<h3 id="1-the-library-is-cheap-until-it-isn-t-30-seconds">1 — The library is cheap until it isn't (30 seconds)</h3>
+<blockquote><p>"There are nine skills loaded here. At rest, only the one-line description of each is in context — about forty words a skill. The procedure, the rubric and the templates only load when a task actually matches. So the library scales without costing me anything to carry."</p></blockquote>
+<p>Show <code>README.md</code>, then open one <code>SKILL.md</code> and point at the frontmatter versus the body.</p>
+<h3 id="2-intake-live-3-minutes">2 — Intake, live (3 minutes)</h3>
+<p>Paste their brief. Then:</p>
+<pre><code>Run brief-intake on this.</code></pre>
+<p><strong>What to point at in the output:</strong></p>
+<ul><li>The problem restated in <em>their</em> words, quoted — not paraphrased.</li><li><code>UNRESOLVED</code> in the metric row. Say: *"It didn't invent a number. That's the most important thing on this screen."*</li><li>The assumption register sorted by cost of being wrong, each with an owner.</li><li>Exactly three questions back — not thirty.</li></ul>
+<blockquote><p>"This file is now the context every other skill reads from. A model amplifies whatever context you hand it, so this is the only part where being slow pays."</p></blockquote>
+<h3 id="3-the-fork-3-minutes">3 — The fork (3 minutes)</h3>
+<blockquote><p>"From here it splits. If the question is about a design system, that's a counting exercise — I start with artifacts. If it's about a product, it's a people exercise — I start with users. Getting this fork wrong wastes the first two weeks."</p></blockquote>
+<p>Pick whichever is closer to their world and run one:</p>
+<pre><code>Run ds-inventory against this repo / these screens.</code></pre>
+<pre><code>Run heuristic-audit on the checkout flow. Two critical paths.</code></pre>
+<p><strong>What to point at:</strong> the severity scale, and the <strong>Cost</strong> column.</p>
+<blockquote><p>"A finding without a cost is trivia, and nobody funds trivia. The fix list is sequenced by where the fix <em>lands</em> — one primitive often closes ten findings."</p></blockquote>
+<p>If time is short, skip running it and open <code>examples/02-drift-report.md</code> instead.</p>
+<h3 id="4-critique-on-my-own-work-3-minutes">4 — Critique on my own work (3 minutes)</h3>
+<p>This is the beat that lands. Take something you just made — in the demo, the output from step 3 — and run:</p>
+<pre><code>Run critique on that audit. Attack it on all seven fronts.</code></pre>
+<blockquote><p>"It's arguing against my own work before anyone else has to. If the output is encouraging, the skill has failed — that's written into it."</p></blockquote>
+<p>Then close:</p>
+<blockquote><p>"What I never delegate: the problem statement, talking to users, the final visual call, and anything stated as a fact. The tooling compresses the loop. It doesn't decide what the loop is for."</p></blockquote>
+<h2 id="if-they-push">If they push</h2>
+<p><strong>"Couldn't anyone do this with a good prompt?"</strong></p>
+<blockquote><p>"For one project, yes. The difference is that the rubric is a file — versioned, improved after every engagement, and runnable by another designer who gets the same shape of output. That's the difference between a prompt and a practice."</p></blockquote>
+<p><strong>"How do you know it isn't making things up?"</strong></p>
+<blockquote><p>"Five house rules run through every skill. The first is never invent a number — every quantity traces to a named source or it gets cut. The second is say what you couldn't determine. You saw both fire in the intake."</p></blockquote>
+<p><strong>"What happens when it's wrong?"</strong></p>
+<blockquote><p>"It's wrong regularly, and confidently. Which is why nothing leaves my hands without the critique pass and my own read. The library makes the first draft fast and consistent — it doesn't make it final."</p></blockquote>
+<h2 id="timing">Timing</h2>
+<div class="tbl"><table><thead><tr><th>Beat</th><th>Minutes</th></tr></thead><tbody><tr><td>Library structure</td><td>0:30</td></tr><tr><td>Intake, live</td><td>3:00</td></tr><tr><td>The fork</td><td>3:00</td></tr><tr><td>Critique</td><td>3:00</td></tr><tr><td>Close</td><td>0:30</td></tr></tbody></table></div></article><aside class="side"><div class="box"><h3>Guides</h3><a href="DEMO.html" aria-current="page">Demo runbook</a><a href="LOOM.html">Loom script — five minutes</a><a href="PROJECT-INSTRUCTIONS.html">Project instructions</a><a href="README.html">Design practice skills</a><a class="raw" href="../skills/DEMO.md" target="_blank" rel="noopener">Raw markdown ↗</a></div><div class="box"><h3>Library</h3><a href="../docs/index.html">All documents</a><a href="../skill-library.html">Skill library page</a><a href="../intake.html">Intake form</a></div></aside></div>
+  </main>
+  <section class="foot">
+    <h2 class="disp">The method, written down</h2>
+    <p>Every page here is one file from the skill library. The folder is loadable as a Claude project as-is.</p>
+    <div class="links"><a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" class="em">Files on Google Drive ↗</a><a href="../skill-library.html">Skill library</a><a href="../working-with-me.html">The method</a></div>
+  </section>
+</div>
+</body>
+</html>
