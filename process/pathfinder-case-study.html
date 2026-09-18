@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<title>Pathfinder, audited against itself · Mikel Rosenthal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +18,43 @@
   .ftl{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:var(--color-bg)}
   .ftl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;opacity:.11}
   @media (prefers-reduced-motion:reduce){.ftl video{display:none}}
+
+  /* case-study layout */
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion:reduce){ html { scroll-behavior: auto; } }
+  .cs-sec { scroll-margin-top: 84px; }
+  .cs-g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  @media (min-width: 900px) {
+    .cs-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cs-sec > div:first-child { position: sticky; top: 84px; align-self: flex-start; }
+  }
+
+  .cs-cta { background: var(--color-accent); color: var(--color-bg); border-color: var(--color-accent); font-weight: 600; padding: 12px 22px; font-size: 15px; }
+  a.cs-cta:hover { background: var(--color-accent-300); border-color: var(--color-accent-300); color: var(--color-bg); text-decoration: none; }
+  a.btn:hover { text-decoration: none; }
+
+  .cs-shot { display: block; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-accent-700); background: #0b1020; color: inherit; box-shadow: 0 30px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.03) inset; transition: transform .25s ease, border-color .25s ease; }
+  a.cs-shot:hover { text-decoration: none; color: inherit; border-color: var(--color-accent); transform: translateY(-3px); }
+  @media (prefers-reduced-motion:reduce){ .cs-shot { transition: none; } a.cs-shot:hover { transform: none; } }
+  .cs-shot-bar { display: flex; align-items: center; gap: 14px; padding: 11px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-divider); font-size: 12px; }
+  .cs-dots { display: flex; gap: 6px; flex: none; }
+  .cs-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--color-neutral-800); }
+  .cs-url { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'JetBrains Mono', monospace; color: color-mix(in srgb, var(--color-text) 62%, transparent); }
+  .cs-live { flex: none; display: inline-flex; align-items: center; gap: 7px; letter-spacing: .1em; text-transform: uppercase; font-size: 10px; color: var(--color-accent-100); }
+  .cs-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.18); }
+  .cs-shot-view { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  @media (max-width: 600px) { .cs-shot-view { aspect-ratio: 4 / 3; } }
+  .cs-shot-view img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .cs-shot-cap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px; padding: clamp(18px,3vw,26px) clamp(18px,3vw,28px); background: var(--color-surface); border-top: 1px solid var(--color-divider); }
+
+  .cs-toc { position: sticky; top: 0; z-index: 5; margin: clamp(32px,5vw,56px) calc(-1 * clamp(20px,4vw,40px)) 0; padding: 0 clamp(20px,4vw,40px); background: color-mix(in srgb, var(--color-bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-block: 1px solid var(--color-divider); }
+  .cs-toc-in { display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .cs-toc-in::-webkit-scrollbar { display: none; }
+  .cs-toc a { flex: none; padding: 15px 10px; font-size: 13px; color: color-mix(in srgb, var(--color-text) 66%, transparent); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .cs-toc a:hover { color: var(--color-text); text-decoration: none; }
+  .cs-toc a[aria-current="true"] { color: var(--color-text); border-bottom-color: var(--color-accent); }
+  .cs-toc a span { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--color-accent); margin-right: 6px; }
+  .cs-toc .cs-toc-live { margin-left: auto; position: sticky; right: 0; padding-left: 18px; color: var(--color-accent-100); background: linear-gradient(to right, transparent, var(--color-bg) 22%); }
 </style></head>
 <body>
 <div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="assets/follow-the-leader.jpg" src="assets/follow-the-leader.mp4"></video></div>
@@ -28,17 +66,8 @@
 <div style="position:relative;z-index:1;background:transparent;color:var(--color-text);font-family:var(--font-body);min-height:100vh;">
 <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,40px) 96px;">
 
-  <nav class="nav" style="padding:20px 0;gap:20px;flex-wrap:wrap;">
-    <span class="nav-brand" style="font-weight:600;letter-spacing:-0.01em;">Mikel Rosenthal</span>
-    <span style="flex:1 1 auto;"></span>
-    <a href="index.html" style="font-size:13px;">Home</a>
-    <a href="working-with-me.html" style="font-size:13px;">Method</a>
-    <a href="process-walkthrough.html" style="font-size:13px;">Deck</a>
-    <a href="skill-library.html" style="font-size:13px;">Skills</a>
-    <a href="pathfinder-case-study.html" aria-current="page" style="font-size:13px;color:var(--color-text);border-bottom:1px solid var(--color-accent);">Case study</a>
-    <a href="intake.html" style="font-size:13px;">Intake</a>
-    <a href="docs/index.html" style="font-size:13px;">Docs</a>
-    <a href="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR" target="_blank" rel="noopener" style="font-size:13px;">Files ↗</a>
+  <nav class="nav" aria-label="Case study" style="padding:20px 0;gap:12px 24px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+    <a href="../pathfinder.html" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:14px;font-weight:600;color:var(--color-text);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4"/><path d="m10 6-6 6 6 6"/></svg><span>Back to the Pathfinder case study</span></a>
   </nav>
 
   <header style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);align-items:flex-end;padding:clamp(40px,7vw,88px) 0 clamp(32px,5vw,56px);">
@@ -51,6 +80,11 @@
         <span class="tag tag-outline">Dark, data-dense</span>
         <span class="tag tag-outline">Sole systems designer</span>
         <span class="tag tag-outline">v2.1.0</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;">
+        <a class="btn cs-cta" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Open the live system ↗</a>
+        <a class="btn btn-secondary" href="#audit" style="padding:12px 22px;font-size:15px;">Skip to the findings</a>
+        <a class="btn btn-secondary" href="../pathfinder.html" style="padding:12px 22px;font-size:15px;">Read the case study</a>
       </div>
     </div>
     <div style="flex:0 1 300px;display:flex;flex-direction:column;gap:22px;padding-left:24px;border-left:1px solid;border-image:linear-gradient(to bottom, transparent, var(--color-accent-700) 20%, var(--color-accent-700) 80%, transparent) 1;">
@@ -69,6 +103,25 @@
     </div>
   </header>
 
+  <a class="cs-shot" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener" aria-label="Open the live Pathfinder 2.1 build in Figma Make, new tab">
+    <div class="cs-shot-bar" aria-hidden="true">
+      <span class="cs-dots"><i></i><i></i><i></i></span>
+      <span class="cs-url">figma.com/make/PATHFINDER-DESIGN-SYSTEM-2.1</span>
+      <span class="cs-live">Live build</span>
+    </div>
+    <div class="cs-shot-view">
+      <img src="assets/pathfinder-live-overview.jpg" width="1600" height="999" alt="Pathfinder 2.0 overview page running in Figma Make: left navigation listing foundations and components, a hero reading Pathfinder 2.0, and counts for tokens, components, foundations and floorplans." fetchpriority="high">
+    </div>
+    <div class="cs-shot-cap">
+        <span style="display:flex;flex-direction:column;gap:6px;max-width:52ch;">
+          <span style="font-size:clamp(18px,2.4vw,26px);line-height:1.2;font-weight:500;letter-spacing:-0.01em;">The system itself, running from code</span>
+          <span style="font-size:14px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 80%, transparent);">This page is the audit. The build is live in Figma Make, so every foundation, component and theme below can be clicked instead of taken on faith.</span>
+        </span>
+        <span class="btn cs-cta" style="pointer-events:none;">Open it ↗</span>
+    </div>
+  </a>
+
+  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin:clamp(32px,5vw,56px) 0 16px;">How to read the numbers</div>
   <div style="display:flex;flex-wrap:wrap;gap:24px;">
     <div class="card elev-sm" style="flex:1 1 min(100%,240px);padding:20px;gap:6px;">
       <span class="card-kicker">Counted, not recalled</span>
@@ -84,9 +137,10 @@
     </div>
   </div>
 
-  <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
+  <nav class="cs-toc" aria-label="Case study sections"><div class="cs-toc-in"><a href="#intake"><span>01</span>Intake</a><a href="#inventory"><span>02</span>Inventory</a><a href="#audit"><span>03</span>Audit</a><a href="#map"><span>04</span>Map</a><a href="#standards"><span>05</span>Standards</a><a href="#critique"><span>06</span>Critique</a><a href="#governance"><span>07</span>Governance</a><a href="#measurement"><span>08</span>Measurement</a><a href="#gaps"><span>09</span>Gaps</a><a class="cs-toc-live" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Live system ↗</a></div></nav>
+  <div style="height:clamp(40px,6vw,72px);"></div>
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="intake" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">01 · Intake</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">brief-intake</div>
@@ -105,7 +159,7 @@
 
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="inventory" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">02 · Inventory</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">ds-inventory</div>
@@ -165,7 +219,7 @@
 
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="audit" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">03 · Audit</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">heuristic-audit</div>
@@ -201,7 +255,7 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;">
+        <div class="cs-g3" style="display:grid;gap:16px;">
           <div class="card elev-sm" style="padding:0;flex-direction:row;overflow:hidden;">
             <div style="flex:0 0 6px;background:var(--color-accent-700);"></div>
             <div style="padding:22px;display:flex;flex-direction:column;gap:10px;">
@@ -248,7 +302,7 @@
 
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="map" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">04 · Map</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">flow-map</div>
@@ -259,7 +313,7 @@
 
       <div style="position:relative;padding:8px 0;margin-bottom:22px;">
         <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right, transparent, var(--color-accent-600) 12%, var(--color-accent-600) 88%, transparent);"></div>
-        <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;">
+        <div class="cs-g3" style="position:relative;display:grid;gap:12px;">
           <div class="card elev-sm" style="padding:16px;gap:6px;border-color:var(--color-accent-700);"><span class="card-kicker" style="color:var(--color-accent);">01 · Entry</span><span style="font-size:14px;line-height:1.45;">Overview: what's new, quick start</span></div>
           <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">02 · Foundations</span><span style="font-size:14px;line-height:1.45;">Tokens, type, grid, motion, accessibility</span></div>
           <div class="card elev-sm" style="padding:16px;gap:6px;"><span class="card-kicker">03 · Components</span><span style="font-size:14px;line-height:1.45;">Form controls, data display, navigation, overlays</span></div>
@@ -283,7 +337,7 @@
 
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="standards" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">05 · Standards</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">copy-standards · a11y-spec</div>
@@ -343,7 +397,7 @@
 
   <div>
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="critique" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">06 · Critique</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">critique</div>
@@ -370,7 +424,7 @@
 
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
 
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="governance" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">07 · Governance</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">handoff-spec</div>
@@ -418,7 +472,7 @@
 
   <div>
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="measurement" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">08 · Measurement</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">the honest ending</div>
@@ -443,7 +497,7 @@
 
   <div>
   <hr class="hr" style="margin:clamp(40px,6vw,72px) 0;">
-  <section style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
+  <section id="gaps" class="cs-sec" style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);">
     <div style="flex:0 0 140px;">
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);">09 · Gaps</div>
       <div style="font-size:13px;line-height:1.4;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin-top:6px;">unsourced</div>
@@ -469,10 +523,17 @@
     <div style="display:flex;flex-wrap:wrap;gap:12px;">
       <a class="btn btn-primary" href="skill-library.html">Read the skill library</a>
       <a class="btn btn-secondary" href="process-walkthrough.html">See the process deck</a>
+      <a class="btn btn-secondary" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Open Pathfinder live ↗</a>
     </div>
   </section>
 
 </div>
 </div>
+<script>
+(function(){var l=[].slice.call(document.querySelectorAll('.cs-toc a[href^="#"]'));if(!('IntersectionObserver' in window)||!l.length)return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});
+var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.removeAttribute('aria-current')});var a=m[e.target.id];a.setAttribute('aria-current','true');var c=a.parentNode;c.scrollLeft=a.offsetLeft-c.clientWidth/2+a.clientWidth/2}})},{rootMargin:'-20% 0px -70% 0px'});
+document.querySelectorAll('.cs-sec').forEach(function(x){o.observe(x)})})();
+</script>
 </body>
 </html>

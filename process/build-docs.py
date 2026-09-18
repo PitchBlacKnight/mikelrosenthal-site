@@ -3,7 +3,7 @@
 import os, re, html, glob
 ROOT=os.path.dirname(os.path.abspath(__file__)); SRC=os.path.join(ROOT,"skills"); OUT=os.path.join(ROOT,"docs")
 DRIVE="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR"
-NAV=[("index.html","Home"),("working-with-me.html","Method"),("process-walkthrough.html","Deck"),("skill-library.html","Skills"),("pathfinder-case-study.html","Case study"),("intake.html","Intake"),("docs/index.html","Docs"),(DRIVE,"Files ↗")]
+NAV=[("index.html","Overview"),("working-with-me.html","Method"),("skill-library.html","Skills"),("docs/index.html","Docs"),("intake.html","Start a project"),(DRIVE,"Files ↗")]
 def nav(prefix,current):
     out=[]
     for href,label in NAV:
@@ -104,12 +104,13 @@ SHELL="""<!DOCTYPE html>
 <title>{title}, Mikel Rosenthal</title>
 <link rel="stylesheet" href="{prefix}process.css">
 <link rel="stylesheet" href="{prefix}docs/docs.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0C0A'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23EF7A5E' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="{prefix}assets/follow-the-leader.jpg" src="{prefix}assets/follow-the-leader.mp4"></video></div>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <a href="{prefix}index.html" class="kick">← Main · Mikel Rosenthal</a>
+    <a href="{prefix}../" class="kick">← mikelrosenthal.com</a>
     {nav}
   </nav>
   <main id="main">

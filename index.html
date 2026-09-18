@@ -524,6 +524,20 @@ body.cf-lock{overflow:hidden}
 .award p{font-size:13px;color:var(--cream-70)}
 
 /* ---- process ---- */
+.proc-more{margin-top:clamp(56px,9vh,110px)}
+.proc-more-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45)}
+.proc-more-eyebrow::before{content:"";width:44px;height:1px;background:var(--coral)}
+.proc-more h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.6vw,52px);line-height:1.05;letter-spacing:-.01em;max-width:22ch}
+.proc-more h3 em{font-style:italic;color:var(--coral)}
+.proc-more-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:clamp(28px,4vh,48px)}
+.proc-card{display:flex;flex-direction:column;gap:14px;padding:clamp(22px,2.4vw,32px);min-height:260px;background:var(--ink-2);border:1px solid var(--line);border-radius:16px;transition:border-color .3s,transform .5s var(--ease)}
+.proc-card:hover{border-color:var(--coral);transform:translateY(-4px)}
+.proc-card .k{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--coral)}
+.proc-card b{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.12}
+.proc-card p{font-size:15px;line-height:1.55;color:var(--cream-70);flex:1}
+.proc-card .cta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
+@media (min-width:960px){.proc-more-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.proc-card{transition:none}.proc-card:hover{transform:none}}
 .proc-list{border-top:1px solid var(--line)}
 .proc{border-bottom:1px solid var(--line);overflow:hidden}
 .proc-head{
@@ -870,9 +884,9 @@ body.cf-lock{overflow:hidden}
     <p class="reveal">Run at enterprise scale for Avant, BCBS, GE&nbsp;Healthcare, SurePeople, and TransUnion: architecture, governance, and a language whole organizations ship from. Some I founded. Some I inherited and made stronger.</p>
   </div>
   <div class="sys-grid">
-    <figure class="sys-card reveal" data-case="cf-pathfinder" tabindex="0" role="button" aria-label="Open Pathfinder case file">
+    <figure class="sys-card reveal" data-href="pathfinder.html" tabindex="0" role="link" aria-label="Open the Pathfinder case study">
       <div class="frame"><img src="ASSETS/design-systems/board-pathfinder.jpg" alt="Avant Pathfinder Design System, 2023 — dashboards, verification flows, and data visualization" loading="lazy" width="1800" height="1012"></div>
-      <figcaption class="sys-cap"><b>Avant — <em>Pathfinder</em></b><span>Product + Marketing System · 2021–2024<br><span class="cta">Case file →</span></span></figcaption>
+      <figcaption class="sys-cap"><b>Avant — <em>Pathfinder</em></b><span>Product + Marketing System · 2021–2024<br><span class="cta">Case study →</span></span></figcaption>
     </figure>
     <figure class="sys-card reveal" data-case="cf-marketing" tabindex="0" role="button" aria-label="Open Marketing Library case file">
       <div class="frame"><img src="ASSETS/design-systems/board-avant-marketing.jpg" alt="Avant Marketing Design Library, 2024 — campaign, social, and brand components" loading="lazy" width="1800" height="1012"></div>
@@ -1070,6 +1084,32 @@ body.cf-lock{overflow:hidden}
         <p><b>Systems teams keep using.</b> Documentation, governance, Figma libraries, developer handoff. The unglamorous part of the job, and the part that decides whether the rest of it lasts.</p>
         <video class="proc-gif mv" poster="ASSETS/motion-art/v/Forever%20drop.jpg" data-src="ASSETS/motion-art/v/Forever%20drop.mp4" muted loop playsinline preload="none" width="490" height="392"></video>
       </div></div>
+    </div>
+  </div>
+  <div class="proc-more">
+    <div class="proc-more-head">
+      <p class="proc-more-eyebrow">Process as product</p>
+      <h3>The method is written down, versioned, <em>and tested on my own work.</em></h3>
+    </div>
+    <div class="proc-more-grid">
+      <a class="proc-card" href="process/working-with-me.html">
+        <span class="k">i. The method</span>
+        <b>Five phases, five decisions</b>
+        <p>Working agreements, the weekly rhythm, the handoff package, and the gate that closes each phase. Also available as slides.</p>
+        <span class="cta">Read the method →</span>
+      </a>
+      <a class="proc-card" href="process/skill-library.html">
+        <span class="k">ii. The skill library</span>
+        <b>Nine skills, documented like a product</b>
+        <p>My practice from brief intake to developer handoff, written as reusable procedures with a rubric and an output format each.</p>
+        <span class="cta">Open the library →</span>
+      </a>
+      <a class="proc-card" href="process/pathfinder-case-study.html">
+        <span class="k">iii. The audit</span>
+        <b>The method, pointed at my own system</b>
+        <p>Pathfinder run through the library and checked against its own claims. Five findings, each with a file behind it.</p>
+        <span class="cta">Read the audit →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1277,85 +1317,6 @@ body.cf-lock{overflow:hidden}
 </section>
 
 <!-- CASE FILES -->
-<article class="casefile" id="cf-pathfinder" data-lenis-prevent aria-modal="true" role="dialog">
-  <div class="cf-inner">
-    <button class="cf-close" aria-label="Close case file"></button>
-    <p class="cf-eyebrow">Avant Communications · B2B Technology · 2021 — 2024</p>
-    <h2 class="cf-title">Pathfinder <em>Design System</em></h2>
-    <p class="cf-sub">Avant's first unified design system. Dual-themed, built from zero, and owned end to end for two and a half years.</p>
-    <p class="cf-loop">The six-step loop on the front page is how this was built. Pathfinder is the long version.</p>
-    <div class="cf-meta">
-      <span><b>Role</b>Senior Design Systems Lead, end to end</span>
-      <span><b>Scope</b>Research · Foundations · Components · Theming · A11y · Governance</span>
-      <span><b>Stack</b>Figma Variables · React handoff · Dev Mode</span>
-    </div>
-    <div class="cf-stats">
-      <div><div class="n">350<i>+</i></div><div class="l">Contributors enabled</div></div>
-      <div><div class="n">2.5<i>yr</i></div><div class="l">Owned end to end · v1 → 3.0</div></div>
-      <div><div class="n">2<i>×</i></div><div class="l">Systems from one foundation</div></div>
-      <div><div class="n">5<i>→1</i></div><div class="l">Primary blues to one language</div></div>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">01</span><span>Frame the Problem</span></div>
-      <p>Pathfinder is where technology advisors research, quote, and close enterprise deals, and it had grown faster than its design language. Three years of separate teams had layered <b>five primary blues, three button shapes, and mixed type stacks</b> into production, while marketing shipped at high volume with no shared foundations.</p>
-      <p>I didn't start with components. I started with an audit of every production surface. Once the mess was countable it was fundable, so <b>the system had a business case before a single component existed.</b> Advisors use this tool to make six-figure recommendations in front of clients. In that room, inconsistency reads as unreliability. That made it a trust problem more than a tidiness problem.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-audit.jpg" alt="Pathfinder interface audit — five primary blues, three button shapes, and mixed type stacks found across production surfaces" loading="lazy" width="1600" height="860"></figure>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">02</span><span>Map the Flow</span></div>
-      <p>The system had to serve three things at once: a dark analytical product where advisors compare providers and close deals, a light high-volume marketing operation, and a live data layer of real revenue charts shared by both. Mapping those flows set the architecture early. <b>Two themes resolving from one source</b>, and components proven against the platform's densest screens rather than its simplest.</p>
-      <figure class="cf-img"><img src="ASSETS/work/pathfinder-connectivity.jpg" alt="Pathfinder connectivity intelligence — one of the platform's densest surfaces, the stress test every component had to survive" loading="lazy" width="1800" height="1226"></figure>
-      <p><b>The spine that came out of it: one tracked project, five states.</b> Advisors were running six-figure deals out of inboxes and spreadsheets. Mapping the work end to end gave the product a shape. Every screen answers for one state of one project, and every state is a different problem:</p>
-      <p><b>Project Information</b> is where the advisor lives between deals. It has to answer "what needs me today?" in five seconds without becoming a wall of numbers. <b>Configuration</b> is the screen the client sees. It turns a market of dozens of providers into a defensible shortlist, one dense comparison row each.</p>
-      <p><b>Discovery</b> is the longest state and the likeliest to stall, because assessments sit with engineers for days. The waiting had to read as clear progress, not anxiety. <b>Registration</b> is the irreversible step, which is exactly why the register control lives inside Configuration, next to the reasoning that justifies it. <b>Contract</b> is the state that has to outlive everyone. A signed deal becomes a deployment, then a billing relationship, then a renewal handled by someone who was never in the room.</p>
-      <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/pathfinder-project.jpg" alt="Pathfinder Project Information — the advisor's home state, standing context above and live project files below" loading="lazy" width="1800" height="1200"></div>
-        <div class="cf-img"><img src="ASSETS/work/pathfinder-config.jpg" alt="Pathfinder Configuration — provider comparison with fit scores, suggested and saved matrices" loading="lazy" width="1800" height="1200"></div>
-      </figure>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">03</span><span>Explore Wide</span></div>
-      <p>Direction got decided in the open. Style tiles put real directions side by side, with palette, type, data density, and both themes on each one, so <b>the team chose between options instead of arguing opinions.</b> The tiles that lost still earned their keep. Every rejection sharpened the case for what won.</p>
-      <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder style tile — dark product direction with booked MRC, commissions, and loyalty modules" loading="lazy" width="1683" height="1800"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-05.jpg" alt="Pathfinder style tile — dark direction stressed against task management and pipeline density" loading="lazy" width="1683" height="1800"></div>
-      </figure>
-      <figure class="cf-img"><img src="ASSETS/design-systems/pf2-styletile-23.jpg" alt="Pathfinder style tile — light theme direction with palette, map hero, and analytics widgets" loading="lazy" width="1800" height="1257"></figure>
-      <p><b>The model went to advisors before it went to build.</b> The five states shipped first as a clickable prototype. The concept held. Advisors described the states back in their own words, unprompted, and stopped asking "where's the assessment I ran?", which was the question that had defined the old process.</p>
-      <p><b>The details didn't hold, which is the point of testing.</b> The first Configuration table gave the fit score and the provider logo equal weight, so advisors scanned past the evidence and picked on brand recognition, the exact thing the screen existed to prevent. I rebuilt the row hierarchy until the score and the differentiator outweighed the logo. Registration moved for the same reason. I'd treated it as a light confirmation, advisors treated it as a commitment, so it went where the reasoning lives.</p>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">04</span><span>Design to the Pixel</span></div>
-      <p><b>Every state, or it isn't done.</b> Every component shipped with loading, empty, error, and disabled states. In a platform full of in-progress assessments, the in-between states are most of what people see.</p>
-      <p>The chart library carried the credibility: line, bar, area, stream, radar, and hex, all themeable, consistent, and legible with live revenue numbers on the screen in front of a client.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-system-2026.jpg" alt="Pathfinder Design System — color palette, type scale, buttons, inputs, badges, chips, alerts and data display, alongside partner announcement and dashboard screens" loading="lazy" width="1609" height="977"></figure>
-      <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/avant-charts-bar.jpg" alt="Pathfinder chart library — bar charts resolving light and dark from one shared color logic" loading="lazy" width="1800" height="956"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/avant-charts-line.jpg" alt="Pathfinder chart library — line and area charts, same components in both themes with zero overrides" loading="lazy" width="1800" height="1060"></div>
-      </figure>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">05</span><span>Make It a System</span></div>
-      <p>Three tiers of tokens: <b>primitives, semantic, component.</b> Engineers consume intent, never hex codes. Dark product and light marketing resolve from one semantic layer. Re-theme at the primitive layer and nothing downstream changes.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-tokens.jpg" alt="Pathfinder token architecture — primitives to semantic to component, with the same semantic layer resolving the dark product and light marketing themes" loading="lazy" width="1600" height="950"></figure>
-      <p><b>Governance built for adoption rather than enforcement.</b> Contribution was federated. The docs were written for the person shipping at 4pm on a Friday. Weekly office hours caught edge cases before they became forks, and semantic releases came with migration notes so an upgrade never surprised anyone.</p>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">06</span><span>Build It for Real</span></div>
-      <p>Systems prove themselves in shipped product. Components went to engineering as a React-ready library through Dev Mode, named, specced, and versioned so design intent survived the handoff. Clickable prototypes went in front of advisors before build, and <b>when something didn't hold, it got rebuilt before it shipped.</b></p>
-      <p>Adoption was the metric that mattered. The library became the default path because it was the easier one, without a mandate.</p>
-      <figure class="cf-img"><img src="ASSETS/work/pathfinder-dark.jpg" alt="Pathfinder in production — the shipped dark theme assembled entirely from system components" loading="lazy" width="1800" height="1125"></figure>
-    </div>
-    <div class="cf-sec">
-      <div class="cf-tag"><span class="no">→</span><span>The Outcome</span></div>
-      <p>Brand reviews shifted from policing basics to discussing ideas. New surfaces shipped visually consistent on day one. Accessibility findings stopped recurring because the fixes lived at the foundation level. And the architecture held: <b>2.0 to 3.0 on the same foundations, no rebuild.</b> 3.0 is in development now, with a deeper dark theme and denser data visualization resolving from the same layer that shipped 2.0.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/pathfinder-30-concept.jpg" alt="Pathfinder 3.0 exploration — evolved dark theme with sales dashboard, yearly figures, and product cards" loading="lazy" width="1800" height="1257"></figure>
-      <blockquote class="cf-quote">When the same feedback keeps arriving, the fix belongs upstream in the system, not in each deliverable.</blockquote>
-    </div>
-    <p class="cf-note">Product imagery © Avant Communications. Some names and details generalized per confidentiality.</p>
-  </div>
-</article>
-
 <article class="casefile" id="cf-marketing" data-lenis-prevent aria-modal="true" role="dialog">
   <div class="cf-inner">
     <button class="cf-close" aria-label="Close case file"></button>
@@ -2333,6 +2294,11 @@ body.cf-lock{overflow:hidden}
     const open = () => openCase(card.dataset.case);
     card.addEventListener('click', open);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+  });
+  document.querySelectorAll('[data-href]').forEach(card => {
+    const go = () => { location.href = card.dataset.href; };
+    card.addEventListener('click', go);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); go(); } });
   });
   document.querySelectorAll('.casefile').forEach(cf => {
     cf.querySelector('.cf-close').addEventListener('click', () => closeCase(cf));
