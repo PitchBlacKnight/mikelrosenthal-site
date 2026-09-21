@@ -1,10 +1,10 @@
 {
   "redirects": [
     { "source": "/resume.html", "destination": "/ASSETS/Mikel_Rosenthal_Resume_2026.pdf", "permanent": false },
-    { "source": "/avant-marketing.html", "destination": "/#systems", "permanent": false },
-    { "source": "/bcbs-fiber.html", "destination": "/#systems", "permanent": false },
-    { "source": "/ge-edison.html", "destination": "/#systems", "permanent": false },
-    { "source": "/surepeople-prism.html", "destination": "/#systems", "permanent": false },
-    { "source": "/transunion-tucm.html", "destination": "/#systems", "permanent": false }
+    { "source": "/avant-marketing.html", "destination": "/work.html#cf-marketing", "permanent": false },
+    { "source": "/bcbs-fiber.html", "destination": "/work.html#cf-fiber", "permanent": false },
+    { "source": "/ge-edison.html", "destination": "/work.html#cf-edison", "permanent": false },
+    { "source": "/surepeople-prism.html", "destination": "/work.html#cf-prism", "permanent": false },
+    { "source": "/transunion-tucm.html", "destination": "/work.html#cf-tucm", "permanent": false }
   ]
 }
