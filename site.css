@@ -795,3 +795,9 @@ body.cf-lock{overflow:hidden}
 @media(min-width:960px){.proc-more-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .proc-more-grid.two .proc-card{min-height:220px}
 
+
+/* about: portrait beside the page hero */
+.page-hero-portrait{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,72px);align-items:end}
+@media(min-width:900px){.page-hero-portrait{grid-template-columns:1.25fr .9fr}.page-hero-portrait h1{max-width:12ch}}
+.portrait{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--ink-2);aspect-ratio:5/4;max-width:640px;width:100%;justify-self:end}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
