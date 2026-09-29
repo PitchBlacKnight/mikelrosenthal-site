@@ -422,6 +422,8 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-title{font-family:var(--serif);font-weight:300;font-size:clamp(42px,7vw,96px);line-height:.98;letter-spacing:-.015em}
 .cf-title em{font-style:italic;color:var(--coral)}
 .cf-sub{margin-top:18px;font-size:clamp(15px,1.2vw,18px);color:var(--cream-70);max-width:58ch}
+.cf-read{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:12px 20px;border:1px solid var(--coral);border-radius:999px;color:var(--coral);font-size:14px;letter-spacing:.02em;text-decoration:none;transition:background .3s var(--ease),color .3s var(--ease)}
+.cf-read:hover,.cf-read:focus-visible{background:var(--coral);color:var(--ink)}
 .cf-meta{
   display:flex;flex-wrap:wrap;gap:8px 36px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
   font-size:11px;letter-spacing:.14em;color:var(--cream-70);
@@ -1381,6 +1383,7 @@ body.cf-lock{overflow:hidden}
     <p class="cf-eyebrow">Blue Cross Blue Shield · Healthcare &amp; Insurance · 2018 — 2019</p>
     <h2 class="cf-title">FIBER <em>Design System</em></h2>
     <p class="cf-sub">BCBS's first unified design system. React-compatible foundations spanning consumer enrollment, member tools, and marketing.</p>
+    <a class="cf-read" href="https://fiber-case-study.vercel.app" target="_blank" rel="noopener">Read the full BCBS case study <span aria-hidden="true">↗</span></a>
     <div class="cf-meta">
       <span><b>Role</b>Design System Founder / Lead, contract</span>
       <span><b>Scope</b>Foundations · Components · System guide · Web + Mobile · Enrollment</span>
