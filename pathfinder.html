@@ -1,770 +1,694 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Pathfinder: Sixteen tools, one deal · Mikel Rosenthal</title>
-<meta name="description" content="How sixteen separate tools became five states of one deal, and the design system that carries them. AVANT Communications, May 2021 to Aug 2024.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0C0A'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23EF7A5E' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
-<link rel="canonical" href="https://mikelrosenthal.com/pathfinder.html">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://mikelrosenthal.com/pathfinder.html">
-<meta property="og:title" content="Pathfinder: Sixteen tools, one deal · Mikel Rosenthal">
-<meta property="og:description" content="How sixteen separate tools became five states of one deal, and the design system that carries them. AVANT Communications, May 2021 to Aug 2024.">
-<meta property="og:image" content="https://mikelrosenthal.com/ASSETS/og-pathfinder.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0F0C0A">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22none%22 stroke=%22%230099ff%22 stroke-width=%224%22/%3E%3Cpath d=%22M24 11 33 36l-9-6-9 6z%22 fill=%22%23fff%22/%3E%3C/svg%3E">
+<title>Pathfinder: One place to run a deal · Mikel Rosenthal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
 <style>
-  :root{
-    --bg:#0F0C0A; --s1:#171210; --s2:#130F0D; --line:#2A2420; --line-2:#3A322C;
-    --text:#F1E8D6; --text-2:#B5AD9F; --text-3:#8C857A; --text-card:#D6CEBD;
-    --accent:#EF7A5E; --ok:#F1E8D6; --info:#8FA8A6; --bad:#DE93A9; --slate:#8FA8A6;
-    --disp:"Fraunces",Georgia,serif; --body:"Space Grotesk","Helvetica Neue",sans-serif; --mono:var(--body);
-    --ease:cubic-bezier(.22,1,.36,1);
-    --pad:clamp(20px,6.6vw,96px); --gap:clamp(56px,7.5vw,104px);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  a:focus-visible,.scroll:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-  img{display:block;max-width:100%;height:auto}
-  p{margin:0}
-  .wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
-  .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:var(--bg);padding:10px 16px;border-radius:8px;font-weight:500;z-index:20}
-  .skip:focus{left:8px}
+/* One visual system. Real screens: only the final UI family, always in the same frame.
+   Everything else is a diagram drawn from the same five parts: line, node, chip, bar, label. */
+:root{
+  --bg:#f5f5f7;--card:#fff;--ink:#1d1d1f;--ink-2:#6e6e73;--ink-3:#a1a1a6;--line:#d2d2d7;--soft:#ececf0;
+  --blue:#0099ff;--blue-soft:#e4f1f9;--black:#000;--night:#101012;--amber:#e09a0b;
+  --f:"Albert Sans",-apple-system,"Helvetica Neue",sans-serif;--ease:cubic-bezier(.2,.7,.2,1);--r:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.in{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.band{padding:clamp(80px,11vw,150px) 0}
+.band.white{background:#fff}
+.band.dark{background:var(--black);color:#f5f5f7}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.06}
+h1{font-size:clamp(56px,9vw,120px);letter-spacing:-.045em}
+h2{font-size:clamp(40px,5.6vw,72px);text-align:center;max-width:14em;margin:0 auto}
+h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.02em;line-height:1.15}
+.eyebrow{display:block;text-align:center;font-size:17px;font-weight:600;color:var(--blue);margin-bottom:14px}
+/* Apple-style supporting line: grey sentence, the words that matter in ink */
+.say{font-size:clamp(20px,2vw,26px);line-height:1.38;font-weight:500;color:var(--ink-2);text-align:center;max-width:30em;margin:26px auto 0;letter-spacing:-.012em}
+.say b{color:var(--ink);font-weight:600}
+.dark .say{color:#86868b}.dark .say b{color:#f5f5f7}
+.gap{margin-top:clamp(48px,6vw,84px)}
+p{margin:0 0 1em}
+.small{font-size:15px;color:var(--ink-2);line-height:1.45}
 
-  .mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-  .kicker{color:var(--accent)}
-  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
-  strong{color:var(--text);font-weight:500}
+/* sub-nav */
 
-  /* nav */
-  .nav{min-height:88px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;border-bottom:1px solid #241F1B;padding:12px 0}
-  .brand{font-family:var(--disp);font-size:17px;font-weight:400;letter-spacing:-.015em}
-  .nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;font-size:14px;color:var(--text-2)}
-  .nav-links a{padding:12px 0}
-  .nav-links a:hover,.nav-links a[aria-current]{color:var(--text)}
-  .pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px!important;border:1px solid var(--line-2);border-radius:999px;color:var(--text)}
-  .pill:hover{border-color:var(--accent)}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+/* motion: one reveal, one draw */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0)*110ms)}
+.js .rv.on{opacity:1;transform:none}
+.js .st{opacity:0;transform:scale(.9);transition:opacity .5s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i,0)*70ms + 150ms)}
+.js .on .st{opacity:1;transform:none}
+.js .draw{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.2s var(--ease) .2s}
+.js .on .draw{transform:none}
 
-  a.inline{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-  a.inline:hover{color:#F5957D}
-  .backlink{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:14px;font-weight:500;color:var(--text)}
-  .backlink:hover{color:var(--accent)}
-  .backlink em{font-style:normal;font-weight:400;color:var(--text-3)}
-  .cs-tabs{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:var(--s1);border:1px solid var(--line)}
-  .cs-name{padding:0 12px 0 14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
-  .cs-tabs a{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;font-size:14px;color:var(--text-2)}
-  .cs-tabs a:hover{color:var(--text)}
-  .cs-tabs a[aria-current]{background:var(--line-2);color:var(--text);font-weight:500}
-  .next{margin-top:clamp(48px,6vw,80px)}
-  .next .label{display:block;margin-bottom:16px}
-  .next a.card{min-height:168px;transition:border-color .2s}
-  .next a.card:hover{border-color:var(--accent)}
-  .next .num::after{display:none}
-  @media (max-width:760px){.cs-tabs{order:3;width:100%;justify-content:space-between}.cs-name{display:none}.backlink em{display:none}}
-  /* buttons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;border:1px solid var(--line-2);font-size:15px;font-weight:500;transition:border-color .2s,background .2s}
-  .btn:hover{border-color:var(--text-3)}
-  .btn-solid{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-  .btn-solid:hover{background:#F5957D;border-color:#F5957D}
-  .btns{display:flex;flex-wrap:wrap;gap:12px}
+/* the one screen frame */
+.frame{margin:0;border-radius:14px;overflow:hidden;background:#1c1c1f;box-shadow:0 40px 80px -40px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.07);cursor:zoom-in}
+.frame::before{content:"";display:block;height:30px;background:radial-gradient(circle at 18px 50%,#55555b 4.5px,transparent 5px),radial-gradient(circle at 34px 50%,#55555b 4.5px,transparent 5px),radial-gradient(circle at 50px 50%,#55555b 4.5px,transparent 5px),#2a2a2e}
+.frame img{width:100%}
+.cap{font-size:15px;color:var(--ink-2);text-align:center;margin:18px auto 0;max-width:40em}
+.dark .cap{color:#86868b}
 
-  /* hero */
-  .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:clamp(40px,5vw,72px) 0 0}
-  .hero-l{grid-column:span 7;display:flex;flex-direction:column}
-  .hero-r{grid-column:span 5;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  h1{margin:28px 0 0;font-family:var(--disp);font-size:clamp(46px,6.4vw,92px);line-height:.96;font-weight:300;letter-spacing:-.015em}
-  h1 span,.hl{color:var(--accent)}
-  .deck{margin-top:28px;max-width:600px;font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--text-2)}
-  .hero .btns{margin-top:36px}
-  @media (min-width:1001px){.hero .btns{margin-top:auto;padding-top:36px}}
-  .tile{padding:28px;border-radius:20px;background:var(--s1);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:200px}
-  .tile.wide{grid-column:span 2;min-height:280px}
-  .tile b{display:block;font-family:var(--disp);font-size:56px;line-height:1;font-weight:300;letter-spacing:-.015em}
-  .tile.wide b{font-size:clamp(64px,6.2vw,88px);letter-spacing:-.04em}
-  .tile p{margin-top:12px;font-size:14px;line-height:1.5;color:var(--text-2)}
-  .tile.wide p{font-size:15px}
+/* hero */
+.hero{padding:clamp(56px,8vw,110px) 0 0;text-align:center;position:relative;background:var(--bg);color:#fff;isolation:isolate}
+/* colored strip behind the title. It stops halfway down the screenshot, so the frame bridges the division */
+.hero-bg{position:absolute;z-index:-1;left:0;right:0;top:0;bottom:calc(min(1000px,100vw - 80px)*.35 + 15px);overflow:hidden;
+  background:radial-gradient(60% 90% at 12% 0%,rgba(0,153,255,.55),transparent 70%),radial-gradient(50% 80% at 92% 25%,rgba(39,189,250,.28),transparent 70%),radial-gradient(40% 60% at 55% 110%,rgba(90,70,220,.35),transparent 70%),#05101f}
+.hero-bg canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-bg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue) 20%,#27bdfa 50%,var(--blue) 80%,transparent);box-shadow:0 0 24px 2px rgba(39,189,250,.55)}
+.hero .eyebrow{color:#27bdfa}
+.hero h1{margin-top:8px}
+.hero .say{font-size:clamp(24px,2.6vw,34px);color:#fff}
+.facts{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 44px;margin:44px 0 clamp(48px,6vw,80px);font-size:15px;color:var(--ink-2)}
+.hero .facts{color:#8fb3cf}
+.facts b{display:block;color:#fff;font-weight:600;font-size:17px;margin-top:2px}
+.hero .frame{max-width:1000px;margin:0 auto}
+.hero-foot{background:none}
 
-  /* live shot */
-  .shot{display:block;margin-top:clamp(48px,6vw,80px);border-radius:20px;overflow:hidden;border:1px solid #2E2722;background:var(--s2);transition:border-color .25s,transform .25s}
-  .shot:hover{border-color:var(--accent);transform:translateY(-3px)}
-  @media (prefers-reduced-motion:reduce){.shot{transition:none}.shot:hover{transform:none}}
-  .shot-bar{height:48px;display:flex;align-items:center;gap:16px;padding:0 20px;background:var(--s1);border-bottom:1px solid var(--line)}
-  .dots{display:flex;gap:7px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
-  .url{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--text-3)}
-  .live{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;flex:none}
-  .shot-view{aspect-ratio:1246/700;overflow:hidden}
-  .shot-view img{width:100%;height:100%;object-fit:cover;object-position:top left}
-  @media (max-width:600px){.shot-view{aspect-ratio:4/3}}
-  .shot-cap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding:28px 32px;background:var(--s1);border-top:1px solid var(--line)}
-  .shot-cap h2{margin:0 0 6px;font-family:var(--disp);font-size:clamp(20px,2vw,24px);font-weight:400;letter-spacing:-.015em}
-  .shot-cap p{max-width:640px;font-size:15px;line-height:1.5;color:var(--text-2)}
-  .shot-cap .btn{min-height:48px;pointer-events:none}
+/* diagram primitives */
+.dg{background:var(--card);border-radius:var(--r);padding:clamp(24px,3.4vw,48px)}
+.band.white .dg{background:var(--bg)}
+.dg-t{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px;display:block}
+.dg-t.b{color:var(--blue)}
+.dg-n{font-size:15px;line-height:1.45;color:var(--ink-2);margin:22px 0 0}
+.dg-n b{color:var(--ink);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.chip{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:8px 15px;font-size:14px;font-weight:600;background:var(--soft);color:var(--ink);white-space:nowrap}
+.chip.b{background:var(--blue);color:#fff}
+.chip.o{background:none;border:1.5px dashed var(--line);color:var(--ink-2);font-weight:500}
+.sq{width:100%;aspect-ratio:1;border-radius:9px;background:var(--soft);border:1.5px solid var(--line)}
+.sq.k{background:var(--ink);border-color:var(--ink)}
+.bar{height:10px;border-radius:5px;background:var(--soft);display:block}
+svg.d{width:100%;height:auto;display:block;overflow:visible}
+.d .l{fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round}
+.d .la{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round}
+.d .n{fill:#fff;stroke:var(--line);stroke-width:2}
+.d .na{fill:var(--blue);stroke:var(--blue);stroke-width:2}
+.d .nk{fill:var(--soft);stroke:var(--line);stroke-width:2}
+.d text{font:600 13px var(--f);fill:var(--ink-2);text-anchor:middle}
+.d text.w{fill:#fff}.d text.k{fill:var(--ink)}
+.band.white .d .n{fill:var(--bg)}
 
-  .tldr{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
-  .tldr .label{color:var(--accent)}
-  .tldr p{font-size:16px;line-height:1.55;color:var(--text-card)}
-  .meta{margin:32px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px 24px}
-  .meta div{padding-top:16px;border-top:1px solid var(--line-2)}
-  .meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
-  .meta dd{margin:0;font-size:14px;line-height:1.5;color:var(--text-2)}
-  .head.sub{margin-top:clamp(48px,6vw,80px)}
-  .fixes{margin-top:clamp(36px,4.5vw,56px)}
-  .fixes .label{color:var(--bad)}
-  .fixes .card p{font-size:15px}
-  .fixes .fix{margin-top:auto;padding-top:16px;border-top:1px solid var(--line-2);color:var(--text-card)}
-  .fixes .fix b{display:block;margin-bottom:6px;font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ok)}
-  .fill{color:#F5B86B;background:rgba(245,184,107,.10);border-bottom:1px dashed rgba(245,184,107,.6);border-radius:3px;padding:0 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .draftbar{position:sticky;top:0;z-index:30;padding:10px var(--pad);background:#1F1608;border-bottom:1px solid #5A421B;color:#F5D9A8;font-size:13px;line-height:1.4}
-  .draftbar b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F5B86B;margin-right:10px}
-  body:has(.draftbar) .toc{top:40px}
-  .goals,.finds{margin-top:24px}
-  .goals .label{color:var(--accent)}
-  .kv{margin-top:auto;padding-top:14px;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:13px!important;color:var(--text)!important}
-  .cnt{margin-top:auto;padding-top:14px;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:12px!important}
-  .finds .card b{font-family:var(--disp);font-size:44px;line-height:1;font-weight:300;letter-spacing:-.015em}
-  .finds .card p{font-size:15px}
-  .impact{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
-  .impact div{padding:28px;background:var(--s1);display:flex;flex-direction:column;gap:12px}
-  .impact b{font-family:var(--disp);font-size:clamp(28px,2.6vw,38px);line-height:1.05;font-weight:300;letter-spacing:-.015em}
-  .impact p{font-size:14px;line-height:1.5;color:var(--text-2)}
-  .status{margin-top:clamp(36px,4.5vw,56px);padding:24px 28px;border-radius:16px;background:var(--s1);border:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--text-card);display:flex;flex-direction:column;gap:10px}
-  .facts{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
-  .card{padding:24px;border-radius:16px;background:var(--s1);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
-  .facts .card{min-height:168px}
-  .facts .label{color:var(--accent)}
-  .facts p{font-size:15px;line-height:1.5;color:var(--text-card)}
+/* D1 before / after */
+.grid16{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:250px}
+.deal{position:relative;padding-top:6px}
+.deal .line{height:2px;background:var(--blue);margin:16px 16px 0}
+.deal .nodes{display:grid;grid-template-columns:repeat(5,1fr);margin-top:-17px}
+.deal .nodes i{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font:600 13px/32px var(--f);font-style:normal;text-align:center;margin:0 auto;display:block}
+.deal .railbar{margin:22px 0 12px;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-size:13.5px;font-weight:600;padding:10px 14px;text-align:center}
+.deal .tools{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.inset{display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:center;margin-top:16px}
+.inset img{border-radius:12px;border:1px solid var(--line);filter:grayscale(1) contrast(.92);aspect-ratio:4/3;object-fit:cover;object-position:top;cursor:zoom-in}
 
-  /* toc */
-  .toc{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-block:1px solid #241F1B}
-  .toc-in{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
-  .toc-in::-webkit-scrollbar{display:none}
-  .toc a{flex:none;padding:17px 12px 15px;font-size:13px;color:var(--text-2);border-bottom:2px solid transparent}
-  .toc a:hover{color:var(--text)}
-  .toc a[aria-current="true"]{color:var(--text);border-bottom-color:var(--accent)}
-  .toc a span{font-family:var(--mono);font-size:11px;color:var(--accent);margin-right:7px}
-  .toc .toc-home{padding-left:0;margin-right:16px;font-family:var(--disp);font-size:15px;font-weight:400;letter-spacing:-.015em;color:var(--text)}
-  .toc .toc-live{margin-left:auto;position:sticky;right:0;padding-left:28px;color:var(--text);background:linear-gradient(to right,transparent,var(--bg) 26%)}
+/* findings */
+.find h3{margin:26px 0 10px}
+.find p{font-size:16.5px;color:var(--ink-2);margin:0}
+.methods{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 
-  /* sections */
-  section.sec{padding:var(--gap) 0;scroll-margin-top:52px;border-top:1px solid #241F1B}
-  section.sec:nth-of-type(even){background:#130F0D}
-  section.sec:last-of-type{border-bottom:1px solid #241F1B}
-  .mark{display:flex;align-items:center;gap:16px;margin-bottom:clamp(32px,4vw,48px);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
-  .mark span{padding:7px 12px;border:1px solid var(--accent);border-radius:999px;color:var(--accent);letter-spacing:.08em}
-  .mark::after{content:"";flex:1;height:1px;background:var(--line-2)}
-  .head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
-  .head > div:first-child{grid-column:span 7}
-  .head > .lede{grid-column:9 / span 4;align-self:end}
-  .head.split > div:first-child{grid-column:span 5}
-  .head.split > .lede{grid-column:7 / span 6;align-self:start}
-  h2.t{margin:0;font-family:var(--disp);font-size:clamp(34px,4vw,56px);line-height:1.02;font-weight:300;letter-spacing:-.015em}
-  .lede{font-size:17px;line-height:1.65;color:var(--text-2);display:flex;flex-direction:column;gap:16px}
-  .punch{margin-top:12px;font-family:var(--disp);font-size:clamp(22px,2.2vw,28px);line-height:1.25;font-weight:400;letter-spacing:-.015em;color:var(--text)}
-  .note{margin-top:14px;font-size:13px;line-height:1.55;color:var(--text-3);max-width:80ch}
+/* problem > question > answer */
+.pqa{display:grid;gap:12px}
+.pqa-h,.pqa-r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
+.pqa-h{padding:0 clamp(24px,3.4vw,48px);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.pqa-r{padding-top:26px;padding-bottom:26px}
+.pqa-r p{margin:0;font-size:17px;line-height:1.45;color:var(--ink-2)}
+.pqa-r p b{color:var(--ink);font-weight:600}
+.pqa-r p:last-child{color:var(--blue);font-weight:600}
 
-  /* before / after */
-  .ba{margin:clamp(40px,5vw,64px) 0 0;display:grid;grid-template-columns:minmax(0,1fr) 128px minmax(0,1fr)}
-  .panel{padding:28px;border-radius:20px;display:flex;flex-direction:column}
-  .panel.before{background:#110E0C;border:1px dashed #423932}
-  .panel.after{background:#1A1512;border:1px solid var(--line-2)}
-  .ph{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
-  .ph div{display:flex;flex-direction:column;gap:6px}
-  .ph strong{font-family:var(--disp);font-size:20px;font-weight:400;letter-spacing:-.015em}
-  .before .ph strong{color:#CFC7B7}
-  .ph b{font-family:var(--disp);font-size:64px;line-height:.85;font-weight:300;letter-spacing:-.015em;color:#6B645B}
-  .after .ph b,.after .ph .label{color:var(--accent)}
-  .chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;list-style:none;margin:20px 0 24px;padding:0}
-  .chips li{min-height:34px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px 6px;border-radius:8px;border:1px solid var(--line);font-size:13px;color:#9A9387}
-  .leak{margin-top:auto;padding-top:18px;border-top:1px dashed #57313D;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-  .leak strong{flex:1 1 auto;font-size:14px;font-weight:500;color:var(--bad)}
-  .leak span{min-height:36px;display:inline-flex;align-items:center;padding:0 14px;border-radius:999px;background:#26141A;font-size:13px;font-weight:500;color:#EBB5C4}
-  .ba-mid{position:relative;color:var(--accent)}
-  .ba-mid .lines{position:absolute;inset:0;width:100%;height:100%}
-  .ba-mid .lines path{stroke:#423932;stroke-width:1.5;fill:none;vector-effect:non-scaling-stroke}
-  .ba-mid .arrow{position:absolute;right:0;top:50%;transform:translateY(-50%)}
-  .rail{list-style:none;margin:24px 0 0;padding:0;flex:1;display:flex;flex-direction:column}
-  .rail li{position:relative;flex:1;display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;padding-bottom:14px}
-  .rail li:last-child{flex:0;padding-bottom:0}
-  .rail li:not(:last-child)::after{content:"";position:absolute;left:13px;top:34px;bottom:2px;width:2px;background:#423932}
-  .rail i{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--accent)}
-  .rail li:last-child i{background:var(--accent);color:var(--bg);font-weight:500}
-  .rail b{display:block;padding-top:2px;font-size:17px;font-weight:500}
-  .rail span{display:block;font-size:14px;line-height:1.45;color:var(--text-2)}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);position:relative;text-align:center}
+.flow::before{content:"";position:absolute;left:10%;right:10%;top:21px;height:2px;background:var(--blue)}
+.js .flow::before{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.4s var(--ease) .2s}
+.js .on .flow::before,.js .flow.on::before{transform:none}
+.flow div{position:relative;padding:0 8px}
+.flow i{display:block;width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;font:600 16px/44px var(--f);font-style:normal;margin:0 auto 16px}
+.flow b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.flow span{display:block;font-size:14.5px;line-height:1.4;color:var(--ink-2);margin-top:6px}
+.railbig{margin-top:30px;border-radius:16px;background:var(--blue-soft);color:var(--blue);padding:16px 20px;text-align:center;font-size:15.5px;font-weight:600}
 
-  /* the real before */
-  .orig{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:center}
-  .orig-shot{margin:0}.orig-shot:hover{transform:none;border-color:#2E2722}
-  .orig-shot img{width:100%;height:auto;background:#fff}
-  .orig-side{display:flex;flex-direction:column;gap:20px}
-  .ghosts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-  .ghosts li{min-height:88px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;border-radius:14px;border:1px dashed var(--bad);font-size:14px;font-weight:500;color:var(--bad)}
-  .lede-s{font-size:16px;line-height:1.6;color:var(--text-2)}
-  .chips{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .chips li{font-size:12.5px;line-height:1.25;min-height:44px}
-  /* sixteen tiles, six jobs */
-  :root{--j1:#8FA8A6;--j2:#EF7A5E;--j3:#FFB27C;--j4:#F1E8D6;--j5:#DE93A9;--j6:#D6CEBD}
-  .jobs{margin:clamp(28px,3.5vw,40px) 0 0;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(24px,3vw,40px);align-items:stretch}
-  .jgrid{list-style:none;margin:0;padding:20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;border-radius:20px;background:var(--s1);border:1px solid var(--line)}
-  .jgrid li{min-height:92px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:12px;border-radius:12px;background:var(--s2);border:1px solid color-mix(in srgb,var(--j) 45%,transparent);font-size:13px;line-height:1.25;font-weight:500;color:var(--text-card)}
-  .jgrid i,.jlegend i{width:22px;height:22px;flex:none;border-radius:50%;background:var(--j);color:var(--bg);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:500}
-  .jlegend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
-  .jlegend li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:14px;align-items:start}
-  .jlegend b{display:block;font-size:16px;font-weight:500;line-height:1.3}
-  .jlegend span{display:block;margin-top:2px;font-size:14px;line-height:1.5;color:var(--text-2)}
-  .jlegend em{display:block;margin-top:4px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--j)}
-  @media (max-width:1000px){.orig,.jobs{grid-template-columns:minmax(0,1fr)}.jgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  /* questions */
-  .qs{list-style:none;margin:clamp(36px,4.5vw,56px) 0 0;padding:0;border-radius:20px;overflow:hidden;background:var(--s1);border:1px solid var(--line)}
-  .qs li{min-height:98px;padding:22px 28px;display:grid;grid-template-columns:56px minmax(0,5fr) minmax(0,6fr);gap:24px;align-items:center}
-  .qs li + li{border-top:1px solid var(--line)}
-  .qs i{font-style:normal;font-family:var(--mono);font-size:13px;color:var(--accent)}
-  .qs b{font-family:var(--disp);font-size:18px;line-height:1.3;font-weight:400}
-  .qs span{font-size:15px;line-height:1.55;color:var(--text-2)}
+/* options */
+.opt{display:flex;flex-direction:column}
+.opt h3{margin:26px 0 8px;font-size:21px}
+.opt p{font-size:16px;color:var(--ink-2);margin:0 0 20px}
+.opt .chip{align-self:flex-start;margin-top:auto}
+.opt.win{box-shadow:inset 0 0 0 2px var(--blue)}
+.logos{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}
+.rows{display:grid;gap:9px}
+.rows div{display:grid;grid-template-columns:70px 46px 1fr 20px;gap:12px;align-items:center}
+.score{font-size:14px;font-weight:700;color:#fff;background:var(--blue);border-radius:7px;text-align:center;padding:4px 0}
+.cb{width:18px;height:18px;border-radius:5px;border:2px solid var(--line)}
+.cb.y{background:var(--blue);border-color:var(--blue)}
 
-  .g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:24px}
-  .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
-  .g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
-  .verdict{min-height:232px;gap:10px}
-  .verdict .label{display:flex;align-items:center;gap:10px;color:var(--v)}
-  .verdict .label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--v)}
-  .card h3{margin:0;font-family:var(--disp);font-size:20px;line-height:1.2;font-weight:400;letter-spacing:-.015em}
-  .card p{font-size:14px;line-height:1.55;color:var(--text-2)}
+/* testing */
+.tasks{width:100%;border-collapse:collapse}
+.tasks th{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:0 16px 14px 0}
+.tasks td{padding:18px 16px 18px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.4;vertical-align:middle}
+.dots{white-space:nowrap}
+.dots i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:5px;background:var(--soft);border:2px solid var(--line)}
+.dots i.y{background:var(--blue);border-color:var(--blue)}
+.change{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,64px);align-items:center}
+.change+.change{margin-top:16px}
+.change .no{font-size:15px;font-weight:600;color:var(--blue)}
+.change h3{margin:8px 0 12px;font-size:clamp(26px,2.6vw,34px)}
+.change p{font-size:17px;color:var(--ink-2);margin:0}
+.rowx{display:grid;gap:8px;font-size:13px}
+.rowx>div{display:grid;gap:6px}
+.cell{border-radius:10px;background:var(--soft);padding:12px 10px;font-weight:600;color:var(--ink-2);min-height:54px;display:flex;align-items:center;line-height:1.25}
+.cell.a{background:var(--blue);color:#fff;font-size:18px;justify-content:center}
+.cell.s{background:var(--blue-soft);color:var(--ink);font-weight:500}
+.lbl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 2px}
+.lbl.b{color:var(--blue)}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);position:relative;text-align:center;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.tl::before{content:"";position:absolute;left:12.5%;right:12.5%;top:8px;height:2px;background:var(--line)}
+.tl.gapd::before{background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+.tl i{display:block;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--line);margin:0 auto 10px;position:relative}
+.band.white .tl i{background:var(--bg)}
+.tl i.y{background:var(--blue);border-color:var(--blue)}
+.tl i.q{border-style:dashed}
+.tl small{display:block;font-weight:500;color:var(--ink-3);font-size:12.5px;margin-top:2px}
 
-  .quote{margin:clamp(40px,5vw,64px) 0 0;max-width:1040px;font-family:var(--disp);font-size:clamp(28px,3.2vw,44px);line-height:1.14;font-weight:400;letter-spacing:-.015em}
+/* system */
+.blues{display:flex;align-items:center;gap:8px}
+.blues i{flex:1;height:54px;border-radius:12px;display:block}
+.blues .to{flex:none;color:var(--ink-3);font-size:22px;padding:0 6px}
+.shapes{display:flex;align-items:center;gap:12px}
+.shapes i{display:block;height:40px;flex:1;background:var(--ink)}
+.sizes{display:flex;align-items:flex-end;gap:8px;height:54px}
+.sizes i{display:block;flex:1;background:var(--ink);border-radius:6px}
+.tiers{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:stretch;gap:8px}
+.tier{border-radius:16px;background:var(--soft);padding:18px}
+.tier.a{background:var(--blue);color:#fff}
+.tier b{display:block;font-size:17px}.tier code{display:block;font:500 13px/1.5 ui-monospace,Menlo,monospace;margin-top:10px;opacity:.8}
+.tiers .to{align-self:center;text-align:center;color:var(--ink-3);font-size:20px}
+.themes{display:flex;justify-content:center;gap:10px;margin-top:16px}
 
-  /* figures */
-  .fig{margin:clamp(36px,4.5vw,56px) 0 0}
-  .scroll{border-radius:20px;border:1px solid var(--line);background:var(--s2);overflow-x:auto}
-  .scroll > svg{display:block;min-width:760px;width:100%;height:auto}
-  .img{width:100%;border-radius:16px;border:1px solid #2E2722;background:var(--s2)}
-  .img.lg{border-radius:20px}
+/* final + results */
+.final{display:grid;gap:clamp(40px,6vw,80px)}
+.final .pairf{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.num{font-size:clamp(52px,6vw,88px);font-weight:600;letter-spacing:-.045em;line-height:1;display:inline-block}
+.num.b{color:var(--blue)}
+.res p{font-size:16.5px;color:var(--ink-2);margin:14px 0 0}
+.learn h3{margin:10px 0 12px}
+.learn p{font-size:17px;color:var(--ink-2);margin:0}
+footer{padding:48px 0 120px;text-align:center;font-size:14px;color:var(--ink-3)}
+footer a{color:var(--blue);text-decoration:none}
 
-  /* triage diagram */
-  .tri-scroll{background:var(--bg)}
-  .tri{min-width:1040px;padding:32px;--m:var(--accent);--a:#8FA8A6;--b:#F1E8D6;--r:#DE93A9;--cols:260fr 150fr 236fr 150fr 372fr}
-  .tri-head,.tri-body{display:grid;grid-template-columns:var(--cols)}
-  .tri-head{align-items:end;margin-bottom:24px}
-  .tri-head div{display:flex;align-items:baseline;gap:12px}
-  .tri-head .c{justify-content:center}
-  .tri-head b{font-family:var(--disp);font-size:44px;line-height:1;font-weight:300;letter-spacing:-.015em;color:#9A9387}
-  .tri-head span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9A9387}
-  .tri-body{height:564px}
-  .tri-body svg{display:block;width:100%;height:564px}
-  .tri-body path{fill-opacity:.2}
-  .tri path.m{fill:var(--m)}.tri path.a{fill:var(--a)}.tri path.b{fill:var(--b)}.tri path.r{fill:var(--r)}
-  .tcol{display:flex;flex-direction:column;gap:12px;min-width:0}
-  .tcol.v{gap:24px}
-  .tg{list-style:none;margin:0;padding:10px 14px;border-radius:12px;background:#15110F;border:1px solid;flex:none}
-  .tg{display:flex;flex-direction:column}.tg.m{height:216px}.tg.a{height:188px}.tg.b{height:76px}.tg.r{height:48px}
-  .tg li{flex:1;display:flex;align-items:center;gap:10px;font-size:13px;color:#CFC7B7;white-space:nowrap}
-  .tg li::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--c)}
-  .tg.m{--c:var(--m);border-color:color-mix(in srgb,var(--m) 38%,#15110F)}
-  .tg.a{--c:var(--a);border-color:#3D4A49}.tg.b{--c:var(--b);border-color:#4A453C}.tg.r{--c:var(--r);border-color:#57313D}
-  .tv{height:123px;flex:none;border-radius:14px;background:#1A1512;border:1px solid var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:0 10px}
-  .tv.m{--c:var(--m)}.tv.a{--c:var(--a)}.tv.b{--c:var(--b)}.tv.r{--c:var(--r)}
-  .tv span{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
-  .tv b{font-family:var(--disp);font-size:17px;font-weight:400;letter-spacing:-.015em}
-  .td{flex:none;padding:0 22px;border-radius:14px;background:#15110F;display:flex;flex-direction:column;justify-content:center;gap:4px}
-  .td b{font-size:15px;font-weight:500}
-  .td span{font-size:13px;color:var(--text-2)}
-  .td.five{height:440px;padding:18px 22px;border-radius:16px;background:#1A1512;border:1px solid var(--line-2);justify-content:flex-start;gap:0}
-  .td.five > span{height:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-  .td.five ol{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column}
-  .td.five li{flex:1;display:flex;align-items:center;gap:14px;border-top:1px solid #2E2722;font-size:16px;font-weight:500}
-  .td.five li div{display:flex;flex-direction:column;gap:2px}
-  .td.five small{font-size:12.5px;font-weight:400;color:var(--text-2)}
-  .td.five u{text-decoration:none;margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;vertical-align:middle}
-  .td.five li div{display:block}
-  .td.five small{display:block;margin-top:2px}
-  .td.five i{font-style:normal;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--accent)}
-  .td.sunset{height:100px;border:1px dashed #57313D}
-  .td.sunset b{color:#EBB5C4}
-  .tri-base{margin-top:24px;min-height:64px;padding:12px 24px;border-radius:14px;background:#1A1310;border:1px dashed var(--accent);display:flex;flex-wrap:wrap;align-items:center;gap:6px 24px}
-  .tri-base span{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-  .tri-base p{font-size:14px;color:#CFC7B7}
+/* live loops. They only run while their section is on screen (JS adds .live), and never under reduced motion */
+section *,section *::before,section *::after{animation-play-state:paused}
+section.live *,section.live *::before,section.live *::after{animation-play-state:running}
+@keyframes run{from{left:0}to{left:calc(100% - 10px)}}
+@keyframes blip{0%,12%,100%{background:var(--soft);border-color:var(--line)}6%{background:var(--blue-soft);border-color:var(--blue)}}
+@keyframes flt{50%{transform:translate(var(--tx,4px),var(--ty,-5px))}}
+@keyframes type{0%{stroke-dashoffset:1}55%,90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes march{to{stroke-dashoffset:-22}}
+@keyframes blink{50%{opacity:.25}}
+@keyframes nud{50%{transform:translateX(5px)}}
+@keyframes sheen{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@keyframes sweep{0%{transform:translateX(-100%)}45%,100%{transform:translateX(100%)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(0,153,255,.45)}70%,100%{box-shadow:0 0 0 12px rgba(0,153,255,0)}}
+@keyframes scan{0%,22%,100%{background:transparent}8%{background:var(--blue-soft)}}
+@keyframes fill{0%{width:0;opacity:1}45%,88%{width:50%;opacity:1}100%{width:50%;opacity:0}}
+@keyframes norm{40%,86%{background-color:var(--blue)}}
+@keyframes normr{40%,86%{border-radius:9px}}
+@keyframes normh{40%,86%{height:var(--to)}}
+.grid16 .sq{transition:background .35s,border-color .35s,transform .35s var(--ease)}
+.grid16 .sq.hot{background:var(--ink);border-color:var(--ink);transform:scale(1.08)}
+.deal .line{position:relative}
+.deal .line::after{content:"";position:absolute;top:-5px;left:0;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--blue);box-shadow:0 0 0 5px rgba(0,153,255,.18);animation:run 3.6s linear infinite}
+.deal .nodes{position:relative}
+.deal .tools .sq{animation:blip 3.6s infinite;animation-delay:calc((var(--i) - 10)*.45s)}
+.flt{animation:flt 5s ease-in-out infinite;animation-delay:var(--d,0s)}
+.d .type{stroke-dasharray:1;animation:type 4.2s infinite}
+.d .march{animation:march 1.2s linear infinite}
+.d .bl{animation:blink 1.6s infinite}
+.pqa-r p+p{position:relative}
+.pqa-r p+p::before{content:"→";position:absolute;left:calc(clamp(16px,3vw,40px)*-.8);top:0;color:var(--blue);font-weight:600;animation:nud 2.4s ease-in-out infinite}
+.pqa-r{transition:transform .4s var(--ease),box-shadow .4s}
+.pqa-r:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.25)}
+.flow div{transition:opacity .5s}
+.flow i{transition:transform .5s var(--ease),box-shadow .5s}
+.js .flow.cy div:not(.act){opacity:.4}
+.flow.cy div.act i{transform:scale(1.14);box-shadow:0 0 0 7px rgba(0,153,255,.18)}
+.flow.years{grid-template-columns:repeat(4,1fr)}
+.flow.years::before{left:12.5%;right:12.5%}
+.flow.years i{font-size:14px}
+.railbig{position:relative;overflow:hidden}
+.railbig.sh::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.8) 50%,transparent 70%);animation:sheen .9s var(--ease)}
+.logos .sq{transition:transform .3s var(--ease),box-shadow .3s}
+.logos .sq.pk{transform:scale(1.2);box-shadow:0 0 0 2px var(--ink)}
+.rows div{border-radius:10px;padding:5px 6px;margin:-5px -6px;animation:scan 4.8s infinite;animation-delay:calc(var(--k)*1.2s)}
+.rowx .after{position:relative;overflow:hidden;border-radius:10px}
+.rowx .after::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);animation:sweep 3.8s infinite;pointer-events:none}
+.cell.a{animation:ring 2.4s infinite}
+.tl i{z-index:1}
+.tl.tlp::after{content:"";position:absolute;left:12.5%;top:8px;height:2px;background:var(--blue);width:0;animation:fill 5.5s var(--ease) infinite}
+.tl i.now{animation:ring 2s infinite}
+.tl i.q{animation:blink 1.6s infinite}
+.blues.found i{animation:norm 7s infinite;animation-delay:calc(var(--k)*.22s)}
+.shapes.found i{animation:normr 7s infinite;animation-delay:calc(var(--k)*.3s)}
+.sizes.found i{animation:normh 7s infinite;animation-delay:calc(var(--k)*.16s)}
+.tiers .to{animation:blink 2.6s infinite}
+.pv{display:flex;align-items:center;justify-content:center;height:54px;border-radius:10px;margin-top:12px;background:#05101f;transition:background .6s}
+.pv span{background:#27bdfa;color:#05101f;font:600 13px var(--f);padding:7px 16px;border-radius:8px;transition:background .6s,color .6s}
+.tiers.light .pv{background:#fff}.tiers.light .pv span{background:#0b5f8b;color:#fff}
+.themes .chip{transition:background .4s,color .4s}
+.themes .chip.act{background:var(--ink);color:#fff}
+.final .frame{transform:scale(var(--s,1));transform-origin:50% 60%;will-change:transform}
+.mini{margin-top:22px}
+.cmp{display:grid;gap:7px}
+.cmp span{height:12px;border-radius:6px;background:var(--line);display:block}
+.cmp .b{background:var(--blue);width:36%}
+.ringp{fill:none;stroke:var(--blue);stroke-width:7;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.8s var(--ease) .3s;transform:rotate(-90deg);transform-origin:50% 50%}
+.on .ringp{stroke-dashoffset:29}
+.ppl{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;max-width:230px}
+.ppl i{aspect-ratio:1;border-radius:50%;background:var(--ink);display:block}
+@media (max-width:860px){.pqa-r p+p::before{display:none}}
+@media (prefers-reduced-motion:reduce){.ringp{stroke-dashoffset:29;transition:none}.final .frame{transform:none}}
 
-  .audit-link{margin-top:clamp(28px,3.5vw,40px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:clamp(22px,2.6vw,30px);border-radius:16px;background:var(--s1);border:1px solid var(--line-2);transition:border-color .25s}
-  .audit-link:hover{border-color:var(--accent)}
-  .audit-link div{display:flex;flex-direction:column;gap:8px;max-width:62ch}
-  .audit-link .label{color:var(--accent)}
-  .audit-link b{font-family:var(--disp);font-size:clamp(19px,1.9vw,24px);line-height:1.25;font-weight:400;letter-spacing:-.015em}
-  .audit-link span:not(.label){font-size:15px;line-height:1.5;color:var(--text-2)}
-  .audit-link em{flex:none;font-style:normal;font-size:15px;font-weight:500;color:var(--accent)}
-  /* ledger */
-  .ledger{width:100%;min-width:720px;border-collapse:collapse;font-size:15px;line-height:1.4}
-  .ledger th{height:52px;padding:0 28px;text-align:left;font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
-  .ledger td{height:68px;padding:12px 28px;border-top:1px solid var(--line);color:var(--text-2)}
-  .ledger td:first-child{width:240px;color:var(--text);font-weight:500}
-  .ledger td:last-child{color:var(--accent)}
-  .scroll.table{background:var(--s1);margin-top:24px}
+/* ===== Framer-style skin: pure black, hairline panels, left-set medium headings, one electric blue ===== */
+:root{--bg:#000;--card:#0d0d0d;--ink:#fff;--ink-2:#999;--ink-3:#666;--line:#2b2b2b;--soft:#1c1c1c;--blue:#0099ff;--blue-soft:rgba(0,153,255,.14);--r:20px}
+body{background:#000;color:#fff;font-size:17px}
+.in{max-width:1200px}
+.band,.band.white,.band.dark{background:#000;padding:clamp(72px,9vw,124px) 0}
+section.band{border-top:1px solid rgba(255,255,255,.07)}
+h1,h2,h3{font-weight:500}
+h2{text-align:left;margin:0;font-size:clamp(34px,4.2vw,54px);letter-spacing:-.04em;line-height:1.08;max-width:15em}
+h3{font-size:clamp(19px,1.5vw,22px);letter-spacing:-.02em}
+.eyebrow{text-align:left;font-size:14px;font-weight:500;color:var(--ink-3);margin-bottom:16px}
+.say{text-align:left;margin:20px 0 0;font-size:clamp(17px,1.4vw,20px);font-weight:400;line-height:1.5;max-width:34em;letter-spacing:-.005em}
+.say b,.dark .say b{color:#fff;font-weight:500}.dark .say{color:var(--ink-2)}
+.gap{margin-top:clamp(40px,5vw,64px)}
+.methods{justify-content:flex-start}
+.cap,.dark .cap{text-align:left;margin-left:0;color:var(--ink-2)}
+.dg,.band.white .dg{background:#0d0d0d;border:1px solid rgba(255,255,255,.08);transition:border-color .4s,transform .4s var(--ease)}
+.dg:hover{border-color:rgba(255,255,255,.18)}
+.dg-n,.find p,.opt p,.change p,.res p,.learn p,.pqa-r p{font-size:15.5px}
+.d .n,.band.white .d .n{fill:#0d0d0d}
+.tl i,.band.white .tl i{background:#0d0d0d}
+.chip{background:#1c1c1c;color:#fff;font-weight:500}
+.chip.b{background:var(--blue)}
+.sq.k,.grid16 .sq.hot{background:#fff;border-color:#fff}
+.logos .sq.pk{box-shadow:0 0 0 2px #fff}
+.cell{background:#1a1a1a;color:#aaa}.cell.s{color:#fff}
+.tasks td{color:#e6e6e6;font-size:16px}
+.tier{background:#1a1a1a}.tier.a{background:var(--blue)}
+.themes .chip.act{background:#fff;color:#000}
+.opt.win{box-shadow:inset 0 0 0 1px var(--blue),0 0 80px -30px rgba(0,153,255,.65)}
+.frame{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 40px 120px -40px rgba(0,153,255,.35)}
+.inset img{filter:grayscale(1) brightness(.72) contrast(1.05);border-color:#2b2b2b}
+.ppl i{background:#fff}.cmp span{background:#2b2b2b}.cmp .b{background:var(--blue)}
+.railbig.sh::after{background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%)}
+.rowx .after::after{background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%)}
+.pqa-r:hover{box-shadow:none}
+.num{font-weight:500}
+footer{border-top:1px solid rgba(255,255,255,.07);color:var(--ink-3);text-align:left}
+/* nav */
+/* hero */
+.hero{background:#000;text-align:left;padding:clamp(56px,7vw,100px) 0 0}
+.hero h1{font-size:clamp(40px,4.7vw,62px);letter-spacing:-.042em;line-height:1.08;max-width:13.5em;margin:0}
+.hero .eyebrow{color:var(--ink-3)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:10px 16px;font-size:14px;font-weight:600;text-decoration:none;background:#fff;color:#000;transition:transform .3s var(--ease),background .3s}
+.btn.b{background:var(--blue);color:#000}.btn.b:hover{background:#33adff}.btn .live{width:7px;height:7px;border-radius:50%;background:currentColor;animation:navpulse 2.2s infinite}
+.btn.k{background:#1c1c1c;color:#fff}.btn:hover{transform:translateY(-2px)}.btn.k:hover{background:#262626}
+.facts,.hero .facts{justify-content:flex-start;margin:40px 0 44px;color:var(--ink-3);font-size:14px;gap:10px 48px}
+.facts b{font-size:15px;font-weight:500}
+.hero-panel{position:relative;border-radius:24px 24px 0 0;border:1px solid rgba(255,255,255,.09);border-bottom:0;background:#040404;overflow:hidden;padding:clamp(28px,6vw,84px) clamp(20px,6vw,84px) 0}
+.hero-bg{position:absolute;inset:0;bottom:0;z-index:0;background:radial-gradient(70% 80% at 50% 105%,rgba(0,153,255,.42),transparent 70%),radial-gradient(40% 50% at 8% 0%,rgba(90,70,220,.28),transparent 70%),#040404}
+.hero-bg::after{display:none}
+.hero-panel .frame{position:relative;z-index:1;max-width:none;border-radius:14px 14px 0 0;box-shadow:0 0 0 1px rgba(0,153,255,.55),0 0 90px -10px rgba(0,153,255,.55)}
+@media (max-width:860px){.dg-n,.find p,.opt p,.change p,.res p,.learn p,.pqa-r p{font-size:15px}}
 
-  /* states */
-  .states{list-style:none;margin:clamp(36px,4.5vw,56px) 0 16px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
-  .states li{min-height:272px}
-  .num{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--accent)}
-  .num::after{content:"";flex:1;height:1px;background:var(--line-2)}
-  .rules{margin-top:clamp(36px,4.5vw,48px)}
-  .rules .card{min-height:176px;gap:10px}
-  .rules h3{font-size:18px;line-height:1.25}
-  .rules .num::after{display:none}
-  @media (min-width:1001px){.rules{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  .g2.even .img{aspect-ratio:1.7;object-fit:cover;object-position:top left}
+/* ===== Pathfinder product branding ===== */
+.hero-wordmark{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.hero-wordmark svg{width:44px;height:44px}
+.hero-wordmark b{font:800 34px/1 "Barlow Condensed",sans-serif;letter-spacing:.06em;color:#fff}
+.hero-wordmark small{display:block;font:600 11px/1 var(--f);letter-spacing:.26em;color:var(--blue);margin-top:5px}
+/* the compass ring spins slowly while the hero is on screen */
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-wordmark .ring{transform-origin:50% 50%;animation:spin 14s linear infinite}
+/* faded product imagery at the section edges, drifting with scroll */
+section.band{position:relative;overflow:hidden}
+body{overflow-x:hidden}
+.side{position:absolute;top:8%;width:min(46vw,640px);z-index:0;pointer-events:none;opacity:.2;transform:translateY(calc(var(--py,0)*1px)) rotate(var(--rot,0deg));will-change:transform}
+.side img{width:100%;display:block;border-radius:12px;-webkit-mask-image:linear-gradient(var(--dir,90deg),#000 20%,transparent 92%);mask-image:linear-gradient(var(--dir,90deg),#000 20%,transparent 92%);filter:saturate(1.2)}
+.side.l{left:-14%;--dir:90deg;--rot:-4deg}.side.r{right:-14%;--dir:270deg;--rot:4deg}
+.band>.in{position:relative;z-index:1}
+/* spotlight: panels light up along their edge under the cursor, Framer style */
+.dg{position:relative}
+.dg::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(260px circle at var(--mx,-999px) var(--my,-999px),rgba(0,153,255,.9),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0;transition:opacity .4s}
+.dg:hover::before{opacity:1}
+/* headline words rise in one by one */
+.js h2 .w{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity .6s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--wi)*60ms)}
+.js .on h2 .w,.js h2.on .w{opacity:1;transform:none}
+/* blue tint band behind the final UI section, the product's own night sky */
+#final{background:radial-gradient(60% 50% at 50% 100%,rgba(0,153,255,.16),transparent 70%),#000}
+.pf-foot{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.pf-foot svg{width:22px;height:22px}
+@media (max-width:860px){.side{display:none}.hero-wordmark b{font-size:28px}}
+@media (prefers-reduced-motion:reduce){.hero-wordmark .ring{animation:none}.side{transform:none!important}.js h2 .w{opacity:1;transform:none;transition:none}}
 
-  .cols3{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;font-size:16px;line-height:1.6;color:var(--text-2)}
-  .cols3 p{padding-top:20px;border-top:1px solid var(--line-2)}
+/* full-bleed hero sky: a flow field of blue light behind the whole header */
+.hero{overflow:hidden}
+.hero-sky{position:absolute;inset:0;z-index:0;background:radial-gradient(60% 55% at 50% 100%,rgba(0,153,255,.30),transparent 70%),radial-gradient(35% 40% at 6% 6%,rgba(90,70,220,.22),transparent 70%),#000}
+.hero-sky canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-sky::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,#000),linear-gradient(90deg,rgba(0,0,0,.72) 0,rgba(0,0,0,.35) 45%,transparent 75%)}
+.hero>.in{position:relative;z-index:1}
+.hero-panel{background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 
-  .cta{margin-top:var(--gap);padding:clamp(28px,4vw,48px);border-radius:24px;background:var(--s1);border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px 48px}
-  .cta h2{margin:0 0 12px;max-width:560px;font-family:var(--disp);font-size:clamp(26px,2.6vw,32px);line-height:1.12;font-weight:400;letter-spacing:-.015em}
-  .cta p{max-width:520px;font-size:16px;line-height:1.55;color:var(--text-2)}
-  .cta .btns{flex-direction:column;align-items:stretch}
-  .cta .btns div{display:flex;flex-wrap:wrap;gap:12px}
-  .cta .btns div .btn{flex:1 1 auto}
-  footer{padding:40px 0 96px;font-size:12.5px;color:var(--text-3)}
+dialog{border:0;padding:0;background:none;max-width:96vw;max-height:94vh}
+dialog::backdrop{background:rgba(0,0,0,.88)}
+dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
+.marks .fx{box-shadow:inset 0 -2px 0 var(--amber);cursor:help}
+.marks td.fx{box-shadow:inset 2px 0 0 var(--amber)}
 
-  @media (max-width:1000px){
-    .hero-l,.hero-r,.head > div:first-child,.head > .lede,.head.split > div:first-child,.head.split > .lede{grid-column:1 / -1}
-    .ba{grid-template-columns:minmax(0,1fr)}
-    .ba-mid{height:64px}.ba-mid .lines{display:none}.ba-mid .arrow{right:50%;transform:translate(50%,-50%) rotate(90deg)}
-    .qs li{grid-template-columns:40px minmax(0,1fr);gap:8px 16px;align-items:start}
-    .qs span{grid-column:2}
-  }
-  @media (max-width:520px){
-    .hero-r{grid-template-columns:minmax(0,1fr)}.tile.wide{grid-column:auto}
-    .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
-  }
-
-  /* mikelrosenthal.com brand layer */
-  :root{--j1:#8FA8A6;--j2:#EF7A5E;--j3:#D9B07A;--j4:#F1E8D6;--j5:#DE93A9;--j6:#8E9CC0}
-  body{font-weight:300}
-  ::selection{background:var(--accent);color:var(--bg)}
-  .grain{position:fixed;inset:-12%;z-index:1200;pointer-events:none;opacity:.055;animation:grain 8s steps(10) infinite;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
-  @keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-8%)}30%{transform:translate(4%,-3%)}50%{transform:translate(-6%,6%)}70%{transform:translate(6%,3%)}90%{transform:translate(-3%,8%)}}
-  @media (prefers-reduced-motion:reduce){.grain{animation:none}}
-  .stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;background-image:
-    radial-gradient(1px 1px at 12% 24%, rgba(241,232,214,.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 78% 12%, rgba(222,147,169,.55) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 34% 68%, rgba(241,232,214,.35) 50%, transparent 51%),
-    radial-gradient(1px 1px at 91% 55%, rgba(239,122,94,.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 55% 88%, rgba(241,232,214,.4) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 5% 79%, rgba(143,168,166,.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 66% 38%, rgba(241,232,214,.3) 50%, transparent 51%)}
-  body > .wrap,section.sec{position:relative;z-index:1}
-  h1{font-size:clamp(46px,7vw,100px);line-height:.98}
-  h1 span,.hl{font-style:italic}
-  .tile.wide b,.tile b,.ph b,.tri-head b,.finds .card b,.impact b{letter-spacing:-.02em;font-weight:300}
-  .tile b span.hl{font-style:normal}
-  .mono,.label,.tri-head span,.tv span,.num,.cs-name,.kv,.cnt,.jlegend em{letter-spacing:.22em}
-  .mono,.label{font-size:10.5px}
-  .kicker{display:flex;align-items:center;gap:14px;color:var(--text-3)}
-  .kicker::before{content:"";width:44px;height:1px;background:var(--accent);flex:none}
-  .mark{letter-spacing:.3em;font-size:11px;color:var(--text-3)}
-  .mark span{padding:0;border:0;border-radius:0;font-family:var(--disp);font-style:italic;font-size:17px;letter-spacing:0;color:var(--accent)}
-  .toc a span,.qs i,.num,.td.five i{font-family:var(--disp);font-style:italic;letter-spacing:0;font-size:14px}
-  .rail i,.jgrid i,.jlegend i{letter-spacing:0;font-weight:500}
-  .toc .toc-home{font-family:var(--disp);font-size:18px;font-weight:400}
-  .btn{border-radius:99px;font-weight:500;transition:border-color .3s,background .3s,transform .5s var(--ease)}
-  .btn-solid{color:var(--bg)}
-  .card,.tile,.panel,.status{border-radius:16px}
-  .dot,.live::before{background:var(--slate)}
-  .fixes .fix b{color:var(--slate)}
-  .quote,.punch{font-weight:300}
-  .punch{letter-spacing:-.01em}
-  strong,.ledger td:first-child,.rail b,.td b,.td.five li,.jlegend b,.ghosts li{font-weight:500}
+@media (max-width:860px){
+  body{font-size:17.5px}
+  .two,.three,.change,.final .pairf,.inset{grid-template-columns:1fr}
+  .pqa-h{display:none}.pqa-r{grid-template-columns:1fr;gap:10px}
+  .flow{grid-template-columns:1fr;gap:22px;text-align:left}.flow::before{display:none}
+  .flow div{display:grid;grid-template-columns:44px 1fr;column-gap:14px}.flow i{grid-row:span 2;margin:0}
+  .tiers{grid-template-columns:1fr}.tiers .to{transform:rotate(90deg)}
+  .tasks{display:block;overflow-x:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv,.js .st,.js .draw,.js .flow::before{opacity:1!important;transform:none!important;transition:none!important}
+}
+.live-ds{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px}
+.live-ds>div:first-child{flex:1 1 min(100%,520px)}
+.live-ds .btn{border:1px solid rgba(0,0,0,.14)}
+/* main site nav, same as the other pages */
+.nav{--cream:#F1E8D6;--cream-70:rgba(241,232,214,.72);--cream-45:rgba(241,232,214,.45);--coral:#EF7A5E;--nav-ink:#0F0C0A;
+  --serif:"Fraunces",Georgia,serif;--sans:"Space Grotesk","Helvetica Neue",sans-serif;--nav-ease:cubic-bezier(.22,1,.36,1);
+  position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+  padding:22px clamp(20px,4vw,56px);font-family:var(--sans);color:var(--cream);
+  transition:background .5s,backdrop-filter .5s,padding .5s,transform .6s var(--nav-ease)}
+.nav a{color:inherit;text-decoration:none}
+.nav.is-hidden{transform:translateY(-110%)}
+.nav.is-scrolled{background:rgba(15,12,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid rgba(241,232,214,.13)}
+.nav-name{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:.02em;line-height:1.15;display:flex;flex-direction:column;gap:5px}
+.nav-name em{font-style:italic;color:var(--coral)}
+.nav-name .nm{display:block}
+.nav-tag{font-family:var(--sans);font-weight:300;font-size:8.5px;line-height:1;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45);white-space:nowrap}
+.nav-links{display:flex;gap:clamp(16px,2.4vw,34px);align-items:center;margin-left:28px}
+.nav-links a{font-size:11px;line-height:1.4;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-70);transition:color .3s;position:relative}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--cream)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--coral);transition:width .4s var(--nav-ease)}
+.nav-links a:hover::after,.nav-links a[aria-current]::after{width:100%}
+.nav-links a.nav-pill{font-size:10px;letter-spacing:.2em;border:1px solid rgba(239,122,94,.5);color:var(--coral);padding:8px 16px;border-radius:99px;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s}
+.nav-links a.nav-pill::after{display:none}
+.nav-links a.nav-pill:hover{background:var(--coral);color:var(--nav-ink)}
+.nav-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:navpulse 2.2s infinite}
+.nav-pill:hover .dot{background:var(--nav-ink)}
+@keyframes navpulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero{padding-top:calc(clamp(56px,7vw,100px) + 84px)}
+@media(max-width:880px){
+  .nav{flex-wrap:wrap;row-gap:12px}
+  .nav-links{width:100%;justify-content:space-between;gap:12px;margin-left:0}
+  .nav-links a:not(.nav-pill){font-size:10px;letter-spacing:.16em}
+  .nav-links a.nav-resume{display:none}
+  .hero{padding-top:calc(clamp(56px,7vw,100px) + 112px)}
+}
+@media(max-width:760px){
+  .nav{padding:16px 20px}
+  .nav-links a.nav-pill{font-size:9px;letter-spacing:.14em;padding:7px 12px}
+}
+@media(max-width:480px){.nav-tag{display:none}}
+@media (prefers-reduced-motion:reduce){.nav{transition:none}.nav-pill .dot,.btn .live{animation:none}}
 </style>
 </head>
 <body>
-<div class="stars" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<a class="skip" href="#main">Skip to content</a>
-<nav class="toc" aria-label="Case study sections"><div class="wrap"><div class="toc-in">
-  <a class="toc-home" href="/">Mikel Rosenthal</a><a href="#problem"><span>01</span>Problem</a><a href="#research"><span>02</span>Research</a><a href="#teardown"><span>03</span>Teardown</a><a href="#states"><span>04</span>Five states</a><a href="#testing"><span>05</span>Testing</a><a href="#system"><span>06</span>System</a><a href="#outcome"><span>07</span>Outcome</a>
-  <a class="toc-live" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Live system ↗</a>
-</div></div></nav>
-<div class="wrap">
 
-  <header class="hero" id="main" tabindex="-1">
-    <div class="hero-l">
-      <div class="mono kicker">Case study / AVANT Communications / May 2021 to Aug 2024</div>
-      <h1>Sixteen tools, <span>one deal.</span></h1>
-      <p class="deck">Pathfinder was sixteen separate tools wearing one logo. The deal they were meant to serve lived in email, chat and a spreadsheet on someone's desktop. I found the one workflow underneath all sixteen and built the system that carries it.</p>
-      <div class="btns">
-        <a class="btn btn-solid" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Open the live system <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
-        <a class="btn" href="#problem">Read the story</a>
-      </div>
-    </div>
-    <div class="hero-r">
-      <div class="tile wide"><span class="label">Consolidation</span><div><b>16 <span class="hl">→</span> 5</b><p>tools consolidated into five tracked states of one deal</p></div></div>
-      <div class="tile"><span class="label">Research</span><div><b>20%</b><p>of the active advisor base interviewed before a screen was drawn</p></div></div>
-      <div class="tile"><span class="label">Ownership</span><div><b>3+ yr</b><p>May 2021 to Aug 2024, owned end to end as the only systems designer</p></div></div>
-    </div>
-  </header>
-
-  <a class="shot" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener" aria-label="Open the live Pathfinder 2.1 build in Figma Make, new tab">
-    <div class="shot-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url">figma.com/make/PATHFINDER-DESIGN-SYSTEM-2.1</span><span class="live"><span class="dot"></span>Live build</span></div>
-    <div class="shot-view"><img src="ASSETS/design-systems/pathfinder-live-overview.jpg" width="1600" height="999" fetchpriority="high" alt="Pathfinder design system overview running in Figma Make: left navigation listing foundations and components beside the Pathfinder 2.0 hero."></div>
-    <div class="shot-cap">
-      <div><h2>The component layer, running from code</h2><p>Every destination in this story is assembled from one library. That library is live in Figma Make, so you can click through it instead of reading about it.</p></div>
-      <span class="btn btn-solid">Open it <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
-    </div>
-  </a>
-
-  <div class="tldr" aria-label="Summary">
-    <div class="card"><span class="label">The problem</span><p>Sixteen tools, no shared idea of what a deal was. The real record of every pursuit lived in inboxes and spreadsheets, so the platform could not report on its own revenue.</p></div>
-    <div class="card"><span class="label">What I did</span><p>Interviewed a fifth of the advisors, gave each tool a verdict (merge, absorb, retire or rebuild), and rebuilt the product as five states of one project on one component library.</p></div>
-    <div class="card"><span class="label">What changed</span><p>Sixteen destinations became five. New surfaces shipped consistent on day one, and everything added since has landed inside one of those five states.</p></div>
+<nav class="nav" id="nav">
+  <a class="nav-name" href="./"><span class="nm">Mikel <em>Rosenthal</em></span><span class="nav-tag">Product Design · Visual Craft · Design Systems</span></a>
+  <div class="nav-links">
+    <a href="./#work" aria-current="true">Work</a>
+    <a href="./#proof">Proof</a>
+    <a href="./#process">Process</a>
+    <a href="./#practice">Practice</a>
+    <a href="./#archive">Motion</a>
+    <a class="nav-resume" href="ASSETS/Mikel_Rosenthal_Resume_2026.pdf" download>Resume</a>
+    <a class="nav-pill" href="./#contact"><span class="dot"></span>Available Now</a>
   </div>
-  <dl class="meta">
-    <div><dt>Role</dt><dd>Senior Design Systems Lead. The only systems designer, with three engineers and a PM.</dd></div>
-    <div><dt>Scope</dt><dd>Research, information architecture, foundations, components, theming, governance.</dd></div>
-    <div><dt>Stack</dt><dd>Figma Variables, React handoff through Dev Mode, coded build in Figma Make.</dd></div>
-    <div><dt>Timeline</dt><dd>At Avant May 2021 to Aug 2024. The coded 2.1 build shown above shipped June to August 2026.</dd></div>
-  </dl>
-</div>
-</div>
+</nav>
 
-  <section class="sec" id="problem"><div class="wrap">
-    <div class="mark"><span>01</span>Problem</div>
-    <div class="head split">
-      <div><h2 class="t">Sixteen front doors and no hallway</h2></div>
-      <div class="lede">
-        <p>AVANT distributes technology services through independent Trusted Advisors. Pathfinder is where those advisors research, quote and close enterprise deals, with AVANT's sales engineers backing them up.</p>
-        <p>Each of the sixteen tools answered a real need, and each was defensible on its own. Together they were a tax. An advisor working one opportunity re-entered the same customer, locations and requirements, because none of the sixteen agreed on what a deal was or where it stood.</p>
-        <p>So the deal left the platform. <strong>The real record of a six-figure pursuit lived in an inbox.</strong> The platform held the data. The advisor held the deal.</p>
-        <p class="punch">The platform could not tell you the status of its own revenue. That is what got the work funded.</p>
-      </div>
-    </div>
-    <div class="orig">
-      <figure class="shot orig-shot">
-        <div class="shot-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url">Pathfinder home, before the redesign</span></div>
-        <img src="ASSETS/work/pathfinder-original-home.jpg" width="1248" height="1302" loading="lazy" alt="The original Pathfinder home screen: a search box above a four by four grid of sixteen tool icons, from Technology Navigator and Provider Portfolio to Uploaded Documents and Back Office View.">
-      </figure>
-      <div class="orig-side">
-        <span class="label">What is not on this screen</span>
-        <p class="punch" style="margin:0">Sixteen ways to research and present. Nothing that holds the deal.</p>
-        <ul class="ghosts"><li>Register a deal</li><li>Contract</li><li>My deals</li></ul>
-        <p class="lede-s">Every tile helps an advisor find, compare, price or hand something over. None of them is where a deal gets registered, signed or tracked. Registration and contracts happened over email.</p>
-      </div>
-    </div>
-    <figure class="ba" aria-label="Before: sixteen separate tools, with the deal record living outside them in email, chat and spreadsheets. After: one tracked project moving through five states.">
-      <div class="panel before">
-        <div class="ph"><div><span class="label">Before</span><strong>Every tool its own front door</strong></div><b>16</b></div>
-        <ul class="chips"><li>Technology Navigator</li><li>Provider Portfolio</li><li>Data Center Locator</li><li>Fiber Tool</li><li>Interactive Quick Assessments</li><li>Dynamic Matrices</li><li>CableQuote</li><li>Quick Quote</li><li>Cloud Ninja Knowledge Base</li><li>UCaaS TCO Analysis</li><li>Provider Battle Cards</li><li>Provider One Pagers</li><li>Case Studies</li><li>Sample Proposals</li><li>Uploaded Documents</li><li>Back Office View</li></ul>
-        <div class="leak"><strong>The deal itself lived out here</strong><span>Email threads</span><span>Chat</span><span>Spreadsheets</span></div>
-      </div>
-      <div class="ba-mid" aria-hidden="true">
-        <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 22 C 47 22, 47 50, 81 50"/><path d="M0 31.5 C 47 31.5, 47 50, 81 50"/><path d="M0 41 C 47 41, 47 50, 81 50"/><path d="M0 50 L 81 50"/><path d="M0 59 C 47 59, 47 50, 81 50"/><path d="M0 68.5 C 47 68.5, 47 50, 81 50"/><path d="M0 78 C 47 78, 47 50, 81 50"/></svg>
-        <svg class="arrow" width="44" height="24" viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h38"/><path d="m31 3 9 9-9 9"/></svg>
-      </div>
-      <div class="panel after">
-        <div class="ph"><div><span class="label">After</span><strong>One tracked project, five states</strong></div><b>5</b></div>
-        <ol class="rail">
-          <li><i>1</i><div><b>Project Information</b><span>What needs me today, in five seconds</span></div></li>
-          <li><i>2</i><div><b>Configuration</b><span>Dozens of providers to a defensible shortlist</span></div></li>
-          <li><i>3</i><div><b>Discovery</b><span>The longest state, waiting made legible</span></div></li>
-          <li><i>4</i><div><b>Registration</b><span>The irreversible step, beside its reasoning</span></div></li>
-          <li><i>5</i><div><b>Contract</b><span>Outlives everyone who was in the room</span></div></li>
-        </ol>
-      </div>
-    </figure>
-  </div></section>
+<header class="hero" id="top"><div class="hero-sky" aria-hidden="true"><canvas id="net"></canvas></div><div class="in">
+  <div class="hero-wordmark rv"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle class="ring" cx="24" cy="24" r="20" stroke="#0099ff" stroke-width="3.5" stroke-dasharray="26 8"/><path d="M24 11 33 36l-9-6-9 6z" fill="#fff"/><path d="M24 11v19" stroke="#0099ff" stroke-width="2.5"/></svg><div><b>PATHFINDER</b><small>Powered by AVANT · 2.0</small></div></div>
+  <span class="eyebrow rv">Case study · AVANT Communications · 2021 to 2024</span>
+  <h1 class="rv" style="--i:1">Pathfinder is one place to run a deal, from first request to signed contract.</h1>
+  <div class="btns rv" style="--i:2"><a class="btn" href="#problem">Read the case study</a><a class="btn k" href="#results">Skip to results ↓</a><a class="btn b" href="https://omen-jade-96449641.figma.site/" target="_blank" rel="noopener"><i class="live" aria-hidden="true"></i>Live design system ↗</a></div>
+  <div class="facts rv" style="--i:3"><span>Role<b>Lead product designer</b></span><span>Team<b>1 designer, 1 PM, 3 engineers</b></span><span>Platform<b>B2B web app</b></span><span>Scope<b>Research, UX, UI, design system</b></span></div>
+  <div class="hero-panel rv" style="--i:3">
+    <figure class="frame"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="Pathfinder 2.0 dashboard in the final dark theme: sidebar navigation, sales by technology, a yearly chart and project files with status."></figure></div>
+</div></header>
 
-  <section class="sec" id="research"><div class="wrap">
-    <div class="mark"><span>02</span>Research</div>
-    <div class="head split">
-      <div><h2 class="t">One complaint in twenty different accents</h2></div>
-      <div class="lede">
-        <p>I interviewed a fifth of the active advisor base before drawing a screen. Each session worked from the advisor's own live deals and not a script, because workarounds only show up in a real pipeline.</p>
-        <p>The finding wasn't about any single tool. <strong>There was no through-line.</strong> The assessment lived in one app, the quote in an email, the client's answer in chat, and the actual status in the advisor's head.</p>
-        <p><strong>If the platform can't hold the whole deal, advisors keep the real one somewhere else.</strong> That set the architecture: one tracked project moving through five states (Project Information, Configuration, Discovery, Registration, Contract), with everything attached to a state.</p>
-      </div>
-    </div>
-    <div class="head sub">
-      <div><p class="punch" style="margin:0">The research set three goals before any design started.</p></div>
-      <div class="lede"><p>Out of scope: a rebrand, replacing the CRM, and component count as a scoreboard.</p></div>
-    </div>
-    <div class="g3 goals">
-      <div class="card"><span class="label">Goal 01</span><h3>Put the deal back in the platform</h3><p>Measured by the share of active deals tracked end to end in Pathfinder.</p></div>
-      <div class="card"><span class="label">Goal 02</span><h3>Cut the re-entry tax</h3><p>Measured by how many times an advisor enters the same customer data on one deal.</p></div>
-      <div class="card"><span class="label">Goal 03</span><h3>Ship consistent by default</h3><p>Measured by the share of new surfaces assembled from the shared library.</p></div>
-    </div>
-    <blockquote class="quote">Advisors weren't asking for a better interface. <span class="hl">They were asking for somewhere to put the deal.</span></blockquote>
-  </div></section>
+<section class="band" id="problem"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">The problem</span>
+  <h2 class="rv">Sixteen tools.<br>No deal.</h2>
+  <p class="say rv">Technology advisors sell telecom and cloud services to businesses. Pathfinder gave them <b>sixteen good tools</b>. But no tool knew which client you were working on. <b>So the deal lived somewhere else.</b></p>
+  <div class="two gap">
+    <div class="dg rv"><span class="dg-t">Before</span>
+      <div class="grid16"><i class="sq st" style="--i:0"></i><i class="sq st" style="--i:3"></i><i class="sq st" style="--i:1"></i><i class="sq st" style="--i:6"></i><i class="sq st" style="--i:2"></i><i class="sq st" style="--i:8"></i><i class="sq st" style="--i:4"></i><i class="sq st" style="--i:5"></i><i class="sq st" style="--i:9"></i><i class="sq st" style="--i:7"></i><i class="sq st" style="--i:11"></i><i class="sq st" style="--i:10"></i><i class="sq st" style="--i:13"></i><i class="sq st" style="--i:12"></i><i class="sq st" style="--i:15"></i><i class="sq st" style="--i:14"></i></div>
+      <p style="margin:22px 0 0"><span class="chip o">The deal: email · spreadsheets · final_v3_REAL.xlsx</span></p>
+      <p class="dg-n"><b>16 tools, 0 shared context.</b> Each one opened alone and forgot you when you left.</p></div>
+    <div class="dg rv" style="--i:1"><span class="dg-t b">After</span>
+      <div class="deal"><div class="line draw"></div><div class="nodes"><i class="st" style="--i:1">1</i><i class="st" style="--i:3">2</i><i class="st" style="--i:5">3</i><i class="st" style="--i:7">4</i><i class="st" style="--i:9">5</i></div>
+        <div class="railbar">Project rail: files, quotes, history</div>
+        <div class="tools"><i class="sq st" style="--i:10"></i><i class="sq st" style="--i:11"></i><i class="sq st" style="--i:12"></i><i class="sq st" style="--i:13"></i><i class="sq st" style="--i:14"></i><i class="sq st" style="--i:15"></i><i class="sq st" style="--i:16"></i><i class="sq st" style="--i:17"></i></div></div>
+      <p class="dg-n"><b>1 deal, everything attached.</b> The same tools, now hanging off the deal they belong to.</p></div>
+  </div>
+  <div class="dg inset rv"><img src="ASSETS/work/pathfinder-case/before-launcher.jpg" loading="lazy" alt="The original Pathfinder: a white page with a four by four grid of sixteen tool icons."><p class="dg-n" style="margin:0"><b>The actual starting point.</b> A search bar and sixteen icons. I am showing it once, small and in grey, because it is the only old screen that matters to the story. Every other product image on this page is from the final UI.</p></div>
+</div></section>
 
-  <section class="sec" id="teardown"><div class="wrap">
-    <div class="mark"><span>03</span>Teardown</div>
-    <div class="head">
-      <div><h2 class="t">Decide what each of the sixteen actually is</h2></div>
-      <div class="lede"><p>With the research in hand, every tool got documented the same way. Five questions, asked in the same order every time, so the sixteen could be compared against each other. <strong>An inventory is an argument, and it only works if it is complete.</strong></p></div>
-    </div>
-    <ol class="qs">
-      <li><i>01</i><b>What data does it hold, and who else already needs that data?</b><span>Duplicated data is the tell. If two tools keep their own copy of the customer, one of them is a view and not a product.</span></li>
-      <li><i>02</i><b>What job does it do in a deal, and at which state?</b><span>If the answer wasn't a state of a deal, it wasn't a destination. It was a tool used inside one.</span></li>
-      <li><i>03</i><b>Who touches it, and is that their job or their workaround?</b><span>There was no usage data, so this came from the interviews. Some of the most-loved tools were people compensating for a gap somewhere else.</span></li>
-      <li><i>04</i><b>What breaks tomorrow if it's gone?</b><span>The fastest way to find dead weight.</span></li>
-      <li><i>05</i><b>Is this a product, a feature, or a report?</b><span>The question that did most of the work. Most of the sixteen were features that had been promoted, and reports that had been given a login.</span></li>
-    </ol>
-    <div class="head sub">
-      <div><p class="punch" style="margin:0">Sixteen tiles, six jobs.</p></div>
-      <div class="lede"><p>Nobody organizes their work by tool. Sorted by the question an advisor is actually asking, the sixteen tiles collapse into six jobs, and every job already belongs to a moment in a deal.</p></div>
-    </div>
-    <figure class="jobs" aria-label="The sixteen home screen tiles, in their original positions, recolored by the six jobs they do.">
-      <ul class="jgrid" aria-hidden="true"><li style="--j:var(--j2)"><i>2</i>Technology Navigator</li><li style="--j:var(--j2)"><i>2</i>Provider Portfolio</li><li style="--j:var(--j1)"><i>1</i>Data Center Locator</li><li style="--j:var(--j1)"><i>1</i>Fiber Tool</li><li style="--j:var(--j4)"><i>4</i>Interactive Quick Assessments</li><li style="--j:var(--j2)"><i>2</i>Dynamic Matrices</li><li style="--j:var(--j1)"><i>1</i>CableQuote</li><li style="--j:var(--j3)"><i>3</i>Quick Quote</li><li style="--j:var(--j5)"><i>5</i>Cloud Ninja Knowledge Base</li><li style="--j:var(--j3)"><i>3</i>UCaaS TCO Analysis</li><li style="--j:var(--j5)"><i>5</i>Provider Battle Cards</li><li style="--j:var(--j5)"><i>5</i>Provider One Pagers</li><li style="--j:var(--j5)"><i>5</i>Case Studies</li><li style="--j:var(--j5)"><i>5</i>Sample Proposals</li><li style="--j:var(--j6)"><i>6</i>Uploaded Documents</li><li style="--j:var(--j6)"><i>6</i>Back Office View</li></ul>
-      <ol class="jlegend"><li style="--j:var(--j1)"><i>1</i><div><b>What is available at this address?</b><span>Data Center Locator, Fiber Tool and CableQuote asked one question of three data sets.</span><em>One map with layers, inside Configuration</em></div></li><li style="--j:var(--j2)"><i>2</i><div><b>Who should I recommend?</b><span>Navigator, Portfolio and Matrices were three doors into the same provider record.</span><em>The comparison at the heart of Configuration</em></div></li><li style="--j:var(--j3)"><i>3</i><div><b>What will it cost?</b><span>Quick Quote and the TCO calculator priced things with no deal to attach the price to.</span><em>Quoting inside the project</em></div></li><li style="--j:var(--j4)"><i>4</i><div><b>What does the client need?</b><span>Assessments produced the best evidence in the platform, then emailed it away.</span><em>Discovery</em></div></li><li style="--j:var(--j5)"><i>5</i><div><b>What do I hand the client?</b><span>Five shelves with one job, differing only by document type. Four fold together. Sample proposals give way to proposals generated from the project.</span><em>One library, surfaced in context</em></div></li><li style="--j:var(--j6)"><i>6</i><div><b>Where does my deal stand?</b><span>Uploaded Documents and Back Office View were the only traces of an actual deal.</span><em>Project Information and Contract</em></div></li></ol>
-    </figure>
-    <p class="punch" style="margin-top:clamp(48px,6vw,80px)">Then every tool got a verdict.</p>
-    <div class="g4">
-      <div class="card verdict" style="--v:var(--accent)"><span class="label">Merge</span><h3>Same job, different door</h3><p>One job reached through different doors, collapsed into one surface. Where audiences differ, permissions do the separating instead of navigation.</p></div>
-      <div class="card verdict" style="--v:var(--info)"><span class="label">Absorb</span><h3>Feature, not destination</h3><p>Real value at the wrong altitude. It became a panel, a filter, or a step inside the state where the advisor already was.</p></div>
-      <div class="card verdict" style="--v:var(--bad)"><span class="label">Retire</span><h3>Nothing breaks without it</h3><p>Solving a problem the new workflow doesn't have, or serving so few people that upkeep outweighed use. Retired with a documented migration path, never silently.</p></div>
-      <div class="card verdict" style="--v:var(--ok)"><span class="label">Rebuild</span><h3>Right job, wrong century</h3><p>Load-bearing to the business and beyond patching, so it was rebuilt on the new foundations instead of re-skinned on the old ones.</p></div>
-    </div>
-    <div class="head sub">
-      <div><p class="punch" style="margin:0">Sixteen tools, four verdicts, five destinations.</p></div>
-      <div class="lede"><p>Nobody defends a tool once they can see which state of the deal it belongs to. The argument was about a documented job, never about anyone's product.</p></div>
-    </div>
-    <figure class="fig">
-      <div class="scroll tri-scroll" tabindex="0"><div class="tri" role="img" aria-label="Sixteen tools sorted into four verdicts. Seven merged, six absorbed and two rebuilt tools resolve into the five states of one tracked project, two of which, Registration and Contract, are new and replace email. One tool is retired with a migration path. One component layer sits under every destination.">
-        <div class="tri-head" aria-hidden="true">
-          <div><b>16</b><span>Tools</span></div><div></div>
-          <div class="c"><b style="color:#CFC7B7">4</b><span>Verdicts</span></div><div></div>
-          <div><b style="color:var(--accent)">5</b><span>Destinations</span></div>
-        </div>
-        <div class="tri-body" aria-hidden="true">
-          <div class="tcol"><ul class="tg m"><li>Technology Navigator</li><li>Provider Portfolio</li><li>Dynamic Matrices</li><li>Data Center Locator</li><li>Fiber Tool</li><li>CableQuote</li><li>Quick Quote</li></ul><ul class="tg a"><li>Provider Battle Cards</li><li>Provider One Pagers</li><li>Case Studies</li><li>Cloud Ninja Knowledge Base</li><li>UCaaS TCO Analysis</li><li>Uploaded Documents</li></ul><ul class="tg b"><li>Interactive Quick Assessments</li><li>Back Office View</li></ul><ul class="tg r"><li>Sample Proposals</li></ul></div>
-          <svg viewBox="0 0 150 564" preserveAspectRatio="none"><path class="m" d="M0 0 C75 0 75 8 150 8 L150 115 C75 115 75 216 0 216 Z"/><path class="a" d="M0 228 C75 228 75 155 150 155 L150 262 C75 262 75 416 0 416 Z"/><path class="b" d="M0 428 C75 428 75 302 150 302 L150 409 C75 409 75 504 0 504 Z"/><path class="r" d="M0 516 C75 516 75 449 150 449 L150 556 C75 556 75 564 0 564 Z"/></svg>
-          <div class="tcol v"><div class="tv m"><span>Merge</span><b>Same job, different door</b></div><div class="tv a"><span>Absorb</span><b>Feature, not destination</b></div><div class="tv b"><span>Rebuild</span><b>Right job, wrong century</b></div><div class="tv r"><span>Retire</span><b>Nothing breaks without it</b></div></div>
-          <svg viewBox="0 0 150 564" preserveAspectRatio="none"><path class="m" d="M0 8 C75 8 75 16 150 16 L150 150 C75 150 75 115 0 115 Z"/><path class="a" d="M0 155 C75 155 75 160 150 160 L150 294 C75 294 75 262 0 262 Z"/><path class="b" d="M0 302 C75 302 75 304 150 304 L150 424 C75 424 75 409 0 409 Z"/><path class="r" d="M0 449 C75 449 75 472 150 472 L150 556 C75 556 75 556 0 556 Z"/></svg>
-          <div class="tcol v">
-            <div class="td five"><span>One tracked project, five states</span><ol><li><i>01</i><div>Project Information<small>Back office status and the deal's documents</small></div></li><li><i>02</i><div>Configuration<small>Providers, locations and quoting, compared in one place</small></div></li><li><i>03</i><div>Discovery<small>Assessments and engineer knowledge</small></div></li><li><i>04</i><div>Registration <u>New</u><small>Replaced email</small></div></li><li><i>05</i><div>Contract <u>New</u><small>Replaced email. Orders and commissions attach here</small></div></li></ol></div>
-            <div class="td sunset"><b>Sunset, with a migration path</b><span>Proposals are generated from the project</span></div>
-          </div>
-        </div>
-        <div class="tri-base" aria-hidden="true"><span>One component layer</span><p>Tokens, foundations, components. Every destination above is assembled from it.</p></div>
-      </div></div>
-      <p class="note">All sixteen tools by name. This is the diagram that turned a redesign request into a platform decision.</p>
-    </figure>
-  </div></section>
+<section class="band white" id="research"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-login.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">Research</span>
+  <h2 class="rv">The work wasn't slow. Finding it was.</h2>
+  <p class="say rv">I did not start with interviews. Ask a salesperson about their process and you get the pitch. <b>So I sat in on real deals</b> and logged every time someone left one tool to find something in another.</p>
+  <div class="methods gap rv"><span class="chip">Deal shadowing · <span class="fx" data-note="Invented counts. The shadowing was real.">6 advisors, 9 live deals</span></span><span class="chip">Interviews · <span class="fx" data-note="Invented count.">4 sales engineers</span></span><span class="chip">Inventory · every screen state in production</span></div>
+  <div class="three" style="margin-top:16px">
+    <div class="dg find rv"><svg class="d" viewBox="0 0 240 90"><g class="flt"><rect class="nk st" style="--i:0" x="8" y="12" width="52" height="26" rx="7"/></g><g class="flt" style="--d:-1.2s;--tx:-5px;--ty:4px"><rect class="nk st" style="--i:2" x="96" y="4" width="40" height="26" rx="7"/></g><g class="flt" style="--d:-2.1s;--tx:6px;--ty:5px"><rect class="nk st" style="--i:1" x="176" y="20" width="56" height="26" rx="7"/></g><g class="flt" style="--d:-3s;--tx:-4px;--ty:-6px"><rect class="nk st" style="--i:3" x="40" y="58" width="44" height="26" rx="7"/></g><g class="flt" style="--d:-.6s;--tx:5px;--ty:-3px"><rect class="nk st" style="--i:4" x="128" y="56" width="60" height="26" rx="7"/></g></svg>
+      <h3>Lost context, not lost time</h3><p>Advisors are fast at the job. What slowed them down was rebuilding the picture every time they came back. Which quote did the client see. Who did I rule out, and why.</p></div>
+    <div class="dg find rv" style="--i:1"><svg class="d" viewBox="0 0 240 90"><rect class="na st" x="8" y="22" width="64" height="46" rx="12"/><text class="w" x="40" y="51" style="font-size:18px">5/5</text><path class="l type" pathLength="1" d="M92 34h140M92 50h140M92 66h90"/></svg>
+      <h3>The argument, not the answer</h3><p>I assumed a matching engine was the prize. It was not. "The system picked these three" makes an advisor replaceable. They needed a reason they could say in their own words.</p></div>
+    <div class="dg find rv" style="--i:2"><svg class="d" viewBox="0 0 240 90"><circle class="na" cx="20" cy="45" r="9"/><path class="l march" stroke-dasharray="2 9" d="M38 45h164"/><circle class="n" cx="220" cy="45" r="9"/><text x="20" y="80">Asked</text><text x="220" y="80">Answered</text><text class="bl" x="120" y="30">?</text></svg>
+      <h3>Waiting is most of the deal</h3><p>Most of a deal's life is spent pending. The old product only had screens for moments when something happened. Everything in between was invisible.</p></div>
+  </div>
+</div></section>
 
-  <section class="sec" id="states"><div class="wrap">
-    <div class="mark"><span>04</span>Five states</div>
-    <div class="head">
-      <div><h2 class="t">One tracked project, and every state is a different problem</h2></div>
-      <div class="lede"><p>Mapping the work end to end gave the product a shape. Every screen answers for one state of one project.</p></div>
-    </div>
-    <ol class="states">
-      <li class="card"><span class="num">01</span><h3>Project Information</h3><p>Where the advisor lives between deals. It has to answer "what needs me today?" in five seconds without becoming a wall of numbers.</p></li>
-      <li class="card"><span class="num">02</span><h3>Configuration</h3><p>The screen the client sees. It turns a market of dozens of providers into a defensible shortlist, one dense comparison row each.</p></li>
-      <li class="card"><span class="num">03</span><h3>Discovery</h3><p>The longest state and the likeliest to stall, because assessments sit with engineers for days. The waiting had to read as progress and not as anxiety.</p></li>
-      <li class="card"><span class="num">04</span><h3>Registration</h3><p>The irreversible step. It is its own state in the record, but its control sits inside Configuration, beside the comparison that justifies it. That placement came out of testing.</p></li>
-      <li class="card"><span class="num">05</span><h3>Contract</h3><p>The state that has to outlive everyone. A signed deal becomes a deployment, a billing relationship, then a renewal handled by someone who was never in the room.</p></li>
-    </ol>
-    <div class="g2">
-      <img class="img" src="ASSETS/work/pathfinder-project.jpg" width="1800" height="1226" loading="lazy" alt="Pathfinder Project Information screen in the dark product theme.">
-      <img class="img" src="ASSETS/work/pathfinder-config.jpg" width="1800" height="1226" loading="lazy" alt="Pathfinder Configuration screen: provider comparison rows with fit scores.">
-    </div>
-    <p class="note">Project Information and Configuration as shipped, in the dark product theme.</p>
-  </div></section>
-
-  <section class="sec" id="testing"><div class="wrap">
-    <div class="mark"><span>05</span>Testing</div>
-    <div class="head">
-      <div><h2 class="t">The model held. Two details didn't</h2></div>
-      <div class="lede"><p>The five states went to advisors as a clickable prototype before build. Advisors described the states back in their own words, unprompted, and stopped asking "where's the assessment I ran?"</p></div>
-    </div>
-    <div class="g2 fixes">
-      <div class="card"><span class="label">What failed</span><h3>The logo outweighed the evidence</h3><p>The first Configuration table gave the fit score and the provider logo equal weight. Advisors scanned past the evidence and picked on brand recognition, the exact thing the screen existed to prevent.</p><p class="fix"><b>The fix</b>I rebuilt the row hierarchy until the score and the differentiator outweighed the logo.</p></div>
-      <div class="card"><span class="label">What failed</span><h3>Registration read as a commitment</h3><p>I had treated registration as a light confirmation. Advisors treated it as the irreversible step it is, and wanted the reasoning in front of them when they took it.</p><p class="fix"><b>The fix</b>The register control moved into Configuration, next to the comparison that justifies it.</p></div>
-    </div>
-    <div class="g2" style="margin-top:16px">
-      <img class="img" src="ASSETS/design-systems/pf2-styletile-04.jpg" width="1683" height="1800" loading="lazy" alt="One explored Pathfinder direction: advisor dashboard with revenue figures and a featured-provider panel in the dark theme.">
-      <img class="img" src="ASSETS/design-systems/pf2-styletile-05.jpg" width="1683" height="1800" loading="lazy" alt="A second explored direction for the same dashboard, trading the featured panel for a denser task list.">
-    </div>
-    <p class="note">Visual direction was tested the same way. Two of the dashboard directions that went side by side in front of the team, so the choice was between options and not opinions.</p>
-  </div></section>
-
-  <section class="sec" id="system"><div class="wrap">
-    <div class="mark"><span>06</span>System</div>
-    <div class="head">
-      <div><h2 class="t">Sixteen tools had built the same few things sixteen ways</h2></div>
-      <div class="lede"><p>Each tool had grown its own table, its own card, its own way of saying "pending." <strong>If two things differ only in density, tone or content, they are one component with a property.</strong> The set got smaller while the coverage got larger.</p></div>
-    </div>
-    <figure class="fig"><div class="scroll" tabindex="0"><svg viewBox="0 0 1000 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: families of duplicated components collapsing into single components with properties and tokens.">
-        <g font-family="'Space Grotesk',sans-serif" font-size="11" font-weight="500" letter-spacing="2.2" fill="#B5AD9F">
-          <text x="30" y="30">FOUND IN PRODUCTION</text>
-          <text x="470" y="30">ONE COMPONENT</text>
-          <text x="720" y="30">VARIATION MOVED TO</text>
-        </g>
-
-        <g font-family="'Space Grotesk',sans-serif">
-          <!-- row template repeated -->
-          <!-- TABLES -->
-          <g>
-            <rect x="30" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="52" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="74" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="96" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="118" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="140" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="162" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="184" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="206" y="56" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <text x="238" y="84" fill="#B5AD9F" font-size="11">A table per tool</text>
-            <path d="M360 79 L430 79" stroke="#8FA8A6" stroke-width="1.6"/>
-            <path d="M430 79 l-7 -4 v8 z" fill="#8FA8A6"/>
-            <rect x="452" y="60" width="200" height="38" rx="7" fill="rgba(239,122,94,.12)" stroke="#EF7A5E"/>
-            <text x="552" y="84" fill="#F1E8D6" font-size="12.5" font-weight="500" text-anchor="middle">DataTable</text>
-            <text x="700" y="75" fill="#B5AD9F" font-size="10.5">3 densities · sortable · selectable</text>
-            <text x="700" y="91" fill="#B5AD9F" font-size="10.5">expandable · 4 states · themed</text>
-          </g>
-
-          <!-- CARDS -->
-          <g>
-            <rect x="30" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="52" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="74" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="96" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="118" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="140" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="162" y="126" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <text x="194" y="154" fill="#B5AD9F" font-size="11">Card and module shells</text>
-            <path d="M360 149 L430 149" stroke="#8FA8A6" stroke-width="1.6"/><path d="M430 149 l-7 -4 v8 z" fill="#8FA8A6"/>
-            <rect x="452" y="130" width="200" height="38" rx="7" fill="rgba(239,122,94,.12)" stroke="#EF7A5E"/>
-            <text x="552" y="154" fill="#F1E8D6" font-size="12.5" font-weight="500" text-anchor="middle">Panel</text>
-            <text x="700" y="145" fill="#B5AD9F" font-size="10.5">header / body / footer slots</text>
-            <text x="700" y="161" fill="#B5AD9F" font-size="10.5">elevation + padding tokens</text>
-          </g>
-
-          <g transform="translate(0,-70)">
-            <rect x="30" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="52" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="74" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="96" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="118" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="140" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="162" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="184" y="266" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <text x="216" y="294" fill="#B5AD9F" font-size="11">Many ways to say "pending"</text>
-            <path d="M380 289 L430 289" stroke="#8FA8A6" stroke-width="1.6"/><path d="M430 289 l-7 -4 v8 z" fill="#8FA8A6"/>
-            <rect x="452" y="270" width="200" height="38" rx="7" fill="rgba(239,122,94,.12)" stroke="#EF7A5E"/>
-            <text x="552" y="294" fill="#F1E8D6" font-size="12.5" font-weight="500" text-anchor="middle">Status</text>
-            <text x="700" y="285" fill="#B5AD9F" font-size="10.5">semantic tokens, one vocabulary</text>
-            <text x="700" y="301" fill="#B5AD9F" font-size="10.5">the same word everywhere it appears</text>
-          </g>
-
-          <g transform="translate(0,-70)">
-            <rect x="30" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="52" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="74" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="96" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="118" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="140" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="162" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="184" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="206" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <rect x="228" y="336" width="16" height="46" rx="3" fill="#130F0D" stroke="#3A322C"/>
-            <text x="260" y="364" fill="#B5AD9F" font-size="11">One-off charts</text>
-            <path d="M380 359 L430 359" stroke="#8FA8A6" stroke-width="1.6"/><path d="M430 359 l-7 -4 v8 z" fill="#8FA8A6"/>
-            <rect x="452" y="340" width="200" height="38" rx="7" fill="rgba(239,122,94,.12)" stroke="#EF7A5E"/>
-            <text x="552" y="364" fill="#F1E8D6" font-size="12.5" font-weight="500" text-anchor="middle">Chart library</text>
-            <text x="700" y="355" fill="#B5AD9F" font-size="10.5">line · bar · area · stream · radar · hex</text>
-            <text x="700" y="371" fill="#B5AD9F" font-size="10.5">one shared color logic, both themes</text>
-          </g>
-        </g>
-
-        <line x1="30" y1="338" x2="970" y2="338" stroke="#3A322C"/>
-        <text x="30" y="366" fill="#F1E8D6" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="500">Fewer parts, wider coverage.</text>
-        <text x="30" y="388" fill="#B5AD9F" font-family="'Space Grotesk',sans-serif" font-size="11.5">The variation didn't disappear. It moved into props and tokens, where it costs nothing to maintain and can't drift.</text>
-      </svg></div><p class="note">Families of per-tool parts collapse into single components. The variation moves into properties and tokens.</p></figure>
-    <div class="head" style="margin-top:clamp(40px,5vw,64px)">
-      <div><p class="punch" style="margin:0">Three tiers of tokens: primitives, semantic, component. Engineers consume intent, never hex codes.</p></div>
-      <div class="lede"><p>The system had a second customer. AVANT's marketing team shipped light-theme campaign work at high volume with no shared foundations. Dark product and light marketing resolve from one semantic layer, so a re-theme changes nothing downstream. Every component shipped with loading, empty, error and disabled states, because in-between states are most of what advisors see.</p></div>
-    </div>
-    <div class="g2 even" style="margin-top:32px">
-      <img class="img" src="ASSETS/design-systems/pathfinder-tokens.jpg" width="1600" height="950" loading="lazy" alt="Pathfinder token architecture: primitive, semantic and component tiers.">
-      <img class="img" src="ASSETS/design-systems/avant-charts-bar.jpg" width="1800" height="956" loading="lazy" alt="Pathfinder chart library: themed bar charts with live revenue data.">
-    </div>
-    <p class="note">The three token tiers, and the chart library resolving dark and light from one color logic.</p>
-    <div class="g3 rules">
-      <div class="card"><span class="num">01</span><h3>One job, one place</h3><p>If two surfaces do the same job for different audiences, permissions separate them. Navigation is a promise about where things live.</p></div>
-      <div class="card"><span class="num">02</span><h3>A view of existing data is a filter, not an application</h3><p>This is also the rule that stopped the count from creeping back up.</p></div>
-      <div class="card"><span class="num">03</span><h3>Density is a property, not a new component</h3><p>The comfortable table and the compact table are the same table. Anything else is two things to fix every time something changes.</p></div>
-      <div class="card"><span class="num">04</span><h3>Every state, or it isn't done</h3><p>Loading, empty, error, disabled. Specified once, inherited everywhere.</p></div>
-      <div class="card"><span class="num">05</span><h3>Prove it on the densest screen</h3><p>Components were stress-tested against the worst case first. Anything that only worked on the simple screens wasn't finished.</p></div>
-      <div class="card"><span class="num">06</span><h3>Nothing gets retired silently</h3><p>Every sunset shipped with where-it-went documentation. Consolidation earns trust or it costs it, and you only get one attempt.</p></div>
-    </div>
-    <a class="audit-link" href="process/pathfinder-case-study.html" target="_blank" rel="noopener">
-      <div><span class="label">Checked against itself</span><b>I ran this same method on my own system and published what it found.</b><span>Five findings, each traced to a file, and a list of what is still unsourced.</span></div>
-      <em>Read the audit ↗</em>
-    </a>
-  </div></section>
-
-  <section class="sec" id="outcome"><div class="wrap">
-    <div class="mark"><span>07</span>Outcome</div>
-    <div class="head split">
-      <div><h2 class="t">The default path because it was the easier one</h2></div>
-      <div class="lede">
-        <p>Components went to engineering as a React-ready library through Dev Mode: named, specced and versioned. Governance was built for adoption and not enforcement. Docs were written for the person shipping at 4pm on a Friday, weekly office hours caught edge cases before they became forks, and releases came with migration notes.</p>
-        <p>The library now also runs as a coded build in Figma Make.</p>
-        <div class="btns" style="margin-top:8px">
-          <a class="btn btn-solid" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Open the live system ↗</a>
-        </div>
-      </div>
-    </div>
-    <img class="img lg fig" src="ASSETS/design-systems/pathfinder-system-2026.jpg" width="1609" height="977" loading="lazy" alt="Pathfinder design system sheet beside two product screens assembled from it: palette, type, buttons, inputs, badges and data display on the left, a scheduling screen and a project dashboard on the right.">
-    <p class="note">The system sheet beside two product screens assembled from it.</p>
-    <p class="punch" style="margin-top:clamp(48px,6vw,80px)">Before and after, layer by layer.</p>
-    <div class="scroll table" tabindex="0">
-      <table class="ledger">
-        <thead><tr><th>Layer</th><th>Before / sixteen tools</th><th>After / one platform</th></tr></thead>
-        <tbody>
-          <tr><td>Primary navigation</td><td>16 tools on the home screen, each its own front door</td><td>5 states of one project, plus a global search</td></tr>
-          <tr><td>Deal record</td><td>Email, chat, attachments, personal spreadsheets</td><td>One tracked project. Every artifact attaches to a state</td></tr>
-          <tr><td>Components</td><td>Each tool's own tables, cards and status labels</td><td>One library, every state specified</td></tr>
-          <tr><td>Theming</td><td>A palette per tool, marketing on its own</td><td>One semantic layer for dark product and light marketing</td></tr>
-          <tr><td>Data visualization</td><td>One-off charts per tool</td><td>6 themeable chart types on one color logic</td></tr>
-          <tr><td>Adding a surface</td><td>Rebuild the basics, re-litigate the brand</td><td>Assemble from the library, consistent on day one</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="cols3">
-      <p><strong>It absorbed growth.</strong> Everything new arrived as a component, a property, or a panel inside an existing state. No sixth destination was ever invented.</p>
-      <p><strong>Adoption came without a mandate.</strong> The library became the default path because it was the easier one.</p>
-      <p><strong>Reviews got better.</strong> Brand reviews shifted from policing basics to discussing ideas, and accessibility findings stopped recurring because the fixes lived at the foundation.</p>
-    </div>
-    <img class="img lg fig" src="ASSETS/design-systems/pathfinder-live-builder.jpg" width="1600" height="1366" loading="lazy" alt="The Pathfinder design system today, in its Live Builder: a command panel, quick recipes and floorplans on the left assemble a Partner Performance Overview dashboard on the right, with KPI tiles, a partner tier donut, revenue by region bars, a top partners table and system alerts, all built from the library's components.">
-    <p class="note">The system today. Its Live Builder assembles a partner dashboard from the library's own components.</p>
-    <p class="quote">Sixteen tools was never an interface problem. It was a question nobody had answered: <span class="hl">what is the one thing this platform is for?</span></p>
-  </div></section>
-
-<div class="wrap">
-  <div class="cta">
-    <div><h2>Find the one workflow, then build the system under it</h2><p>Inventory before proposing anything. Give every tool a verdict with a reason attached. Let the workflow set the navigation, and let the navigation set the component list.</p></div>
-    <div class="btns">
-      <a class="btn btn-solid" href="https://www.figma.com/make/pLGXGE6GnS3t4sJ4SHj9ZI/PATHFINDER-DESIGN-SYSTEM-2.1?fullscreen=1" target="_blank" rel="noopener">Open the live system ↗</a>
-      <div><a class="btn" href="#main">Back to top</a></div>
-    </div>
+<section class="band" id="structure"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">Define</span>
+  <h2 class="rv">Three problems. Three questions.</h2>
+  <div class="pqa gap">
+    <div class="pqa-h rv"><span>Problem</span><span>How might we</span><span>Answer</span></div>
+    <div class="dg pqa-r rv"><p><b>A deal has no single state.</b> Its pieces live in sixteen tools and an inbox.</p><p>give every deal one home that shows where it is and what is pending?</p><p>Five states and a project rail.</p></div>
+    <div class="dg pqa-r rv" style="--i:1"><p><b>Recommendations arrive without reasons.</b> A ranked list does not survive "why them?"</p><p>give the advisor a reason for each provider they can say on a call?</p><p>Technical fit, with a differentiator beside it.</p></div>
+    <div class="dg pqa-r rv" style="--i:2"><p><b>Pending work is invisible.</b> People chase it, and the chasing becomes the work.</p><p>make the in-between states first-class?</p><p>A status page for anything you are waiting on.</p></div>
   </div>
 
-  <footer>Product imagery © Avant Communications. Some details generalized per confidentiality.</footer>
-</div>
+  <h2 class="rv" style="margin-top:clamp(90px,12vw,160px)">A spine, not a cage.</h2>
+  <p class="say rv">Five states, in the order a deal actually moves. <b>You can see the order and jump around it.</b> Nothing locks. The rail carries the deal's files through all five.</p>
+  <div class="dg gap rv">
+    <div class="flow" id="flow5">
+      <div class="st" style="--i:1"><i>1</i><b>Project</b><span>Client, contact, technologies</span></div>
+      <div class="st" style="--i:4"><i>2</i><b>Configuration</b><span>Compare, score, choose</span></div>
+      <div class="st" style="--i:7"><i>3</i><b>Discovery</b><span>Assessments and status</span></div>
+      <div class="st" style="--i:10"><i>4</i><b>Registration</b><span>Confirm what step 2 decided</span></div>
+      <div class="st" style="--i:13"><i>5</i><b>Contract</b><span>Deployments and billing</span></div>
+    </div>
+    <div class="railbig" id="railbig">Project rail · research files · every quote version · watch list · ruled-out providers and why</div>
+  </div>
+</div></section>
+
+<section class="band white" id="decisions"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">Design</span>
+  <h2 class="rv">Three shapes for the work.</h2>
+  <p class="say rv">I built all three. <b>The one that looked best in review lost</b> to the one that worked on a live client call.</p>
+  <div class="three gap">
+    <div class="dg opt rv"><svg class="d" viewBox="0 0 260 110"><path class="l" d="M48 55h164"/><path class="l" d="M60 49l7 6-7 6M125 49l7 6-7 6M191 49l7 6-7 6"/><circle class="na" cx="32" cy="55" r="16"/><circle class="n" cx="97" cy="55" r="16"/><circle class="n" cx="163" cy="55" r="16"/><circle class="n" cx="228" cy="55" r="16"/><text class="w" x="32" y="60">1</text><text x="97" y="60">2</text><text x="163" y="60">3</text><text x="228" y="60">4</text><circle r="6" cy="26" fill="#0d0d0d"><animate attributeName="cx" dur="7s" repeatCount="indefinite" values="32;32;97;97;163;163;228;228;214;228;216;228;228;32" keyTimes="0;.06;.14;.24;.32;.42;.5;.62;.66;.7;.74;.78;.94;1"/></circle></svg>
+      <h3>A. Hard wizard</h3><p>One step at a time, forward only. Real deals loop back. A client changes scope in week three and the wizard has no answer.</p><span class="chip">Rejected</span></div>
+    <div class="dg opt rv" style="--i:1"><svg class="d" viewBox="0 0 260 110"><path class="l" d="M130 55L40 20M130 55L220 20M130 55L30 70M130 55L230 70M130 55L90 100M130 55L170 100"/><rect class="nk" x="24" y="8" width="30" height="22" rx="6"/><rect class="nk" x="206" y="8" width="30" height="22" rx="6"/><rect class="nk" x="12" y="60" width="30" height="22" rx="6"/><rect class="nk" x="218" y="60" width="30" height="22" rx="6"/><rect class="nk" x="74" y="88" width="30" height="22" rx="6"/><rect class="nk" x="156" y="88" width="30" height="22" rx="6"/><circle class="n" cx="130" cy="55" r="20"/><text class="k" x="130" y="60">Hub</text><circle r="6" fill="#0d0d0d"><animate attributeName="cx" dur="8s" repeatCount="indefinite" values="130;39;130;221;130;27;130;233;130"/><animate attributeName="cy" dur="8s" repeatCount="indefinite" values="55;19;55;19;55;71;55;71;55"/></circle></svg>
+      <h3>B. Hub of centers</h3><p>Everything one click from a home page. Better than the launcher, but still a menu. It shows what exists, not where this deal stands.</p><span class="chip">Rejected</span></div>
+    <div class="dg opt win rv" style="--i:2"><svg class="d" viewBox="0 0 260 110"><path class="la" d="M26 40h208"/><path class="la" d="M26 56v14M78 56v14M130 56v14M182 56v14M234 56v14" stroke-width="1.5"/><rect x="10" y="72" width="240" height="26" rx="9" fill="rgba(0,153,255,.16)"/><text x="130" y="90" style="fill:#0099ff">rail</text><circle class="na" cx="26" cy="40" r="14"/><circle class="na" cx="78" cy="40" r="14"/><circle class="na" cx="130" cy="40" r="14"/><circle class="na" cx="182" cy="40" r="14"/><circle class="na" cx="234" cy="40" r="14"/><text class="w" x="26" y="45">1</text><text class="w" x="78" y="45">2</text><text class="w" x="130" y="45">3</text><text class="w" x="182" y="45">4</text><text class="w" x="234" y="45">5</text><circle r="19" cy="40" fill="none" stroke="#0099ff" stroke-width="2"><animate attributeName="cx" dur="9s" repeatCount="indefinite" values="26;26;78;78;182;182;130;130;234;234;78;78;26"/></circle></svg>
+      <h3>C. Open sequence, with a rail</h3><p>Order without enforcement. Files travel with the deal. The cost: every step has to make sense when entered out of order.</p><span class="chip b">Chosen</span></div>
+  </div>
+
+  <h2 class="rv" style="margin-top:clamp(90px,12vw,160px)">Logos, or rows.</h2>
+  <p class="say rv">Comparing providers is the moment the advisor is <b>sharing their screen with the client.</b> That decided it.</p>
+  <div class="two gap">
+    <div class="dg opt rv"><div class="logos"><i class="sq"></i><i class="sq"></i><i class="sq k"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq k"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq k"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq k"></i><i class="sq"></i></div>
+      <h3>A wall of logos</h3><p>Everyone liked it in review, including me. In use, advisors picked the logos they already knew. It rewarded recognition, not fit.</p><span class="chip">Rejected</span></div>
+    <div class="dg opt win rv" style="--i:1"><div class="rows"><div style="--k:0"><span class="bar" style="background:var(--ink)"></span><span class="score">5/5</span><span class="bar"></span><i class="cb y"></i></div><div style="--k:1"><span class="bar" style="background:var(--ink)"></span><span class="score">5/5</span><span class="bar"></span><i class="cb y"></i></div><div style="--k:2"><span class="bar" style="background:var(--ink)"></span><span class="score">4/5</span><span class="bar"></span><i class="cb y"></i></div><div style="--k:3"><span class="bar" style="background:var(--ink)"></span><span class="score" style="background:var(--ink-3)">3/5</span><span class="bar"></span><i class="cb"></i></div></div>
+      <h3>One row per provider</h3><p>A column is something you can scan, and point at, on a shared screen. The cost: it looks less impressive in a portfolio.</p><span class="chip b">Chosen</span></div>
+  </div>
+</div></section>
+
+<section class="band" id="testing"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-login.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">Testing</span>
+  <h2 class="rv">Two things failed. Good.</h2>
+  <p class="say rv">I put a clickable prototype in front of advisors <b>before engineering wrote anything.</b> Each dot is one advisor. Blue means they got there.</p>
+  <div class="dg gap rv"><table class="tasks">
+    <tr><th>Scenario</th><th>Round 1</th><th>Round 2</th></tr>
+    <tr><td>Open a deal you have not touched in two weeks. Where does it stand?</td><td class="dots fx" data-note="Invented result."><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i></td><td class="dots"><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i></td></tr>
+    <tr><td>Pick three providers for the client, and tell me why.</td><td class="dots fx" data-note="Invented result. The failure itself was real."><i class="y"></i><i class="y"></i><i></i><i></i><i></i></td><td class="dots fx" data-note="Invented result."><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i></td></tr>
+    <tr><td>Register the deal with the providers you chose.</td><td class="dots fx" data-note="Invented result. The failure itself was real."><i class="y"></i><i></i><i></i><i></i><i></i></td><td class="dots fx" data-note="Invented result."><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i><i></i></td></tr>
+    <tr><td>Has the assessment you asked for come back?</td><td class="dots fx" data-note="Invented result."><i class="y"></i><i class="y"></i><i class="y"></i><i></i><i></i></td><td class="dots fx" data-note="Invented result."><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="y"></i></td></tr>
+  </table></div>
+
+  <div class="gap">
+  <div class="dg change rv"><div><span class="no">Change 1</span><h3>The score wins the row.</h3><p>Every column had the same weight, so the fit score was one more cell and nobody looked at it. It got its own column and its own type. It is out of five on purpose. A percentage invites "why 82 and not 85".</p></div>
+    <div class="rowx"><span class="lbl" style="margin-top:0">Before · six equal cells</span><div style="grid-template-columns:repeat(6,1fr)"><span class="cell">Provider</span><span class="cell">Overview</span><span class="cell">Fit</span><span class="cell">Contact</span><span class="cell">Date</span><span class="cell">Status</span></div>
+      <span class="lbl b">After · the row the advisor reads aloud</span><div class="after" style="grid-template-columns:1fr 1.2fr .8fr 2fr .8fr"><span class="cell">Provider</span><span class="cell">Overview</span><span class="cell a st" style="--i:3">5/5</span><span class="cell s st" style="--i:5">The differentiator, in plain language</span><span class="cell">Register ✓</span></div></div></div>
+  <div class="dg change rv"><div><span class="no">Change 2</span><h3>Registration is a checkbox.</h3><p>As its own page with its own button, "Register" felt like signing something, and advisors stalled. But the decision was already made in step 2. So the control moved to where the decision happens.</p></div>
+    <svg class="d" viewBox="0 0 420 150"><path class="la" d="M40 40h340"/><circle class="na" cx="40" cy="40" r="15"/><circle class="na" cx="125" cy="40" r="15"/><circle class="na" cx="210" cy="40" r="15"/><circle cx="295" cy="40" r="15" fill="#0d0d0d" stroke="#0099ff" stroke-width="2" stroke-dasharray="4 4"/><circle class="na" cx="380" cy="40" r="15"/><text class="w" x="40" y="45">1</text><text class="w" x="125" y="45">2</text><text class="w" x="210" y="45">3</text><text x="295" y="45" style="fill:#0099ff">4</text><text class="w" x="380" y="45">5</text><path class="la" stroke-dasharray="3 6" d="M295 60c0 50-60 62-124 62"/><path class="la" d="M178 115l-8 7 8 7"/><rect x="60" y="104" width="106" height="36" rx="10" fill="rgba(0,153,255,.16)"/><rect x="72" y="114" width="16" height="16" rx="4" fill="#0d0d0d" stroke="#0099ff" stroke-width="2"><animate attributeName="fill" dur="3.6s" repeatCount="indefinite" values="#0d0d0d;#0d0d0d;#0099ff;#0099ff" keyTimes="0;.55;.6;1"/></rect><circle r="5" fill="#0099ff"><animateMotion dur="3.6s" repeatCount="indefinite" path="M295 60c0 50-60 62-124 62" keyPoints="0;1;1" keyTimes="0;.55;1" calcMode="linear"/><animate attributeName="opacity" dur="3.6s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;.55;.6;1"/></circle><text x="98" y="127" style="fill:#0099ff;text-anchor:start">Register</text><path class="la" d="M125 58v42" stroke-width="1.5"/><text x="330" y="100">becomes a</text><text x="330" y="117">confirmation</text></svg></div>
+  <div class="dg change rv"><div><span class="no">Change 3</span><h3>Waiting, made visible.</h3><p>An assessment now has a status page: what was sent, when, by whom, and what has come back so far. Nobody has to ask "did you get this".</p></div>
+    <div><span class="lbl" style="margin-top:0">Before</span><div class="tl gapd"><span><i class="y"></i>Requested</span><span><i class="q"></i>?</span><span><i class="q"></i>?</span><span><i></i>Answer</span></div>
+      <span class="lbl b" style="margin-top:26px">After</span><div class="tl tlp"><span><i class="y"></i>Requested<small>Oct 21, 9:14</small></span><span><i class="y"></i>Received<small>Oct 21, 9:20</small></span><span><i class="y now"></i>In progress<small>since Oct 22</small></span><span><i></i>Returned</span></div></div></div>
+  </div>
+</div></section>
+
+<section class="band white" id="system"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">UI and system</span>
+  <h2 class="rv">It looked like four products.</h2>
+  <p class="say rv">Advisors put this in front of their clients. <b>Inconsistency read as unreliability.</b> Once I could count it, I could get it funded.</p>
+  <div class="three gap">
+    <div class="dg rv"><span class="dg-t">Found: 5+ primary blues</span><div class="blues found"><i style="--k:0;background:#1a73e8"></i><i style="--k:1;background:#2e9fe0"></i><i style="--k:2;background:#0d6efd"></i><i style="--k:3;background:#3b82f6"></i><i style="--k:4;background:#1f7fbf"></i></div><p class="dg-n">Now <b>one</b>.</p><div class="blues" style="margin-top:12px"><i style="background:var(--blue)"></i></div></div>
+    <div class="dg rv" style="--i:1"><span class="dg-t">Found: 3 button shapes</span><div class="shapes found"><i style="--k:0;border-radius:0"></i><i style="--k:1;border-radius:9px"></i><i style="--k:2;border-radius:99px"></i></div><p class="dg-n">Now <b>one</b>.</p><div class="shapes" style="margin-top:12px"><i style="border-radius:9px;background:var(--blue)"></i></div></div>
+    <div class="dg rv" style="--i:2"><span class="dg-t">Found: 7 button sizes</span><div class="sizes found"><i style="--k:0;--to:50%;height:36%"></i><i style="--k:1;--to:50%;height:44%"></i><i style="--k:2;--to:50%;height:52%"></i><i style="--k:3;--to:75%;height:62%"></i><i style="--k:4;--to:75%;height:72%"></i><i style="--k:5;--to:100%;height:86%"></i><i style="--k:6;--to:100%;height:100%"></i></div><p class="dg-n">Now <b>a scale</b>, <span class="fx" data-note="I do not know how many sizes the final scale had. Fill in.">three steps</span>.</p><div class="sizes" style="margin-top:12px;height:40px"><i style="height:50%;background:var(--blue)"></i><i style="height:75%;background:var(--blue)"></i><i style="height:100%;background:var(--blue)"></i></div></div>
+  </div>
+  <div class="dg rv" style="margin-top:16px"><span class="dg-t">How a color gets to a button</span>
+    <div class="tiers" id="tiers"><div class="tier"><b>Raw values</b><code>cyan-400 #27BDFA<br>blue-700 #0B5F8B</code></div><span class="to">→</span><div class="tier a"><b>Intent</b><code>color-action<br>= <span id="tv">cyan-400</span></code></div><span class="to">→</span><div class="tier"><b>Component</b><code>button-primary-bg</code><div class="pv"><span>Button</span></div></div></div>
+    <div class="themes"><span class="chip act" id="cDark">Dark theme</span><span class="chip" id="cLight">Light theme</span><span class="chip o">both only change the middle layer</span></div>
+    <p class="dg-n" style="text-align:center">Every component shipped with default, focus, error, disabled and loading states. <b>Every state, or it isn't done.</b></p></div>
+  <div class="dg rv live-ds" style="margin-top:16px">
+    <div>
+      <span class="dg-t">The system, running from code</span>
+      <p class="dg-n" style="margin:0"><b>Pathfinder 2.1 is a working build, not a set of screens.</b> Tokens, foundations, every component with its states, dark and light themes, and a changelog. It has grown past the shipped UI above, so treat it as the library the product draws from, not a mirror of it.</p>
+    </div>
+    <div class="btns" style="margin:0;flex:none">
+      <a class="btn k" href="https://omen-jade-96449641.figma.site/" target="_blank" rel="noopener">Open the live system ↗</a>
+      <a class="btn" href="https://omen-jade-96449641.figma.site/changelog" target="_blank" rel="noopener">Changelog ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="band dark" id="final"><div class="in">
+  <span class="eyebrow rv">Final UI</span>
+  <h2 class="rv">One frame.</h2>
+  <p class="say rv">Sidebar, cards, one accent color. <b>The project and its status stay on screen wherever you go.</b> Less for a client to read past on a shared screen.</p>
+  <div class="final gap">
+    <div class="rv"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" loading="lazy" alt="Back office: partner announcement scheduler with calendar, and a projects panel with status by technology."></figure><p class="cap">Back office. Scheduling a partner announcement, with projects and their status in the right panel.</p></div>
+    <div class="pairf">
+      <div class="rv"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" loading="lazy" alt="Dashboard with sales by technology, yearly sales figures and project files."></figure><p class="cap"><span class="fx" data-note="Your site labels this a 3.0 exploration. Confirm whether it shipped.">Dashboard.</span> Revenue by technology, open project files with status.</p></div>
+      <div class="rv" style="--i:1"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-login.jpg" loading="lazy" style="aspect-ratio:1800/1257;object-fit:cover" alt="Sign-in card over a dark network background."></figure><p class="cap">Entry. One logo, one action.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="results"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+  <span class="eyebrow rv">Results</span>
+  <h2 class="rv">It held.</h2>
+  <p class="say rv">I owned this for three years. <b>The structure went from v2.0 to v3.0 without a redesign.</b> That is the result I am proudest of.</p>
+  <div class="three gap">
+    <div class="dg res rv"><span class="num b fx" data-note="Invented. Replace with real data.">11 → 4</span><p>days, median, from a client's first request to the first quote.</p><div class="cmp mini"><span class="draw"></span><span class="b draw"></span></div></div>
+    <div class="dg res rv" style="--i:1"><span class="num b fx" data-count="71" data-suf="%" data-note="Invented. Replace with real adoption data.">71%</span><p>of active advisors ran a deal end to end within two quarters. Nobody was required to.</p><svg class="mini" viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="32" r="26" fill="none" stroke="#2b2b2b" stroke-width="7"/><circle class="ringp" pathLength="100" cx="32" cy="32" r="26"/></svg></div>
+    <div class="dg res rv" style="--i:2"><span class="num" data-count="350" data-suf="+">350+</span><p>people across AVANT trained to build on the same system.</p><div class="ppl mini" id="ppl" title="One dot is ten people"></div></div>
+  </div>
+  <div class="dg rv" style="margin-top:16px"><span class="dg-t">Three years, one structure</span>
+    <div class="flow years">
+      <div class="st" style="--i:1"><i>21</i><b>Audit and foundations</b><span>Inventory, tokens, first components</span></div>
+      <div class="st" style="--i:4"><i>22</i><b>Deal flow</b><span>Five states, the rail, core components</span></div>
+      <div class="st" style="--i:7"><i>23</i><b>Adoption</b><span>Governance, docs, training</span></div>
+      <div class="st" style="--i:10"><i>24</i><b>Marketing library</b><span>A second system on the same tokens</span></div>
+    </div></div>
+  <div class="two learn" style="margin-top:16px">
+    <div class="dg rv"><span class="dg-t">What I would change · 1</span><h3>I measured late, and measured the wrong thing first.</h3><p>We counted visits to each state. Research had already told me the waiting was the product. I should have measured how long deals sat in a state from day one.</p></div>
+    <div class="dg rv" style="--i:1"><span class="dg-t">What I would change · 2</span><h3>I designed one side of the handoff.</h3><p>Advisors got a clear view of a pending assessment. The sales engineers doing it got nothing new. Every advisor's wait is a sales engineer's backlog. Next time, both ends ship together.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="in"><div class="pf-foot"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#0099ff" stroke-width="3.5" stroke-dasharray="26 8"/><path d="M24 11 33 36l-9-6-9 6z" fill="#fff"/><path d="M24 11v19" stroke="#0099ff" stroke-width="2.5"/></svg><span style="font:800 16px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;color:#fff">PATHFINDER <span style="color:#0099ff">AVANT 2.0</span></span></div>Mikel Rosenthal · Pathfinder, AVANT Communications, 2021 to 2024 · <a href="https://mikelrosenthal.com">mikelrosenthal.com</a><br><a href="./">← Back to mikelrosenthal.com</a></div></footer>
+
+<dialog id="lb"><img alt=""></dialog>
 
 <script>
-(function(){var l=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));if(!('IntersectionObserver' in window)||!l.length)return;
-var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});
-var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.removeAttribute('aria-current')});var a=m[e.target.id];a.setAttribute('aria-current','true');var c=a.parentNode;c.scrollLeft=a.offsetLeft-c.clientWidth/2+a.clientWidth/2}})},{rootMargin:'-20% 0px -70% 0px'});
-document.querySelectorAll('section.sec').forEach(function(x){o.observe(x)})})();
+(()=>{
+const $=(s,r=document)=>[...r.querySelectorAll(s)],root=document.documentElement,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('on');count(e.target);io.unobserve(e.target)}),{rootMargin:'0px 0px -10% 0px',threshold:.12});
+$('.rv').forEach(el=>io.observe(el));
+function count(scope){$('[data-count]',scope).forEach(el=>{if(el._c)return;el._c=1;const to=+el.dataset.count,suf=el.dataset.suf||'';if(calm)return;
+  const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1200),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(f)})(t0)})}
+const nav=document.getElementById('nav');let lastY=scrollY,t=false;
+function onNav(){t=false;const y=scrollY;nav.classList.toggle('is-scrolled',y>40);nav.classList.toggle('is-hidden',y>700&&y>lastY+4);lastY=y}
+addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(onNav)}},{passive:true});onNav();
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img');
+$('.frame img,.inset img').forEach(im=>im.addEventListener('click',()=>{lbi.src=im.currentSrc||im.src;lbi.alt=im.alt;lb.showModal()}));
+lb.addEventListener('click',()=>lb.close());
+
+// hero sky: a flow field. Particles ride a slowly turning vector field and leave blue light behind them.
+(function(){const cv=document.getElementById('net');if(!cv)return;const cx=cv.getContext('2d',{alpha:true});
+  let W,H,D,P=[],run=false,raf,t0=performance.now(),mouse={x:-1e4,y:-1e4};
+  const N=()=>Math.min(700,Math.round(W*H/3000));
+  // cheap smooth noise: three drifting sine layers
+  const ang=(x,y,t)=>Math.sin(x*.0009+t*.00009)*1.1+Math.cos(y*.0012-t*.00007)*.9+Math.sin((x+y)*.0005+t*.00005)*1.3;
+  function build(){const r=cv.getBoundingClientRect();D=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0);cx.clearRect(0,0,W,H);
+    P=Array.from({length:N()},()=>spawn(true))}
+  function spawn(any){return{x:Math.random()*W,y:any?Math.random()*H:Math.random()<.5?-4:H+4,life:0,max:160+Math.random()*260,sp:.9+Math.random()*1.3,w:.9+Math.random()*1.6,c:Math.random()<.16?'170,150,255':Math.random()<.5?'0,153,255':'39,189,250',px:0,py:0}}
+  function frame(t){const dt=Math.min(2,(t-t0)/16.7);t0=t;
+    // fade the previous frame a little instead of clearing it, so trails smear smoothly
+    cx.globalCompositeOperation='destination-out';cx.fillStyle='rgba(0,0,0,.028)';cx.fillRect(0,0,W,H);cx.globalCompositeOperation='lighter';
+    for(const p of P){p.px=p.x;p.py=p.y;let a=ang(p.x,p.y,t);
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy;if(d2<32000){a+=Math.atan2(dy,dx)*.35}
+      p.x+=Math.cos(a)*p.sp*dt;p.y+=Math.sin(a)*p.sp*dt;p.life+=dt;
+      const k=p.life/p.max,al=Math.sin(Math.PI*Math.min(1,k))*.85;
+      cx.strokeStyle=`rgba(${p.c},${al})`;cx.lineWidth=p.w;cx.beginPath();cx.moveTo(p.px,p.py);cx.lineTo(p.x,p.y);cx.stroke();
+      if(k>=1||p.x<-8||p.x>W+8||p.y<-8||p.y>H+8)Object.assign(p,spawn(false))}
+    cx.globalCompositeOperation='source-over';
+    if(run)raf=requestAnimationFrame(frame)}
+  build();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,120)});
+  cv.parentElement.parentElement.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+  cv.parentElement.parentElement.addEventListener('pointerleave',()=>{mouse.x=-1e4;mouse.y=-1e4});
+  if(calm){cx.globalCompositeOperation='lighter';for(let i=0;i<900;i++){const p=spawn(true);for(let s=0;s<40;s++){const a=ang(p.x,p.y,0);cx.strokeStyle=`rgba(${p.c},.25)`;cx.lineWidth=p.w;cx.beginPath();cx.moveTo(p.x,p.y);p.x+=Math.cos(a)*1.2;p.y+=Math.sin(a)*1.2;cx.lineTo(p.x,p.y);cx.stroke()}}return}
+  new IntersectionObserver(([e])=>{if(e.isIntersecting&&!run){run=true;t0=performance.now();raf=requestAnimationFrame(frame)}else if(!e.isIntersecting){run=false;cancelAnimationFrame(raf)}}).observe(cv);
+})();
+
+// live loops: gate everything on section visibility
+(function(){const ppl=document.getElementById('ppl');if(ppl)for(let n=0;n<35;n++){const d=document.createElement('i');d.className='st';d.style.setProperty('--i',n*.5);ppl.append(d)}
+  const svgs=$('svg.d');svgs.forEach(v=>v.pauseAnimations&&v.pauseAnimations());if(calm)return;
+  const live=new IntersectionObserver(es=>es.forEach(e=>{const sec=e.target;sec.classList.toggle('live',e.isIntersecting);
+    $('svg.d',sec).forEach(v=>v.pauseAnimations&&(e.isIntersecting?v.unpauseAnimations():v.pauseAnimations()));
+    if(e.isIntersecting&&!sec._u){sec._u=1;setTimeout(()=>$('.grid16 .st,#flow5 .st',sec).forEach(x=>x.classList.remove('st')),2800)}}),{threshold:.05});
+  $('section').forEach(sec=>live.observe(sec));
+  const on=el=>el&&el.closest('section').classList.contains('live');
+  // before: an advisor hopping between tools that forget them
+  const tools=$('.grid16 .sq');let last;setInterval(()=>{if(!on(tools[0]))return;last&&last.classList.remove('hot');last=tools[Math.random()*tools.length|0];last.classList.add('hot')},750);
+  // the deal flow: move through the states out of order, the rail comes along
+  const fl=document.getElementById('flow5'),rail=document.getElementById('railbig'),seq=[0,1,2,1,3,4,1,2];let fi=0;
+  setInterval(()=>{if(!on(fl)||fl.querySelector('.st'))return;fl.classList.add('cy');[...fl.children].forEach((d,i)=>d.classList.toggle('act',i===seq[fi%seq.length]));fi++;rail.classList.remove('sh');void rail.offsetWidth;rail.classList.add('sh')},1700);
+  // logo wall: the eye keeps landing on the ones it already knows
+  const tiles=$('.logos .sq'),known=$('.logos .sq.k');let lp;setInterval(()=>{if(!on(tiles[0]))return;lp&&lp.classList.remove('pk');lp=Math.random()<.65?known[Math.random()*known.length|0]:tiles[Math.random()*tiles.length|0];lp.classList.add('pk')},700);
+  // tokens: switching theme only repoints the middle layer
+  const tiers=document.getElementById('tiers'),tv=document.getElementById('tv'),cD=document.getElementById('cDark'),cL=document.getElementById('cLight');
+  setInterval(()=>{if(!on(tiers))return;const l=tiers.classList.toggle('light');tv.textContent=l?'blue-700':'cyan-400';cL.classList.toggle('act',l);cD.classList.toggle('act',!l)},2800);
+  // final screens settle into place as they reach the middle of the viewport
+  const fr=$('.final .frame');function settle(){fr.forEach(f=>{const r=f.getBoundingClientRect(),k=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight*.75)));f.style.setProperty('--s',(.9+.1*k).toFixed(3))})}
+  addEventListener('scroll',()=>requestAnimationFrame(settle),{passive:true});settle();
+})();
+
+// side imagery drifts against the scroll; panel edges light under the cursor; headline words rise
+(function(){const sides=$('.side');function drift(){sides.forEach(el=>{const r=el.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;el.style.setProperty('--py',Math.round((r.top-innerHeight*.5)*.12))})}
+  if(!calm){addEventListener('scroll',()=>requestAnimationFrame(drift),{passive:true});drift()}
+  $('.dg').forEach(d=>d.addEventListener('pointermove',e=>{const r=d.getBoundingClientRect();d.style.setProperty('--mx',(e.clientX-r.left)+'px');d.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+  $('h2').forEach(h=>{if(h.querySelector('*'))return;h.innerHTML=h.textContent.split(/(\s+)/).map((w,i)=>/\S/.test(w)?`<span class="w" style="--wi:${i/2|0}">${w}</span>`:w).join('');if(!h.classList.contains('rv'))h.classList.add('rv');io.observe(h)});
+})();
+})();
 </script>
 </body>
 </html>
