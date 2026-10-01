@@ -772,6 +772,7 @@ body.cf-lock{overflow:hidden}
   *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
 }
 </style>
+<script src="ASSETS/nav-back.js"></script>
 </head>
 <body>
 
@@ -2187,13 +2188,15 @@ body.cf-lock{overflow:hidden}
 
   /* ------- vanilla behaviours (always on) ------- */
   const nav = document.getElementById('nav');
-  let lastY = 0;
+  if (window.__restoreY != null) scrollTo(0, window.__restoreY);   /* back from a project page: land where you left */
+  let lastY = scrollY;
   const onScrollNav = y => {
     nav.classList.toggle('is-scrolled', y > 40);
     nav.classList.toggle('is-hidden', y > 700 && y > lastY + 4);
     if (Math.abs(y - lastY) > 4) lastY = y;
   };
   addEventListener('scroll', () => onScrollNav(scrollY), {passive:true});
+  onScrollNav(scrollY);
 
   document.querySelectorAll('.proc').forEach(proc => {
     const head = proc.querySelector('.proc-head');
@@ -2252,22 +2255,36 @@ body.cf-lock{overflow:hidden}
     fstart();
   }
 
-  /* case files */
-  const openCase = id => {
+  /* case files
+     Opening one pushes #cf-id onto history, so the browser back button closes the
+     file and leaves you on the page instead of leaving the site. Deep links to a
+     case file open it on load. Closing returns focus to the card you opened. */
+  const openCase = (id, fromHistory) => {
     const cf = document.getElementById(id);
-    if (!cf) return;
+    if (!cf || !cf.classList.contains('casefile') || cf.classList.contains('open')) return;
+    cf.__opener = document.activeElement;
     cf.classList.add('open');
     cf.scrollTop = 0;
     document.body.classList.add('cf-lock');
     if (window.__lenis) window.__lenis.stop();
+    if (!fromHistory && location.hash !== '#' + id) history.pushState({cf: id}, '', '#' + id);
+    const close = cf.querySelector('.cf-close');
+    if (close) close.focus({preventScroll: true});
   };
-  const closeCase = cf => {
+  const closeCase = (cf, fromHistory) => {
+    if (!cf.classList.contains('open')) return;
     cf.classList.remove('open');
     document.body.classList.remove('cf-lock');
     if (window.__lenis) window.__lenis.start();
+    const back = cf.__opener; cf.__opener = null;
+    if (back && back.focus && document.contains(back)) back.focus({preventScroll: true});
+    if (!fromHistory && location.hash === '#' + cf.id){
+      if (history.state && history.state.cf === cf.id) history.back();
+      else history.replaceState(null, '', location.pathname + location.search);
+    }
   };
   document.querySelectorAll('[data-case]').forEach(card => {
-    const open = () => openCase(card.dataset.case);
+    const open = () => openCase(card.dataset.case, false);
     card.addEventListener('click', open);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
   });
@@ -2277,12 +2294,18 @@ body.cf-lock{overflow:hidden}
     card.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); go(); } });
   });
   document.querySelectorAll('.casefile').forEach(cf => {
-    cf.querySelector('.cf-close').addEventListener('click', () => closeCase(cf));
-    cf.addEventListener('click', e => { if (e.target === cf) closeCase(cf); });
+    cf.querySelector('.cf-close').addEventListener('click', () => closeCase(cf, false));
+    cf.addEventListener('click', e => { if (e.target === cf) closeCase(cf, false); });
   });
   addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.querySelectorAll('.casefile.open').forEach(closeCase);
+    if (e.key === 'Escape') document.querySelectorAll('.casefile.open').forEach(cf => closeCase(cf, false));
   });
+  addEventListener('popstate', () => {
+    const id = location.hash.slice(1);
+    document.querySelectorAll('.casefile.open').forEach(cf => { if (cf.id !== id) closeCase(cf, true); });
+    if (id) openCase(id, true);
+  });
+  if (location.hash) openCase(location.hash.slice(1), true);
 
   /* hero background: 'gif' (Forever wonder) or 'video' — flip DEFAULT_HERO to switch, or preview via ?hero=video */
   const DEFAULT_HERO = 'gif';
