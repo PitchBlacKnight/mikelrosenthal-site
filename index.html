@@ -378,6 +378,9 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 
 /* ---- case files ---- */
 .sys-card{cursor:pointer}
+.sys-card.wide{grid-column:1/-1}
+.feat-link{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);white-space:nowrap}
+.feat-link:hover{color:var(--cream)}
 .sys-cap .cta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);white-space:nowrap}
 .casefile{
   position:fixed;inset:0;z-index:1500;display:none;overflow-y:auto;
@@ -881,6 +884,10 @@ body.cf-lock{overflow:hidden}
       <div class="frame"><img src="ASSETS/design-systems/board-tucm.jpg" alt="TransUnion TUCM Design System, 2018 — component libraries, colors, typography, and forms" loading="lazy" width="1800" height="1012"></div>
       <figcaption class="sys-cap"><b>TransUnion — <em>TUCM</em></b><span>Design System · Credit &amp; Finance · 2018–2019<br><span class="cta">Case file →</span></span></figcaption>
     </figure>
+    <figure class="sys-card wide reveal" data-href="northstar/" tabindex="0" role="link" aria-label="Open the NorthStar design system site">
+      <div class="frame"><img src="ASSETS/design-systems/board-northstar.jpg" alt="NorthStar Design System documentation site, 2026 — foundations, components, patterns, graphics framework and live tools" loading="lazy" width="1800" height="700"></div>
+      <figcaption class="sys-cap"><b>NorthStar — <em>Live system</em></b><span>Design System · Documentation Site · Figma to code · 2026<br><span class="cta">Open the live system →</span></span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -947,11 +954,23 @@ body.cf-lock{overflow:hidden}
         <figure class="feat-media"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system overview" loading="lazy" width="1800" height="728"></figure>
       </article>
 
+      <article class="feat-slide" aria-label="Xfinity Reimagined">
+        <div class="feat-meta">
+          <div class="work-no">06</div>
+          <p class="work-kicker">PBK Studio · Mobile App Concept · 2026</p>
+          <h3 class="feat-title">Xfinity Reimagined</h3>
+          <p class="work-desc">An unofficial redesign of the Xfinity app, not affiliated with Comcast. Every feature already existed; the concept gives each job one home, so the most common task costs zero taps from a cold open.</p>
+          <p class="feat-fact">Product Design · Information architecture · Live prototype</p>
+          <a class="feat-link" href="https://xfinity-reimagined.vercel.app" target="_blank" rel="noopener">Open the live concept ↗</a>
+        </div>
+        <figure class="feat-media"><img src="ASSETS/work/xfinity-reimagined.jpg" alt="Xfinity Reimagined concept: redesigned home screen with connection status first" loading="lazy" width="1800" height="945"></figure>
+      </article>
+
     </div>
     <div class="feat-ctrl">
       <button class="feat-btn" id="featPrev" aria-label="Previous project">&larr;</button>
       <button class="feat-btn" id="featNext" aria-label="Next project">&rarr;</button>
-      <span class="feat-count"><em id="featCur">01</em>&thinsp;/&thinsp;05</span>
+      <span class="feat-count"><em id="featCur">01</em>&thinsp;/&thinsp;06</span>
       <span class="feat-bar" aria-hidden="true"><i id="featBar"></i></span>
     </div>
   </div>

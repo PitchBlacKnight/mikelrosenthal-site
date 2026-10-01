@@ -232,9 +232,10 @@ section.live *,section.live *::before,section.live *::after{animation-play-state
 .pqa-r p+p::before{content:"→";position:absolute;left:calc(clamp(16px,3vw,40px)*-.8);top:0;color:var(--blue);font-weight:600;animation:nud 2.4s ease-in-out infinite}
 .pqa-r{transition:transform .4s var(--ease),box-shadow .4s}
 .pqa-r:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.25)}
-.flow div{transition:opacity .5s}
-.flow i{transition:transform .5s var(--ease),box-shadow .5s}
-.js .flow.cy div:not(.act){opacity:.4}
+.flow b,.flow span{transition:opacity .5s}
+.flow i{position:relative;z-index:1;transition:transform .5s var(--ease),box-shadow .5s,background-color .5s,color .5s}
+.js .flow.cy div:not(.act) b,.js .flow.cy div:not(.act) span{opacity:.4}
+.js .flow.cy div:not(.act) i{background:color-mix(in srgb,var(--blue) 38%,var(--card,#fff));color:color-mix(in srgb,#fff 70%,var(--blue))}
 .flow.cy div.act i{transform:scale(1.14);box-shadow:0 0 0 7px rgba(0,153,255,.18)}
 .flow.years{grid-template-columns:repeat(4,1fr)}
 .flow.years::before{left:12.5%;right:12.5%}
@@ -273,7 +274,7 @@ section.live *,section.live *::before,section.live *::after{animation-play-state
 @media (prefers-reduced-motion:reduce){.ringp{stroke-dashoffset:29;transition:none}.final .frame{transform:none}}
 
 /* ===== Framer-style skin: pure black, hairline panels, left-set medium headings, one electric blue ===== */
-:root{--bg:#000;--card:#0d0d0d;--ink:#fff;--ink-2:#999;--ink-3:#666;--line:#2b2b2b;--soft:#1c1c1c;--blue:#0099ff;--blue-soft:rgba(0,153,255,.14);--r:20px}
+:root{--bg:#000;--card:#0d0d0d;--ink:#fff;--ink-2:#999;--ink-3:#666;--line:#4a4a4a;--soft:#2e2e2e;--blue:#0099ff;--blue-soft:rgba(0,153,255,.14);--r:20px}
 body{background:#000;color:#fff;font-size:17px}
 .in{max-width:1200px}
 .band,.band.white,.band.dark{background:#000;padding:clamp(72px,9vw,124px) 0}
@@ -287,23 +288,23 @@ h3{font-size:clamp(19px,1.5vw,22px);letter-spacing:-.02em}
 .gap{margin-top:clamp(40px,5vw,64px)}
 .methods{justify-content:flex-start}
 .cap,.dark .cap{text-align:left;margin-left:0;color:var(--ink-2)}
-.dg,.band.white .dg{background:#0d0d0d;border:1px solid rgba(255,255,255,.08);transition:border-color .4s,transform .4s var(--ease)}
-.dg:hover{border-color:rgba(255,255,255,.18)}
+.dg,.band.white .dg{background:#0d0d0d;border:1px solid rgba(255,255,255,.13);transition:border-color .4s,transform .4s var(--ease)}
+.dg:hover{border-color:rgba(255,255,255,.24)}
 .dg-n,.find p,.opt p,.change p,.res p,.learn p,.pqa-r p{font-size:15.5px}
 .d .n,.band.white .d .n{fill:#0d0d0d}
 .tl i,.band.white .tl i{background:#0d0d0d}
-.chip{background:#1c1c1c;color:#fff;font-weight:500}
+.chip{background:#2e2e2e;color:#fff;font-weight:500}
 .chip.b{background:var(--blue)}
 .sq.k,.grid16 .sq.hot{background:#fff;border-color:#fff}
 .logos .sq.pk{box-shadow:0 0 0 2px #fff}
-.cell{background:#1a1a1a;color:#aaa}.cell.s{color:#fff}
+.cell{background:#2a2a2a;color:#c4c4c4}.cell.s{color:#fff}
 .tasks td{color:#e6e6e6;font-size:16px}
-.tier{background:#1a1a1a}.tier.a{background:var(--blue)}
+.tier{background:#2a2a2a}.tier.a{background:var(--blue)}
 .themes .chip.act{background:#fff;color:#000}
 .opt.win{box-shadow:inset 0 0 0 1px var(--blue),0 0 80px -30px rgba(0,153,255,.65)}
 .frame{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 40px 120px -40px rgba(0,153,255,.35)}
-.inset img{filter:grayscale(1) brightness(.72) contrast(1.05);border-color:#2b2b2b}
-.ppl i{background:#fff}.cmp span{background:#2b2b2b}.cmp .b{background:var(--blue)}
+.inset img{filter:grayscale(1) brightness(.72) contrast(1.05);border-color:#4a4a4a}
+.ppl i{background:#fff}.cmp span{background:#4a4a4a}.cmp .b{background:var(--blue)}
 .railbig.sh::after{background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%)}
 .rowx .after::after{background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%)}
 .pqa-r:hover{box-shadow:none}
@@ -423,6 +424,21 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
 }
 @media(max-width:480px){.nav-tag{display:none}}
 @media (prefers-reduced-motion:reduce){.nav{transition:none}.nav-pill .dot,.btn .live{animation:none}}
+/* the flow field runs behind the whole page; each section is a tinted pane over it */
+.sky{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none}
+.sky canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero,footer{background:transparent}
+.hero-sky{background:radial-gradient(60% 55% at 50% 100%,rgba(0,153,255,.30),transparent 70%),radial-gradient(35% 40% at 6% 6%,rgba(90,70,220,.22),transparent 70%)}
+.hero-sky::after{background:linear-gradient(transparent 60%,rgba(0,0,0,.8)),linear-gradient(90deg,rgba(0,0,0,.72) 0,rgba(0,0,0,.35) 45%,transparent 75%)}
+section.band,section.band.white,section.band.dark{border-top:0;background:linear-gradient(90deg,rgba(0,0,0,.3),rgba(0,0,0,.78) 26%,rgba(0,0,0,.78) 74%,rgba(0,0,0,.3))}
+section.band:nth-of-type(even){background:linear-gradient(90deg,rgba(2,22,48,.4),rgba(4,15,32,.8) 26%,rgba(4,15,32,.8) 74%,rgba(2,22,48,.4))}
+section.band::before{content:"";position:absolute;z-index:0;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,153,255,.75) 28%,rgba(130,110,255,.55) 72%,transparent);pointer-events:none}
+section.band::after{content:"";position:absolute;z-index:0;left:50%;top:0;width:min(1100px,92%);height:260px;transform:translateX(-50%);background:radial-gradient(50% 100% at 50% 0,rgba(0,153,255,.16),transparent 72%);pointer-events:none}
+footer{background:rgba(0,0,0,.84)}
+@media (max-width:860px){
+  section.band,section.band.white,section.band.dark{background:rgba(0,0,0,.8)}
+  section.band:nth-of-type(even){background:rgba(4,15,32,.84)}
+}
 </style>
 <script src="ASSETS/nav-back.js"></script>
 </head>
@@ -436,12 +452,14 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
     <a href="./#process">Process</a>
     <a href="./#practice">Practice</a>
     <a href="./#archive">Motion</a>
+    <a href="northstar/">NorthStar</a>
     <a class="nav-resume" href="ASSETS/Mikel_Rosenthal_Resume_2026.pdf" download>Resume</a>
     <a class="nav-pill" href="./#contact"><span class="dot"></span>Available Now</a>
   </div>
 </nav>
 
-<header class="hero" id="top"><div class="hero-sky" aria-hidden="true"><canvas id="net"></canvas></div><div class="in">
+<div class="sky" aria-hidden="true"><canvas id="net"></canvas></div>
+<header class="hero" id="top"><div class="hero-sky" aria-hidden="true"></div><div class="in">
   <div class="hero-wordmark rv"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle class="ring" cx="24" cy="24" r="20" stroke="#0099ff" stroke-width="3.5" stroke-dasharray="26 8"/><path d="M24 11 33 36l-9-6-9 6z" fill="#fff"/><path d="M24 11v19" stroke="#0099ff" stroke-width="2.5"/></svg><div><b>PATHFINDER</b><small>Powered by AVANT · 2.0</small></div></div>
   <span class="eyebrow rv">Case study · AVANT Communications · 2021 to 2024</span>
   <h1 class="rv" style="--i:1">Pathfinder is one place to run a deal, from first request to signed contract.</h1>
@@ -451,7 +469,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
     <figure class="frame"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="Pathfinder 2.0 dashboard in the final dark theme: sidebar navigation, sales by technology, a yearly chart and project files with status."></figure></div>
 </div></header>
 
-<section class="band" id="problem"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band" id="problem"><div class="in">
   <span class="eyebrow rv">The problem</span>
   <h2 class="rv">Sixteen tools.<br>No deal.</h2>
   <p class="say rv">Technology advisors sell telecom and cloud services to businesses. Pathfinder gave them <b>sixteen good tools</b>. But no tool knew which client you were working on. <b>So the deal lived somewhere else.</b></p>
@@ -469,7 +487,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   <div class="dg inset rv"><img src="ASSETS/work/pathfinder-case/before-launcher.jpg" loading="lazy" alt="The original Pathfinder: a white page with a four by four grid of sixteen tool icons."><p class="dg-n" style="margin:0"><b>The actual starting point.</b> A search bar and sixteen icons. I am showing it once, small and in grey, because it is the only old screen that matters to the story. Every other product image on this page is from the final UI.</p></div>
 </div></section>
 
-<section class="band white" id="research"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-login.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band white" id="research"><div class="in">
   <span class="eyebrow rv">Research</span>
   <h2 class="rv">The work wasn't slow. Finding it was.</h2>
   <p class="say rv">I did not start with interviews. Ask a salesperson about their process and you get the pitch. <b>So I sat in on real deals</b> and logged every time someone left one tool to find something in another.</p>
@@ -484,7 +502,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   </div>
 </div></section>
 
-<section class="band" id="structure"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band" id="structure"><div class="in">
   <span class="eyebrow rv">Define</span>
   <h2 class="rv">Three problems. Three questions.</h2>
   <div class="pqa gap">
@@ -508,7 +526,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   </div>
 </div></section>
 
-<section class="band white" id="decisions"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band white" id="decisions"><div class="in">
   <span class="eyebrow rv">Design</span>
   <h2 class="rv">Three shapes for the work.</h2>
   <p class="say rv">I built all three. <b>The one that looked best in review lost</b> to the one that worked on a live client call.</p>
@@ -531,7 +549,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   </div>
 </div></section>
 
-<section class="band" id="testing"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-login.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band" id="testing"><div class="in">
   <span class="eyebrow rv">Testing</span>
   <h2 class="rv">Two things failed. Good.</h2>
   <p class="say rv">I put a clickable prototype in front of advisors <b>before engineering wrote anything.</b> Each dot is one advisor. Blue means they got there.</p>
@@ -555,7 +573,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   </div>
 </div></section>
 
-<section class="band white" id="system"><div class="side l" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band white" id="system"><div class="in">
   <span class="eyebrow rv">UI and system</span>
   <h2 class="rv">It looked like four products.</h2>
   <p class="say rv">Advisors put this in front of their clients. <b>Inconsistency read as unreliability.</b> Once I could count it, I could get it funded.</p>
@@ -585,15 +603,12 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
   <h2 class="rv">One frame.</h2>
   <p class="say rv">Sidebar, cards, one accent color. <b>The project and its status stay on screen wherever you go.</b> Less for a client to read past on a shared screen.</p>
   <div class="final gap">
-    <div class="rv"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" loading="lazy" alt="Back office: partner announcement scheduler with calendar, and a projects panel with status by technology."></figure><p class="cap">Back office. Scheduling a partner announcement, with projects and their status in the right panel.</p></div>
-    <div class="pairf">
-      <div class="rv"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" loading="lazy" alt="Dashboard with sales by technology, yearly sales figures and project files."></figure><p class="cap"><span class="fx" data-note="Your site labels this a 3.0 exploration. Confirm whether it shipped.">Dashboard.</span> Revenue by technology, open project files with status.</p></div>
-      <div class="rv" style="--i:1"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-login.jpg" loading="lazy" style="aspect-ratio:1800/1257;object-fit:cover" alt="Sign-in card over a dark network background."></figure><p class="cap">Entry. One logo, one action.</p></div>
-    </div>
+    <div class="rv"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-dashboard.jpg" loading="lazy" alt="Dashboard with sales by technology, yearly sales figures and project files."></figure><p class="cap"><span class="fx" data-note="Your site labels this a 3.0 exploration. Confirm whether it shipped.">Dashboard.</span> Revenue by technology, open project files with status.</p></div>
+    <div class="rv" style="--i:1"><figure class="frame"><img src="ASSETS/work/pathfinder-case/final-login.jpg" loading="lazy" style="aspect-ratio:1800/1257;object-fit:cover" alt="Sign-in card over a dark network background."></figure><p class="cap">Entry. One logo, one action.</p></div>
   </div>
 </div></section>
 
-<section class="band" id="results"><div class="side r" aria-hidden="true"><img src="ASSETS/work/pathfinder-case/final-announcement.jpg" alt="" loading="lazy"></div><div class="in">
+<section class="band" id="results"><div class="in">
   <span class="eyebrow rv">Results</span>
   <h2 class="rv">It held.</h2>
   <p class="say rv">I owned this for three years. <b>The structure went from v2.0 to v3.0 without a redesign.</b> That is the result I am proudest of.</p>
@@ -633,7 +648,7 @@ const lb=document.getElementById('lb'),lbi=lb.querySelector('img');
 $('.frame img,.inset img').forEach(im=>im.addEventListener('click',()=>{lbi.src=im.currentSrc||im.src;lbi.alt=im.alt;lb.showModal()}));
 lb.addEventListener('click',()=>lb.close());
 
-// hero sky: a flow field. Particles ride a slowly turning vector field and leave blue light behind them.
+// page sky: a flow field. Particles ride a slowly turning vector field and leave blue light behind them.
 (function(){const cv=document.getElementById('net');if(!cv)return;const cx=cv.getContext('2d',{alpha:true});
   let W,H,D,P=[],run=false,raf,t0=performance.now(),mouse={x:-1e4,y:-1e4};
   const N=()=>Math.min(700,Math.round(W*H/3000));
@@ -653,11 +668,12 @@ lb.addEventListener('click',()=>lb.close());
       if(k>=1||p.x<-8||p.x>W+8||p.y<-8||p.y>H+8)Object.assign(p,spawn(false))}
     cx.globalCompositeOperation='source-over';
     if(run)raf=requestAnimationFrame(frame)}
-  build();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,120)});
-  cv.parentElement.parentElement.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
-  cv.parentElement.parentElement.addEventListener('pointerleave',()=>{mouse.x=-1e4;mouse.y=-1e4});
+  build();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{const r=cv.getBoundingClientRect();if(r.width!==W||r.height!==H)build()},120)});
+  addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY},{passive:true});
+  document.documentElement.addEventListener('pointerleave',()=>{mouse.x=-1e4;mouse.y=-1e4});
   if(calm){cx.globalCompositeOperation='lighter';for(let i=0;i<900;i++){const p=spawn(true);for(let s=0;s<40;s++){const a=ang(p.x,p.y,0);cx.strokeStyle=`rgba(${p.c},.25)`;cx.lineWidth=p.w;cx.beginPath();cx.moveTo(p.x,p.y);p.x+=Math.cos(a)*1.2;p.y+=Math.sin(a)*1.2;cx.lineTo(p.x,p.y);cx.stroke()}}return}
-  new IntersectionObserver(([e])=>{if(e.isIntersecting&&!run){run=true;t0=performance.now();raf=requestAnimationFrame(frame)}else if(!e.isIntersecting){run=false;cancelAnimationFrame(raf)}}).observe(cv);
+  // the sky is fixed behind every section now, so it only rests while the tab is hidden
+  const wake=()=>{if(document.hidden){run=false;cancelAnimationFrame(raf)}else if(!run){run=true;t0=performance.now();raf=requestAnimationFrame(frame)}};document.addEventListener('visibilitychange',wake);wake();
 })();
 
 // live loops: gate everything on section visibility
