@@ -63,30 +63,10 @@ video.mv{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 .has-cursor,.has-cursor a,.has-cursor .proc-head,.has-cursor .tier-cta{cursor:none}
 
-/* ---- preloader ---- */
-.loader{
-  position:fixed;inset:0;z-index:2000;background:var(--ink);
-  display:none;flex-direction:column;justify-content:space-between;
-  padding:clamp(20px,4vw,56px);overflow:hidden;
-}
-.js-motion .loader{display:flex}
-.loader::before{content:"";position:absolute;inset:0;opacity:.5;
-  background-image:radial-gradient(1px 1px at 18% 30%,rgba(241,232,214,.5) 50%,transparent 51%),
-  radial-gradient(1px 1px at 72% 18%,rgba(222,147,169,.5) 50%,transparent 51%),
-  radial-gradient(1.5px 1.5px at 40% 74%,rgba(241,232,214,.3) 50%,transparent 51%),
-  radial-gradient(1px 1px at 88% 60%,rgba(239,122,94,.45) 50%,transparent 51%);
-  background-size:460px 460px;}
-.loader-top{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45)}
-.loader-mid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px}
-.loader-name{font-family:var(--serif);font-weight:300;font-size:clamp(34px,6vw,84px);letter-spacing:-.01em;display:flex;overflow:hidden}
-.loader-name span{display:inline-block;transform:translateY(120%)}
-.loader-name em{font-style:italic;color:var(--coral)}
-.loader-tag{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--cream-45);opacity:0}
-.loader-bottom{display:flex;justify-content:space-between;align-items:flex-end}
-.loader-count{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(64px,10vw,150px);line-height:.9;color:var(--cream)}
-.loader-count i{font-style:italic;color:var(--coral)}
-.loader-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--line)}
-.loader-bar i{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--coral)}
+/* ---- page entry: one soft fade, no preloader ---- */
+@keyframes pagefade{from{opacity:0}to{opacity:1}}
+body{animation:pagefade .5s ease-out both}
+@media (prefers-reduced-motion: reduce){body{animation:none}}
 
 /* ---- custom cursor ---- */
 .cursor,.cursor-ring{position:fixed;top:0;left:0;z-index:3000;pointer-events:none;border-radius:50%;display:none}
@@ -153,7 +133,7 @@ a{color:inherit;text-decoration:none}
 .nav-tag{font-family:var(--sans);font-weight:300;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45);white-space:nowrap}
 .nav-name em{display:inline}
 .nav-name .nm{display:block}
-@media(max-width:480px){.nav-tag{display:none}}
+@media(max-width:480px){.nav-tag{white-space:normal;max-width:150px;line-height:1.5}}
 .nav-links{display:flex;gap:clamp(16px,2.4vw,34px);align-items:center}
 .nav-links a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-70);transition:color .3s;position:relative}
 .nav-links a:hover{color:var(--cream)}
@@ -795,17 +775,6 @@ body.cf-lock{overflow:hidden}
 </head>
 <body>
 
-<!-- preloader (activated only when JS+GSAP available) -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-top"><span>PBK Studio</span><span>Chicago · 23 Years</span></div>
-  <div class="loader-mid">
-    <div class="loader-name" id="loaderName"></div>
-    <div class="loader-tag" id="loaderTag">Art Direction · Systems · Motion</div>
-  </div>
-  <div class="loader-bottom"><span></span><div class="loader-count"><span id="loaderCount">00</span><i>%</i></div></div>
-  <div class="loader-bar"><i id="loaderBar"></i></div>
-</div>
-
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span id="cursorLabel">View</span></div>
 
@@ -814,7 +783,7 @@ body.cf-lock{overflow:hidden}
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a class="nav-name" href="#top" data-magnetic><span class="nm">Mikel <em>Rosenthal</em></span><span class="nav-tag">Product Design · Visual Craft · Design Systems</span></a>
+  <a class="nav-name" href="#top" data-magnetic><span class="nav-tag">Product Design · Visual Craft · Design Systems</span></a>
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#proof">Proof</a>
@@ -836,11 +805,10 @@ body.cf-lock{overflow:hidden}
   </div>
 
   <div class="hero-inner" id="heroInner">
-    <p class="hero-eyebrow" id="heroEyebrow">Mikel Rosenthal · Senior Product Designer · Visual Craft &amp; Design Systems · Chicago</p>
+    <p class="hero-eyebrow" id="heroEyebrow">Senior Product Designer · Visual Craft &amp; Design Systems · Chicago</p>
     <h1 id="heroTitle">
-      <span class="split-l" data-kinetic="-8"><span>Complicated software,</span></span>
-      <span class="split-l" data-kinetic="6"><span><em>made to feel simple,</em></span></span>
-      <span class="split-l" data-kinetic="-4"><span><span class="ghost">and hold up at scale.</span></span></span>
+      <span class="split-l"><span>MIKEL</span></span>
+      <span class="split-l"><span>ROSENTHAL</span></span>
     </h1>
     <div class="hero-sub" id="heroSub">
       <p><b>Twenty-three years</b> of product design, visual craft, and design systems for Google, GE&nbsp;Healthcare, Blue&nbsp;Cross&nbsp;Blue&nbsp;Shield, Verizon, TransUnion, and Avant. I work with AI every day. What ships is finished by hand.</p>
@@ -2417,102 +2385,34 @@ body.cf-lock{overflow:hidden}
     return el.querySelectorAll('.wd');
   };
 
-  /* ---- preloader ---- */
-  const loader = document.getElementById('loader');
-  const nameEl = document.getElementById('loaderName');
-  'Mikel Rosenthal'.split('').forEach((c,i) => {
-    const s = document.createElement('span');
-    if (c === ' '){ s.innerHTML = '&nbsp;'; }
-    else if (i > 5){ const em = document.createElement('em'); em.textContent = c; s.appendChild(em); }
-    else s.textContent = c;
-    nameEl.appendChild(s);
-  });
-  if (lenis) lenis.stop(); else document.body.style.overflow = 'hidden';
+  /* ---- hero entry: plain fades, starts as soon as fonts are in ---- */
+  gsap.set('#heroEyebrow', {opacity: 0, y: 12});
+  gsap.set('#heroTitle', {opacity: 0, y: 24});
+  gsap.set('#heroSub', {opacity: 0, y: 18});
+  const heroIntro = gsap.timeline({paused: true})
+    .to('#heroEyebrow', {opacity: 1, y: 0, duration: .8, ease: 'power2.out'})
+    .to('#heroTitle', {opacity: 1, y: 0, duration: 1.1, ease: 'power2.out'}, .1)
+    .to('#heroSub', {opacity: 1, y: 0, duration: .9, ease: 'power2.out'}, .4);
 
-  const heroChars = [];
-  document.querySelectorAll('#heroTitle .split-l > span').forEach(line => heroChars.push(splitChars(line)));
-  heroChars.forEach(set => gsap.set(set, {yPercent: 120, rotate: 5}));
-  gsap.set('#heroEyebrow', {opacity: 0, x: -30});
-  gsap.set('#heroSub', {opacity: 0, y: 30});
-
-  const heroIntro = gsap.timeline({paused: true});
-  heroIntro
-    .to('#heroEyebrow', {opacity: 1, x: 0, duration: .8, ease: 'power3.out'})
-    .to(heroChars[0], {yPercent: 0, rotate: 0, stagger: .022, duration: 1.15, ease: 'expo.out'}, .05)
-    .to(heroChars[1], {yPercent: 0, rotate: 0, stagger: .022, duration: 1.15, ease: 'expo.out'}, .2)
-    .to(heroChars[2], {yPercent: 0, rotate: 0, stagger: .022, duration: 1.15, ease: 'expo.out'}, .35)
-    .to('#heroSub', {opacity: 1, y: 0, duration: .9, ease: 'power3.out'}, .75);
-
-  const count = {v: 0};
-  const countEl = document.getElementById('loaderCount');
-  const barEl = document.getElementById('loaderBar');
-  let loaded = false;
-  addEventListener('load', () => loaded = true);
-
-  const loadTl = gsap.timeline();
-  loadTl
-    .to('#loaderName span', {y: 0, yPercent: -0, stagger: .035, duration: 1, ease: 'expo.out',
-        onStart(){ gsap.set('#loaderName span', {yPercent: 120}); gsap.to('#loaderName span', {yPercent: 0, stagger: .035, duration: 1, ease: 'expo.out'}); }}, 0)
-    .to('#loaderTag', {opacity: 1, duration: .7}, .5)
-    .to(count, {v: 100, duration: 2.1, ease: 'power2.inOut',
-        onUpdate(){
-          const n = Math.round(count.v);
-          countEl.textContent = String(n).padStart(2,'0');
-          barEl.style.width = n + '%';
-        }}, 0)
-    .add(() => {}, '+=0.15')
-    .to(loader, {clipPath: 'inset(0 0 100% 0)', duration: 1.05, ease: 'expo.inOut',
-        onStart(){ loader.style.clipPath = 'inset(0 0 0% 0)'; },
-        onComplete(){ revealHero(); }});
-
-  /* ---- failsafe: the hero must never depend on the preloader finishing ----
-     If the tab is backgrounded during load, rAF throttling stalls the loader
-     timeline and the intro would never fire — leaving a visitor on a hero with
-     no headline, eyebrow, or copy. revealHero() is idempotent and also runs on
-     a timer, so the page always arrives. */
   let heroRevealed = false;
   function revealHero(){
     if (heroRevealed) return;
     heroRevealed = true;
-    loadTl.kill();
-    loader.style.display = 'none';
-    if (lenis) lenis.start(); else document.body.style.overflow = '';
     heroIntro.play();
   }
-  setTimeout(revealHero, 6000);
-  addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') setTimeout(revealHero, 1200);
-  });
-  /* last resort: if the intro itself never rendered, snap the hero to its end state */
+  /* wait for the web fonts, but never more than 400ms */
+  Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 400))]).then(revealHero);
+  addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') revealHero(); });
+  /* last resort: if the intro never rendered, snap the hero to its end state */
   setTimeout(() => {
     const sub = document.getElementById('heroSub');
     if (sub && parseFloat(getComputedStyle(sub).opacity) === 0) {
-      gsap.set('#heroEyebrow', {opacity: 1, x: 0});
-      gsap.set('#heroSub', {opacity: 1, y: 0});
-      heroChars.forEach(set => gsap.set(set, {yPercent: 0, rotate: 0}));
+      gsap.set(['#heroEyebrow', '#heroTitle', '#heroSub'], {opacity: 1, y: 0});
     }
-  }, 10000);
+  }, 5000);
 
-  /* ---- hero: pinned kinetic scrub (desktop) ---- */
-  const mm = gsap.matchMedia();
-  mm.add('(min-width: 900px)', () => {
-    const heroScrub = gsap.timeline({
-      scrollTrigger: {trigger: '#top', start: 'top top', end: '+=70%', scrub: .6, pin: true, anticipatePin: 1}
-    });
-    document.querySelectorAll('#heroTitle .split-l').forEach(line => {
-      heroScrub.to(line, {xPercent: parseFloat(line.dataset.kinetic), opacity: .92, ease: 'none'}, 0);
-    });
-    heroScrub
-      .to('#heroBg', {scale: 1.18, yPercent: 8, ease: 'none'}, 0)
-      /* fromTo + immediateRender:false — a plain .to() captures its start value at
-         runtime, so a ScrollTrigger refresh while scrolled down locked these at
-         opacity 0 and they never came back on scroll-up */
-      .fromTo('#heroSub', {opacity: 1, y: 0}, {opacity: 0, y: -24, ease: 'none', immediateRender: false}, 0)
-      .fromTo('#heroEyebrow', {opacity: 1}, {opacity: 0, ease: 'none', immediateRender: false}, 0);
-  });
-  mm.add('(max-width: 899px)', () => {
-    gsap.to('#heroBg', {yPercent: 10, ease: 'none', scrollTrigger: {trigger: '#top', start: 'top top', end: 'bottom top', scrub: true}});
-  });
+  /* ---- hero: light background parallax ---- */
+  gsap.to('#heroBg', {yPercent: 10, ease: 'none', scrollTrigger: {trigger: '#top', start: 'top top', end: 'bottom top', scrub: true}});
 
   /* ---- velocity-reactive marquees ---- */
   const marquee = (el, dur) => {
@@ -2617,9 +2517,8 @@ body.cf-lock{overflow:hidden}
   });
 
   /* ---- final section ---- */
-  const finalChars = splitChars(document.getElementById('finalTitle'));
-  gsap.fromTo(finalChars, {yPercent: 120, rotate: 4}, {
-    yPercent: 0, rotate: 0, stagger: .02, duration: 1.1, ease: 'expo.out',
+  gsap.fromTo('#finalTitle', {opacity: 0, y: 28}, {
+    opacity: 1, y: 0, duration: 1.1, ease: 'power2.out',
     scrollTrigger: {trigger: '#finalTitle', start: 'top 82%', once: true}
   });
   gsap.fromTo('#finalBg', {yPercent: -10}, {yPercent: 6, ease: 'none',
