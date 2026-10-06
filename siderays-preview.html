@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Side Rays Preview</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; background: #050507; color: #e8e8ea; font: 14px/1.4 system-ui, sans-serif; }
+  main { min-height: 100vh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; }
+  .frame {
+    width: 1080px; height: 1080px; max-width: 100%; aspect-ratio: 1; height: auto;
+    position: relative; background: #050507; border: 1px solid #1c1c22;
+  }
+  .label { position: absolute; left: 24px; bottom: 20px; opacity: .55; letter-spacing: .04em; z-index: 1; }
+</style>
+</head>
+<body>
+<main>
+  <div class="frame"
+       data-side-rays
+       data-ray-color1="#EAB308"
+       data-ray-color2="#96c8ff"
+       data-origin="top-right"
+       data-speed="2.5"
+       data-intensity="2"
+       data-spread="2"
+       data-tilt="0"
+       data-saturation="1.5"
+       data-blend="0.75"
+       data-falloff="1.6"
+       data-opacity="1">
+    <span class="label">SIDE RAYS · 1080 × 1080</span>
+  </div>
+</main>
+<script src="/ASSETS/side-rays.js" defer></script>
+</body>
+</html>
