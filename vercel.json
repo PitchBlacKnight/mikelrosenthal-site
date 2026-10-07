@@ -1,5 +1,7 @@
 {
   "redirects": [
+    { "source": "/northstar", "destination": "/northstar/", "permanent": true },
+    { "source": "/process", "destination": "/process/", "permanent": true },
     { "source": "/resume.html", "destination": "/ASSETS/Mikel_Rosenthal_Resume_2026.pdf", "permanent": false },
     { "source": "/avant-marketing.html", "destination": "/#systems", "permanent": false },
     { "source": "/bcbs-fiber.html", "destination": "/#systems", "permanent": false },
