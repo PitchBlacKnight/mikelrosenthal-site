@@ -493,7 +493,7 @@
      },
      {
       "type": "text",
-      "text": "60 variants named 'Hierarchy=X, State=Y, Size=Z' (4x4x3), ids 4038:31357 to 4038:31733. Icon slot: 16x16 plus glyph (two rounded 1px rects 10x2 and 2x10), colored to match label. All variants: radius 8px, Inter Medium label."
+      "text": "60 variants named 'Hierarchy=X, State=Y, Size=Z' (4x5x3), ids 4038:31357 to 4038:31733. Icon slot: 16x16 plus glyph (two rounded 1px rects 10x2 and 2x10), colored to match label. All variants: radius 8px, Inter Medium label."
      },
      {
       "type": "table",
