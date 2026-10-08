@@ -884,9 +884,13 @@ body.cf-lock{overflow:hidden}
       <div class="frame"><img src="ASSETS/design-systems/board-tucm.jpg" alt="TransUnion TUCM Design System, 2018 — component libraries, colors, typography, and forms" loading="lazy" width="1800" height="1012"></div>
       <figcaption class="sys-cap"><b>TransUnion — <em>TUCM</em></b><span>Design System · Credit &amp; Finance · 2018–2019<br><span class="cta">Case file →</span></span></figcaption>
     </figure>
-    <figure class="sys-card wide reveal" data-href="northstar/" tabindex="0" role="link" aria-label="Open the NorthStar design system site">
-      <div class="frame"><img src="ASSETS/design-systems/board-northstar.jpg" alt="NorthStar Design System graphics framework, 2026: area chart, heatmaps and ranked bars from the 95-widget gallery, in dark mode" loading="lazy" width="1800" height="700"></div>
-      <figcaption class="sys-cap"><b>NorthStar — <em>Live system</em></b><span>Design System · Documentation Site · Figma to code · 2026<br><span class="cta">Open the live system →</span></span></figcaption>
+    <figure class="sys-card reveal" data-href="northstar/" tabindex="0" role="link" aria-label="Open the NorthStar design system site">
+      <div class="frame"><img src="ASSETS/design-systems/board-northstar.jpg" alt="NorthStar Design System graphics framework, 2026: area chart, heatmaps and ranked bars from the 95-widget gallery, in dark mode" loading="lazy" width="1800" height="1012"></div>
+      <figcaption class="sys-cap"><b>NorthStar — <em>Live system</em></b><span>Design System · Live Docs · Figma to code · 2026<br><span class="cta">Open the live system →</span></span></figcaption>
+    </figure>
+    <figure class="sys-card reveal" data-href="https://xfinity-reimagined.vercel.app" tabindex="0" role="link" aria-label="Open the Xfinity Reimagined concept (opens in a new tab)">
+      <div class="frame"><img src="ASSETS/design-systems/board-xfinity.jpg" alt="Xfinity Reimagined concept, 2026: WiFi, Home and Plan screens of the unofficial app redesign, with connection status first" loading="lazy" width="1800" height="1012"></div>
+      <figcaption class="sys-cap"><b>Xfinity — <em>Reimagined</em></b><span>App Redesign Concept · Unofficial · 2026<br><span class="cta">Open the live concept ↗</span></span></figcaption>
     </figure>
   </div>
 </section>
@@ -2308,7 +2312,7 @@ body.cf-lock{overflow:hidden}
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
   });
   document.querySelectorAll('[data-href]').forEach(card => {
-    const go = () => { location.href = card.dataset.href; };
+    const go = () => { const h = card.dataset.href; if (/^https?:/.test(h)) window.open(h, '_blank', 'noopener'); else location.href = h; };
     card.addEventListener('click', go);
     card.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); go(); } });
   });
