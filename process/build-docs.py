@@ -3,7 +3,7 @@
 import os, re, html, glob
 ROOT=os.path.dirname(os.path.abspath(__file__)); SRC=os.path.join(ROOT,"skills"); OUT=os.path.join(ROOT,"docs")
 DRIVE="https://drive.google.com/drive/folders/1dFT7MjtyhgtvzreVf7q7cBSNPoV-V-qR"
-NAV=[("index.html","Overview"),("working-with-me.html","Method"),("skill-library.html","Skills"),("docs/index.html","Docs"),("intake.html","Start a project"),(DRIVE,"Files ↗")]
+NAV=[("index.html","Overview"),("working-with-me.html","Method"),("skill-library.html","Skills"),("docs/index.html","Docs"),("intake.html","Get in touch"),(DRIVE,"Files ↗")]
 def nav(prefix,current):
     out=[]
     for href,label in NAV:
@@ -182,6 +182,8 @@ aside.side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
 .foot .links a{color:#fff}.foot .links a.em{background:#fff100;color:#000;padding:12px 18px;border-radius:64px}
 """
 TINTS=["#dcd6ff","#cfe4ff","#ffd9c2","#d1ffca"]
+# Presenter-only files: still built (noindex) but not linked from sidebars, raw links, or the index.
+HIDDEN={"DEMO.md","LOOM.md","PROJECT-INSTRUCTIONS.md"}
 GROUP_LABEL={"":"Guides","examples":"Worked examples"}
 files=sorted(glob.glob(os.path.join(SRC,"**","*.md"),recursive=True))
 docs=[]
@@ -197,14 +199,15 @@ tint={t:TINTS[i%4] for i,t in enumerate(tops)}
 os.makedirs(OUT,exist_ok=True); open(os.path.join(OUT,"docs.css"),"w").write(CSS)
 for d in docs:
     depth=d["out"].count("/")+1; prefix="../"*depth
-    sib=[x for x in docs if x["top"]==d["top"]]
+    sib=[x for x in docs if x["top"]==d["top"] and x["rel"] not in HIDDEN]
     side='<aside class="side"><div class="box"><h3>'+esc(GROUP_LABEL.get(d["top"],d["top"]))+'</h3>'
     for x in sib:
         cur=' aria-current="page"' if x is d else ''
         href=os.path.relpath(x["out"],os.path.dirname(d["out"]) or ".")
         side+=f'<a href="{href}"{cur}>{esc(x["title"])}</a>'
     raw=prefix+"skills/"+d["rel"]
-    side+=f'<a class="raw" href="{raw}" target="_blank" rel="noopener">Raw markdown ↗</a></div>'
+    if d["rel"] not in HIDDEN: side+=f'<a class="raw" href="{raw}" target="_blank" rel="noopener">Raw markdown ↗</a>'
+    side+='</div>'
     side+=f'<div class="box"><h3>Library</h3><a href="{prefix}docs/index.html">All documents</a><a href="{prefix}skill-library.html">Skill library page</a><a href="{prefix}intake.html">Intake form</a></div></aside>'
     kicker="Docs · skills/"+d["rel"]
     desc=d["fm"].get("description","")
@@ -219,12 +222,12 @@ for t in tops:
     label=GROUP_LABEL.get(t,t); groups.append((t,label,items))
 gh=""
 order=[""]+[t for t in tops if t not in ("","examples")]+["examples"]
-ORDER_GUIDES=["README.md","DEMO.md","LOOM.md","PROJECT-INSTRUCTIONS.md"]
+ORDER_GUIDES=["README.md"]
 for i,t in enumerate(order):
-    items=[x for x in docs if x["top"]==t]
+    items=[x for x in docs if x["top"]==t and x["rel"] not in HIDDEN]
     if t=="": items.sort(key=lambda x:ORDER_GUIDES.index(x["rel"]) if x["rel"] in ORDER_GUIDES else 99)
     else: items.sort(key=lambda x:(0 if x["rel"].endswith("SKILL.md") else 1, x["rel"]))
-    label=GROUP_LABEL.get(t,t); lede={"":"Start here: what the library is, how to demo it, and how to load it as a Claude project.","examples":"The nine skills run end to end on one composite project, so the output shape is visible before anyone runs a prompt."}.get(t,"")
+    label=GROUP_LABEL.get(t,t); lede={"":"Start here: what the library is, how it is organized, and how to load it as a Claude project.","examples":"The nine skills run end to end on one composite project, so the output shape is visible before anyone runs a prompt."}.get(t,"")
     cards="".join(f'<a href="{x["out"]}"><span class="kick">{esc(os.path.basename(x["rel"]))}</span><span class="t">{esc(x["title"])}</span>'+(f'<span class="sub">{esc(x["fm"].get("description",""))[:140]}</span>' if x["fm"].get("description") else '')+'</a>' for x in items)
     gh+=f'<section class="group" style="background:{TINTS[i%4]}"><span class="kick" style="display:inline-block;background:#000;color:#fff;padding:8px 14px;border-radius:64px">{len(items)} file{"s" if len(items)!=1 else ""}</span><h2 class="disp">{esc(label)}</h2>'+(f'<p class="lede">{lede}</p>' if lede else '')+f'<div class="cards">{cards}</div></section>'
 head='<header class="dochead" style="--p-tint:#fff;background:#000;color:#fff"><span class="chip" style="background:#d1ffca;color:#000">Docs · skills/</span><h1 class="disp">The library,<br>as pages</h1><p class="desc" style="color:#979797">Every markdown file in the skill folder, rendered with navigation. The raw files stay where they are for loading into a Claude project.</p></header>'
