@@ -342,39 +342,6 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 
 
 /* ---- featured carousel ---- */
-.feat{border-top:1px solid var(--line);padding-top:clamp(26px,4vh,44px)}
-.feat-stage{display:grid;min-height:clamp(520px,66vh,660px)}
-.feat-slide{
-  grid-area:1/1;display:grid;gap:clamp(24px,4vw,64px);grid-template-columns:1fr;
-  align-content:start;
-  opacity:0;visibility:hidden;transform:translateY(16px);pointer-events:none;
-  transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s;
-}
-.feat-slide.on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
-@media(min-width:960px){.feat-slide{grid-template-columns:minmax(320px,1fr) 1.05fr;align-items:start}}
-.feat-meta{display:flex;flex-direction:column;gap:18px}
-.feat-title{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,52px);line-height:1.05;letter-spacing:-.01em}
-.feat-fact{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-45);border-top:1px solid var(--line);padding-top:14px}
-.feat-media{
-  position:relative;overflow:hidden;border-radius:3px;margin:0;
-  outline:1px solid var(--line);outline-offset:-1px;
-  box-shadow:0 22px 48px -28px rgba(0,0,0,.55);
-  width:100%;
-}
-.feat-media img{width:100%;height:auto;display:block}
-@media(max-width:959px){.feat-stage{min-height:640px}.feat-media{height:280px}.feat-media img{height:100%;object-fit:cover}}
-.feat-ctrl{display:flex;align-items:center;gap:clamp(16px,2.6vw,28px);margin-top:clamp(20px,3vh,30px)}
-.feat-btn{
-  width:46px;height:46px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;
-  background:none;color:var(--cream);font-size:16px;line-height:1;cursor:pointer;
-  transition:border-color .3s,color .3s,transform .3s var(--ease);
-}
-.feat-btn:hover{border-color:var(--coral);color:var(--coral);transform:scale(1.06)}
-.feat-count{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--cream-45);white-space:nowrap}
-.feat-count em{color:var(--coral);font-style:italic}
-.feat-bar{flex:1;height:1px;background:var(--line);position:relative;overflow:visible}
-.feat-bar i{position:absolute;left:0;top:-.5px;height:2px;width:0;background:var(--coral)}
-@media (prefers-reduced-motion: reduce){.feat-bar{display:none}}
 
 /* ---- case files ---- */
 .sys-card{cursor:pointer}
@@ -789,7 +756,7 @@ body.cf-lock{overflow:hidden}
 <nav class="nav" id="nav">
   <a class="nav-name" href="#top" data-magnetic><span class="nav-tag">Product Design · Visual Craft · Design Systems</span></a>
   <div class="nav-links">
-    <a href="#work">Work</a>
+    <a href="#index">Work</a>
     <a href="#proof">Proof</a>
     <a href="#process">Process</a>
     <a href="#practice">Practice</a>
@@ -895,97 +862,11 @@ body.cf-lock{overflow:hidden}
   </div>
 </section>
 
-<!-- 03 · SELECTED WORK -->
-<section class="sec" id="work">
-  <video class="secfx on-dark mid-r rot-l mv" poster="ASSETS/motion-art/v/Slinky%20Forgo.jpg" data-src="ASSETS/motion-art/v/Slinky%20Forgo.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">03</span><span>Selected Work · 2013 — 2026</span></div>
-
-  <div class="feat" id="feat">
-    <div class="feat-stage">
-
-      <article class="feat-slide on" aria-label="Pathfinder">
-        <div class="feat-meta">
-          <div class="work-no">01</div>
-          <p class="work-kicker">Avant · Product Platform · 2021–2024</p>
-          <h3 class="feat-title">Pathfinder</h3>
-          <p class="work-desc">Design vision and system for a B2B telecom-intelligence platform: connectivity mapping, project dashboards, and configuration tools, all on one component framework used by 350+ trusted advisors.</p>
-          <p class="feat-fact">Senior Product / Systems Designer · Product vision · Design system · Data viz</p>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/design-systems/pf2-styletile-04.jpg" alt="Pathfinder 2.0 dashboard on the dark theme" loading="lazy" width="1683" height="1800"></figure>
-      </article>
-
-      <article class="feat-slide" aria-label="Spacelab">
-        <div class="feat-meta">
-          <div class="work-no">02</div>
-          <p class="work-kicker">Spacelab · Brand &amp; Packaging · 2021</p>
-          <h3 class="feat-title">Spacelab</h3>
-          <p class="work-desc">A full identity and packaging system for an artisan edibles brand. Cosmic illustration, midnight blue cut with burnt orange, carried across boxes, tins, foils, and jars.</p>
-          <p class="feat-fact">Creative Direction · Identity · Packaging · Freelance</p>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin — geometric pattern lid in ochre, slate, and red with the astronaut-helmet wordmark on a deep blue field" loading="lazy" width="1800" height="1350"></figure>
-      </article>
-
-      <article class="feat-slide" aria-label="PRISM">
-        <div class="feat-meta">
-          <div class="work-no">03</div>
-          <p class="work-kicker">SurePeople · HR Tech · 2020</p>
-          <h3 class="feat-title">PRISM</h3>
-          <p class="work-desc">Product design lead for a psychometric intelligence platform. Dense personality data turned into readable, humane dashboards for coaches and teams.</p>
-          <p class="feat-fact">Product Design Lead · Dashboards · Data visualization · Mobile UX</p>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/design-systems/board-prism.jpg" alt="PRISM Psychometric Consumer App — presentation board with laptop and mobile mockups" loading="lazy" width="1800" height="1012"></figure>
-      </article>
-
-      <article class="feat-slide" aria-label="TrueCredit">
-        <div class="feat-meta">
-          <div class="work-no">04</div>
-          <p class="work-kicker">TransUnion · Fintech · 2018</p>
-          <h3 class="feat-title">TrueCredit</h3>
-          <p class="work-desc">Rebrand and product ideation for a consumer credit platform. An "art of the possible" vision that made credit data something people could feel okay reading.</p>
-          <p class="feat-fact">Design Systems Lead · Rebrand · Product vision · Enterprise system</p>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit rebrand — mobile, tablet, and desktop dashboard designs" loading="lazy" width="1600" height="1236"></figure>
-      </article>
-
-      <article class="feat-slide" aria-label="Avant Marketing System">
-        <div class="feat-meta">
-          <div class="work-no">05</div>
-          <p class="work-kicker">Avant · Brand System · 2022–2024</p>
-          <h3 class="feat-title">Avant Marketing System</h3>
-          <p class="work-desc">A Figma-first marketing design system: campaign templates, social kits, and brand components that let a small team produce at agency volume without the drift.</p>
-          <p class="feat-fact">Brand Direction · Systems Design · Campaign kit · Figma library</p>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/work/avant-marketing.jpg" alt="Avant marketing and social system overview" loading="lazy" width="1800" height="728"></figure>
-      </article>
-
-      <article class="feat-slide" aria-label="Xfinity Reimagined">
-        <div class="feat-meta">
-          <div class="work-no">06</div>
-          <p class="work-kicker">PBK Studio · Mobile App Concept · 2026</p>
-          <h3 class="feat-title">Xfinity Reimagined</h3>
-          <p class="work-desc">An unofficial redesign of the Xfinity app, not affiliated with Comcast. Every feature already existed; the concept gives each job one home, so the most common task costs zero taps from a cold open.</p>
-          <p class="feat-fact">Product Design · Information architecture · Live prototype</p>
-          <a class="feat-link" href="https://xfinity-reimagined.vercel.app" target="_blank" rel="noopener">Open the live concept ↗</a>
-        </div>
-        <figure class="feat-media"><img src="ASSETS/work/xfinity-reimagined.jpg" alt="Xfinity Reimagined concept: redesigned home screen with connection status first" loading="lazy" width="1800" height="945"></figure>
-      </article>
-
-    </div>
-    <div class="feat-ctrl">
-      <button class="feat-btn" id="featPrev" aria-label="Previous project">&larr;</button>
-      <button class="feat-btn" id="featNext" aria-label="Next project">&rarr;</button>
-      <span class="feat-count"><em id="featCur">01</em>&thinsp;/&thinsp;06</span>
-      <span class="feat-bar" aria-hidden="true"><i id="featBar"></i></span>
-    </div>
-  </div>
-
-</section>
-
 
 <!-- 02.7 · PROJECT INDEX -->
 <section class="sec index" id="index">
   <video class="secfx on-dark tl mv" poster="ASSETS/motion-art/v/Circle%20spheres.jpg" data-src="ASSETS/motion-art/v/Circle%20spheres.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">03.5</span><span>The Index · 2009 — 2024</span></div>
+  <div class="sec-tag"><span class="no">03</span><span>The Index · 2009 — 2024</span></div>
   <div class="index-head">
     <h2 class="reveal">The older work. <em>Most of it still holds up.</em></h2>
     <p class="reveal">Case boards from the archive: fintech, healthcare, luxury retail. Most open a full case file.</p>
@@ -2246,37 +2127,6 @@ body.cf-lock{overflow:hidden}
     document.querySelectorAll('.proc.open .proc-body').forEach(b => b.style.maxHeight = b.scrollHeight + 'px');
   });
 
-
-  /* featured carousel */
-  const featSlides = [...document.querySelectorAll('.feat-slide')];
-  if (featSlides.length){
-    const cur = document.getElementById('featCur');
-    const bar = document.getElementById('featBar');
-    const FEAT_MS = 7000;
-    let fi = 0, ftimer = null;
-    const runBar = () => {
-      if (reduced || !bar) return;
-      bar.style.transition = 'none'; bar.style.width = '0';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        bar.style.transition = `width ${FEAT_MS}ms linear`; bar.style.width = '100%';
-      }));
-    };
-    const fgo = n => {
-      featSlides[fi].classList.remove('on');
-      fi = (n + featSlides.length) % featSlides.length;
-      featSlides[fi].classList.add('on');
-      cur.textContent = String(fi + 1).padStart(2, '0');
-      runBar();
-    };
-    const fstart = () => { if (!reduced && !ftimer) { ftimer = setInterval(() => fgo(fi + 1), FEAT_MS); runBar(); } };
-    const fstop = () => { clearInterval(ftimer); ftimer = null; if (bar){ bar.style.transition = 'none'; } };
-    document.getElementById('featNext').addEventListener('click', () => { fstop(); fgo(fi + 1); fstart(); });
-    document.getElementById('featPrev').addEventListener('click', () => { fstop(); fgo(fi - 1); fstart(); });
-    const featEl = document.getElementById('feat');
-    featEl.addEventListener('mouseenter', fstop);
-    featEl.addEventListener('mouseleave', fstart);
-    fstart();
-  }
 
   /* case files
      Opening one pushes #cf-id onto history, so the browser back button closes the
