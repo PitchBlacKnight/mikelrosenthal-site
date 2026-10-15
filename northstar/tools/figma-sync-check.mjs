@@ -4,6 +4,9 @@
 
      node tools/figma-sync-check.mjs            full check (needs FIGMA_TOKEN)
      node tools/figma-sync-check.mjs --offline  site-side checks only
+     node tools/copy-lint.mjs                   em dashes and banned claims in site copy (runs here too)
+     node tools/figma-sync-check.mjs --queue    list components waiting for a Figma sync
+     node tools/figma-sync-check.mjs --fit      also run the narrow-width fit probe (needs Chrome; add --offline to skip Figma)
 
    FIGMA_TOKEN comes from the environment or a gitignored .env file in the repo root
    (a Figma personal access token with file_content:read). Exit code 1 means drift. */
@@ -26,8 +29,16 @@ const bad = (m) => problems.push(m), note = (m) => notes.push(m);
 
 /* ---------- site side ---------- */
 const compSrc = read("js/components.js");
-const site = [...compSrc.matchAll(/id: "([\w-]+)", name: "([^"]+)", cat: "[^"]+", status: "[^"]+"(?:, figma: "([\d:]+)")?/g)]
-  .map(([, id, name, figma]) => ({ id, name, figma }));
+const site = [
+  ...[...compSrc.matchAll(/id: "([\w-]+)", name: "([^"]+)", cat: "[^"]+", status: "[^"]+"(?:, figma: "([\d:]+)")?/g)].map(([, id, name, figma]) => ({ id, name, figma })),
+  ...[...compSrc.matchAll(/chartEntry\("([\w-]+)", "\w+", \{\s*name: "([^"]+)", figma: (?:"([\d:]+)"|null)/g)].map(([, id, name, figma]) => ({ id, name, figma })),
+];
+/* Code-first: a component with figma: null is built and documented here and waits for the next batch sync. */
+const waiting = site.filter((c) => !c.figma);
+if (process.argv.includes("--queue")) {
+  console.log(waiting.length ? `Waiting for Figma sync (${waiting.length}):\n` + waiting.map((c) => `  ${c.id}  ${c.name}`).join("\n") : "Nothing waiting for Figma sync.");
+  process.exit(0);
+}
 const pages = new Set([...read("js/pages.js").matchAll(/\b(?:P|pattern)\("([\w/-]*)"/g)].map((m) => m[1]));
 const routes = new Set([...site.map((c) => "components/" + c.id), ...[...pages].map((p) => (p.includes("/") || p === "" ? p : "patterns/" + p))]);
 const specSrc = read("js/specs.js");
@@ -35,7 +46,28 @@ const specs = JSON.parse(specSrc.slice(specSrc.indexOf("NS.SPECS = ") + 11, spec
 const syncedOn = (specSrc.match(/on (\d{4}-\d{2}-\d{2})/) || [])[1];
 
 if (!site.length) bad("Could not parse any components from js/components.js; the regex needs updating.");
-site.filter((c) => !c.figma).forEach((c) => bad(`Site component "${c.name}" has no Figma node (add figma: "<node id>" in js/components.js).`));
+if (waiting.length) note(`${waiting.length} component(s) built in code and waiting for Figma sync: ${waiting.map((c) => c.name).join(", ")}. Sync them, then set figma: "<node id>" in js/components.js.`);
+
+/* Copy lint: em dashes and claims that must not appear in site copy (tools/copy-lint.mjs). */
+{
+  const { spawnSync } = await import("node:child_process");
+  const r = spawnSync("node", [join(ROOT, "tools/copy-lint.mjs"), "--json"], { encoding: "utf8" });
+  let hits = null; try { hits = JSON.parse(r.stdout).hits; } catch { note("Copy lint could not run."); }
+  (hits || []).forEach((h) => bad(`Copy: ${h.file}:${h.line} ${h.kind}: ${h.detail}`));
+}
+
+/* --fit: render every component at 320, 240 and 192px in headless Chrome (tools/fit-probe.mjs)
+   and fold overflow, small targets, unnamed controls and tiny chart labels into this report. */
+if (process.argv.includes("--fit")) {
+  const { spawnSync } = await import("node:child_process");
+  const r = spawnSync("node", [join(ROOT, "tools/fit-probe.mjs"), "--json"], { encoding: "utf8", maxBuffer: 20 * 1024 * 1024 });
+  let out = null; try { out = JSON.parse(r.stdout); } catch {}
+  if (!out || out.error) note(`Fit probe skipped: ${out?.error || "no result"}`);
+  else {
+    note(`Fit probe: ${out.components} components, ${out.checked} renders at ${out.widths.join(", ")}px, ${out.issues.length} issue(s).`);
+    out.issues.forEach((i) => bad(`Fit: ${i.id} [${i.label}] @${i.width}px ${i.kind}: ${i.detail}`));
+  }
+}
 
 if (offline) report();
 else await online();
