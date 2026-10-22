@@ -1,6 +1,6 @@
 /* ============================================================
    NORTHSTAR DESIGN SYSTEM - tokens
-   Source: Figma "PATHFINDER-Design-System" (VZxmDNQiosTN6gqnvEQ65Z)
+   Source: Figma "NorthStar-Design-System" (VZxmDNQiosTN6gqnvEQ65Z)
    Page 00 Foundations + site frames (system-home, foundation-color)
    Primitive ramps -> semantic roles. Components use semantic roles only.
    ============================================================ */
@@ -45,7 +45,7 @@
 
   /* ---------- Typography ---------- */
   --ns-font-sans: "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --ns-font-ui: "Inter", "Open Sans", system-ui, sans-serif;
+  --ns-font-ui: "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --ns-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --ns-type-h1-size: 72px;   --ns-type-h1-line: 118px;   --ns-type-h1-weight: 800;
@@ -162,6 +162,16 @@
   --ns-viz-6: var(--ns-red-400);
   --ns-viz-7: var(--ns-persian-500);
 
+  /* Chart tokens: aliases of theme-aware tokens, so one definition covers both themes */
+  --ns-chart-series-1: var(--ns-viz-1);
+  --ns-chart-series-2: #2858ff; /* was viz-4 (#023aff, 2.5:1 on the widget): nudged to 3.2:1 */
+  --ns-chart-series-3: var(--ns-viz-2);
+  --ns-chart-series-4: #7844f9; /* was viz-7 (#4807ea, 2.0:1): nudged to 3.3:1 */
+  --ns-chart-series-5: var(--ns-widget-muted);
+  --ns-chart-track: var(--ns-widget-track);
+  --ns-chart-target: var(--ns-text-primary);
+  --ns-chart-marker: #5050ff; /* chart/marker: spacing guide markers, same in all themes */
+
   --ns-gradient-brand: linear-gradient(135deg, var(--ns-blue-500), var(--ns-teal-500));
   --ns-gradient-bruise: linear-gradient(135deg, var(--ns-persian-500), var(--ns-purple-500));
   --ns-gradient-purple: linear-gradient(180deg, var(--ns-magenta-500), var(--ns-violet-600));
@@ -175,6 +185,9 @@
   --ns-widget-band: #12122a;
   --ns-widget-grid: #2a2a4a;
   --ns-widget-muted: var(--ns-purple-300);
+  /* Chart text, tuned for 4.5:1 on the widget surface. Graphics keep their own tokens. */
+  --ns-chart-label-text: #8f8fc0;
+  --ns-chart-trend-text: var(--ns-status-success);
   --ns-widget-radius: 12px;
   --ns-widget-shadow: inset 0 1px 0.3px #ffffff08;
   --ns-widget-pad: 24px;
@@ -234,6 +247,8 @@
   --ns-widget-band: #f3f3fb;
   --ns-widget-grid: #dcdcea;
   --ns-widget-muted: #5a5a8f;
+  --ns-chart-label-text: #5a5a8f;
+  --ns-chart-trend-text: #2a7a00;
   --ns-widget-shadow: 0 1px 2px #05050f14, 0 0 0 1px var(--ns-border-subtle);
 
   --ns-elevation-01: 0 1px 2px #05050f14, 0 0 0 1px var(--ns-border-subtle);
@@ -242,6 +257,10 @@
   --ns-elevation-04: 0 24px 64px #05050f33, 0 0 0 1px var(--ns-border-default);
 
   color-scheme: light;
+  /* Series 1 nudged to 3.2:1 on white (was viz-1, #00a89e, 3.0:1) */
+  --ns-chart-series-1: #00a097;
+  --ns-chart-series-2: var(--ns-viz-4);
+  --ns-chart-series-4: var(--ns-viz-7);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -251,4 +270,70 @@
     --ns-duration-slow: 0ms;
     --ns-duration-expressive: 0ms;
   }
+}
+
+/* ============================================================
+   Density - COMFORTABLE (default) and COMPACT
+   Set data-density="compact" on <html>, or on any container to preview
+   one region. Components read these roles, so one attribute tightens
+   control heights and table rows. Explicit sizes (sm, lg, xl) keep theirs.
+   ============================================================ */
+:root {
+  --ns-density-control: 40px;
+  --ns-density-control-sm: 32px;
+  --ns-density-row-y: var(--ns-space-4);
+  --ns-density-pad-x: var(--ns-space-5);
+}
+
+:root[data-density="compact"],
+[data-density="compact"] {
+  --ns-density-control: 32px;
+  --ns-density-control-sm: 28px;
+  --ns-density-row-y: var(--ns-space-2);
+  --ns-density-pad-x: var(--ns-space-4);
+}
+
+/* High Contrast: values from the Figma Semantic High Contrast mode. Opt in with data-theme="contrast". */
+:root[data-theme="contrast"] {
+  color-scheme: dark;
+  --ns-background-primary: #05050f; /* background/primary */
+  --ns-background-secondary: #05050f; /* background/secondary */
+  --ns-background-surface: #05050f; /* background/surface */
+  --ns-background-elevated: #05050f; /* background/elevated */
+  --ns-text-primary: #ffffff; /* text/primary */
+  --ns-text-secondary: #ffffff; /* text/secondary */
+  --ns-text-tertiary: #ffffff; /* text/tertiary */
+  --ns-text-disabled: #a9a9b7; /* text/disabled */
+  --ns-text-inverse: #05050f; /* text/inverse */
+  --ns-border-default: #ffffff; /* border/default */
+  --ns-border-subtle: #ffffff; /* border/subtle */
+  --ns-border-strong: #ffffff; /* border/strong */
+  --ns-status-success: #5eff5a; /* status/success */
+  --ns-status-warning: #ffa63f; /* status/warning */
+  --ns-status-error: #ff2d2e; /* status/error */
+  --ns-status-info: #023aff; /* status/info */
+  --ns-background-selected: #1e1e24; /* background/selected */
+  --ns-interactive-primary: #023aff; /* interactive/primary */
+  --ns-focus-ring: #ffa63f; /* focus/ring */
+  --ns-widget-bg: #191932; /* widget/bg */
+  --ns-widget-inset: #000000; /* widget/inset */
+  --ns-widget-track: #2c2c35; /* widget/track */
+  --ns-widget-band: #1e1e24; /* widget/band */
+  --ns-widget-grid: #5b5b65; /* widget/grid */
+  --ns-widget-muted: #d0d0da; /* widget/muted */
+  --ns-viz-1: #01f1e3; /* viz/1 */
+  --ns-viz-2: #b45cff; /* viz/2 */
+  --ns-viz-3: #ffa63f; /* viz/3 */
+  --ns-viz-4: #4d7cff; /* viz/4 */
+  --ns-viz-5: #5eff5a; /* viz/5 */
+  --ns-viz-6: #ff5c8d; /* viz/6 */
+  --ns-viz-7: #8855e8; /* viz/7 */
+  --ns-chart-label-text: #d0d0da; /* text/chart-label */
+  --ns-chart-series-1: #01f1e3; /* chart/series-1 */
+  --ns-chart-series-2: #2858ff; /* chart/series-2 (was #023aff, 2.5:1): 3.2:1 on widget/bg */
+  --ns-chart-series-3: #991bfa; /* chart/series-3 */
+  --ns-chart-series-4: #7844f9; /* chart/series-4 (was #4807ea, 2.0:1): 3.3:1 on widget/bg */
+  --ns-chart-series-5: #6a6a9f; /* chart/series-5 */
+  --ns-chart-track: #0e0e22; /* chart/track */
+  --ns-chart-target: #ffffff; /* chart/target */
 }
