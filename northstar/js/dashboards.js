@@ -6,7 +6,7 @@
   const D = (NS.dash = {});
   let n = 0;
   const uid = (p) => `${p}${++n}`;
-  const T = (t) => `var(--ns-${t})`;
+  const T = (t) => (NS.viz ? NS.viz.c(t) : `var(--ns-${t})`); /* js/viz.js routes palette names to chart series */
   D.T = T;
 
   D.rng = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -27,7 +27,7 @@
   };
   D.smooth = smooth;
 
-  const text = (x, y, s, o = {}) => `<text x="${x}" y="${y}" fill="${o.fill || T("chart-label-text")}" font-size="${o.size || 11}" font-weight="${o.weight || 400}" text-anchor="${o.anchor || "start"}" ${o.ls ? `letter-spacing="${o.ls}"` : ""}>${s}</text>`;
+  const text = (x, y, s, o = {}) => `<text x="${x}" y="${y}" fill="${o.fill || T("chart-label-text")}" font-size="${o.size || (NS.viz ? NS.viz.m.axis : 11)}" font-weight="${o.weight || 400}" text-anchor="${o.anchor || "start"}" ${o.ls ? `letter-spacing="${o.ls}"` : ""}>${s}</text>`;
 
   /* ---------- area / line ---------- */
   D.area = ({ w = 600, h = 220, sets, labels = [], ticks = 4, min, max, grid = true, pad = [8, 8, 22, 34], fmt = (v) => v, dots, ink, gridColor, labelFill, last = true, glow = false }) => {
@@ -36,17 +36,16 @@
     const X = (i, len) => pl + (iw * i) / (len - 1), Y = (v) => pt + ih - ((v - lo) / (hi - lo || 1)) * ih;
     const gc = gridColor || T("widget-grid"); const lf = labelFill || T("chart-label-text");
     let defs = "", out = "";
-    if (grid) for (let i = 0; i < ticks; i++) { const y = pt + (ih * i) / (ticks - 1); out += `<line x1="${pl}" x2="${w - pr}" y1="${y}" y2="${y}" stroke="${gc}" stroke-width="1" ${i === ticks - 1 ? "" : 'stroke-dasharray="2 5"'} opacity="${i === ticks - 1 ? 1 : .8}"/>`; out += text(pl - 8, y + 4, fmt(hi - ((hi - lo) * i) / (ticks - 1)), { anchor: "end", size: 10, fill: lf }); }
+    if (grid) for (let i = 0; i < ticks; i++) { const y = pt + (ih * i) / (ticks - 1); out += `<line x1="${pl}" x2="${w - pr}" y1="${y}" y2="${y}" stroke="${gc}" stroke-width="1" ${i === ticks - 1 ? "" : 'stroke-dasharray="2 5"'} opacity="${i === ticks - 1 ? 1 : .8}"/>`; out += text(pl - 8, y + 4, fmt(hi - ((hi - lo) * i) / (ticks - 1)), { anchor: "end", size: 11, fill: lf }); }
     sets.forEach((s, si) => {
       const N = s.n || s.data.length, F = s.from || 0; const pts = s.data.map((v, i) => [X(i + F, N), Y(v)]);
       const c = s.color || T("chart-series-1"); const line = s.step ? "M" + pts.map((p) => p.join(",")).join(" L") : smooth(pts);
       if (s.fill !== false) { const g = uid("ag"); defs += `<linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="${s.fillTop ?? .38}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient>`; out += `<path d="${line} L${pts.at(-1)[0]},${pt + ih} L${pts[0][0]},${pt + ih} Z" fill="url(#${g})"/>`; }
       if (s.band) { const hi2 = s.band.map((b, i) => [X(i + F, N), Y(b[1])]), lo2 = s.band.map((b, i) => [X(i + F, N), Y(b[0])]).reverse(); out += `<path d="${smooth(hi2)} L${lo2[0][0]},${lo2[0][1]} ${smooth(lo2).replace(/^M[^C]*/, "")} Z" fill="${c}" opacity=".16"/>`; }
-      if (glow) out += `<path d="${line}" fill="none" stroke="${c}" stroke-width="${(s.sw || 2.5) + 5}" opacity=".18" stroke-linecap="round" stroke-linejoin="round"/>`;
       out += `<path d="${line}" fill="none" stroke="${c}" stroke-width="${s.sw || 2.5}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""} stroke-linecap="round" stroke-linejoin="round"/>`;
       if (last && s.last !== false) { const p = pts.at(-1); out += `<circle cx="${p[0]}" cy="${p[1]}" r="9" fill="${c}" opacity=".18"/><circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${ink || T("widget-bg")}" stroke="${c}" stroke-width="2.5"/>`; }
     });
-    labels.forEach((l, i) => { out += text(pl + (iw * i) / (labels.length - 1), h - 4, l, { anchor: i === 0 ? "start" : i === labels.length - 1 ? "end" : "middle", size: 10, fill: lf }); });
+    labels.forEach((l, i) => { out += text(pl + (iw * i) / (labels.length - 1), h - 4, l, { anchor: i === 0 ? "start" : i === labels.length - 1 ? "end" : "middle", size: 11, fill: lf }); });
     return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img"><defs>${defs}</defs>${out}</svg>`;
   };
 
@@ -56,12 +55,12 @@
   D.bars = ({ w = 600, h = 220, data, color = T("chart-series-1"), hi, hiColor, gap = 6, r = 4, labels = [], pad = [8, 4, 22, 4], track = false, vmax, fmt, labelFill, gridColor, grid = false, ticks = 4, pl }) => {
     const [pt, pr, pb, pl0] = pad; const L = pl ?? pl0; const iw = w - L - pr, ih = h - pt - pb; const m = vmax ?? Math.max(...data); const bw = (iw - gap * (data.length - 1)) / data.length;
     let o = "";
-    if (grid) for (let i = 0; i < ticks; i++) { const y = pt + (ih * i) / (ticks - 1); o += `<line x1="${L}" x2="${w - pr}" y1="${y}" y2="${y}" stroke="${gridColor || T("widget-grid")}" stroke-dasharray="2 5"/>`; if (fmt) o += text(L - 8, y + 4, fmt(m - (m * i) / (ticks - 1)), { anchor: "end", size: 10, fill: labelFill }); }
+    if (grid) for (let i = 0; i < ticks; i++) { const y = pt + (ih * i) / (ticks - 1); o += `<line x1="${L}" x2="${w - pr}" y1="${y}" y2="${y}" stroke="${gridColor || T("widget-grid")}" stroke-dasharray="2 5"/>`; if (fmt) o += text(L - 8, y + 4, fmt(m - (m * i) / (ticks - 1)), { anchor: "end", size: 11, fill: labelFill }); }
     data.forEach((v, i) => {
       const bh = Math.max(2, (v / m) * ih), x = L + i * (bw + gap), y = pt + ih - bh; const c = hi === i ? (hiColor || T("chart-target")) : (Array.isArray(color) ? color[i] : color);
       if (track) o += `<rect x="${x}" y="${pt}" width="${bw}" height="${ih}" rx="${r}" fill="${T("chart-track")}"/>`;
       o += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="${r}" fill="${c}"/>`;
-      if (labels[i] != null) o += text(x + bw / 2, h - 5, labels[i], { anchor: "middle", size: 10, fill: labelFill });
+      if (labels[i] != null) o += text(x + bw / 2, h - 5, labels[i], { anchor: "middle", fill: labelFill });
     });
     return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img">${o}</svg>`;
   };
@@ -70,15 +69,16 @@
   D.stack = ({ w = 600, h = 220, sets, gap = 6, r = 3, labels = [], pad = [8, 4, 22, 4], labelFill, gap2 = 2 }) => {
     const [pt, pr, pb, pl] = pad; const len = sets[0].data.length; const iw = w - pl - pr, ih = h - pt - pb; const bw = (iw - gap * (len - 1)) / len;
     const tot = Array.from({ length: len }, (_, i) => sets.reduce((a, s) => a + s.data[i], 0)); const m = Math.max(...tot); let o = "";
-    for (let i = 0; i < len; i++) { let y = pt + ih; const x = pl + i * (bw + gap); sets.forEach((s, si) => { const bh = (s.data[i] / m) * ih; y -= bh; o += `<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(0, bh - gap2)}" rx="${r}" fill="${s.color}"/>`; }); if (labels[i] != null) o += text(x + bw / 2, h - 5, labels[i], { anchor: "middle", size: 10, fill: labelFill }); }
+    for (let i = 0; i < len; i++) { let y = pt + ih; const x = pl + i * (bw + gap); sets.forEach((s, si) => { const bh = (s.data[i] / m) * ih; y -= bh; o += `<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(0, bh - gap2)}" rx="${r}" fill="${s.color}"/>`; }); if (labels[i] != null) o += text(x + bw / 2, h - 5, labels[i], { anchor: "middle", fill: labelFill }); }
     return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img">${o}</svg>`;
   };
 
   /* ---------- rings ---------- */
   D.ring = ({ size = 120, stroke = 12, pct = 60, color = T("chart-series-1"), track = T("chart-track"), label, sub, labelFill, subFill, fs, grad }) => {
+    if (grad) { color = grad[0]; grad = null; } /* gradients retired: flat fill keeps rings in step with the chart kit */
     const r = (size - stroke) / 2, c = 2 * Math.PI * r, g = uid("rg");
     const def = grad ? `<defs><linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${grad[0]}"/><stop offset="1" stop-color="${grad[1]}"/></linearGradient></defs>` : "";
-    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" role="img" aria-label="${label ?? pct}">${def}<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${track}" stroke-width="${stroke}"/><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${grad ? `url(#${g})` : color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(c * pct) / 100} ${c}" transform="rotate(-90 ${size / 2} ${size / 2})"/>${label != null ? text(size / 2, size / 2 + (sub ? 2 : (fs || size * .22) * .36), label, { anchor: "middle", size: fs || size * .22, weight: 800, fill: labelFill || T("text-primary") }) : ""}${sub ? text(size / 2, size / 2 + 16, sub, { anchor: "middle", size: 10, fill: subFill }) : ""}</svg>`;
+    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" role="img" aria-label="${label ?? pct}">${def}<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${track}" stroke-width="${stroke}"/><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${grad ? `url(#${g})` : color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(c * pct) / 100} ${c}" transform="rotate(-90 ${size / 2} ${size / 2})"/>${label != null ? text(size / 2, size / 2 + (sub ? 2 : (fs || size * .22) * .36), label, { anchor: "middle", size: fs || size * .22, weight: 800, fill: labelFill || T("text-primary") }) : ""}${sub ? text(size / 2, size / 2 + 16, sub, { anchor: "middle", size: 11, fill: subFill }) : ""}</svg>`;
   };
 
   D.rings = ({ size = 260, stroke = 14, gap = 8, items }) => {
@@ -90,12 +90,12 @@
   D.donut = ({ size = 180, stroke = 26, parts, gap = 3, center, sub, centerFill }) => {
     const r = (size - stroke) / 2, c = 2 * Math.PI * r, tot = parts.reduce((a, p) => a + p.v, 0); let off = 0, o = "";
     parts.forEach((p) => { const len = (p.v / tot) * c; o += `<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${p.color}" stroke-width="${stroke}" stroke-dasharray="${Math.max(0, len - gap)} ${c}" stroke-dashoffset="${-off}" transform="rotate(-90 ${size / 2} ${size / 2})"/>`; off += len; });
-    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" role="img">${o}${center ? text(size / 2, size / 2 + (sub ? 2 : 9), center, { anchor: "middle", size: 26, weight: 800, fill: centerFill || T("text-primary") }) : ""}${sub ? text(size / 2, size / 2 + 20, sub, { anchor: "middle", size: 10 }) : ""}</svg>`;
+    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" role="img">${o}${center ? text(size / 2, size / 2 + (sub ? 2 : 9), center, { anchor: "middle", size: 26, weight: 800, fill: centerFill || T("text-primary") }) : ""}${sub ? text(size / 2, size / 2 + 20, sub, { anchor: "middle", size: 11 }) : ""}</svg>`;
   };
 
   D.gauge = ({ w = 220, pct = 60, color = T("chart-series-1"), stroke = 16, label, sub, track = T("chart-track"), labelFill, bands }) => {
     const r = (w - stroke) / 2, cx = w / 2, cy = w / 2 + 4, len = Math.PI * r; const arc = `M${stroke / 2},${cy} A${r},${r} 0 0 1 ${w - stroke / 2},${cy}`;
-    return `<svg viewBox="0 0 ${w} ${cy + 22}" width="${w}" role="img"><path d="${arc}" fill="none" stroke="${track}" stroke-width="${stroke}" stroke-linecap="round"/><path d="${arc}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(len * pct) / 100} ${len}"/>${label != null ? text(cx, cy - 4, label, { anchor: "middle", size: w * .2, weight: 800, fill: labelFill || T("text-primary") }) : ""}${sub ? text(cx, cy + 16, sub, { anchor: "middle", size: 10 }) : ""}</svg>`;
+    return `<svg viewBox="0 0 ${w} ${cy + 22}" width="${w}" role="img"><path d="${arc}" fill="none" stroke="${track}" stroke-width="${stroke}" stroke-linecap="round"/><path d="${arc}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(len * pct) / 100} ${len}"/>${label != null ? text(cx, cy - 4, label, { anchor: "middle", size: w * .2, weight: 800, fill: labelFill || T("text-primary") }) : ""}${sub ? text(cx, cy + 16, sub, { anchor: "middle", size: 11 }) : ""}</svg>`;
   };
 
   /* ---------- radar ---------- */
@@ -142,7 +142,7 @@
   D.waterfall = ({ w = 700, h = 240, steps, labels = [], labelFill, base = 0 }) => {
     let run = 0, o = ""; const pts = steps.map((s) => { const a = run; run = s.total ? s.v : run + s.v; return { a: s.total ? base : a, b: run, s }; });
     const mx = Math.max(...pts.map((p) => Math.max(p.a, p.b))) * 1.08, bw = (w - 8) / steps.length * .64, st = (w - 8) / steps.length; const Y = (v) => 6 + (h - 30) - ((v - base) / (mx - base)) * (h - 30);
-    pts.forEach((p, i) => { const x = 4 + i * st + (st - bw) / 2, y1 = Y(Math.max(p.a, p.b)), y2 = Y(Math.min(p.a, p.b)); const c = p.s.total ? T("chart-series-2") : p.s.v >= 0 ? T("chart-series-1") : T("status-error"); o += `<rect x="${x}" y="${y1}" width="${bw}" height="${Math.max(3, y2 - y1)}" rx="4" fill="${c}"/>`; if (i < pts.length - 1) o += `<line x1="${x + bw}" x2="${x + st}" y1="${Y(p.b)}" y2="${Y(p.b)}" stroke="${T("widget-grid")}" stroke-dasharray="2 3"/>`; o += text(x + bw / 2, h - 6, labels[i] ?? p.s.l, { anchor: "middle", size: 11, fill: labelFill }); o += text(x + bw / 2, y1 - 7, (p.s.v >= 0 && !p.s.total ? "+" : "") + p.s.v, { anchor: "middle", size: 11, weight: 700, fill: T("text-primary") }); });
+    pts.forEach((p, i) => { const x = 4 + i * st + (st - bw) / 2, y1 = Y(Math.max(p.a, p.b)), y2 = Y(Math.min(p.a, p.b)); const c = p.s.total ? T("chart-series-2") : p.s.v >= 0 ? T("chart-series-1") : T("status-error"); o += `<rect x="${x}" y="${y1}" width="${bw}" height="${Math.max(3, y2 - y1)}" rx="4" fill="${c}"/>`; if (i < pts.length - 1) o += `<line x1="${x + bw}" x2="${x + st}" y1="${Y(p.b)}" y2="${Y(p.b)}" stroke="${T("widget-grid")}" stroke-dasharray="2 3"/>`; o += text(x + bw / 2, h - 6, labels[i] ?? p.s.l, { anchor: "middle", fill: labelFill }); o += text(x + bw / 2, y1 - 7, (p.s.v >= 0 && !p.s.total ? "+" : "") + p.s.v, { anchor: "middle", size: 11, weight: 700, fill: T("text-primary") }); });
     return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img">${o}</svg>`;
   };
 
@@ -161,12 +161,12 @@
     star: '<path d="M12 2.5l2.7 6.2 6.8.6-5.1 4.5 1.5 6.7L12 17l-5.9 3.5 1.5-6.7L2.5 9.3l6.8-.6z"/>',
   };
   D.icon = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
-  D.star = '<svg viewBox="0 0 24 24"><path d="M12 1.5l2.9 7.6 8.1.5-6.3 5.1 2.1 7.8L12 18l-6.8 4.5 2.1-7.8L1 9.6l8.1-.5z"/></svg>';
+  D.logo = '<svg viewBox="40 30 374 390" role="img" aria-label="NorthStar"><path d="M227 46.1094L393.703 328.086L290.844 281.977L227 170.25L163.156 281.977L60.2969 328.086L227 46.1094Z" fill="#C5C5C5"/><path d="M227 255.375L289.07 360.008L227 404.344L164.93 360.008L227 255.375Z" fill="#27BDFA"/></svg>';
 
   /* shell: rail + top bar. active = icon key. Returns {open, close} strings. */
   D.shell = ({ active = "grid", title, sub, right = "" }) => {
     const items = ["grid", "chart", "users", "globe", "bolt", "wallet", "pulse"]; if (!items.includes(active)) items[4] = active;
-    const rail = `<nav class="rail" aria-label="Primary"><div class="rail__logo">${D.star}</div>${items.map((k) => `<a class="${k === active ? "on" : ""}">${D.icon(k)}</a>`).join("")}<span class="sp"></span><a>${D.icon("cog")}</a><div class="av">MR</div></nav>`;
+    const rail = `<nav class="rail" aria-label="Primary"><div class="rail__logo">${D.logo}</div>${items.map((k) => `<a class="${k === active ? "on" : ""}">${D.icon(k)}</a>`).join("")}<span class="sp"></span><a>${D.icon("cog")}</a><div class="av">MR</div></nav>`;
     return { open: `${rail}<div class="main"><header class="top"><div><h1 class="top__ttl">${title}</h1><div class="top__sub">${sub}</div></div><span class="top__sp"></span>${right}</header>`, close: `</div>` };
   };
   D.seg = (items, on = 0) => `<div class="seg">${items.map((s, i) => `<b class="${i === on ? "on" : ""}">${s}</b>`).join("")}</div>`;
@@ -181,7 +181,7 @@
   D.railPanel = () => `<aside class="t t--ink prail">
     <div class="o">Project rail <em>Travels with the deal</em></div>
     <div class="pr__s"><span class="pr__h">Research files</span>${[["Site survey, 14 locations", "PDF"], ["Current circuit inventory", "XLS"], ["Call notes, Oct 9", "DOC"]].map(([n, k]) => `<div class="pr__r"><span>${n}</span><span class="tag">${k}</span></div>`).join("")}</div>
-    <div class="pr__s"><span class="pr__h">Quote versions</span><div class="row sb" style="gap:10px"><div><b class="d-sm num">v4</b><div class="cap">$12.9K / mo</div></div>${D.spark({ w: 118, h: 38, data: [14.2, 13.8, 13.5, 13.9, 13.1, 12.9], color: "var(--ns-teal-500)", sw: 2.2 })}</div></div>
+    <div class="pr__s"><span class="pr__h">Quote versions</span><div class="row sb" style="gap:10px"><div><b class="d-sm num">v4</b><div class="cap">$12.9K / mo</div></div>${D.spark({ w: 118, h: 38, data: [14.2, 13.8, 13.5, 13.9, 13.1, 12.9], color: "var(--ns-chart-series-1)", sw: 2.2 })}</div></div>
     <div class="pr__s"><span class="pr__h">Watch list</span>${[["Kestrel price hold ends", "Oct 31", "var(--ns-status-warning)"], ["Altus install window", "Nov 12", "var(--ns-viz-4)"]].map(([n, d, c]) => `<div class="pr__r"><span class="row" style="gap:8px"><i class="dot" style="--_c:${c}"></i>${n}</span><span class="cap">${d}</span></div>`).join("")}</div>
     <div class="pr__s"><span class="pr__h">Recent activity</span>${[["Quote v4 sent", "Today, 9:12"], ["Site survey uploaded", "Yesterday"], ["Call with client contact", "Oct 20"]].map(([n, d]) => `<div class="pr__r"><span>${n}</span><span class="cap">${d}</span></div>`).join("")}</div>
     <div class="pr__s"><span class="pr__h">Ruled out, and why</span>${[["Pinecrest Telecom", "No coverage, 5 sites"], ["Orrin Cloud", "SLA below 99.9%"], ["Vantage Wireless", "Client declined 5G"]].map(([n, w]) => `<div class="pr__x"><b>${n}</b><span>${w}</span></div>`).join("")}</div>
