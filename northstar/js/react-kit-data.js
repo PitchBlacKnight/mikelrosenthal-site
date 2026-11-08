@@ -17,9 +17,10 @@
     "placeholder?: string",
     "type?: \"text\" | \"email\" | \"search\" | \"password\" | \"url\" | \"tel\"",
     "disabled?: boolean",
+    "size?: \"sm\" | \"md\" | \"lg\"",
     "className?: string"
    ],
-   "note": "Text input with a visible label, helper text, and an error that replaces the helper and sets aria-invalid"
+   "note": "Text input (ns-field, ns-input): visible label, helper text, and an error that replaces the helper and sets aria-invalid"
   },
   {
    "name": "SelectField",
@@ -36,7 +37,7 @@
     "disabled?: boolean",
     "className?: string"
    ],
-   "note": "Single choice from a short list (Base UI Select): label, helper and error wired like TextField"
+   "note": "Select (ns-select): the native select NorthStar documents, with label, helper and error wired like TextField"
   },
   {
    "name": "CheckboxField",
@@ -49,7 +50,7 @@
     "helper?: React.ReactNode",
     "disabled?: boolean"
    ],
-   "note": "Checkbox with its label as the click target; supports the indeterminate (select all) state"
+   "note": "Checkbox (ns-check): a native checkbox inside its label; supports the indeterminate (select all) state"
   },
   {
    "name": "SwitchField",
@@ -59,9 +60,10 @@
     "checked: boolean",
     "onChange: (checked: boolean) => void",
     "helper?: React.ReactNode",
-    "disabled?: boolean"
+    "disabled?: boolean",
+    "size?: \"sm\" | \"md\""
    ],
-   "note": "On and off setting that applies immediately (role=switch), label on the left"
+   "note": "Switch (ns-toggle): a native checkbox with role=switch for settings that apply immediately"
   },
   {
    "name": "ViewTabs",
@@ -72,19 +74,58 @@
     "onChange: (value: T) => void",
     "tabs: readonly { id: T",
     "label: string",
-    "content: React.ReactNode }[]"
+    "content: React.ReactNode }[]",
+    "pill?: boolean"
    ],
-   "note": "Two to four peer views of one object; arrow keys move between tabs (Base UI Tabs)"
+   "note": "Tabs (ns-tabs): two to four peer views of one object; arrow keys, Home and End move and select"
   },
   {
    "name": "Hint",
    "generic": "",
    "props": [
     "content: React.ReactNode",
-    "children: React.ReactElement",
-    "side?: \"top\" | \"bottom\" | \"left\" | \"right\""
+    "children: React.ReactElement<{ \"aria-describedby\"?: string }>"
    ],
-   "note": "Short help on hover and focus for one control, for example an icon-only button; never essential info"
+   "note": "Tooltip (ns-tip): short help shown on hover and focus, described by aria-describedby; never essential info"
+  },
+  {
+   "name": "Badge",
+   "generic": "",
+   "props": [
+    "status?: \"success\" | \"warning\" | \"error\" | \"info\" | \"neutral\"",
+    "outline?: boolean",
+    "size?: \"sm\" | \"md\" | \"lg\"",
+    "children: React.ReactNode"
+   ],
+   "note": "NorthStar badge (ns-badge): filled by default, outline optional; status sets the color role"
+  },
+  {
+   "name": "CommandPalette",
+   "generic": "",
+   "props": [
+    "open: boolean",
+    "onOpenChange: (open: boolean) => void",
+    "groups: readonly { heading: string",
+    "items: readonly PaletteItem[] }[]",
+    "onSelect: (item: PaletteItem) => void",
+    "placeholder?: string",
+    "label?: string"
+   ],
+   "note": "Command palette (ns-cmdk) in a modal dialog: typing filters, arrows move, Enter runs onSelect. Bind Cmd K yourself."
+  },
+  {
+   "name": "Modal",
+   "generic": "",
+   "props": [
+    "open: boolean",
+    "onOpenChange: (open: boolean) => void",
+    "label?: string",
+    "title: string",
+    "children?: React.ReactNode",
+    "footer: React.ReactNode",
+    "size?: \"sm\" | \"md\" | \"lg\""
+   ],
+   "note": "Confirm dialog (ns-modal) with focus trap and Escape from Base UI; confirming calls onConfirm"
   },
   {
    "name": "Bento",
@@ -166,7 +207,7 @@
     "label: string }[]",
     "label: string"
    ],
-   "note": "Single-choice segmented control for periods and views (Base UI toggle group)"
+   "note": "Segmented control (ns-segmented): single choice for periods and views; arrow keys, Home and End move and select"
   },
   {
    "name": "SampleNote",
@@ -192,9 +233,10 @@
     "items: { label: string",
     "value: number",
     "color?: string }[]",
-    "fmt?: (n: number) => string"
+    "fmt?: (n: number) => string",
+    "max?: number"
    ],
-   "note": "Horizontal share bar list: label, bar, value. Bars use chart tokens."
+   "note": "Horizontal bar list: label, bar, value. Bars use chart tokens; set max for percentages or shares of a total"
   },
   {
    "name": "DataTable",
@@ -212,7 +254,7 @@
     "dir: \"asc\" | \"desc\" }",
     "maxRows?: number"
    ],
-   "note": "Sortable, filterable table; selecting a row (click, Enter or Space) opens a Sheet with detail(row)"
+   "note": "Sortable, filterable table (ns-table); selecting a row (click, Enter or Space) opens a Sheet with detail(row)"
   },
   {
    "name": "Facts",
@@ -236,9 +278,10 @@
     "children?: React.ReactNode",
     "onConfirm?: () => void",
     "size?: \"sm\" | \"default\"",
-    "variant?: \"outline\" | \"default\" | \"secondary\" | \"ghost\""
+    "variant?: \"outline\" | \"default\" | \"secondary\" | \"ghost\"",
+    "label?: string"
    ],
-   "note": "Button that opens a confirm Dialog; confirming calls onConfirm and shows a success toast"
+   "note": "Button that opens a confirm dialog (ns-modal); confirming calls onConfirm and shows a success toast"
   },
   {
    "name": "ViewHeader",
@@ -272,9 +315,9 @@
    ]
   },
   "badge": {
-   "code": "<div className=\"flex gap-2\">\n  <Pill status=\"success\">Active</Pill>\n  <Pill status=\"warning\">Pending</Pill>\n  <Pill status=\"error\">Failed</Pill>\n</div>",
+   "code": "<div className=\"flex gap-2\">\n  <Badge status=\"success\">Active</Badge>\n  <Badge status=\"warning\">Pending</Badge>\n  <Badge status=\"error\">Failed</Badge>\n  <Badge status=\"info\">Beta</Badge>\n</div>",
    "uses": [
-    "Pill"
+    "Badge"
    ]
   },
   "segmented-control": {
@@ -290,22 +333,23 @@
    ]
   },
   "notification": {
-   "code": "// Mount <Toaster theme=\"dark\" position=\"bottom-right\" /> once at the app root, then call toast() anywhere:\n<Button variant=\"outline\" size=\"sm\" onClick={() => toast.success(\"Account archived\", { description: \"Acme Corp moved to the archive.\", action: { label: \"Undo\", onClick: () => {} } })}>Archive</Button>",
+   "code": "// Mount <Toaster theme=\"dark\" position=\"bottom-right\" /> once at the app root, then call toast() anywhere:\n<Button variant=\"secondary\" size=\"sm\" onClick={() => toast.success(\"Account archived\", { description: \"Acme Corp moved to the archive.\", action: { label: \"Undo\", onClick: () => {} } })}>Archive</Button>",
    "uses": [
     "Toaster",
     "toast"
    ]
   },
   "progress": {
-   "code": "<BarList items={[{ label: \"Self review\", value: 94 }, { label: \"Peer review\", value: 89 }, { label: \"Calibration\", value: 51 }]} fmt={(n) => n + \"%\"} />",
+   "code": "<BarList max={100} items={[{ label: \"Self review\", value: 94 }, { label: \"Peer review\", value: 89 }, { label: \"Calibration\", value: 51 }]} fmt={(n) => n + \"%\"} />",
    "uses": [
     "BarList"
    ]
   },
   "command-palette": {
-   "code": "const [open, setOpen] = React.useState(false);\nReact.useEffect(() => {\n  const on = (e: KeyboardEvent) => { if (e.key.toLowerCase() === \"k\" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setOpen((o) => !o); } };\n  addEventListener(\"keydown\", on); return () => removeEventListener(\"keydown\", on);\n}, []);\nreturn (\n  <CommandDialog open={open} onOpenChange={setOpen} title=\"Search\" description=\"Search accounts and pages\">\n    <Command>\n      <CommandInput placeholder=\"Search accounts, pages and actions\" />\n      <CommandList>\n        <CommandEmpty>No results.</CommandEmpty>\n        <CommandGroup heading=\"Accounts\">\n          <CommandItem onSelect={() => setOpen(false)}>Acme Corp</CommandItem>\n        </CommandGroup>\n      </CommandList>\n    </Command>\n  </CommandDialog>\n);",
+   "code": "const [open, setOpen] = React.useState(false);\nReact.useEffect(() => {\n  const on = (e: KeyboardEvent) => { if (e.key.toLowerCase() === \"k\" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setOpen((o) => !o); } };\n  addEventListener(\"keydown\", on); return () => removeEventListener(\"keydown\", on);\n}, []);\nreturn (\n  <CommandPalette open={open} onOpenChange={setOpen} placeholder=\"Search accounts, pages and actions\"\n    groups={[{ heading: \"Accounts\", items: [{ id: \"acme\", label: \"Acme Corp\", meta: \"Account\" }] }, { heading: \"Actions\", items: [{ id: \"new\", label: \"Create account\", meta: \"Action\" }] }]}\n    onSelect={(item) => { setOpen(false); toast.success(\"Opened \" + item.label); }} />\n);",
    "uses": [
-    "CommandDialog"
+    "CommandPalette",
+    "toast"
    ]
   },
   "text-input": {
@@ -339,7 +383,7 @@
    ]
   },
   "tooltip": {
-   "code": "<Hint content=\"Export accounts as CSV\">\n  <Button variant=\"outline\" size=\"sm\">Export</Button>\n</Hint>",
+   "code": "<Hint content=\"Export accounts as CSV\">\n  <Button variant=\"secondary\" size=\"sm\">Export</Button>\n</Hint>",
    "uses": [
     "Hint"
    ]
