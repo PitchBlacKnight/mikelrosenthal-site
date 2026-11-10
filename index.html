@@ -57,6 +57,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
+html,body{overflow-x:clip}  /* iOS Safari ignores overflow-x:hidden on body alone */
 ::selection{background:var(--coral);color:var(--ink)}
 img{max-width:100%;height:auto;display:block}
 video.mv{max-width:100%;height:auto;display:block}
@@ -577,6 +578,7 @@ body.cf-lock{overflow:hidden}
   filter:saturate(.75) contrast(1.05);
 }
 .sec>*:not(.secfx){position:relative;z-index:1}
+.sec{overflow-x:clip}  /* corner videos bleed up and down, never sideways */
 .secfx.on-dark{mix-blend-mode:screen;opacity:.16}
 .secfx.on-light{mix-blend-mode:multiply;opacity:.2}
 .secfx.tl{top:clamp(-120px,-8vw,-60px);left:clamp(-140px,-9vw,-70px)}
@@ -874,7 +876,7 @@ body.cf-lock{overflow:hidden}
   <div class="idx-grid">
     <figure class="idx-card reveal" data-case="cf-truecredit" tabindex="0" role="button" aria-label="Open TrueCredit case file" style="cursor:pointer"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit: TransUnion fintech rebrand across mobile, tablet, and desktop, 2018" loading="lazy" width="1600" height="1236"><figcaption><b>TrueCredit</b><span>Fintech Rebrand · 2018</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-marketing" tabindex="0" role="button" aria-label="Open the Avant Marketing Library case file" style="cursor:pointer"><img src="ASSETS/work/board-avant-forge.jpg" alt="Avant: Forge the Future campaign key art, neon light rings with Ignite Your X-Factor lockup, 2022–2023" loading="lazy" width="1200" height="557"><figcaption><b>Avant</b><span>Marketing Campaign · Brand Direction · 2022–2023</span></figcaption></figure>
-    <figure class="idx-card reveal" data-case="cf-spacelab" tabindex="0" role="button" aria-label="Open Spacelab case file" style="cursor:pointer"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab — brand and packaging system, geometric pattern tin, 2021" loading="lazy" width="1800" height="1350"><figcaption><b>Spacelab</b><span>Brand Identity · Packaging System · 2021</span></figcaption></figure>
+    <figure class="idx-card reveal" data-case="cf-spacelab" tabindex="0" role="button" aria-label="Open Spacelab case file" style="cursor:pointer"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab: brand and packaging system, geometric pattern tin, 2021" loading="lazy" width="1800" height="1350"><figcaption><b>Spacelab</b><span>Brand Identity · Packaging System · 2021</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-google" tabindex="0" role="button" aria-label="Open Google Information Dashboard case file" style="cursor:pointer"><img src="ASSETS/work/board-google.jpg" alt="Google: Information Dashboard, self-initiated study, 2016" loading="lazy" width="1200" height="927"><figcaption><b>Google</b><span>Information Dashboard · 2016</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-mavenwave" tabindex="0" role="button" aria-label="Open Maven Wave case file" style="cursor:pointer"><img src="ASSETS/work/board-mavenwave.jpg" alt="Maven Wave: logo redesign concepts, 2009" loading="lazy" width="1200" height="927"><figcaption><b>Maven Wave Partners</b><span>Brand Identity · Logo System · 2013–2014</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-aflac" tabindex="0" role="button" aria-label="Open Aflac CRM Application case file" style="cursor:pointer"><img src="ASSETS/work/board-aflac.jpg" alt="Aflac: Mobile and Desktop CRM Application Design, 2010" loading="lazy" width="1200" height="927"><figcaption><b>Aflac</b><span>Mobile / Desktop CRM · 2010</span></figcaption></figure>
@@ -886,9 +888,9 @@ body.cf-lock{overflow:hidden}
     <figure class="idx-card reveal" data-case="cf-talentsky" tabindex="0" role="button" aria-label="Open TalentSky Rebrand case file" style="cursor:pointer"><img src="ASSETS/work/board-talentsky.jpg" alt="Talent Sky: product design" loading="lazy" width="1200" height="927"><figcaption><b>Talent Sky</b><span>Rebrand &amp; Infographics · 2013</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-devine" tabindex="0" role="button" aria-label="Open Devine Capital Rebrand case file" style="cursor:pointer"><img src="ASSETS/work/board-devine.jpg" alt="Devine Capital: brand and product design" loading="lazy" width="1200" height="927"><figcaption><b>Devine Capital</b><span>Rebrand &amp; Infographics · 2012</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-catamaran" tabindex="0" role="button" aria-label="Open My Catamaran Member App case file" style="cursor:pointer"><img src="ASSETS/work/board-catamaran.jpg" alt="My Catamaran: product design" loading="lazy" width="1200" height="927"><figcaption><b>My Catamaran</b><span>Brand &amp; Member App · 2014</span></figcaption></figure>
-    <figure class="idx-card reveal" data-case="cf-prism" tabindex="0" role="button" aria-label="Open the PRISM case file" style="cursor:pointer"><img src="ASSETS/work/prism-desktop.jpg" alt="PRISM — primary personality desktop experience, 2020" loading="lazy" width="1600" height="900"><figcaption><b>PRISM</b><span>Personality Platform · 2020</span></figcaption></figure>
+    <figure class="idx-card reveal" data-case="cf-prism" tabindex="0" role="button" aria-label="Open the PRISM case file" style="cursor:pointer"><img src="ASSETS/work/prism-desktop.jpg" alt="PRISM: primary personality desktop experience, 2020" loading="lazy" width="1600" height="900"><figcaption><b>PRISM</b><span>Personality Platform · 2020</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-whirlpool" tabindex="0" role="button" aria-label="Open Whirlpool Vision App case file" style="cursor:pointer"><img src="ASSETS/work/board-whirlpool.jpg" alt="Whirlpool Vision: connected-appliance companion app, 2015" loading="lazy" width="1200" height="926"><figcaption><b>Whirlpool Vision</b><span>Product Design · App · 2015</span></figcaption></figure>
-    <figure class="idx-card reveal" data-case="cf-1000greetings" tabindex="0" role="button" aria-label="Open 1,000 Greetings Published case file" style="cursor:pointer"><img src="ASSETS/work/board-1000greetings.jpg" alt="1,000 Greetings — published print work in the Firebelly Design annual, 2009" loading="lazy" width="1290" height="956"><figcaption><b>1,000 Greetings</b><span>Print · Published · 2009</span></figcaption></figure>
+    <figure class="idx-card reveal" data-case="cf-1000greetings" tabindex="0" role="button" aria-label="Open 1,000 Greetings Published case file" style="cursor:pointer"><img src="ASSETS/work/board-1000greetings.jpg" alt="1,000 Greetings: published print work in the Firebelly Design annual, 2009" loading="lazy" width="1290" height="956"><figcaption><b>1,000 Greetings</b><span>Print · Published · 2009</span></figcaption></figure>
     <figure class="idx-card reveal" data-case="cf-logofolio" tabindex="0" role="button" aria-label="Open Logofolio case file" style="cursor:pointer"><img src="ASSETS/work/board-logofolio.jpg" alt="Logofolio: six of twenty identity marks: iatric, TalentSky, Renew Healthcare, Codex, User Experience, Reveal" loading="lazy" width="1600" height="1236"><figcaption><b>Logofolio</b><span>Identity Design · 20 Marks · 2001–2018</span></figcaption></figure>
   </div>
 
@@ -1218,11 +1220,11 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
       <p><b>One template, a lot of room inside it.</b> "Forge the Future" set the model: a locked typographic and brand structure with expressive visual fields, so campaign variants multiply without drift. Dozens of banner and social formats came from one template logic.</p>
-      <figure class="cf-img"><img src="ASSETS/work/avant-forge-hero.jpg" alt="Forge the Future key art — neon light rings with the Ignite Your X-Factor lockup and Avant logo" loading="lazy" width="1600" height="743"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/avant-forge-hero.jpg" alt="Forge the Future key art: neon light rings with the Ignite Your X-Factor lockup and Avant logo" loading="lazy" width="1600" height="743"></figure>
       <p><b>From campaign to calendar.</b> The same template logic carried event creative and the social calendar. The NSP Advisory Board '24 package ran from stage screens to badges to email out of one Figma system, and holiday socials shipped on-brand without waiting on a designer.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/avant-branding.jpg" alt="NSP Advisory Board '24 — full Figma system: welcome and sponsor boards, web and email headers, agendas, member cards, and digital loop screens" loading="lazy" width="1800" height="1074"></div>
-        <div class="cf-img"><img src="ASSETS/work/avant-earthday.jpg" alt="Happy Earth Day social — globe of foliage with type cut from greenery on the Avant mark" loading="lazy" width="1200" height="628"></div>
+        <div class="cf-img"><img src="ASSETS/work/avant-branding.jpg" alt="NSP Advisory Board '24, the full Figma system: welcome and sponsor boards, web and email headers, agendas, member cards, and digital loop screens" loading="lazy" width="1800" height="1074"></div>
+        <div class="cf-img"><img src="ASSETS/work/avant-earthday.jpg" alt="Happy Earth Day social: globe of foliage with type cut from greenery on the Avant mark" loading="lazy" width="1200" height="628"></div>
       </figure>
       <p><b>Beyond banners.</b> The library covered the unglamorous, high-volume work: 40-page industry reports, partner enablement, and event material, with templates carrying the brand's editorial layer so a report and a LinkedIn banner read as one company. The pattern throughout: <b>I made the materials first</b> (covers, reports, campaign assets), then refined each one into the library as a template the team could ship from.</p>
       <p><b>Enablement over enforcement.</b> Adoption ran through training sessions and self-serve guides written for non-designers. The training did more for scale than any template.</p>
@@ -1235,7 +1237,7 @@ body.cf-lock{overflow:hidden}
       <div class="cf-tag"><span class="no">03</span><span>The Flagship Report</span></div>
       <p><b>A worked example.</b> The 2024 Colo &amp; Cloud Report became the library's proof case for editorial work: a 40-page industry report designed on the same rails as the campaign and social kits.</p>
       <p><b>Exploration inside the rails.</b> Dozens of cover concepts in geometric, gradient, and fluid-wave directions, all drawn from the same brand palette, before the final was picked. The system constrained the exploration without flattening it.</p>
-      <figure class="cf-img" style="max-width:460px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-cover-final.jpg" alt="2024 Colo &amp; Cloud Report — final cover, fluid wave direction, co-branded for partner distribution" loading="lazy" width="900" height="1164"></figure>
+      <figure class="cf-img" style="max-width:460px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-cover-final.jpg" alt="2024 Colo &amp; Cloud Report: final cover, fluid wave direction, co-branded for partner distribution" loading="lazy" width="900" height="1164"></figure>
       <p><b>Built to travel.</b> The final cover shipped production-ready and co-branded for partner distribution, with interior templates carrying the brand's editorial voice across every page.</p>
       <p><b>Refined back in.</b> As with the campaign work, the finished report was distilled into library templates, so the next report started at eighty percent instead of zero.</p>
     </div>
@@ -1245,7 +1247,7 @@ body.cf-lock{overflow:hidden}
       <blockquote class="cf-quote">A marketing library is a design system with a different user. Same architecture, different empathy.</blockquote>
     </div>
       <p><b>Pinnacle.</b> The loyalty program microsite: tiered rewards told through altitude, from base level to summit, built entirely inside the library's template logic.</p>
-      <figure class="cf-img" style="max-width:500px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-pinnacle.jpg" alt="Pinnacle loyalty program microsite — Welcome to the Program with mountaineering hero and blue, silver, and gold tier levels" loading="lazy" width="900" height="1886"></figure>
+      <figure class="cf-img" style="max-width:500px;margin-left:auto;margin-right:auto"><img src="ASSETS/design-systems/avant-pinnacle.jpg" alt="Pinnacle loyalty program microsite: Welcome to the Program with mountaineering hero and blue, silver, and gold tier levels" loading="lazy" width="900" height="1886"></figure>
     <p class="cf-note">Imagery © Avant Communications. Some details generalized per confidentiality.</p>
   </div>
 </article>
@@ -1334,23 +1336,23 @@ body.cf-lock{overflow:hidden}
       <p><b>Foundations first.</b> A color system with interaction and accessibility tiers, a typographic scale built for dense insurance content, an icon library, and grids that worked from marketing pages to enrollment forms.</p>
       <p><b>Accessibility as architecture.</b> In healthcare, accessibility decides whether the product works at all. Contrast, focus, and plain language went into the foundation layer from the start instead of getting patched in after.</p>
       <p><b>Proven where the stakes were highest.</b> Plan selection and enrollment came first. Forms, payment, and confirmation patterns shipped as coded components with theming hooks, and the same foundations carried the marketing surfaces.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-color.jpg" alt="FIBER color system — brand colors, primary blue interaction tiers, neutrals, five interaction color families with dark/default/light/lighter steps, and brand gradients" loading="lazy" width="1600" height="1967"></figure>
-      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-typography.jpg" alt="FIBER typography — Open Sans on a Major Second scale, Display 41px through Legal 14px, specified across light, brand, muted, and dark contexts" loading="lazy" width="1600" height="791"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-color.jpg" alt="FIBER color system: brand colors, primary blue interaction tiers, neutrals, five interaction color families with dark/default/light/lighter steps, and brand gradients" loading="lazy" width="1600" height="1967"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-typography.jpg" alt="FIBER typography: Open Sans on a Major Second scale, Display 41px through Legal 14px, specified across light, brand, muted, and dark contexts" loading="lazy" width="1600" height="791"></figure>
       <p><b>Documented like a product.</b> Corner radii, modals, shadows, buttons and states, form fields, spacing steps, the multi-plan logo matrix, and responsive minimums, on one sheet a vendor could build from without a meeting.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-components.jpg" alt="FIBER component sheet — corner radius scale, modal variants, drop shadows, button system with states, frames, gradients, the BCBS five-state logo matrix, device minimums, and phone mockups" loading="lazy" width="1600" height="4044"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-components.jpg" alt="FIBER component sheet: corner radius scale, modal variants, drop shadows, button system with states, frames, gradients, the BCBS five-state logo matrix, device minimums, and phone mockups" loading="lazy" width="1600" height="4044"></figure>
       <p><b>The system in production.</b> The under-65 shopping experience rebuilt as a conversation: one question per screen, plain language, and progress you can leave and come back to. Every screen below is assembled from FIBER foundations.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-03.jpg" alt="BCBSIL enrollment — Do you prefer an HMO or PPO, one question per screen" loading="lazy" width="1600" height="964"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-11.jpg" alt="BCBSIL enrollment — What is your date of birth, with accessible dropdown selection" loading="lazy" width="1600" height="964"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-03.jpg" alt="BCBSIL enrollment: Do you prefer an HMO or PPO, one question per screen" loading="lazy" width="1600" height="964"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-11.jpg" alt="BCBSIL enrollment: What is your date of birth, with accessible dropdown selection" loading="lazy" width="1600" height="964"></div>
       </figure>
-      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-13.jpg" alt="BCBSIL enrollment — Thanks, compiling answers with save-your-progress module" loading="lazy" width="1600" height="964"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-enroll-13.jpg" alt="BCBSIL enrollment: Thanks, compiling answers with save-your-progress module" loading="lazy" width="1600" height="964"></figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-guide-purpose.jpg" alt="FIBER guide slide: What is a design system's purpose? Order and consistency that protect the brand, elevate the experience, and speed up how products are designed and built" loading="lazy" width="1334" height="750"></figure>
       <figure class="cf-img"><img src="ASSETS/design-systems/fiber-plan-details.jpg" alt="BCBSIL under-65 plan details screen: plan features, premium card, co-pay, deductible and out-of-pocket, enroll and compare" loading="lazy" width="1401" height="1415"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>Making It Stick</span></div>
       <p><b>A system is only as good as its adoption.</b> FIBER shipped with a guide I wrote and presented myself. It was built as an argument rather than a spec dump: here is the problem, here is the vocabulary, here is exactly how to build with it.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-guide-cover.jpg" alt="FIBER Design System guide — Protection, Guidance, and Compassion — the presentation cover authored for the rollout" loading="lazy" width="1600" height="899"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/fiber-guide-cover.jpg" alt="FIBER Design System guide: Protection, Guidance, and Compassion, the presentation cover authored for the rollout" loading="lazy" width="1600" height="899"></figure>
       <p><a class="cf-read" href="ASSETS/design-systems/fiber-guide.pdf" download="FIBER-Design-System-Guide.pdf">Download the FIBER guide (PDF, 4.7 MB) <span aria-hidden="true">↓</span></a></p>
       <p><b>The brief, in the system's own words:</b> "disjointed components with no real visible path to constructing the design to developers' specifications." The fix was a single source of elements and code that let any team produce mockups, prototypes, or production sites without error or question.</p>
       <p><b>Shared vocabulary, communicated often.</b> Designers, developers, and vendors named things the same way and pulled from the same sources. When a question came up, the guide answered it and the meeting never happened.</p>
@@ -1391,25 +1393,25 @@ body.cf-lock{overflow:hidden}
       <div class="cf-tag"><span class="no">02</span><span>What I Contributed</span></div>
       <p><b>Four themes from one semantic layer.</b> Clinical software runs in radiology reading rooms at 2am and on bright surgical floors. So: light and dark themes across desktop and touch targets, resolved from shared foundations so components never fork.</p>
       <p><b>Components for regulated review.</b> Notification patterns, steppers and progress, form controls, and the icon library, each with full state coverage and accessibility behavior documented for regulated review. When WCAG compliance is a legal requirement, accessibility has to be built into the architecture, because a checklist at the end won't pass.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/edison-showcase.jpg" alt="Edison Design System showcase — clinical UI components on the dark theme" loading="lazy" width="1600" height="1219"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/edison-showcase.jpg" alt="Edison Design System showcase: clinical UI components on the dark theme" loading="lazy" width="1600" height="1219"></figure>
       <p><b>Shipped as a kit.</b> Edison went to teams as an installable system: GE typeface, Sketch libraries, theme files, and a written guide walking designers from setup through overriding symbols. The component menu alone reads like a product catalog.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-intro.jpg" alt="Edison Design System guide — Introduction: symbol library, artboards, guidelines, and fundamentals index" loading="lazy" width="1400" height="1706"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-kit.jpg" alt="Edison guide — Kit Basics: theme files and the full menu of components, layout, navigation, and typography symbols" loading="lazy" width="1400" height="1919"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-intro.jpg" alt="Edison Design System guide, Introduction: symbol library, artboards, guidelines, and fundamentals index" loading="lazy" width="1400" height="1706"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-kit.jpg" alt="Edison guide, Kit Basics: theme files and the full menu of components, layout, navigation, and typography symbols" loading="lazy" width="1400" height="1919"></div>
       </figure>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-global.jpg" alt="Edison guide — Global Kit and updates: character counts, error passages, field labels, and layout cards" loading="lazy" width="1400" height="2780"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-usage.jpg" alt="Edison guide — Usage: the process of overriding symbols, measurements and spacing increments" loading="lazy" width="1400" height="2053"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-global.jpg" alt="Edison guide, Global Kit and updates: character counts, error passages, field labels, and layout cards" loading="lazy" width="1400" height="2780"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/edison-guide-usage.jpg" alt="Edison guide, Usage: the process of overriding symbols, measurements and spacing increments" loading="lazy" width="1400" height="2053"></div>
       </figure>
       <p><b>Specified to the pixel.</b> Every control shipped with full guidance on anatomy, states, spacing, and do-and-don't, written so clinical product teams could build without guessing. The checkbox guideline alone, lights-off theme:</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/edison-checkbox-guide.jpg" alt="Edison checkbox guideline, lights-off theme — anatomy, states, sizing, spacing, and usage rules at 1440 spec width" loading="lazy" width="1400" height="5292"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/edison-checkbox-guide.jpg" alt="Edison checkbox guideline, lights-off theme: anatomy, states, sizing, spacing, and usage rules at 1440 spec width" loading="lazy" width="1400" height="5292"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>Adoption at Scale</span></div>
       <p><b>The kit was half the job. Adoption was the product.</b> Forty-plus teams around the world don't align because a system exists. They align when using it is easier than not using it. Edison's documentation hub became the single source of truth: one site for designers and developers, covering UI patterns, best practices, and framework-agnostic Web Components ready to drop into any product stack.</p>
       <p><b>Libraries that keep themselves honest.</b> Sketch libraries installed by theme and device tier (dark, global, light) kept every designer's local file in sync with the source. Updates flowed downstream without anyone chasing them, and version drift never got a foothold.</p>
       <p><b>Documentation written for the person using it.</b> Every page answered a working question: what is this, when do I use it, how do I override it. That's the difference between a system teams comply with and one they reach for.</p>
-      <figure class="cf-img"><img src="ASSETS/work/edison-system.jpg" alt="Edison Design System hub, v1.5.2 — the single source of truth with Design and Develop entry points, style guide navigation, and 2020 award credentials" loading="lazy" width="1600" height="1158"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/edison-system.jpg" alt="Edison Design System hub, v1.5.2: the single source of truth with Design and Develop entry points, style guide navigation, and 2020 award credentials" loading="lazy" width="1600" height="1158"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
@@ -1447,16 +1449,16 @@ body.cf-lock{overflow:hidden}
       <p><b>Warm by design.</b> Psychometrics get personal fast, so typography, color, and language did as much emotional work as the data itself.</p>
       <p><b>PRISM Connect.</b> The social layer: compare personalities, processing styles, motivation, and conflict management across your network, on any device.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/prism-connect-mobile.jpg" alt="PRISM Connect on mobile — connection list with invites from LinkedIn and Facebook" loading="lazy" width="900" height="1948"></div>
-        <div class="cf-img"><img src="ASSETS/work/prism-progress-mobile.jpg" alt="PRISM Progress on mobile — 35% complete radial over the brand gradient" loading="lazy" width="900" height="1948"></div>
+        <div class="cf-img"><img src="ASSETS/work/prism-connect-mobile.jpg" alt="PRISM Connect on mobile: connection list with invites from LinkedIn and Facebook" loading="lazy" width="900" height="1948"></div>
+        <div class="cf-img"><img src="ASSETS/work/prism-progress-mobile.jpg" alt="PRISM Progress on mobile: 35% complete radial over the brand gradient" loading="lazy" width="900" height="1948"></div>
       </figure>
-      <figure class="cf-img"><img src="ASSETS/work/prism-connect-desktop.jpg" alt="PRISM Connect profile on desktop — side-by-side personality diamonds, processing, motivation, fundamental needs, decision making, and conflict management" loading="lazy" width="1400" height="2198"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/prism-connect-desktop.jpg" alt="PRISM Connect profile on desktop: side-by-side personality diamonds, processing, motivation, fundamental needs, decision making, and conflict management" loading="lazy" width="1400" height="2198"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Data Language</span></div>
       <p><b>Chart anatomy, treated like component anatomy.</b> Every visualization got the same spec a button would: defined states, sizes, and usage rules. That's the difference between a dashboard that reads as one language and one that reads as chart soup.</p>
       <p><b>Approachable by design.</b> The Portrait onboards users one step at a time, a guided reveal from Primary Personality through Decision-Making and Conflict Management, each with plain-language strengths and a short video, so dense psychometric data never reads like a test.</p>
-      <figure class="cf-img"><img src="ASSETS/work/prism-personality.jpg" alt="PRISM Portrait — the Primary Personality reveal, with step navigation, an intro video, and plain-language strengths on the light theme" loading="lazy" width="1600" height="900"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/prism-personality.jpg" alt="PRISM Portrait: the Primary Personality reveal, with step navigation, an intro video, and plain-language strengths on the light theme" loading="lazy" width="1600" height="900"></figure>
       <p><b>Relationship Advisor: data becomes guidance.</b> The system's payoff. Side-by-side psychometrics translated into concrete advice for working with a specific colleague, so instead of "here's your score" you get "here's what to do in your next conversation."</p>
       <p><b>Navigable, not overwhelming.</b> Anatomy, states, and hierarchy designed as a system are what keep dense behavioral data legible at a glance. That's the thirty-second read the platform promised.</p>
     </div>
@@ -1493,20 +1495,20 @@ body.cf-lock{overflow:hidden}
       <div class="cf-tag"><span class="no">02</span><span>What I Built</span></div>
       <p><b>The system.</b> Fully responsive symbol libraries (this was years before Figma variants, so it meant disciplined Sketch architecture) with foundations tuned for data-dense credit dashboards.</p>
       <p><b>Documented as a product: the SCVD guide.</b> The Standard Credit View Dashboard shipped with its own written system guide covering libraries, color, typography, icons, buttons and inputs, and plugins, built so a partner team could take it and run.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-cover.jpg" alt="SCVD Design System Guide V1.5 cover — Standard Credit View Dashboard with the TU mark" loading="lazy" width="1500" height="1041"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-cover.jpg" alt="SCVD Design System Guide V1.5 cover: Standard Credit View Dashboard with the TU mark" loading="lazy" width="1500" height="1041"></figure>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/design-systems/scvd-colors.jpg" alt="SCVD guide — solid color system: main, highlight, and score colors with swap instructions" loading="lazy" width="1500" height="1041"></div>
-        <div class="cf-img"><img src="ASSETS/design-systems/scvd-icons.jpg" alt="SCVD guide — icon library served from the TU icon symbols dropdown" loading="lazy" width="1500" height="1041"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/scvd-colors.jpg" alt="SCVD guide, solid color system: main, highlight, and score colors with swap instructions" loading="lazy" width="1500" height="1041"></div>
+        <div class="cf-img"><img src="ASSETS/design-systems/scvd-icons.jpg" alt="SCVD guide: icon library served from the TU icon symbols dropdown" loading="lazy" width="1500" height="1041"></div>
       </figure>
-      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-buttons.jpg" alt="SCVD guide — buttons and inputs with available sizes via symbol overrides" loading="lazy" width="1500" height="1041"></figure>
-      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-type.jpg" alt="SCVD guide — typographic style and TU type library text styles" loading="lazy" width="1500" height="1894"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-buttons.jpg" alt="SCVD guide: buttons and inputs with available sizes via symbol overrides" loading="lazy" width="1500" height="1041"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-type.jpg" alt="SCVD guide: typographic style and TU type library text styles" loading="lazy" width="1500" height="1894"></figure>
       <p><b>White-label by design.</b> Change the generic logo once on the symbols page and it updates on every screen in the document. Colors and type re-theme the same way. One system, any partner brand.</p>
-      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-logo.jpg" alt="SCVD guide — customize logo: swap the generic mark once and it propagates across all instances" loading="lazy" width="1500" height="1041"></figure>
+      <figure class="cf-img"><img src="ASSETS/design-systems/scvd-logo.jpg" alt="SCVD guide, customize logo: swap the generic mark once and it propagates across all instances" loading="lazy" width="1500" height="1041"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The System at Work</span></div>
       <p><b>A system is only proven when it ships a product.</b> TUCM's proof was TrueCredit, a full rebrand and design pass on TransUnion's consumer credit experience, built entirely on system foundations. Credit scores, calculators, and monitoring walkthroughs were assembled from the same symbols and libraries the guide documented.</p>
-      <figure class="cf-img"><img src="ASSETS/work/truecredit-devices-3.jpg" alt="TrueCredit — credit utilization dashboard and free-to-premium membership tiers across desktop and mobile, shipped on TUCM system foundations" loading="lazy" width="1600" height="838"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/truecredit-devices-3.jpg" alt="TrueCredit: credit utilization dashboard and free-to-premium membership tiers across desktop and mobile, shipped on TUCM system foundations" loading="lazy" width="1600" height="838"></figure>
       <p><b>One system, every screen size.</b> Because the symbols were responsive from day one, the TrueCredit family (dashboard, calculator, pricing) moved from desktop to mobile without a redesign pass. The breakpoints were already in the components.</p>
       <p><b>People have to believe the number.</b> Hierarchy and plain numbers decide whether someone trusts their own credit score. Building the consumer product on the system made that discipline structural instead of a per-screen style choice.</p>
     </div>
@@ -1538,20 +1540,20 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Brief</span></div>
       <p>Credit data is some of the most stressful content on the internet. TrueCredit needed a brand and product language that made a score feel like <b>information instead of judgment</b>: friendly enough for a first-time user, precise enough to be trusted with $149,316 of credit balances.</p>
-      <figure class="cf-img"><img src="ASSETS/work/truecredit-hero.jpg" alt="TrueCredit dashboard on a MacBook — +741 credit score gauge, score elements, and credit changes chart" loading="lazy" width="1600" height="900"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/truecredit-hero.jpg" alt="TrueCredit dashboard on a MacBook: +741 credit score gauge, score elements, and credit changes chart" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Art of Possible</span></div>
       <p>Five visual directions pushed the rebrand from safe to decisive: photography under brand marks, isometric illustration, saturated color fields. Each was carried across desktop and mobile before one was chosen.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-02.jpg" alt="TrueCredit ideation concept I — lifestyle photography under translucent teal brand marks" loading="lazy" width="1600" height="900"></div>
-        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-03.jpg" alt="TrueCredit ideation concept II — isometric dashboard illustration with violet gradient CTA" loading="lazy" width="1600" height="900"></div>
+        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-02.jpg" alt="TrueCredit ideation concept I: lifestyle photography under translucent teal brand marks" loading="lazy" width="1600" height="900"></div>
+        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-03.jpg" alt="TrueCredit ideation concept II: isometric dashboard illustration with violet gradient CTA" loading="lazy" width="1600" height="900"></div>
       </figure>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-04.jpg" alt="TrueCredit ideation concept III — saturated teal panels with portrait photography" loading="lazy" width="1600" height="900"></div>
-        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-05.jpg" alt="TrueCredit ideation concept IV — playful team-building illustration around the brand C" loading="lazy" width="1600" height="900"></div>
+        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-04.jpg" alt="TrueCredit ideation concept III: saturated teal panels with portrait photography" loading="lazy" width="1600" height="900"></div>
+        <div class="cf-img"><img src="ASSETS/work/truecredit-ideation-05.jpg" alt="TrueCredit ideation concept IV: playful team-building illustration around the brand C" loading="lazy" width="1600" height="900"></div>
       </figure>
-      <figure class="cf-img"><img src="ASSETS/work/truecredit-ideation-06.jpg" alt="TrueCredit ideation concept V — deep blue and plum photography with live score module" loading="lazy" width="1600" height="900"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/truecredit-ideation-06.jpg" alt="TrueCredit ideation concept V: deep blue and plum photography with live score module" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Product</span></div>
@@ -1599,21 +1601,21 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>Four Directions</span></div>
       <p>Each concept was built out as a complete system rather than a sketch: construction logic, mark, lockups on light and dark, a typeface cast to match the personality, and a physical mockup to make it real.</p>
-      <figure class="cf-img"><img src="ASSETS/work/mavenwave-concepts.jpg" alt="Maven Wave logo construction — four concepts: M+W ribbon wave, sine-wave flux sphere, M+W chevron cube, and interlocking infinity loops" loading="lazy" width="1600" height="971"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/mavenwave-concepts.jpg" alt="Maven Wave logo construction, four concepts: M+W ribbon wave, sine-wave flux sphere, M+W chevron cube, and interlocking infinity loops" loading="lazy" width="1600" height="971"></figure>
       <p><b>The ribbon wave:</b> M and W woven into a rising pulse, set in Rotis Semi Serif. <b>The flux sphere:</b> motion and orbit, with its own modern grotesque. <b>The chevron cube:</b> an expert&rsquo;s M built from dimensional planes, set in Cosmos. <b>The loops:</b> interconnection between consultants and clients, set in Barmeno.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-emboss.jpg" alt="Ribbon wave concept — embossed letterhead mockup" loading="lazy" width="1200" height="728"></div>
-        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-sign.jpg" alt="Flux sphere concept — dimensional office signage mockup" loading="lazy" width="1200" height="728"></div>
+        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-emboss.jpg" alt="Ribbon wave concept: embossed letterhead mockup" loading="lazy" width="1200" height="728"></div>
+        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-sign.jpg" alt="Flux sphere concept: dimensional office signage mockup" loading="lazy" width="1200" height="728"></div>
       </figure>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-dimensional.jpg" alt="Chevron cube concept — dimensional logo mockup" loading="lazy" width="1200" height="728"></div>
-        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-metal.jpg" alt="Infinity loops concept — brushed metal signage mockup" loading="lazy" width="1200" height="728"></div>
+        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-dimensional.jpg" alt="Chevron cube concept: dimensional logo mockup" loading="lazy" width="1200" height="728"></div>
+        <div class="cf-img"><img src="ASSETS/work/mavenwave-mock-metal.jpg" alt="Infinity loops concept: brushed metal signage mockup" loading="lazy" width="1200" height="728"></div>
       </figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Outcome</span></div>
       <p>Four directions, presented as one argument about what a brand is for. The lineup gave Maven Wave a real decision to make, with mark, voice, and material presence considered together. The firm went on to become one of Google Cloud&rsquo;s premier partners and was later acquired by Atos.</p>
-      <figure class="cf-img"><img src="ASSETS/work/mavenwave-lineup.jpg" alt="Final lineup — all four Maven Wave lockups side by side on dark" loading="lazy" width="1540" height="935"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/mavenwave-lineup.jpg" alt="Final lineup: all four Maven Wave lockups side by side on dark" loading="lazy" width="1540" height="935"></figure>
       <blockquote class="cf-quote">A logo gets its meaning from the quality of what it stands for. The deck taught that principle, then proved it four ways.</blockquote>
     </div>
     <p class="cf-note">Presented January 2014. Client imagery &copy; Maven Wave Partners.</p>
@@ -1705,11 +1707,11 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>Naming: The Wide Net</span></div>
       <p>Before a mark, a name. The exploration ran wide on purpose: <b>Cozzi, Adore, Halos, Lake House, Campfire, Clean Harvest, Tastelab, Varsity</b> and a dozen more, each drawn as a real lockup and staged in context, because a name can only be judged wearing its typography.</p>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-names-grid.jpg" alt="Naming exploration — ten candidate wordmarks drawn as finished lockups: Cozzi, Lakehouse, Maria's, Campfire, Clean Harvest, Andiamo!, Whole Harvest, Tastelab, Varsity, and spacelab" loading="lazy" width="2000" height="500">
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-names-grid.jpg" alt="Naming exploration, ten candidate wordmarks drawn as finished lockups: Cozzi, Lakehouse, Maria's, Campfire, Clean Harvest, Andiamo!, Whole Harvest, Tastelab, Varsity, and spacelab" loading="lazy" width="2000" height="500">
         <figcaption class="cf-thumbs-note">Ten of the twenty names, each drawn as a finished lockup</figcaption></figure>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-name-lakehouse.jpg" alt="Lake House name direction staged over mountain photography" loading="lazy" width="1200" height="927"></div>
-        <div class="cf-img"><img src="ASSETS/work/spacelab-name-campfire.jpg" alt="Campfire name direction — delicious tasting, perfect dosage lockup" loading="lazy" width="1200" height="927"></div>
+        <div class="cf-img"><img src="ASSETS/work/spacelab-name-campfire.jpg" alt="Campfire name direction: delicious tasting, perfect dosage lockup" loading="lazy" width="1200" height="927"></div>
       </figure>
       <p><b>The full deck, page by page.</b> Thirty-eight boards, exactly as presented. Every name staged in context before the field narrowed to one.</p>
       <div class="cf-deck" aria-label="Brand exploration deck, 38 pages">
@@ -1757,17 +1759,17 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Mark</span></div>
       <p><b>Spacelab won because it carried the promise:</b> science meets delicious, precise dosage with a playful spirit. The astronaut-helmet mark and stencil-cut wordmark held up from a foil stamp to a storefront, and the system flexed from lab-clean white to deep-space color.</p>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-name-hero.jpg" alt="Spacelab wordmark in spectrum letters on black — all natural artisan edibles" loading="lazy" width="1500" height="1159"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-name-hero.jpg" alt="Spacelab wordmark in spectrum letters on black: all natural artisan edibles" loading="lazy" width="1500" height="1159"></figure>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/spacelab-color-chips.jpg" alt="Spacelab color system — wordmark tested across blue, orange, green, and gradient chip sets" loading="lazy" width="1200" height="927"></div>
-        <div class="cf-img"><img src="ASSETS/work/spacelab-nebula.jpg" alt="Spacelab — edibles from the future lockup over a nebula field" loading="lazy" width="1200" height="927"></div>
+        <div class="cf-img"><img src="ASSETS/work/spacelab-color-chips.jpg" alt="Spacelab color system: wordmark tested across blue, orange, green, and gradient chip sets" loading="lazy" width="1200" height="927"></div>
+        <div class="cf-img"><img src="ASSETS/work/spacelab-nebula.jpg" alt="Spacelab: edibles from the future lockup over a nebula field" loading="lazy" width="1200" height="927"></div>
       </figure>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-future.jpg" alt="Spacelab orange board — astronaut helmet mark, Edible from the Future, Starry Sky Light 2.5mg THC 2.5mg CBD" loading="lazy" width="1500" height="1159"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-future.jpg" alt="Spacelab orange board: astronaut helmet mark, Edible from the Future, Starry Sky Light 2.5mg THC 2.5mg CBD" loading="lazy" width="1500" height="1159"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">03</span><span>The Packaging System</span></div>
       <p>The mark had to survive every format the line would ship in. One celestial artwork language (star fields, orbital arcs, the helmet) carried across <b>drawer boxes, square boxes, tins, and jars,</b> with the wordmark and its clean-label line holding the same position on every face.</p>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-pkg-hero.jpg" alt="Spacelab square box — deep navy star field with burnt orange edge, clean label and whole minimal ingredients" loading="lazy" width="1600" height="1068"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-pkg-hero.jpg" alt="Spacelab square box: deep navy star field with burnt orange edge, clean label and whole minimal ingredients" loading="lazy" width="1600" height="1068"></figure>
       <p><b>One structure, many colorways.</b> The same drawer box, re-skinned: midnight blue for the core line, burnt orange for the seasonal. Structure, type, and lockup never move. Only the field behind them changes.</p>
       <figure class="cf-imgrow">
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-blue.jpg" alt="Spacelab drawer box in midnight blue, slid open" loading="lazy" width="1400" height="933"></div>
@@ -1779,17 +1781,17 @@ body.cf-lock{overflow:hidden}
       </figure>
       <p><b>Down to the small formats.</b> Tins and jars get the same treatment at a fraction of the surface, which is the test any identity has to pass.</p>
       <figure class="cf-imgrow">
-        <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-tin.jpg" alt="Spacelab rectangular tin in blue — delicious tasting, perfect dosage" loading="lazy" width="1200" height="1200"></div>
+        <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-tin.jpg" alt="Spacelab rectangular tin in blue: delicious tasting, perfect dosage" loading="lazy" width="1200" height="1200"></div>
         <div class="cf-img"><img src="ASSETS/work/spacelab-pkg-jar.jpg" alt="Spacelab round jar in midnight blue with the helmet mark" loading="lazy" width="1200" height="960"></div>
       </figure>
       <p><b>And a second artwork direction.</b> Running alongside the star fields: flat geometry, with half-circles, wedges, and triangles in ochre, slate, and red. Same helmet, same black label bar, same rules. It became the face of the line.</p>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin — geometric pattern lid in ochre, slate, and red with the astronaut-helmet wordmark on a deep blue field" loading="lazy" width="1800" height="1350"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-pattern-tin.jpg" alt="Spacelab tin: geometric pattern lid in ochre, slate, and red with the astronaut-helmet wordmark on a deep blue field" loading="lazy" width="1800" height="1350"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">04</span><span>The Outcome</span></div>
       <p>A complete shelf presence from nothing: name, mark, system, and packaging line speaking one language. The exploration deck did its job twice. It sold the direction, and it documented every road not taken.</p>
       <p><b>The decided system, one board.</b> Geometric pattern in slate blue, ochre, and burnt red, with the helmet mark and black label bar holding every format (tin, jar, pouch, tube, and box), down to the helmet embossed on the gummies themselves.</p>
-      <figure class="cf-img"><img src="ASSETS/work/spacelab-final-board.jpg" alt="Spacelab final brand board — logo and palette, patterned tin, jar, stand-up pouch, dosing tube, and boxes, with helmet-embossed gummies and the Tasty, Precise, Reliable values row" loading="lazy" width="1536" height="1024"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/spacelab-final-board.jpg" alt="Spacelab final brand board: logo and palette, patterned tin, jar, stand-up pouch, dosing tube, and boxes, with helmet-embossed gummies and the Tasty, Precise, Reliable values row" loading="lazy" width="1536" height="1024"></figure>
       <blockquote class="cf-quote">A name can only be judged wearing its typography, so every candidate got dressed before the vote.</blockquote>
     </div>
     <p class="cf-note">Independent freelance engagement. Client details generalized per confidentiality.</p>
@@ -2061,7 +2063,7 @@ body.cf-lock{overflow:hidden}
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">01</span><span>The Work</span></div>
       <p>The 1,000 Greetings anthology collects standout correspondence design from studios worldwide. This holiday suite of navy, ornament pattern, and metallic accents made the cut, credited under Firebelly Design with design by Mikel Rosenthal.</p>
-      <figure class="cf-img"><img src="ASSETS/work/board-1000greetings.jpg" alt="1,000 Greetings book spread — published holiday card suite with foil star and ornament pattern, 2009" loading="lazy" width="1290" height="956"></figure>
+      <figure class="cf-img"><img src="ASSETS/work/board-1000greetings.jpg" alt="1,000 Greetings book spread: published holiday card suite with foil star and ornament pattern, 2009" loading="lazy" width="1290" height="956"></figure>
     </div>
     <div class="cf-sec">
       <div class="cf-tag"><span class="no">02</span><span>The Takeaway</span></div>
@@ -2096,8 +2098,10 @@ body.cf-lock{overflow:hidden}
   let lastY = scrollY;
   const onScrollNav = y => {
     nav.classList.toggle('is-scrolled', y > 40);
-    nav.classList.toggle('is-hidden', y > 700 && y > lastY + 4);
-    if (Math.abs(y - lastY) > 4) lastY = y;
+    const dy = y - lastY;
+    if (y <= 700) nav.classList.remove('is-hidden');
+    else if (Math.abs(dy) > 8) nav.classList.toggle('is-hidden', dy > 0);
+    if (Math.abs(dy) > 8) lastY = y;   /* only flip state on a real direction change, not every frame */
   };
   addEventListener('scroll', () => onScrollNav(scrollY), {passive:true});
   onScrollNav(scrollY);
