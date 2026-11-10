@@ -144,7 +144,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 .b2,.b3,.b4,.b5,.b6{aspect-ratio:1.6}
 
 /* Ship: the chain that stands, the link that does not, then the system itself */
-.chain{list-style:none;padding:0;display:grid;grid-template-columns:2fr 2fr 2fr 3fr 3fr;gap:14px;align-items:end;margin-top:clamp(36px,5vw,64px)}
+.chain{list-style:none;padding:0;display:grid;grid-template-columns:2fr 2fr 2fr 4fr;gap:14px;align-items:end;margin-top:clamp(36px,5vw,64px)}
 .chain li{--c:var(--ns-teal-500);--h:180px;--i:0;min-width:0}
 .chain li:nth-child(2){--c:#3B82F6;--h:224px;--i:1}
 .chain li:nth-child(3){--c:#b86bff;--h:268px;--i:2}
@@ -344,12 +344,12 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 }
 
 /* ---- Closing: star trails turning around the star in the mark ---- */
-.fin{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:grid;grid-template-rows:1fr auto;background:radial-gradient(60% 50% at 62% 34%,rgba(2,58,255,.22),rgba(5,5,15,0) 70%),var(--ns-black);border-top:1px solid var(--ns-border)}
+.fin{position:relative;overflow:hidden;min-height:clamp(560px,56svh,1000px);display:grid;grid-template-rows:1fr auto;background:radial-gradient(60% 50% at 62% 34%,rgba(2,58,255,.22),rgba(5,5,15,0) 70%),var(--ns-black);border-top:1px solid var(--ns-border)}
 .fin canvas{position:absolute;inset:0;width:100%;height:100%}
-.fin__in{position:relative;display:grid;justify-items:center;align-content:center;gap:clamp(26px,3.4vw,44px);padding:clamp(80px,11vw,150px) var(--gutr) clamp(56px,7vw,90px) var(--gut);text-align:center}
-.fin__mark{display:block;width:min(1080px,88vw);aspect-ratio:2251.99/245.28;color:#fff}
+.fin__in{position:relative;display:grid;justify-items:center;align-content:center;gap:clamp(20px,2.4vw,30px);padding:clamp(56px,6.5vw,92px) var(--gutr) clamp(40px,4.5vw,60px) var(--gut);text-align:center}
+.fin__mark{display:block;width:min(960px,86vw);aspect-ratio:2251.99/245.28;color:#fff}
 .fin__mark svg{width:100%;height:100%}
-.fin__line{max-width:22em;font-size:clamp(20px,2.3vw,28px);line-height:1.4;color:var(--ns-gray-1);text-wrap:balance}
+.fin__line{max-width:30em;font-size:clamp(18px,1.7vw,22px);line-height:1.4;color:var(--ns-gray-1);text-wrap:balance}
 .fin__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
 .cta{display:inline-flex;align-items:center;gap:14px;min-height:62px;padding:0 30px;border-radius:var(--ns-radius-xl);background:var(--ns-blue-500);color:#fff;text-decoration:none;font:700 17px/1 var(--ns-font-sans);letter-spacing:.3px;transition:background var(--dur-base) var(--ease-std)}
 .cta:hover{background:var(--ns-blue-700)}
@@ -401,7 +401,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
   .chain{grid-template-columns:repeat(6,minmax(0,1fr));align-items:end}
   .chain li{grid-column:span 2}
   .chain li:nth-child(1){--h:120px}.chain li:nth-child(2){--h:150px}.chain li:nth-child(3){--h:180px}
-  .chain li:nth-child(4),.chain li:nth-child(5){--h:190px;grid-column:span 3}
+  .chain li:nth-child(4){--h:190px;grid-column:span 6}
   .res{grid-template-columns:minmax(0,1fr)}
   .live .view{aspect-ratio:1.5}
 }
@@ -433,7 +433,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
     <div class="hero" id="hero">
       <span class="pill"><b>v1.4.1</b>Case study, self-directed</span>
       <h1 id="mark">NORTHSTAR <b>DS</b></h1>
-      <p>One design system, carried from Figma variables to full dashboards.</p>
+      <p>A design system for enterprise consoles, governed from Figma variables to full dashboards.</p>
       <div class="stats">
         <div><b>225</b><span>Tokens</span></div>
         <div><b>57</b><span>Components</span></div>
@@ -449,12 +449,16 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 <section class="band">
   <div>
     <div class="eye rv"><b>00</b><span>Overview</span><i></i></div>
-    <p class="lead rv">NorthStar is a self-directed design system: <b>a Figma library, tokens and live docs kept in step</b>, then tested on <b>24 dashboard layouts.</b></p>
+    <p class="lead rv">NorthStar is a design system and live portal for data-heavy enterprise products: <b>tokens, components and a Figma library, linked in both directions</b> and proven on <b>24 dashboard layouts.</b></p>
+    <div class="cols">
+      <p class="rv">The tokens have two tiers: raw values, then named roles that switch between dark and light. One component catalog builds every docs page, so the guidance always comes from a single source. Every component links to its Figma source, and Figma links back. Automated checks run before each release. They catch token drift, broken links, accessibility failures and visual changes.</p>
+      <p class="rv">The portal is built for AI agents too. It publishes the rules, components and tokens as files an agent can read, and a validator checks what the agent builds against the system. The Live Builder assembles UI on screen from real components and shows each step as it runs. With an API key, Claude generates new UI from the same tokens and components.</p>
+    </div>
     <dl class="meta rv">
-      <div><dt>Role</dt><dd>Design, tokens, docs and code</dd></div>
+      <div><dt>Role</dt><dd>Design, token architecture, docs, tooling and code</dd></div>
       <div><dt>Type</dt><dd>Self-directed, not client work</dd></div>
       <div><dt>Year</dt><dd>2026</dd></div>
-      <div><dt>Tools</dt><dd>Figma Variables and modes, a custom docs site</dd></div>
+      <div><dt>Tools</dt><dd>Figma Variables and modes, Claude and the Anthropic API, a custom docs portal</dd></div>
     </dl>
   </div>
 </section>
@@ -462,7 +466,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 <section class="band">
   <div>
     <div class="eye rv"><b>01</b><span>Define</span><i></i></div>
-    <h2 class="rv">A library proves very little on its own.</h2>
+    <h2 class="rv">One set of tokens, proven on real screens.</h2>
     <div class="cols">
       <p class="rv">Component pages show that a button exists. They do not show whether the tokens hold up when a screen carries charts, tables, status and dense copy at once.</p>
       <p class="rv">So the brief for NorthStar went past the library. One set of tokens had to cover the components, the docs and a full range of data-heavy screens, in dark and light.</p>
@@ -474,7 +478,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 <section class="band" id="build">
   <div>
     <div class="eye rv"><b>02</b><span>Build</span><i></i></div>
-    <h2 class="rv">Figma holds the decisions. The docs hold the proof.</h2>
+    <h2 class="rv">Figma and live code, built as one linked system.</h2>
     <p class="lede rv">Follow one role from the Figma variable to a shipped screen. Switch the mode, or break a link and run the check.</p>
     <div class="trace rv" id="trace" data-mode="dark" data-vmode="dark" data-screen="dark" data-role="bg">
       <div class="tbar">
@@ -524,7 +528,7 @@ Site components: 57 | Spec tabs: 58
 <section class="band" id="test">
   <div>
     <div class="eye rv"><b>03</b><span>Test</span><i></i></div>
-    <h2 class="rv">The charts failed their own audit.</h2>
+    <h2 class="rv">Every chart color, measured and tuned for contrast.</h2>
     <div class="cols">
       <p class="rv">The dashboards pulled charts from several sources: the chart kit, two generations of widgets and a bullet chart. The same blue differed between them, half carried gradients, and gridlines came in two styles.</p>
       <p class="rv">An audit moved all of them to one source of chart style, with flat fills from tokens. It also caught contrast failures on the dark widget surface, measured here against the real values.</p>
@@ -569,13 +573,12 @@ Site components: 57 | Spec tabs: 58
 <section class="band" id="ship">
   <div>
     <div class="eye rv"><b>05</b><span>Ship</span><i></i></div>
-    <h2 class="rv">Live, and still honest about its limits.</h2>
+    <h2 class="rv">Live, linked and checked on every release.</h2>
     <ol class="chain rv">
       <li><a href="northstar/#/foundations/tokens"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-tokens.jpg" alt="NorthStar token reference page" loading="lazy"></span><span class="seg"></span><b data-n="225">225</b><small>Tokens</small></a></li>
       <li><a href="northstar/#/components"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-components.jpg" alt="NorthStar components page" loading="lazy"></span><span class="seg"></span><b data-n="57">57</b><small>Components</small></a></li>
       <li><a href="northstar/#/patterns/forms"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-patterns.jpg" alt="NorthStar forms pattern page" loading="lazy"></span><span class="seg"></span><b data-n="9">9</b><small>Patterns</small></a></li>
       <li><a href="northstar/dashboards/campaign-command.html"><span class="tile"><img src="ASSETS/northstar-case-study/img/campaign-command.jpg" alt="Campaign Command dashboard" loading="lazy"></span><span class="seg"></span><b data-n="24">24</b><small>Dashboards</small></a></li>
-      <li class="open"><span class="tile" id="unbuilt"></span><span class="seg"></span><b>None yet</b><small>Product teams</small></li>
     </ol>
     <div class="shipgrid">
       <div class="live rv" id="live">
@@ -603,9 +606,9 @@ Site components: 57 | Spec tabs: 58
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="fin__in">
     <a class="fin__mark" id="finmark" href="northstar/" aria-label="NorthStar DS live system"></a>
-    <p class="fin__line">The whole system is live. Open it and take it apart.</p>
+    <p class="fin__line">Design, tokens, documentation and AI tooling, governed as one linked system.</p>
     <div class="fin__cta">
-      <a class="cta" id="go" href="northstar/" target="_blank" rel="noopener">Open the live system<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8"/></svg></a>
+      <a class="cta" id="go" href="northstar/" target="_blank" rel="noopener">Open the NorthStar portal<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8"/></svg></a>
       <a class="cta alt" href="index.html#systems">Back to mikelrosenthal.com</a>
     </div>
   </div>
@@ -717,7 +720,7 @@ $("wipe").addEventListener("pointermove",function(e){var r=this.getBoundingClien
 $("range").addEventListener("input",function(){setX(+this.value)});
 
 // the unbuilt link in the Ship chain: a wireframe with no screen behind it
-$("unbuilt").innerHTML=wireSVG("campaign-command").replace("<svg ",'<svg preserveAspectRatio="xMinYMin slice" ');
+if($("unbuilt"))$("unbuilt").innerHTML=wireSVG("campaign-command").replace("<svg ",'<svg preserveAspectRatio="xMinYMin slice" ');
 
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
 document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
