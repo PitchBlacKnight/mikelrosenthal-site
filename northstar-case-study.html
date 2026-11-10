@@ -56,7 +56,7 @@ main{position:relative;z-index:1}
 .brand svg{width:26px;height:27px}
 .top .back{color:var(--ns-gray-1);font-size:14px;text-decoration:none}
 .hero{position:absolute;z-index:4;left:var(--gut);top:50%;transform:translateY(-50%);width:min(620px,calc(100vw - 48px))}
-.pill{display:inline-flex;gap:10px;padding:5px 14px;border:1px solid var(--ns-border-2);border-radius:999px;background:rgba(14,14,24,.7);color:var(--ns-gray-1);font-size:13px;line-height:20px}
+.pill{display:inline-flex;gap:10px;padding:7px 18px;border:1px solid var(--ns-border-2);border-radius:999px;background:rgba(14,14,24,.7);color:var(--ns-gray-1);font-size:17px;line-height:24px}
 .pill b{color:var(--ns-teal-500);font-weight:600}
 .hero h1{margin:22px 0 14px;font:400 clamp(42px,6vw,76px)/1.04 var(--ns-font-sans);letter-spacing:1px}
 .hero h1 b{font-weight:800}
@@ -431,9 +431,9 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
       <a class="back" href="index.html#systems">mikelrosenthal.com</a>
     </div>
     <div class="hero" id="hero">
-      <span class="pill"><b>v1.4.1</b>Case study, self-directed</span>
+      <span class="pill"><b>v1.4.1</b></span>
       <h1 id="mark">NORTHSTAR <b>DS</b></h1>
-      <p>A design system for enterprise consoles, governed from Figma variables to full dashboards.</p>
+      <p>A design system for enterprise consoles, live in a working portal and governed from Figma variables to full dashboards.</p>
       <div class="stats">
         <div><b>225</b><span>Tokens</span></div>
         <div><b>57</b><span>Components</span></div>
@@ -451,7 +451,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
     <div class="eye rv"><b>00</b><span>Overview</span><i></i></div>
     <p class="lead rv">NorthStar is a design system and live portal for data-heavy enterprise products: <b>tokens, components and a Figma library, linked in both directions</b> and proven on <b>24 dashboard layouts.</b></p>
     <div class="cols">
-      <p class="rv">The tokens have two tiers: raw values, then named roles that switch between dark, light and high contrast. One component catalog builds every component page, so the guidance always comes from a single source. Every component links to its Figma source, and Figma links back. Automated checks run before each release. They catch token drift, broken links, accessibility failures and visual changes.</p>
+      <p class="rv">The tokens have two tiers: raw values, then named roles that switch between dark, light and high contrast. Density and motion have their own modes. One component catalog builds every component page, so the guidance always comes from a single source. Every component links to its Figma source, and Figma links back. Automated checks run before each release. They catch token drift, broken links, accessibility failures and visual changes.</p>
       <p class="rv">The portal is built for AI agents too. It publishes the rules, components and tokens as files an agent can read, and a validator checks what the agent builds against the system. The Live Builder assembles UI on screen from real components and shows each step as it runs. With an API key, Claude generates new UI from the same tokens and components.</p>
     </div>
     <dl class="meta rv">
@@ -516,7 +516,7 @@ Site components: 57 | Spec tabs: 58
       </div>
     </div>
     <dl class="facts rv">
-      <div><dt>Source</dt><dd>Figma Variables hold the primitives and semantic roles. Dark, light and high contrast are modes of the same roles.</dd></div>
+      <div><dt>Source</dt><dd>Figma Variables hold the primitives and semantic roles. Dark, light and high contrast are modes of the same roles. Density and motion have their own modes.</dd></div>
       <div><dt>Links</dt><dd>Every docs component carries its Figma node ID, and each Figma component links back to its docs page.</dd></div>
       <div><dt>Specs</dt><dd>Spec tabs are generated from the Figma specification frames, so the numbers are not retyped.</dd></div>
       <div><dt>Drift</dt><dd>A sync check reports broken links, missing nodes and specs without a tab. It fails when the two sides disagree.</dd></div>
