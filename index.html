@@ -94,13 +94,14 @@ body{animation:pagefade .5s ease-out both}
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
   opacity:.055;
   animation:grain 8s steps(10) infinite;
+  will-change:transform;contain:strict;   /* own GPU layer: the grain never repaints the page */
 }
 @keyframes grain{
   0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-8%)}
   30%{transform:translate(4%,-3%)}50%{transform:translate(-6%,6%)}
   70%{transform:translate(6%,3%)}90%{transform:translate(-3%,8%)}
 }
-.stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;will-change:transform;contain:strict;
   background-image:
     radial-gradient(1px 1px at 12% 24%, rgba(241,232,214,.5) 50%, transparent 51%),
     radial-gradient(1px 1px at 78% 12%, rgba(222,147,169,.55) 50%, transparent 51%),
@@ -2103,7 +2104,7 @@ body.cf-lock{overflow:hidden}
     else if (Math.abs(dy) > 8) nav.classList.toggle('is-hidden', dy > 0);
     if (Math.abs(dy) > 8) lastY = y;   /* only flip state on a real direction change, not every frame */
   };
-  addEventListener('scroll', () => onScrollNav(scrollY), {passive:true});
+  addEventListener('scroll', () => { if (!window.__lenis) onScrollNav(scrollY); }, {passive:true});   /* Lenis drives it when active */
   onScrollNav(scrollY);
 
   document.querySelectorAll('.proc').forEach(proc => {
@@ -2197,10 +2198,21 @@ body.cf-lock{overflow:hidden}
       if (!reduced) v.play().catch(() => {});
     };
     if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => { if (e.isIntersecting) { load(e.target); obs.unobserve(e.target); } });
-      }, { rootMargin: '400px 0px' });
-      mvs.forEach(v => io.observe(v));
+      /* attach src a screen early, but only decode while on screen: offscreen loops pause */
+      const pre = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting && e.target.dataset.src) { e.target.src = e.target.dataset.src; delete e.target.dataset.src; obs.unobserve(e.target); } });
+      }, { rootMargin: '600px 0px' });
+      const vis = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          const v = e.target;
+          if (e.isIntersecting) load(v);
+          else if (!v.paused) v.pause();
+        });
+      }, { rootMargin: '80px 0px' });
+      mvs.forEach(v => { pre.observe(v); vis.observe(v); });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) mvs.forEach(v => v.pause());
+      });
     } else {
       mvs.forEach(load);
     }
@@ -2233,7 +2245,7 @@ body.cf-lock{overflow:hidden}
   let lenis = null;
   const noSmooth = new URLSearchParams(location.search).has('nosmooth');
   if (typeof Lenis !== 'undefined' && !touch && !noSmooth){
-    lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1, smoothWheel: true, syncTouch: false });   /* lerp follows trackpad momentum; duration easing restarted on every tick and stuttered */
     window.__lenis = lenis;
     lenis.on('scroll', e => { ScrollTrigger.update(); onScrollNav(e.scroll); });
     gsap.ticker.add(t => lenis.raf(t * 1000));
