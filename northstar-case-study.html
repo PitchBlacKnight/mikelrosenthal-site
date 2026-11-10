@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2240 30 374 390%22%3E%3Cpath d=%22M227 46.1094L393.703 328.086L290.844 281.977L227 170.25L163.156 281.977L60.2969 328.086L227 46.1094Z%22 fill=%22%23C5C5C5%22/%3E%3Cpath d=%22M227 255.375L289.07 360.008L227 404.344L164.93 360.008L227 255.375Z%22 fill=%22%2327BDFA%22/%3E%3C/svg%3E">
+<link rel="icon" href="northstar/assets/logo/favicon.svg" type="image/svg+xml">
 <title>NorthStar: Case study · Mikel Rosenthal</title>
 <meta name="description" content="NorthStar is a self-directed design system: a Figma library, tokens and live docs kept in step, then tested on 24 dashboard layouts.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -183,7 +183,203 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
 .btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:var(--ns-radius-lg);background:var(--ns-blue-500);color:#fff;text-decoration:none;font-weight:600;font-size:14px;line-height:20px;transition:background .2s}
 .btn:hover{background:var(--ns-blue-700)}
 .btn.alt{background:none;box-shadow:inset 0 0 0 1px var(--ns-white)}
-footer{padding:24px var(--gutr) 32px var(--gut);color:var(--ns-gray-2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--ns-border);background:var(--ns-black)}
+
+/* ---- Logo component rules, as in the live system's site.css ---- */
+:root{--ns-logo-star:#27bdfa;--dur-base:200ms;--dur-slow:320ms;--dur-exp:500ms;--ease-std:cubic-bezier(.2,0,0,1);--ease-in:cubic-bezier(0,0,0,1)}
+[hidden]{display:none!important}
+.ns-logo{overflow:visible;display:block}
+.ns-logo__star{fill:var(--ns-logo-star)}
+.ns-logo--live .ns-logo__star{transform-box:fill-box;transform-origin:50% 62%;animation:ns-logo-rise 1.1s cubic-bezier(.3,0,.2,1) .3s both,ns-logo-pulse 1.3s ease-in-out 2.9s 1}
+.ns-logo--live .ns-logo__glint{transform-box:fill-box;transform-origin:center;animation:ns-logo-glint .8s ease-out 1.25s both,ns-logo-twinkle 1.3s ease-out 2.9s 1 forwards}
+.ns-logo--live.ns-logo--mark .ns-logo__chevron{animation:ns-logo-chev .8s cubic-bezier(.16,1,.3,1) both}
+.ns-logo--live:hover .ns-logo__star{animation:ns-logo-rise 1.1s cubic-bezier(.3,0,.2,1) .3s both,ns-logo-pulse 1.3s ease-in-out 2.9s 1,ns-logo-pulse-again 1.3s ease-in-out 1}
+.ns-logo--live:hover .ns-logo__glint{animation:ns-logo-glint .8s ease-out 1.25s both,ns-logo-twinkle 1.3s ease-out 2.9s 1 forwards,ns-logo-twinkle-again 1.3s ease-out 1 forwards}
+@keyframes ns-logo-chev{from{opacity:0;transform:translateY(calc(var(--ns-logo-rise)*.3))}}
+@keyframes ns-logo-rise{0%{opacity:0;transform:translateY(var(--ns-logo-rise)) scale(.45)}35%{opacity:1}72%{transform:translateY(calc(var(--ns-logo-rise)*-.15)) scale(1.06)}100%{transform:none}}
+@keyframes ns-logo-glint{0%{opacity:0;transform:scale(0)}35%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.25) rotate(45deg)}}
+@keyframes ns-logo-pulse{0%,100%{transform:none}45%{transform:translateY(calc(var(--ns-logo-rise)*-.1)) scale(1.13)}75%{transform:scale(.98)}}
+@keyframes ns-logo-pulse-again{0%,100%{transform:none}45%{transform:translateY(calc(var(--ns-logo-rise)*-.1)) scale(1.13)}75%{transform:scale(.98)}}
+@keyframes ns-logo-twinkle{0%{opacity:0;transform:scale(0)}45%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.25) rotate(45deg)}}
+@keyframes ns-logo-twinkle-again{0%{opacity:0;transform:scale(0)}45%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.25) rotate(45deg)}}
+/* Motion taken from the system's components.css */
+@keyframes ns-indet{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
+@keyframes ns-shimmer{50%{opacity:.45}}
+@keyframes ns-toast-in{from{opacity:0;transform:translateY(12px)}}
+@keyframes ns-fade{from{opacity:0}}
+@keyframes ns-rise{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.rays svg{color:#C5C5C5}
+.brand svg{width:30px;height:31px}
+.hero h1{margin:26px 0 20px;line-height:0}
+.hero h1 svg{width:min(100%,560px);height:auto}
+
+/* ---- 02 Build: one role followed from the Figma variable to a screen ---- */
+.lede{margin-top:18px;font-size:19px;line-height:29px;color:var(--ns-gray-1)}
+.trace{margin-top:clamp(28px,4vw,48px);border-radius:var(--ns-radius-2xl);background:rgba(11,11,22,.86);box-shadow:0 40px 90px -40px #000,0 0 0 1px var(--ns-border-2);overflow:hidden;--w-bg:#191932;--w-tx:#fff;--w-sub:#a9a9b7;--w-s1:#01f1e3;--w-star:#27bdfa}
+.trace[data-mode=light]{--w-bg:#fff;--w-tx:#05050f;--w-sub:#55556a;--w-s1:#00a097;--w-star:#023aff}
+.tbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 16px;border-bottom:1px solid var(--ns-border)}
+.tbar .sp{flex:1}
+.tbar .lbl{color:var(--ns-gray-3)}
+.segc{display:inline-flex;flex-wrap:wrap;padding:3px;border-radius:10px;background:var(--ns-black);box-shadow:0 0 0 1px var(--ns-border)}
+.segc button{min-height:38px;padding:0 13px;border-radius:7px;color:var(--ns-gray-2);font:400 12px/1 var(--ns-font-mono);letter-spacing:.3px;transition:color var(--dur-base),background var(--dur-base)}
+.segc button:hover{color:var(--ns-white)}
+.segc button[aria-pressed=true]{background:var(--ns-navy-900);color:var(--ns-teal-500);box-shadow:inset 0 0 0 1px var(--ns-teal-500)}
+.brk{min-height:44px;padding:0 16px;border-radius:var(--ns-radius-lg);box-shadow:inset 0 0 0 1px var(--ns-border-2);font-size:14px;font-weight:600;transition:box-shadow var(--dur-base),color var(--dur-base)}
+.brk:hover{box-shadow:inset 0 0 0 1px var(--ns-white)}
+.trace.broken .brk{color:var(--ns-teal-500);box-shadow:inset 0 0 0 1px var(--ns-teal-500)}
+.stations{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stations li{--i:0;position:relative;min-width:0;padding:18px 16px 20px;border-left:1px solid var(--ns-border);display:flex;flex-direction:column;gap:14px}
+.stations li:first-child{border-left:0}
+.stations li:nth-child(2){--i:1}.stations li:nth-child(3){--i:2}.stations li:nth-child(4){--i:3}
+.stations li::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--ns-teal-500);transform:scaleX(0);transform-origin:0 50%}
+.trace.go .stations li::before{animation:tr-pulse .5s var(--ease-std) calc(var(--i)*.16s) both}
+@keyframes tr-pulse{0%{transform:scaleX(0);opacity:1}60%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+.st{display:flex;gap:8px;color:var(--ns-gray-2)}
+.st b{font-weight:400;color:var(--ns-teal-500)}
+.var{display:grid;gap:6px}
+.vn{font-size:15px;line-height:22px;color:var(--ns-white);margin-bottom:4px}
+.vrow{display:grid;grid-template-columns:44px 20px 1fr;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--ns-radius-lg);color:var(--ns-gray-3);transition:background var(--dur-slow) var(--ease-std),color var(--dur-slow)}
+.vrow code,.tok{font:400 12px/20px var(--ns-font-mono)}
+.sw{display:block;width:20px;height:20px;border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);transition:background var(--dur-slow) var(--ease-std)}
+.trace[data-vmode=dark] .vrow[data-m=dark],.trace[data-vmode=light] .vrow[data-m=light]{background:var(--ns-navy-900);color:var(--ns-white)}
+.tok{margin:0;padding:12px;border-radius:var(--ns-radius-lg);background:var(--ns-black);box-shadow:0 0 0 1px var(--ns-border);color:var(--ns-gray-1);white-space:pre-wrap;overflow-wrap:anywhere}
+.tok i{font-style:normal;color:var(--ns-gray-3)}
+.tok b{font-weight:600;color:var(--ns-teal-500)}
+.tok .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mini{display:grid;gap:10px;padding:14px;border-radius:var(--ns-radius-xl);background:var(--w-bg);color:var(--w-tx);box-shadow:0 0 0 1px rgba(255,255,255,.1);transition:background var(--dur-slow) var(--ease-std),color var(--dur-slow) var(--ease-std)}
+.mini__h{display:flex;align-items:center;gap:8px;font:600 12px/16px var(--ns-font-sans);color:var(--w-sub);transition:color var(--dur-slow)}
+.mini__h svg{width:16px;height:16px;flex:none;color:var(--w-tx)}
+.mini__h svg .ns-logo__star{fill:var(--w-star);transition:fill var(--dur-slow)}
+.mini>b{font:800 28px/1 var(--ns-font-sans)}
+.mini__bars{display:flex;align-items:flex-end;gap:5px;height:44px}
+.mini__bars i{flex:1;border-radius:2px 2px 0 0;background:var(--w-s1);transition:background var(--dur-slow) var(--ease-std)}
+.mini__btn{justify-self:start;display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:var(--ns-radius-lg);background:#023aff;color:#fff;font:600 13px/1 var(--ns-font-sans)}
+.mini [data-r],.mini[data-r]{outline:1px dashed transparent;outline-offset:4px;transition:outline-color var(--dur-base),background var(--dur-slow) var(--ease-std),color var(--dur-slow) var(--ease-std)}
+.trace[data-role=bg] .mini,.trace[data-role=tx] .mini>b,.trace[data-role=s1] .mini__bars,.trace[data-role=star] .mini__h svg{outline-color:var(--ns-teal-500)}
+.chip{align-self:flex-start;padding:4px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--ns-border-2);color:var(--ns-gray-1);transition:box-shadow var(--dur-base),color var(--dur-base)}
+.chip i{font-style:normal;color:var(--ns-teal-500)}
+.trace.broken .chip{box-shadow:inset 0 0 0 1px #ff5a5b}
+.trace.broken .chip i{color:#ff7a7b;text-decoration:line-through}
+.scr{position:relative;aspect-ratio:16/10;border-radius:var(--ns-radius-lg);overflow:hidden;background:var(--ns-black);box-shadow:0 0 0 1px var(--ns-border)}
+.scr>*{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0 0;transition:opacity var(--dur-exp) var(--ease-std)}
+.scr img{opacity:0}
+.trace[data-screen=light] .scr img{opacity:1}
+.trace[data-screen=light] .scr video{opacity:0}
+.scap{color:var(--ns-gray-2)}
+.tcon{position:relative;border-top:1px solid var(--ns-border);padding:14px 16px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:end}
+.tcon .check{box-shadow:none;background:none;padding:0;min-height:100px;white-space:pre-wrap}
+.tcon small{color:var(--ns-gray-3);max-width:24em;text-align:right}
+.check em{font-style:normal;color:#ff7a7b}
+.prog{position:absolute;left:0;right:0;top:-1px;height:2px;overflow:hidden}
+.prog i{display:block;width:35%;height:100%;background:var(--ns-teal-500);animation:ns-indet 1.4s var(--ease-std) infinite}
+.facts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px clamp(16px,2.4vw,32px);margin-top:clamp(32px,4.4vw,60px)}
+.facts div{padding-top:16px;border-top:1px solid var(--ns-border)}
+.facts dt{color:var(--ns-teal-500);font:400 12px/16px var(--ns-font-mono)}
+.facts dd{margin:10px 0 0;color:var(--ns-gray-1);font-size:15px;line-height:23px}
+
+/* ---- 03 Test: the audit, run on a specimen chart ---- */
+.spec{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:14px;margin-top:clamp(28px,4vw,48px)}
+.plot{margin:0;padding:18px 18px 10px;border-radius:var(--ns-radius-2xl);background:#191932;min-width:0}
+.plot__h{display:flex;justify-content:space-between;gap:12px;color:#a9a9b7;margin-bottom:6px}
+.plot__h b{font-weight:400;color:var(--ns-white)}
+.plot svg{display:block;width:100%;height:auto}
+.plot text{font:400 13px var(--ns-font-mono)}
+.gl{stroke:#fff;stroke-opacity:.14;stroke-width:1;transition:stroke-opacity var(--dur-exp)}
+.gl.alt{stroke-dasharray:3 6;stroke-opacity:.34}
+.spec[data-state=after] .gl.alt{stroke-dasharray:none;stroke-opacity:.14}
+.b,.g{transform-box:fill-box;transform-origin:50% 100%;transition:fill .5s var(--ease-std) calc(var(--c)*.12s),opacity var(--dur-slow) var(--ease-std),transform .7s var(--e) calc(var(--d)*.04s)}
+.s1{fill:#01f1e3}.s2{fill:#023aff}.s3{fill:#991bfa}.s4{fill:#4807ea}
+.g{fill:url(#fade);transition:opacity .5s var(--ease-std) calc(var(--c)*.12s),transform .7s var(--e) calc(var(--d)*.04s)}
+.lb{fill:#6a6a9f;transition:fill .5s var(--ease-std),opacity var(--dur-slow)}
+.spec[data-state=after] .s2{fill:#2858ff}
+.spec[data-state=after] .s4{fill:#7844f9}
+.spec[data-state=after] .lb{fill:#8f8fc0}
+.spec[data-f] :is(.b,.g,.lb){opacity:.16}
+.spec[data-f=lb] .lb,.spec[data-f=s2] .s2,.spec[data-f=s4] .s4,.spec[data-f=fill] .gr{opacity:1}
+.spec[data-f=grid] .gl{stroke-opacity:.6}
+.spec[data-state=after] .g{opacity:0}
+.ledger{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ledger ul{list-style:none;padding:0;display:grid;flex:1;border-radius:var(--ns-radius-2xl);overflow:hidden;background:var(--ns-navy-900)}
+.ledger li+li{border-top:1px solid var(--ns-border)}
+.ledger li button{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;width:100%;height:100%;min-height:72px;padding:12px 18px;text-align:left;transition:background var(--dur-base)}
+.ledger li button:hover,.ledger li button:focus-visible{background:rgba(255,255,255,.05)}
+.ln b{display:block;font:700 16px/22px var(--ns-font-sans)}
+.ln .mono{color:var(--ns-gray-2);overflow-wrap:anywhere}
+.lv{display:grid;justify-items:end;gap:4px}
+.lv b{font:800 26px/1 var(--ns-font-sans);font-variant-numeric:tabular-nums}
+.lv b.w{font-size:18px}
+.bdg{padding:3px 8px;border-radius:999px;font:400 11px/14px var(--ns-font-mono);color:#ff8a8b;box-shadow:inset 0 0 0 1px rgba(255,90,91,.6);transition:color var(--dur-slow),box-shadow var(--dur-slow)}
+.bdg.ok{color:var(--ns-green-500);box-shadow:inset 0 0 0 1px rgba(94,255,90,.5)}
+
+/* ---- 05 Ship ---- */
+.chain b{font-variant-numeric:tabular-nums}
+.chain .open .tile{animation:ns-shimmer 1.4s ease-in-out infinite}
+.shipgrid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(20px,3vw,44px);margin-top:clamp(40px,6vw,72px);align-items:start}
+.live{margin-top:0}
+.live .bar em{margin-left:auto;font-style:normal;display:inline-flex;align-items:center;gap:7px;color:var(--ns-gray-2)}
+.live .bar em::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ns-gray-3)}
+.live .bar em.on{color:var(--ns-green-500)}
+.live .bar em.on::before{background:var(--ns-green-500)}
+.live .view{position:relative;aspect-ratio:1.6}
+.live .view iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;opacity:0;background:var(--ns-black)}
+.live .view.on iframe{opacity:1;animation:ns-fade var(--dur-exp) var(--ease-in)}
+.skel{position:absolute;inset:0;display:none;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;gap:12px;padding:5%;background:var(--ns-black)}
+.view.loading .skel{display:grid}
+.skel i{border-radius:8px;background:var(--ns-navy-900);animation:ns-shimmer 1.4s ease-in-out infinite}
+.skel i:nth-child(1){grid-column:span 3}.skel i:nth-child(2){grid-column:4/span 3;grid-row:span 3}.skel i:nth-child(3){grid-column:span 2}.skel i:nth-child(4){grid-column:span 3}
+.skel i:nth-child(n+5){grid-column:span 2}
+.hit{position:absolute;inset:0;z-index:2}
+.toast{position:absolute;z-index:3;right:16px;bottom:16px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;max-width:min(340px,calc(100% - 32px));padding:14px 16px;border-radius:6px;border:1px solid rgba(94,255,90,.45);border-left:3px solid var(--ns-green-500);background:color-mix(in srgb,var(--ns-green-500) 9%,#0e0e18);box-shadow:0 12px 32px rgba(5,5,15,.6);pointer-events:none;animation:ns-toast-in var(--dur-slow) var(--ease-in)}
+.toast i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ns-green-500);color:var(--ns-black);font:800 12px/1 var(--ns-font-sans);font-style:normal}
+.toast b{display:block;font:700 14px/20px var(--ns-font-sans)}
+.toast span{color:var(--ns-gray-1)}
+.side{display:grid;gap:clamp(20px,2.6vw,32px)}
+.side p{font-size:16px;line-height:25px}
+.con{position:relative;overflow:hidden;border-radius:var(--ns-radius-lg);background:var(--ns-secondary);box-shadow:0 0 0 1px var(--ns-border)}
+.con .check{box-shadow:none;background:none;min-height:128px;white-space:pre-wrap}
+.con .prog{top:auto;bottom:0}
+@media (prefers-reduced-motion:no-preference){
+  .chain li{opacity:0}
+  .chain.in li{opacity:1;animation:ns-rise var(--dur-exp) var(--ease-in) calc(var(--i)*.09s) both}
+  .spec:not(.in) :is(.b,.g){transform:scaleY(0)}
+}
+
+/* ---- Closing: star trails turning around the star in the mark ---- */
+.fin{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:grid;grid-template-rows:1fr auto;background:radial-gradient(60% 50% at 62% 34%,rgba(2,58,255,.22),rgba(5,5,15,0) 70%),var(--ns-black);border-top:1px solid var(--ns-border)}
+.fin canvas{position:absolute;inset:0;width:100%;height:100%}
+.fin__in{position:relative;display:grid;justify-items:center;align-content:center;gap:clamp(26px,3.4vw,44px);padding:clamp(80px,11vw,150px) var(--gutr) clamp(56px,7vw,90px) var(--gut);text-align:center}
+.fin__mark{display:block;width:min(1080px,88vw);aspect-ratio:2251.99/245.28;color:#fff}
+.fin__mark svg{width:100%;height:100%}
+.fin__line{max-width:22em;font-size:clamp(20px,2.3vw,28px);line-height:1.4;color:var(--ns-gray-1);text-wrap:balance}
+.fin__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.cta{display:inline-flex;align-items:center;gap:14px;min-height:62px;padding:0 30px;border-radius:var(--ns-radius-xl);background:var(--ns-blue-500);color:#fff;text-decoration:none;font:700 17px/1 var(--ns-font-sans);letter-spacing:.3px;transition:background var(--dur-base) var(--ease-std)}
+.cta:hover{background:var(--ns-blue-700)}
+.cta svg{width:18px;height:18px;transition:transform var(--dur-slow) var(--ease-std)}
+.cta:hover svg{transform:translate(3px,-3px)}
+.cta.alt{background:rgba(5,5,15,.55);box-shadow:inset 0 0 0 1px var(--ns-border-2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.cta.alt:hover{box-shadow:inset 0 0 0 1px var(--ns-white)}
+.fin__base{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:20px var(--gutr) max(28px,env(safe-area-inset-bottom,0px)) var(--gut);color:var(--ns-gray-2);border-top:1px solid rgba(255,255,255,.08);background:rgba(5,5,15,.5)}
+
+@media (max-width:900px){
+  .stations{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stations li:nth-child(3){border-left:0}
+  .stations li:nth-child(n+3){border-top:1px solid var(--ns-border)}
+  .tcon{grid-template-columns:minmax(0,1fr)}
+  .tcon small{text-align:left}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .spec,.shipgrid{grid-template-columns:minmax(0,1fr)}
+  .cta{width:100%;justify-content:center}
+}
+@media (max-width:520px){
+  .stations{grid-template-columns:minmax(0,1fr)}
+  .stations li{border-left:0}
+  .stations li+li{border-top:1px solid var(--ns-border)}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .tbar .sp{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ns-logo--live *{animation:none!important}
+  .trace *,.spec *,.toast,.skel i,.chain .open .tile,.live .view.on iframe{animation:none!important;transition:none!important}
+}
 .rv{transform:translateY(20px);transition:transform .9s var(--e)}
 .rv.in{transform:none}
 
@@ -231,12 +427,12 @@ footer{padding:24px var(--gutr) 32px var(--gut);color:var(--ns-gray-2);display:f
     <div class="plane" id="plane" aria-hidden="true"></div>
     <div class="scrim" id="scrim"></div>
     <div class="top">
-      <a class="brand" href="northstar/" aria-label="NorthStar DS live system"><svg viewBox="40 30 374 390" aria-hidden="true"><path d="M227 46.1094L393.703 328.086L290.844 281.977L227 170.25L163.156 281.977L60.2969 328.086L227 46.1094Z" fill="#C5C5C5"/><path d="M227 255.375L289.07 360.008L227 404.344L164.93 360.008L227 255.375Z" fill="#27BDFA"/></svg>NORTHSTAR <span>DS</span></a>
+      <a class="brand" id="brand" href="northstar/" aria-label="NorthStar DS live system"></a>
       <a class="back" href="index.html#systems">mikelrosenthal.com</a>
     </div>
     <div class="hero" id="hero">
       <span class="pill"><b>v1.4.1</b>Case study, self-directed</span>
-      <h1>NORTHSTAR <b>DS</b></h1>
+      <h1 id="mark">NORTHSTAR <b>DS</b></h1>
       <p>One design system, carried from Figma variables to full dashboards.</p>
       <div class="stats">
         <div><b>225</b><span>Tokens</span></div>
@@ -275,38 +471,70 @@ footer{padding:24px var(--gutr) 32px var(--gut);color:var(--ns-gray-2);display:f
   </div>
 </section>
 
-<section class="band">
+<section class="band" id="build">
   <div>
     <div class="eye rv"><b>02</b><span>Build</span><i></i></div>
     <h2 class="rv">Figma holds the decisions. The docs hold the proof.</h2>
-    <div class="cols">
-      <div class="shot rv"><video src="ASSETS/northstar-case-study/northstar-assembly.mp4" poster="ASSETS/northstar-case-study/poster.jpg" muted loop playsinline autoplay preload="metadata" width="1280" height="720" aria-label="NorthStar film: a dashboard assembling from its grid and tiles"></video></div>
-      <dl class="sync rv">
-        <div><dt>Source</dt><dd>Figma Variables hold the primitives and semantic roles. Dark and light are modes of the same roles.</dd></div>
-        <div><dt>Links</dt><dd>Every docs component carries its Figma node ID, and each Figma component links back to its docs page.</dd></div>
-        <div><dt>Specs</dt><dd>Spec tabs are generated from the Figma specification frames, so the numbers are not retyped.</dd></div>
-        <div><dt>Drift</dt><dd>A sync check reports broken links, missing nodes and specs without a tab. It fails when the two sides disagree.</dd></div>
-        <div><dt>Code first</dt><dd>A new component can ship to the docs marked "Waiting for Figma sync", then sync in a batch.</dd></div>
-      </dl>
+    <p class="lede rv">Follow one role from the Figma variable to a shipped screen. Switch the mode, or break a link and run the check.</p>
+    <div class="trace rv" id="trace" data-mode="dark" data-vmode="dark" data-screen="dark" data-role="bg">
+      <div class="tbar">
+        <span class="lbl mono">Role</span><div class="segc" id="troles" role="group" aria-label="Role to follow"></div>
+        <span class="lbl mono">Mode</span><div class="segc" id="tmode" role="group" aria-label="Mode"><button type="button" data-m="dark" aria-pressed="true">Dark</button><button type="button" data-m="light" aria-pressed="false">Light</button></div>
+        <span class="sp"></span>
+        <button type="button" class="brk" id="brk">Break a link</button>
+      </div>
+      <ol class="stations">
+        <li><span class="st mono"><b>01</b>Figma variable</span>
+          <div class="var"><span class="vn mono" id="vname">widget/bg</span>
+            <div class="vrow" data-m="dark"><span class="mono">Dark</span><i class="sw" id="vd" style="background:#191932"></i><code id="vdh">#191932</code></div>
+            <div class="vrow" data-m="light"><span class="mono">Light</span><i class="sw" id="vl" style="background:#ffffff"></i><code id="vlh">#FFFFFF</code></div>
+          </div></li>
+        <li><span class="st mono"><b>02</b>Token</span>
+          <pre class="tok"><i id="tsel">:root {</i>
+  <span id="tname">--ns-widget-bg</span>:
+  <i class="sw" id="tsw" style="background:#191932"></i><b id="tval">#191932</b>;
+<i>}</i></pre></li>
+        <li><span class="st mono"><b>03</b>Component</span>
+          <div class="mini" data-r="bg" aria-hidden="true"><div class="mini__h" id="minih"><span>Open deals, sample</span></div><b data-r="tx">128</b><div class="mini__bars" data-r="s1"><i style="height:38%"></i><i style="height:56%"></i><i style="height:46%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:100%"></i></div><span class="mini__btn">View report</span></div>
+          <span class="chip mono" id="chip">Button, Figma node <i>4038:31741</i></span></li>
+        <li><span class="st mono"><b>04</b>Screen</span>
+          <div class="scr"><video src="ASSETS/northstar-case-study/northstar-assembly.mp4" poster="ASSETS/northstar-case-study/poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="NorthStar film: a dashboard assembling from its grid and tiles"></video><img src="ASSETS/northstar-case-study/img/board-report.jpg" alt="Board report dashboard in the light theme" loading="lazy"></div>
+          <span class="scap mono" id="scap">Dashboard film, dark</span></li>
+      </ol>
+      <div class="tcon">
+        <div class="prog" id="tprog" hidden><i></i></div>
+        <pre class="check" id="tout" aria-live="polite"><i>$ figma-sync-check --offline</i>
+NorthStar drift check (offline: site side only)
+Site components: 57 | Spec tabs: 58
+
+<b>No drift found.</b></pre>
+        <small class="mono">The break is simulated on this page. The real check reads the Figma file.</small>
+      </div>
     </div>
+    <dl class="facts rv">
+      <div><dt>Source</dt><dd>Figma Variables hold the primitives and semantic roles. Dark and light are modes of the same roles.</dd></div>
+      <div><dt>Links</dt><dd>Every docs component carries its Figma node ID, and each Figma component links back to its docs page.</dd></div>
+      <div><dt>Specs</dt><dd>Spec tabs are generated from the Figma specification frames, so the numbers are not retyped.</dd></div>
+      <div><dt>Drift</dt><dd>A sync check reports broken links, missing nodes and specs without a tab. It fails when the two sides disagree.</dd></div>
+      <div><dt>Code first</dt><dd>A new component can ship to the docs marked "Waiting for Figma sync", then sync in a batch.</dd></div>
+    </dl>
   </div>
 </section>
 
-<section class="band">
+<section class="band" id="test">
   <div>
     <div class="eye rv"><b>03</b><span>Test</span><i></i></div>
     <h2 class="rv">The charts failed their own audit.</h2>
     <div class="cols">
       <p class="rv">The dashboards pulled charts from several sources: the chart kit, two generations of widgets and a bullet chart. The same blue differed between them, half carried gradients, and gridlines came in two styles.</p>
-      <p class="rv">An audit moved all of them to one source of chart style, with flat fills from tokens. It also caught contrast failures on the dark widget surface, shown here at the real values.</p>
+      <p class="rv">An audit moved all of them to one source of chart style, with flat fills from tokens. It also caught contrast failures on the dark widget surface, measured here against the real values.</p>
     </div>
-    <div class="audit rv">
-      <div class="fix"><span class="mono">Axis text<br>--ns-chart-label-text</span>
-        <div class="pair"><div><div class="txt" style="color:#6a6a9f">Oct 1 to Oct 22</div><b>3.4:1</b><small>Before</small></div><div><div class="txt" style="color:#8f8fc0">Oct 1 to Oct 22</div><b>5.6:1</b><small>After</small></div></div></div>
-      <div class="fix"><span class="mono">Series 2<br>--ns-chart-series-2</span>
-        <div class="pair"><div><div class="bar" style="background:#023aff"></div><b>2.5:1</b><small>Before</small></div><div><div class="bar" style="background:#2858ff"></div><b>3.2:1</b><small>After</small></div></div></div>
-      <div class="fix"><span class="mono">Series 4<br>--ns-chart-series-4</span>
-        <div class="pair"><div><div class="bar" style="background:#4807ea"></div><b>2.0:1</b><small>Before</small></div><div><div class="bar" style="background:#7844f9"></div><b>3.3:1</b><small>After</small></div></div></div>
+    <div class="spec rv" id="spec" data-state="before">
+      <figure class="plot"><figcaption class="plot__h mono"><span>Specimen chart, sample data</span><b id="pstate">Before the audit</b></figcaption><svg id="chart" viewBox="0 0 720 462" role="img" aria-label="Bar chart specimen showing four series before and after the audit"></svg></figure>
+      <div class="ledger">
+        <div class="segc" id="sstate" role="group" aria-label="Audit state"><button type="button" data-s="before" aria-pressed="true">Before</button><button type="button" data-s="after" aria-pressed="false">After</button></div>
+        <ul id="led"></ul>
+      </div>
     </div>
   </div>
 </section>
@@ -338,39 +566,56 @@ footer{padding:24px var(--gutr) 32px var(--gut);color:var(--ns-gray-2);display:f
   </div>
 </section>
 
-<section class="band">
+<section class="band" id="ship">
   <div>
     <div class="eye rv"><b>05</b><span>Ship</span><i></i></div>
     <h2 class="rv">Live, and still honest about its limits.</h2>
     <ol class="chain rv">
-      <li><a href="northstar/#/foundations/tokens"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-tokens.jpg" alt="NorthStar token reference page" loading="lazy"></span><span class="seg"></span><b>225</b><small>Tokens</small></a></li>
-      <li><a href="northstar/#/components"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-components.jpg" alt="NorthStar components page" loading="lazy"></span><span class="seg"></span><b>57</b><small>Components</small></a></li>
-      <li><a href="northstar/#/patterns/forms"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-patterns.jpg" alt="NorthStar forms pattern page" loading="lazy"></span><span class="seg"></span><b>9</b><small>Patterns</small></a></li>
-      <li><a href="northstar/dashboards/campaign-command.html"><span class="tile"><img src="ASSETS/northstar-case-study/img/campaign-command.jpg" alt="Campaign Command dashboard" loading="lazy"></span><span class="seg"></span><b>24</b><small>Dashboards</small></a></li>
+      <li><a href="northstar/#/foundations/tokens"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-tokens.jpg" alt="NorthStar token reference page" loading="lazy"></span><span class="seg"></span><b data-n="225">225</b><small>Tokens</small></a></li>
+      <li><a href="northstar/#/components"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-components.jpg" alt="NorthStar components page" loading="lazy"></span><span class="seg"></span><b data-n="57">57</b><small>Components</small></a></li>
+      <li><a href="northstar/#/patterns/forms"><span class="tile"><img src="ASSETS/northstar-case-study/img/ship-patterns.jpg" alt="NorthStar forms pattern page" loading="lazy"></span><span class="seg"></span><b data-n="9">9</b><small>Patterns</small></a></li>
+      <li><a href="northstar/dashboards/campaign-command.html"><span class="tile"><img src="ASSETS/northstar-case-study/img/campaign-command.jpg" alt="Campaign Command dashboard" loading="lazy"></span><span class="seg"></span><b data-n="24">24</b><small>Dashboards</small></a></li>
       <li class="open"><span class="tile" id="unbuilt"></span><span class="seg"></span><b>None yet</b><small>Product teams</small></li>
     </ol>
-    <div class="res">
-      <div class="rv"><h3>What it shows</h3><p>One person can keep a Figma library, tokens, docs and full screens in step, with a check that reports when they drift apart.</p></div>
-      <pre class="check rv" aria-label="Output of the site-side drift check"><i>$ figma-sync-check --offline</i>
+    <div class="shipgrid">
+      <div class="live rv" id="live">
+        <div class="bar mono"><i></i><i></i><i></i><span>mikelrosenthal.com/northstar</span><em id="lstate">Screenshot</em></div>
+        <div class="view" id="view">
+          <img src="ASSETS/northstar-case-study/img/ship-live.jpg" alt="NorthStar DS live documentation home page" loading="lazy">
+          <div class="skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <a class="hit" href="northstar/" target="_blank" rel="noopener" aria-label="Open the live NorthStar system"></a>
+          <div class="toast" id="toast" role="status" hidden><i>✓</i><div><b>No drift found</b><span class="mono">57 components, 58 spec tabs</span></div></div>
+        </div>
+      </div>
+      <div class="side">
+        <div class="con rv"><pre class="check" id="sout" aria-label="Output of the site-side drift check"><i>$ figma-sync-check --offline</i>
+NorthStar drift check (offline: site side only)
 Site components: 57 | Spec tabs: 58
-<b>No drift found.</b></pre>
-      <div class="rv"><h3>What it does not show</h3><p>No product team has adopted NorthStar, so there are no adoption or delivery numbers. Those are intended outcomes, not results.</p></div>
-    </div>
-    <div class="live rv">
-      <div class="bar mono"><i></i><i></i><i></i><span>mikelrosenthal.com/northstar</span></div>
-      <a class="view" href="northstar/" aria-label="Open the live NorthStar system"><img src="ASSETS/northstar-case-study/img/ship-live.jpg" alt="NorthStar DS live documentation home page" loading="lazy"></a>
-    </div>
-    <div class="end rv">
-      <a class="btn" href="northstar/" target="_blank" rel="noopener">Open the live system ↗</a>
-      <a class="btn alt" href="index.html#systems">Back to mikelrosenthal.com</a>
+
+<b>No drift found.</b></pre><div class="prog" id="sprog" hidden><i></i></div></div>
+        <div class="rv"><h3>What it shows</h3><p>One person can keep a Figma library, tokens, docs and full screens in step, with a check that reports when they drift apart.</p></div>
+        <div class="rv"><h3>What it does not show</h3><p>No product team has adopted NorthStar, so there are no adoption or delivery numbers. Those are intended outcomes, not results.</p></div>
+      </div>
     </div>
   </div>
 </section>
-<footer class="mono"><span>Mikel Rosenthal</span><span>Self-directed work. Dashboard data is sample data.</span></footer>
+<footer class="fin" id="fin">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="fin__in">
+    <a class="fin__mark" id="finmark" href="northstar/" aria-label="NorthStar DS live system"></a>
+    <p class="fin__line">The whole system is live. Open it and take it apart.</p>
+    <div class="fin__cta">
+      <a class="cta" id="go" href="northstar/" target="_blank" rel="noopener">Open the live system<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8"/></svg></a>
+      <a class="cta alt" href="index.html#systems">Back to mikelrosenthal.com</a>
+    </div>
+  </div>
+  <div class="fin__base mono"><span>Mikel Rosenthal</span><span>Self-directed work. Dashboard data is sample data.</span></div>
+</footer>
 </main>
 
 <script>window.NS=window.NS||{};</script>
 <script src="ASSETS/northstar-case-study/rays.js"></script>
+<script src="northstar/js/logo.js"></script>
 <script src="ASSETS/northstar-case-study/wire.js"></script>
 <script>
 (function(){
@@ -383,7 +628,9 @@ function mix(a,b,t){return a+(b-a)*t}
 // rays and mark use the same settings as js/app.js on the live system
 var NS=window.NS||{};
 if(NS.sideRays)NS.sideRays($("rays"),{rayColor2:"#3B82F6",spread:3,falloff:1.1,intensity:2,sourceX:.8,sourceY:-.35});
-$("rays").insertAdjacentHTML("beforeend",'<svg viewBox="40 30 374 390" xmlns="http://www.w3.org/2000/svg"><path d="M227 46.1094L393.703 328.086L290.844 281.977L227 170.25L163.156 281.977L60.2969 328.086L227 46.1094Z" fill="#C5C5C5"/><path d="M227 255.375L289.07 360.008L227 404.344L164.93 360.008L227 255.375Z" fill="#27BDFA"/></svg>');
+$("rays").insertAdjacentHTML("beforeend",NS.logoSvg());
+$("brand").innerHTML=NS.logoSvg();
+$("mark").innerHTML=NS.wordmarkSvg("","NorthStar DS",!still);
 
 // wireframes drawn from the tile positions measured on each finished dashboard
 function wireSVG(name){
@@ -474,6 +721,111 @@ $("unbuilt").innerHTML=wireSVG("campaign-command").replace("<svg ",'<svg preserv
 
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
 document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
+
+
+function seen(el,fn,m){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){o.disconnect();fn()}},{rootMargin:m||"0px 0px -15% 0px"});o.observe(el)}
+function press(box,key,val){[].forEach.call(box.children,function(b){b.setAttribute("aria-pressed",b.dataset[key]===val)})}
+
+// 02 Build: one role followed through four stations; a change travels left to right
+(function(){
+var T=$("trace"),R=[{k:"bg",f:"widget/bg",t:"--ns-widget-bg",d:"#191932",l:"#ffffff"},{k:"tx",f:"text/primary",t:"--ns-text-primary",d:"#ffffff",l:"#05050f"},{k:"s1",f:"chart/series-1",t:"--ns-chart-series-1",d:"#01f1e3",l:"#00a097"},{k:"star",f:"logo/star",t:"--ns-logo-star",d:"#27bdfa",l:"#023aff"}],ri=0,mode="dark",broken=false,tm=[],ct;
+$("minih").insertAdjacentHTML("afterbegin",NS.logoSvg());
+$("troles").innerHTML=R.map(function(r,i){return '<button type="button" data-k="'+r.k+'" aria-pressed="'+(i===0)+'">'+r.f+'</button>'}).join("");
+function later(fn,ms){if(still)fn();else tm.push(setTimeout(fn,ms))}
+function render(){
+  tm.forEach(clearTimeout);tm=[];var r=R[ri],v=mode==="light"?r.l:r.d;
+  press($("troles"),"k",r.k);press($("tmode"),"m",mode);
+  $("vname").textContent=r.f;$("vd").style.background=r.d;$("vl").style.background=r.l;$("vdh").textContent=r.d.toUpperCase();$("vlh").textContent=r.l.toUpperCase();T.dataset.vmode=mode;
+  later(function(){$("tsel").textContent=mode==="light"?':root[data-theme="light"] {':":root {";$("tname").textContent=r.t;$("tval").textContent=v.toUpperCase();$("tsw").style.background=v},160);
+  later(function(){T.dataset.role=r.k;T.dataset.mode=mode},320);
+  later(function(){T.dataset.screen=mode;$("scap").textContent=mode==="light"?"Board report, light":"Dashboard film, dark"},480);
+  if(!still){T.classList.remove("go");void T.offsetWidth;T.classList.add("go")}}
+$("troles").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;ri=R.findIndex(function(r){return r.k===b.dataset.k});render()});
+$("tmode").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;mode=b.dataset.m;render()});
+var OK="NorthStar drift check\n\n<b>No drift found.</b>",BAD='NorthStar drift check\n\n1 issue(s):\n  <em>drift Site "Button" points at Figma node 4038:31741, which no longer exists.</em>';
+$("brk").addEventListener("click",function(){
+  broken=!broken;T.classList.toggle("broken",broken);this.textContent=broken?"Repair the link":"Break a link";
+  var cmd="<i>$ figma-sync-check</i>";clearTimeout(ct);$("tout").innerHTML=cmd;$("tprog").hidden=false;
+  ct=setTimeout(function(){$("tprog").hidden=true;$("tout").innerHTML=cmd+"\n"+(broken?BAD:OK)},still?0:1100)});
+})();
+
+// 03 Test: the audit applied to a specimen chart; ratios are computed from the real colors on the widget surface
+(function(){
+var sp=$("spec"),BG="#191932",touched=false,state="before";
+function lum(h){var n=parseInt(h.slice(1),16),c=[n>>16&255,n>>8&255,n&255].map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function cr(a){var x=lum(a),y=lum(BG);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+var rows=[{f:"lb",n:"Axis text",t:"--ns-chart-label-text",a:"#6a6a9f",b:"#8f8fc0",need:4.5},{f:"s2",n:"Series 2",t:"--ns-chart-series-2",a:"#023aff",b:"#2858ff",need:3},{f:"s4",n:"Series 4",t:"--ns-chart-series-4",a:"#4807ea",b:"#7844f9",need:3},{f:"fill",n:"Fills",t:"Was: half carried gradients",a:"Gradient",b:"Flat"},{f:"grid",n:"Gridlines",t:"Was: two styles in use",a:"2 styles",b:"1 style"}];
+$("led").innerHTML=rows.map(function(r){return '<li><button type="button" data-f="'+r.f+'"><span class="ln"><b>'+r.n+'</b><span class="mono">'+r.t+'</span></span><span class="lv"><b class="'+(r.need?"":"w")+'"></b>'+(r.need?'<small class="bdg"></small>':"")+'</span></button></li>'}).join("");
+var V=[[62,38,50,28],[74,46,58,36],[55,52,66,30],[88,60,72,44]],L=["Oct 1","Oct 8","Oct 15","Oct 22"],o='<defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191932" stop-opacity="0"/><stop offset="1" stop-color="#191932" stop-opacity=".88"/></linearGradient></defs>';
+for(var k=0;k<=4;k++){var y=420-k*100;o+='<line class="gl'+(k%2?" alt":"")+'" x1="56" x2="704" y1="'+y+'" y2="'+y+'"/><text class="lb" x="44" y="'+(y+4)+'" text-anchor="end">'+k*25+'</text>'}
+V.forEach(function(g,gi){var x0=56+gi*162+20;
+  g.forEach(function(v,j){var h=v*4,at='style="--c:'+gi+';--d:'+(gi*4+j)+'" x="'+(x0+j*32)+'" y="'+(420-h)+'" width="26" height="'+h+'" rx="3"/>';
+    o+='<rect class="b s'+(j+1)+(j%2?"":" gr")+'" '+at;if(j%2===0)o+='<rect class="g gr s'+(j+1)+'" '+at});
+  o+='<text class="lb" x="'+(x0+61)+'" y="448" text-anchor="middle">'+L[gi]+'</text>'});
+$("chart").innerHTML=o;
+var cur=rows.map(function(r){return r.need?cr(r.a):0});
+function set(st,jump){state=st;sp.dataset.state=st;press($("sstate"),"s",st);$("pstate").textContent=st==="after"?"After the audit":"Before the audit";
+  [].forEach.call($("led").children,function(li,i){var r=rows[i],num=li.querySelector(".lv b"),bd=li.querySelector(".bdg");
+    if(!r.need){num.textContent=st==="after"?r.b:r.a;return}
+    var from=cur[i],to=cr(st==="after"?r.b:r.a),t0=performance.now();
+    function show(v){cur[i]=v;num.textContent=v.toFixed(1)+":1";var ok=v>=r.need;bd.textContent=(ok?"Passes ":"Fails ")+r.need+":1";bd.classList.toggle("ok",ok)}
+    if(jump||still){show(to);return}
+    (function tick(now){if(state!==st)return;var p=clamp((now-t0)/700);show(mix(from,to,ease(p)));if(p<1)requestAnimationFrame(tick)})(t0)})}
+set("before",true);
+$("sstate").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;touched=true;set(b.dataset.s)});
+var led=$("led");
+function focus(e){var b=e.target.closest("button");if(b)sp.dataset.f=b.dataset.f}
+function blur(){delete sp.dataset.f}
+led.addEventListener("pointerover",focus);led.addEventListener("focusin",focus);led.addEventListener("pointerleave",blur);led.addEventListener("focusout",blur);
+seen(sp,function(){if(still){set("after",true);return}setTimeout(function(){if(!touched)set("after")},1900)},"0px 0px -30% 0px");
+})();
+
+// 05 Ship: counts land, the check runs, the live system loads into the frame, the toast reports
+(function(){
+var view=$("view"),con=$("sout"),pg=$("sprog"),CMD="$ figma-sync-check --offline",OUT="NorthStar drift check (offline: site side only)\nSite components: 57 | Spec tabs: 58\n\n<b>No drift found.</b>";
+seen(document.querySelector(".chain"),function(){if(still)return;[].forEach.call(document.querySelectorAll(".chain b[data-n]"),function(b,i){var n=+b.dataset.n,t0=performance.now()+i*90+200;b.textContent=0;
+  (function tick(now){var p=clamp((now-t0)/900);b.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(performance.now())})});
+function fit(){var f=view.querySelector("iframe");if(f)f.style.transform="scale("+(view.clientWidth/1440).toFixed(4)+")"}
+addEventListener("resize",fit);
+function frame(){
+  if(innerWidth<900||(navigator.connection&&navigator.connection.saveData))return;
+  var f=document.createElement("iframe");f.title="NorthStar DS live documentation";f.tabIndex=-1;f.setAttribute("aria-hidden","true");
+  view.classList.add("loading");
+  f.addEventListener("load",function(){setTimeout(function(){view.classList.remove("loading");view.classList.add("on");var e=$("lstate");e.textContent="Live";e.classList.add("on")},500)});
+  f.src="northstar/";view.insertBefore(f,view.querySelector(".skel"));fit()}
+function done(){pg.hidden=true;con.innerHTML="<i>"+CMD+"</i>\n"+OUT;$("toast").hidden=false}
+if(!still)con.innerHTML="<i>$</i>";
+seen($("live"),function(){
+  if(still){done();return}
+  frame();var i=0,el=con.firstChild;
+  (function type(){el.textContent=CMD.slice(0,++i);if(i<CMD.length)setTimeout(type,26);else{pg.hidden=false;setTimeout(done,1300)}})()},"0px 0px -25% 0px");
+})();
+
+// Closing: star trails turn around the star in the mark; they lengthen as the footer arrives and while the main action is hovered
+(function(){
+var f=$("fin"),cv=$("sky"),cx=cv.getContext("2d"),m=$("finmark"),S=[],W=0,H=0,px=0,py=0,rot=0,ex=1,exT=1,on=false,last=0;
+var cols=["255,255,255","255,255,255","255,255,255","208,208,218","1,241,227","39,189,250","153,27,250"];
+m.innerHTML=NS.wordmarkSvg("","",false);
+function size(){
+  var d=Math.min(2,devicePixelRatio||1),fr=f.getBoundingClientRect(),r=m.getBoundingClientRect();W=f.clientWidth;H=f.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+  px=r.left-fr.left+r.width*.6652;py=r.top-fr.top+r.height*.185;
+  var R=Math.hypot(Math.max(px,W-px),Math.max(py,H-py)),n=Math.round(Math.min(360,W*H/4200));S=[];
+  for(var i=0;i<n;i++)S.push({r:30+Math.sqrt(Math.random())*R,a:Math.random()*6.2832,w:.5+Math.random()*1.3,o:.16+Math.random()*.5,c:cols[i%cols.length]});
+  if(!on)draw(performance.now(),true)}
+function draw(now,once){
+  var dt=Math.min(.05,(now-last)/1000)||0;last=now;rot+=dt*.03;ex+=(exT-ex)*.05;
+  var vis=still?1:clamp((innerHeight-f.getBoundingClientRect().top)/(innerHeight*.9)),L=.03+.3*vis*ex;
+  cx.clearRect(0,0,W,H);cx.lineCap="round";
+  for(var i=0;i<S.length;i++){var s=S[i],a=s.a+rot;cx.lineWidth=s.w;
+    cx.strokeStyle="rgba("+s.c+","+(s.o*.35).toFixed(3)+")";cx.beginPath();cx.arc(px,py,s.r,a-L,a);cx.stroke();
+    cx.strokeStyle="rgba("+s.c+","+s.o.toFixed(3)+")";cx.beginPath();cx.arc(px,py,s.r,a-L*.28,a);cx.stroke()}
+  if(on&&!once)requestAnimationFrame(draw)}
+size();addEventListener("resize",size);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
+if(!still){
+  new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!on){on=true;last=performance.now();requestAnimationFrame(draw)}else if(!v)on=false}).observe(f);
+  seen(m,function(){m.innerHTML=NS.wordmarkSvg("","",true)},"0px 0px -20% 0px");
+  var go=$("go");go.addEventListener("pointerenter",function(){exT=2.6});go.addEventListener("pointerleave",function(){exT=1});go.addEventListener("focus",function(){exT=2.6});go.addEventListener("blur",function(){exT=1})}
+})();
 
 if(still){paint(1);track()}else requestAnimationFrame(frame);
 })();
