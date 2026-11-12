@@ -24,7 +24,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FILE_KEY = "VZxmDNQiosTN6gqnvEQ65Z";
 const SITE = "https://mikelrosenthal.com/northstar/#/";
 // Scan every page except section dividers, docs and utility pages, and the widget/icon libraries.
-const SKIP_PAGE = /^———|^(Cover|Getting Started|Component Status|Changelog|Icons|Widgets|Informers.*|Dashboards|Dashboards \(original\)|Archive|Doc template|Chart kit)$/; /* Chart kit is a reference copy, never imported */
+const SKIP_PAGE = /^———|^(Cover|Getting Started|Component Status|Changelog|Icons|Widgets|Informers.*|Dashboards|Dashboards \(original\)|Archive|Archive · .*|Doc template|Chart kit)$/; /* Chart kit is a reference copy, never imported */
 const SCAN_PAGE = (name) => !SKIP_PAGE.test(name.trim());
 const offline = process.argv.includes("--offline");
 
@@ -123,6 +123,7 @@ async function online() {
 
   // Figma -> site: every component needs a doc link to a real site route.
   for (const c of figma) {
+    if (c.name.startsWith("_") || c.name.startsWith(".")) continue; /* private building blocks, hidden from publishing */
     const links = (meta[c.id] && meta[c.id].documentationLinks) || [];
     const uri = links[0] && links[0].uri;
     if (!uri) {

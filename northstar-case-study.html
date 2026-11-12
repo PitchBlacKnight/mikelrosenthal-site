@@ -435,7 +435,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
       <h1 id="mark">NORTHSTAR <b>DS</b></h1>
       <p>A design system for enterprise consoles, live in a working portal and governed from Figma variables to full dashboards.</p>
       <div class="stats">
-        <div><b>225</b><span>Tokens</span></div>
+        <div><b>231</b><span>Tokens</span></div>
         <div><b>58</b><span>Components</span></div>
         <div><b>9</b><span>Patterns</span></div>
         <div><b>24</b><span>Dashboards</span></div>
@@ -508,7 +508,7 @@ h3{font:700 20px/28px var(--ns-font-sans);margin-bottom:6px}
         <div class="prog" id="tprog" hidden><i></i></div>
         <pre class="check" id="tout" aria-live="polite"><i>$ figma-sync-check --offline</i>
 NorthStar drift check (offline: site side only)
-Site components: 58 | Spec tabs: 58
+Site components: 58 | Spec tabs: 59
 
 <b>No drift found.</b></pre>
         <small class="mono">The break is simulated on this page. The real check reads the Figma file.</small>
@@ -586,13 +586,13 @@ Site components: 58 | Spec tabs: 58
           <img src="ASSETS/northstar-case-study/img/ship-live.jpg" alt="NorthStar DS live documentation home page" loading="lazy">
           <div class="skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <a class="hit" href="northstar/" target="_blank" rel="noopener" aria-label="Open the live NorthStar system"></a>
-          <div class="toast" id="toast" role="status" hidden><i>✓</i><div><b>No drift found</b><span class="mono">57 components, 58 spec tabs</span></div></div>
+          <div class="toast" id="toast" role="status" hidden><i>✓</i><div><b>No drift found</b><span class="mono">58 components, 59 spec tabs</span></div></div>
         </div>
       </div>
       <div class="side">
         <div class="con rv"><pre class="check" id="sout" aria-label="Output of the site-side drift check"><i>$ figma-sync-check --offline</i>
 NorthStar drift check (offline: site side only)
-Site components: 58 | Spec tabs: 58
+Site components: 58 | Spec tabs: 59
 
 <b>No drift found.</b></pre><div class="prog" id="sprog" hidden><i></i></div></div>
         <div class="rv"><h3>What it shows</h3><p>A Figma library, tokens, docs and full screens stay in step, with a check that reports when they drift apart.</p></div>
@@ -784,7 +784,7 @@ seen(sp,function(){if(still){set("after",true);return}setTimeout(function(){if(!
 
 // 05 Ship: counts land, the check runs, the live system loads into the frame, the toast reports
 (function(){
-var view=$("view"),con=$("sout"),pg=$("sprog"),CMD="$ figma-sync-check --offline",OUT="NorthStar drift check (offline: site side only)\nSite components: 58 | Spec tabs: 58\n\n<b>No drift found.</b>";
+var view=$("view"),con=$("sout"),pg=$("sprog"),CMD="$ figma-sync-check --offline",OUT="NorthStar drift check (offline: site side only)\nSite components: 58 | Spec tabs: 59\n\n<b>No drift found.</b>";
 seen(document.querySelector(".chain"),function(){if(still)return;[].forEach.call(document.querySelectorAll(".chain b[data-n]"),function(b,i){var n=+b.dataset.n,t0=performance.now()+i*90+200;b.textContent=0;
   (function tick(now){var p=clamp((now-t0)/900);b.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(performance.now())})});
 function fit(){var f=view.querySelector("iframe");if(f)f.style.transform="scale("+(view.clientWidth/1440).toFixed(4)+")"}
