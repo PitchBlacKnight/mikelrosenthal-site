@@ -50,3 +50,39 @@ Each entry: the problem, options rejected and why, what was tested, what shipped
 **Test.** `node tools/check-all.mjs`: all 11 checks pass, including the online Figma drift check in strict mode and the visual baselines. Every visual change was screenshotted on a dark surface in Figma.
 
 **Ship.** Not published. Branch `claude/north-star-design-cleanup-b37580`. The portfolio case study page types the token count; it was not on this machine during the check and needs 225 changed to 231 when it is published.
+
+## 2026-11-12 · New-screen test (playbook step 6)
+
+**Define.** Prove the system is agent-ready: an agent with no context builds a screen it has never seen, from a Figma frame, using only the agent files.
+
+**Build.** A new frame was composed in Figma from NorthStar instances on page "_Agent test · new screen": "Team members · settings" (4762:2541), with breadcrumb, header actions, info alert, tabs, search and role filter, a selectable table with a bulk bar, a plan card and a seats meter. The bulk "Remove" button was left primary on purpose, against the rule that destructive actions use danger. A fresh Sonnet agent got the frame and was allowed to read only `agent/*`, `llms.txt`, `css/tokens.css`, `css/components.css` and `tools/agent-check.mjs`.
+
+**Test.** Output: `tests/agent-screens/team-members.html`. `agent-check`: 43 ns- classes, 17 tokens, clean. No raw colors, no script. Rendered at 1280 it matches the frame's layout and content closely. The agent followed the rules over the frame where they disagreed: Remove became `ns-btn--danger` with a confirmation modal, and status used `ns-dot` in table cells. It also added a "Sample data" line and an accessible table caption.
+
+**Findings (verified):**
+- `agent/northstar.md` is 233 KB (2,833 lines). It does not fit one read, so the agent had to grep. It needs an index at the top or one file per component.
+- Floorplans and patterns are links to the website, with no markup. There are no page-layout classes, so the agent wrote its own page, body and toolbar CSS. This was the biggest gap.
+- Docs and CSS disagree: `ns-alert--default` is documented but not defined; `ns-btn--tertiary` is styled the same as outline, though the docs call it a text button; several component token lists still name primitives or stale values (Alert, Tabs, Button, Select, Progress gradient); `.ns-table-bar.is-batch` and `ns-modal-backdrop` are undocumented; the dark theme value is never stated.
+- Behavior has no markup-only story: the checker forbids `<script>`, but the docs' tabs, modal, sort and select-all hooks need `js/`. The agent used the native `popover` attribute for the modal.
+- Figma and code differ on Search (Figma rectangle, code pill), Select (Figma border), table header style, card eyebrow and radius, progress track, breadcrumb link color and tab glow.
+
+**Ship.** Results recorded here; the fixes above are open.
+
+## 2026-11-12 · Fixes from the new-screen test (no visual change)
+
+**Define.** Close the gaps the first agent run found, without changing anything a visitor sees on the site.
+
+**Build.**
+- `agent/northstar.md` is now an index (33 KB, was 233 KB): rules, layout, templates, a component table and semantic tokens. Each component has its own file in `agent/components/`, each pattern its own in `agent/patterns/`. The exporter removes orphaned files.
+- New layout classes in `components.css`, unused by the site: `ns-app` (`--no-nav`, `__nav`, `__main`), `ns-page-head` (`__text`, `__eyebrow`, `__title`, `__desc`, `__actions`), `ns-stack`, `ns-cluster`, `ns-split`, `ns-columns`, `ns-body`, `ns-field--grow`, `ns-visually-hidden`, `ns-card__eyebrow`. The modifiers `ns-alert--default` and `ns-alert--accent` are now defined with the same values as the base alert.
+- Four runnable templates in `agent/templates/` (analytical list, object detail, settings form, dashboard). They are checked in `check-all`.
+- Docs corrected to match the CSS: 22 token-list entries that named primitives or old values, the tertiary button description, the dark theme value, `is-batch`, `is-selected`, the modal backdrop, and the progress `--_v` hook. A Behavior section explains that NorthStar ships markup and CSS, not a script.
+- Figma matched to the code: fields (borderless, 4px corners, search as a pill), card (8px corners, overline eyebrow), progress (bare 6px track), alert (4px corners), table header (overline) and status cells (ns-dot style), breadcrumb (teal links, primary current page), tab underline (no glow).
+
+**Rejected.** A standalone behavior script pulled out of `js/ui.js`: that file mixes component behavior with docs demos, so extracting it would risk changing the site. Restyling the tertiary button: it would change about 35 buttons on the site.
+
+**Test.** A pixel comparison of the live site and the new build at 1440px, on 12 pages including the dashboards index and three dashboards, found 0 changed pixels. `check-all`: 12 of 12 pass. A second fresh Sonnet agent rebuilt the same frame from the new files: 0 lines of custom CSS (the first run wrote its own page CSS), 14 tool calls (was about 20), and a clean checker run. It copied most of the screen from the templates. Its remaining notes (no-nav shell, body margin, aside width, toolbar field width, hidden caption, confirm pattern, `--_v`, tab panel ids) were fixed in the same pass.
+
+**Ship.** Published with this commit.
+
+**Open.** A real behavior script for agents, and the type scale: the CSS `--ns-type-h1`..`h6` sizes are a different scale from the Figma Heading styles (CSS h2 is 60px; Figma Heading / H2 is 24px).
