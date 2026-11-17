@@ -1,6 +1,6 @@
 /* Shared block palette, section separation and button treatment for the process pages. */
 :root{
-  --p-lavender:#E1E4E6; --p-sky:#CFEAF6; --p-peach:#EFE3D6; --p-mint:#D3F0DC; --p-volt:#00A1DE;
+  --p-lavender:#dcd6ff; --p-sky:#cfe4ff; --p-peach:#ffd9c2; --p-mint:#d1ffca; --p-volt:#fff100;
   --p-cobalt:#2438ff; --p-cobalt-2:#1b2bd6; --p-ink:#000; --p-paper:#fff;
 }
 

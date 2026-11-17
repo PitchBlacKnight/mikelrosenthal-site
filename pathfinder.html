@@ -8,7 +8,7 @@
 <title>Pathfinder: One place to run a deal · Mikel Rosenthal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Jost:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:ital,wght@0,300..600;1,300..500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add("js")</script>
 <style>
 /* One visual system. Real screens: only the final UI family, always in the same frame.
@@ -387,14 +387,14 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
 .live-ds>div:first-child{flex:1 1 min(100%,520px)}
 .live-ds .btn{border:1px solid rgba(0,0,0,.14)}
 /* main site nav, same as the other pages */
-.nav{--cream:#EDEDE8;--cream-70:rgba(237,237,232,.72);--cream-45:rgba(237,237,232,.45);--coral:#00A1DE;--nav-ink:#111315;
-  --serif:"Jost",Futura,sans-serif;--sans:"Hanken Grotesk","Helvetica Neue",sans-serif;--nav-ease:cubic-bezier(.22,1,.36,1);
+.nav{--cream:#F1E8D6;--cream-70:rgba(241,232,214,.72);--cream-45:rgba(241,232,214,.45);--coral:#EF7A5E;--nav-ink:#0F0C0A;
+  --serif:"Fraunces",Georgia,serif;--sans:"Space Grotesk","Helvetica Neue",sans-serif;--nav-ease:cubic-bezier(.22,1,.36,1);
   position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
   padding:22px clamp(20px,4vw,56px);font-family:var(--sans);color:var(--cream);
   transition:background .5s,backdrop-filter .5s,padding .5s,transform .6s var(--nav-ease)}
 .nav a{color:inherit;text-decoration:none}
 .nav.is-hidden{transform:translateY(-110%)}
-.nav.is-scrolled{background:rgba(17,19,21,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid rgba(237,237,232,.13)}
+.nav.is-scrolled{background:rgba(15,12,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid rgba(241,232,214,.13)}
 .nav-name{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:.02em;line-height:1.15;display:flex;flex-direction:column;gap:5px}
 .nav-name em{font-style:italic;color:var(--coral)}
 .nav-name .nm{display:block}
@@ -404,7 +404,7 @@ dialog img{max-width:96vw;max-height:94vh;border-radius:10px;cursor:zoom-out}
 .nav-links a:hover,.nav-links a[aria-current]{color:var(--cream)}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--coral);transition:width .4s var(--nav-ease)}
 .nav-links a:hover::after,.nav-links a[aria-current]::after{width:100%}
-.nav-links a.nav-pill{font-size:10px;letter-spacing:.2em;border:1px solid rgba(0,161,222,.5);color:var(--coral);padding:8px 16px;border-radius:99px;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s}
+.nav-links a.nav-pill{font-size:10px;letter-spacing:.2em;border:1px solid rgba(239,122,94,.5);color:var(--coral);padding:8px 16px;border-radius:99px;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s}
 .nav-links a.nav-pill::after{display:none}
 .nav-links a.nav-pill:hover{background:var(--coral);color:var(--nav-ink)}
 .nav-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:navpulse 2.2s infinite}
