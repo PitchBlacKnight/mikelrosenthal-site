@@ -100,11 +100,11 @@ SHELL="""<!DOCTYPE html>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:ital,wght@0,300..600;1,300..500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <title>{title}, Mikel Rosenthal</title>
 <link rel="stylesheet" href="{prefix}process.css">
 <link rel="stylesheet" href="{prefix}docs/docs.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0C0A'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23EF7A5E' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111315'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%2300A1DE' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <div class="ftl" aria-hidden="true"><video autoplay muted loop playsinline poster="{prefix}assets/follow-the-leader.jpg" src="{prefix}assets/follow-the-leader.mp4"></video></div>
@@ -126,26 +126,26 @@ SHELL="""<!DOCTYPE html>
 </html>
 """
 CSS="""/* docs pages */
-body{margin:0;background:#e5e5e5;color:#000;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}a:hover{background:#d1ffca}
+body{margin:0;background:#EDEDE8;color:#000;font-family:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.25;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{background:#D3F0DC}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px;position:relative;z-index:1}
 .kick{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase;color:#444}
-.disp{font-family:"Archivo",sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.9;margin:0}
+.disp{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:-0.03em;line-height:0.9;margin:0}
 nav.top{min-height:8rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0}
 .pill{background:#fff;border-radius:48px;padding:12px 20px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .pill a{font-size:16px;font-weight:500;color:#444;padding:8px 14px;border-radius:64px}
 .pill a[aria-current="page"]{background:#000;color:#fff}
-.ftl{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#e5e5e5}
+.ftl{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#EDEDE8}
 .ftl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply;opacity:.14}
 @media (prefers-reduced-motion:reduce){.ftl video{display:none}}
-.dochead{background:var(--p-tint,#dcd6ff);border-radius:40px;padding:clamp(28px,5vw,56px);margin-bottom:24px}
+.dochead{background:var(--p-tint,#E1E4E6);border-radius:40px;padding:clamp(28px,5vw,56px);margin-bottom:24px}
 .dochead .chip{display:inline-block;background:#000;color:#fff;padding:8px 14px;border-radius:64px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:-0.03em;text-transform:uppercase}
 .dochead h1{font-size:clamp(40px,7vw,96px);margin:24px 0 16px}
 .dochead p.desc{font-size:clamp(18px,2.2vw,24px);line-height:1.2;max-width:60ch;margin:0}
 .doclayout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,280px);gap:24px;align-items:start}
 @media (max-width:900px){.doclayout{grid-template-columns:1fr}}
 article.doc{background:#fff;border-radius:32px;padding:clamp(28px,4vw,48px);font-size:17px;line-height:1.5;letter-spacing:-0.005em;min-width:0}
-.doc h2{font-family:"Archivo",sans-serif;font-variation-settings:'wdth' 62;font-weight:700;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.95;font-size:clamp(28px,3.4vw,40px);margin:40px 0 14px;padding-top:24px;border-top:1px solid #c6c6c6}
+.doc h2{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:-0.03em;line-height:0.95;font-size:clamp(28px,3.4vw,40px);margin:40px 0 14px;padding-top:24px;border-top:1px solid #c6c6c6}
 .doc h2:first-child{margin-top:0;padding-top:0;border-top:0}
 .doc h3{font-size:20px;line-height:1.2;letter-spacing:-0.02em;margin:28px 0 10px}
 .doc h4{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:#444;margin:24px 0 8px;font-weight:400}
@@ -153,7 +153,7 @@ article.doc{background:#fff;border-radius:32px;padding:clamp(28px,4vw,48px);font
 .doc ul,.doc ol{margin:0 0 16px;padding-left:24px;max-width:72ch}.doc li{margin:0 0 6px}.doc li>ul,.doc li>ol{margin-top:6px}
 .doc code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.88em;background:#f3f3f3;padding:2px 6px;border-radius:6px}
 .doc pre{background:#000;color:#fff;border-radius:16px;padding:20px 24px;overflow-x:auto;font-size:14px;line-height:1.5;margin:0 0 18px}.doc pre code{background:none;padding:0;color:inherit;font-size:inherit}
-.doc blockquote{margin:0 0 18px;padding:16px 20px;background:#fff100;border-radius:16px;max-width:72ch}.doc blockquote p:last-child{margin:0}
+.doc blockquote{margin:0 0 18px;padding:16px 20px;background:#00A1DE;border-radius:16px;max-width:72ch}.doc blockquote p:last-child{margin:0}
 .doc .tbl{overflow-x:auto;margin:0 0 18px}.doc table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.35}
 .doc th{text-align:left;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:-0.03em;color:#444;font-weight:400;padding:8px 10px;border-bottom:1px solid #c6c6c6;white-space:nowrap}
 .doc td{padding:10px;border-bottom:1px solid #f3f3f3;vertical-align:top}
@@ -164,8 +164,8 @@ aside.side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
 .side .box h3{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:-0.03em;color:#444;font-weight:400;margin:0 0 6px}
 .side .box a{display:block;padding:8px 10px;border-radius:10px;font-size:15px;font-weight:500;color:#444}
 .side .box a[aria-current="page"]{background:#000;color:#fff}
-.side .box a.raw{background:#fff100;color:#000;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;text-align:center;padding:12px;border-radius:64px;margin-top:6px}
-.side .box a.raw:hover{background:#d1ffca}
+.side .box a.raw{background:#00A1DE;color:#000;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;text-align:center;padding:12px;border-radius:64px;margin-top:6px}
+.side .box a.raw:hover{background:#D3F0DC}
 /* docs index */
 .group{border-radius:40px;padding:clamp(28px,5vw,56px);margin-bottom:24px}
 .group h2{font-size:clamp(32px,5vw,64px);margin:16px 0 8px}
@@ -179,9 +179,9 @@ aside.side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
 .foot h2{font-size:clamp(40px,8vw,104px);margin:0 0 24px}
 .foot p{color:#979797;font-size:clamp(18px,2.4vw,28px);line-height:1.2;max-width:46ch;margin:0 0 32px}
 .foot .links{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.foot .links a{color:#fff}.foot .links a.em{background:#fff100;color:#000;padding:12px 18px;border-radius:64px}
+.foot .links a{color:#fff}.foot .links a.em{background:#00A1DE;color:#000;padding:12px 18px;border-radius:64px}
 """
-TINTS=["#dcd6ff","#cfe4ff","#ffd9c2","#d1ffca"]
+TINTS=["#E1E4E6","#CFEAF6","#EFE3D6","#D3F0DC"]
 # Presenter-only files: still built (noindex) but not linked from sidebars, raw links, or the index.
 HIDDEN={"DEMO.md","LOOM.md","PROJECT-INSTRUCTIONS.md"}
 GROUP_LABEL={"":"Guides","examples":"Worked examples"}
@@ -230,6 +230,6 @@ for i,t in enumerate(order):
     label=GROUP_LABEL.get(t,t); lede={"":"Start here: what the library is, how it is organized, and how to load it as a Claude project.","examples":"The nine skills run end to end on one composite project, so the output shape is visible before anyone runs a prompt."}.get(t,"")
     cards="".join(f'<a href="{x["out"]}"><span class="kick">{esc(os.path.basename(x["rel"]))}</span><span class="t">{esc(x["title"])}</span>'+(f'<span class="sub">{esc(x["fm"].get("description",""))[:140]}</span>' if x["fm"].get("description") else '')+'</a>' for x in items)
     gh+=f'<section class="group" style="background:{TINTS[i%4]}"><span class="kick" style="display:inline-block;background:#000;color:#fff;padding:8px 14px;border-radius:64px">{len(items)} file{"s" if len(items)!=1 else ""}</span><h2 class="disp">{esc(label)}</h2>'+(f'<p class="lede">{lede}</p>' if lede else '')+f'<div class="cards">{cards}</div></section>'
-head='<header class="dochead" style="--p-tint:#fff;background:#000;color:#fff"><span class="chip" style="background:#d1ffca;color:#000">Docs · skills/</span><h1 class="disp">The library,<br>as pages</h1><p class="desc" style="color:#979797">Every markdown file in the skill folder, rendered with navigation. The raw files stay where they are for loading into a Claude project.</p></header>'
+head='<header class="dochead" style="--p-tint:#fff;background:#000;color:#fff"><span class="chip" style="background:#D3F0DC;color:#000">Docs · skills/</span><h1 class="disp">The library,<br>as pages</h1><p class="desc" style="color:#979797">Every markdown file in the skill folder, rendered with navigation. The raw files stay where they are for loading into a Claude project.</p></header>'
 open(os.path.join(OUT,"index.html"),"w",encoding="utf-8").write(SHELL.format(title="Docs",prefix="../",nav=nav("../","docs/index.html"),body=head+gh,drive=DRIVE))
 print("built",len(docs),"pages +",len(order),"groups")
