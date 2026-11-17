@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200..800;1,200..800&family=Hanken+Grotesk:ital,wght@0,300..600;1,300..500&family=Bebas+Neue&family=Space+Mono:wght@400;700&family=EB+Garamond:ital@1&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    MIKEL ROSENTHAL — EXPERIENTIAL V2.1 “WILD”
@@ -29,20 +29,20 @@
    warm ink, aged cream, coral flare, dusted pink, sea slate
    ============================================================ */
 :root{
-  --ink:      #0F0C0A;
-  --ink-2:    #171210;
-  --ink-3:    #1F1815;
-  --cream:    #F1E8D6;
-  --cream-70: rgba(241,232,214,.72);
-  --cream-45: rgba(241,232,214,.45);
-  --cream-25: rgba(241,232,214,.25);
-  --coral:    #EF7A5E;
-  --pink:     #DE93A9;
-  --slate:    #8FA8A6;
-  --line:     rgba(241,232,214,.13);
-  --line-ink: rgba(15,12,10,.16);
-  --serif: "Fraunces", Georgia, serif;
-  --sans: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --ink:      #111315;
+  --ink-2:    #181B1E;
+  --ink-3:    #202428;
+  --cream:    #EDEDE8;
+  --cream-70: rgba(237,237,232,.72);
+  --cream-45: rgba(237,237,232,.45);
+  --cream-25: rgba(237,237,232,.25);
+  --coral:    #00A1DE;
+  --pink:     #3DBE6A;
+  --slate:    #A5ACAF;
+  --line:     rgba(237,237,232,.13);
+  --line-ink: rgba(17,19,21,.16);
+  --serif: "Jost", "Futura", sans-serif;
+  --sans: "Hanken Grotesk", "Helvetica Neue", sans-serif;
   --ease: cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -103,13 +103,13 @@ body{animation:pagefade .5s ease-out both}
 }
 .stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;will-change:transform;contain:strict;
   background-image:
-    radial-gradient(1px 1px at 12% 24%, rgba(241,232,214,.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 12% 24%, rgba(237,237,232,.5) 50%, transparent 51%),
     radial-gradient(1px 1px at 78% 12%, rgba(222,147,169,.55) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 34% 68%, rgba(241,232,214,.35) 50%, transparent 51%),
-    radial-gradient(1px 1px at 91% 55%, rgba(239,122,94,.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 55% 88%, rgba(241,232,214,.4) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 34% 68%, rgba(237,237,232,.35) 50%, transparent 51%),
+    radial-gradient(1px 1px at 91% 55%, rgba(0,161,222,.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 88%, rgba(237,237,232,.4) 50%, transparent 51%),
     radial-gradient(1.5px 1.5px at 5% 79%, rgba(143,168,166,.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 66% 38%, rgba(241,232,214,.3) 50%, transparent 51%),
+    radial-gradient(1px 1px at 66% 38%, rgba(237,237,232,.3) 50%, transparent 51%),
     radial-gradient(1px 1px at 23% 45%, rgba(222,147,169,.35) 50%, transparent 51%);
   background-size:520px 520px;
 }
@@ -129,7 +129,7 @@ body{animation:pagefade .5s ease-out both}
   transition:background .5s,backdrop-filter .5s,padding .5s,transform .6s var(--ease);
 }
 .nav.is-hidden{transform:translateY(-110%)}
-.nav.is-scrolled{background:rgba(15,12,10,.72);backdrop-filter:blur(14px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid var(--line)}
+.nav.is-scrolled{background:rgba(17,19,21,.72);backdrop-filter:blur(14px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid var(--line)}
 .nav-name{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:.02em;display:flex;flex-direction:column;gap:5px}
 .nav-name em{font-style:italic;color:var(--coral)}
 .nav-tag{font-family:var(--sans);font-weight:300;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45);white-space:nowrap}
@@ -143,7 +143,7 @@ body{animation:pagefade .5s ease-out both}
 .nav-links a:hover::after{width:100%}
 .nav-pill{
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  border:1px solid rgba(239,122,94,.5);color:var(--coral);
+  border:1px solid rgba(0,161,222,.5);color:var(--coral);
   padding:8px 16px;border-radius:99px;display:inline-flex;align-items:center;gap:8px;
   transition:background .3s,color .3s;
 }
@@ -170,8 +170,8 @@ body{animation:pagefade .5s ease-out both}
 body[data-hero="gif"] .hero-bg video:not(.hero-gif){display:none}
 body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .hero-bg::after{content:"";position:absolute;inset:0;background:
-  radial-gradient(120% 90% at 70% 10%, transparent 0%, rgba(15,12,10,.55) 55%, var(--ink) 100%),
-  linear-gradient(180deg, rgba(15,12,10,.55) 0%, rgba(15,12,10,.15) 40%, var(--ink) 96%)}
+  radial-gradient(120% 90% at 70% 10%, transparent 0%, rgba(17,19,21,.55) 55%, var(--ink) 100%),
+  linear-gradient(180deg, rgba(17,19,21,.55) 0%, rgba(17,19,21,.15) 40%, var(--ink) 96%)}
 .hero-inner{position:relative;z-index:2;padding:0 clamp(20px,4vw,56px);width:100%}
 .hero-eyebrow{
   display:flex;align-items:center;gap:14px;
@@ -201,7 +201,7 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 @keyframes drip{to{top:110%}}
 
 /* ---- ticker ---- */
-.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:20px 0;background:rgba(15,12,10,.5);position:relative;z-index:2}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:20px 0;background:rgba(17,19,21,.5);position:relative;z-index:2}
 .ticker-track{display:flex;gap:0;width:max-content}
 .ticker-track span{
   font-family:var(--serif);font-style:italic;font-weight:300;
@@ -218,7 +218,7 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 }
 .sec-tag .no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--coral)}
 .sec-tag::after{content:"";flex:1;height:1px;background:var(--line);transform-origin:left}
-.light .sec-tag{color:rgba(15,12,10,.5)}
+.light .sec-tag{color:rgba(17,19,21,.5)}
 .light .sec-tag::after{background:var(--line-ink)}
 
 
@@ -239,11 +239,11 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
   transform:scaleX(var(--sx,0));transform-origin:left;
 }
 .mani-side{display:flex;flex-direction:column;gap:28px;justify-content:flex-end}
-.mani-side p{font-size:clamp(15px,1.2vw,18px);color:rgba(15,12,10,.72);max-width:46ch}
+.mani-side p{font-size:clamp(15px,1.2vw,18px);color:rgba(17,19,21,.72);max-width:46ch}
 .mani-side p b{font-weight:500;color:var(--ink)}
 .mani-rule{display:flex;gap:16px;align-items:baseline;border-top:1px solid var(--line-ink);padding-top:20px}
 .mani-rule .k{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--coral);min-width:36px}
-.mani-rule .v{font-size:13px;letter-spacing:.06em;color:rgba(15,12,10,.72)}
+.mani-rule .v{font-size:13px;letter-spacing:.06em;color:rgba(17,19,21,.72)}
 
 /* ---- work ---- */
 .work-item{
@@ -287,7 +287,7 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .shot .cap{
   position:absolute;left:14px;bottom:12px;z-index:2;
   font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--cream);background:rgba(15,12,10,.66);backdrop-filter:blur(8px);
+  color:var(--cream);background:rgba(17,19,21,.66);backdrop-filter:blur(8px);
   padding:7px 12px;border-radius:2px;opacity:0;transform:translateY(6px);
   transition:opacity .5s,transform .5s;
 }
@@ -353,7 +353,7 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .sys-cap .cta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);white-space:nowrap}
 .casefile{
   position:fixed;inset:0;z-index:1500;display:none;overflow-y:auto;
-  background:rgba(15,12,10,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  background:rgba(17,19,21,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
 }
 .casefile.open{display:block}
 .cf-inner{max-width:1020px;margin:0 auto;padding:clamp(70px,10vh,130px) clamp(20px,4vw,56px) 140px}
@@ -365,7 +365,7 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-close::before,.cf-close::after{content:"";position:absolute;background:var(--cream);top:50%;left:50%}
 .cf-close::before{width:16px;height:1px;transform:translate(-50%,-50%) rotate(45deg)}
 .cf-close::after{width:16px;height:1px;transform:translate(-50%,-50%) rotate(-45deg)}
-.cf-close:hover{transform:rotate(90deg);border-color:var(--coral);background:rgba(239,122,94,.12)}
+.cf-close:hover{transform:rotate(90deg);border-color:var(--coral);background:rgba(0,161,222,.12)}
 .cf-eyebrow{
   display:flex;align-items:center;gap:14px;margin-bottom:22px;
   font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-45);
@@ -423,10 +423,10 @@ body[data-hero="gif"] .hero-bg .hero-gif{display:block}
 .cf-flow .fl-n{font-family:var(--serif);font-style:italic;font-size:30px;fill:var(--coral)}
 .cf-flow .fl-t{font-family:var(--sans);font-weight:500;font-size:27px;letter-spacing:.14em;fill:var(--cream)}
 .cf-flow .fl-b{font-family:var(--sans);font-weight:300;font-size:21px;fill:var(--cream-70)}
-.cf-flow .fl-r{font-family:var(--sans);font-weight:400;font-size:19px;letter-spacing:.22em;fill:rgba(241,232,214,.62)}
+.cf-flow .fl-r{font-family:var(--sans);font-weight:400;font-size:19px;letter-spacing:.22em;fill:rgba(237,237,232,.62)}
 .cf-flow .fl-ln{stroke:var(--coral);stroke-width:1.5;fill:none}
-.cf-flow .fl-dash{stroke:rgba(241,232,214,.4);stroke-width:1.5;fill:none;stroke-dasharray:5 6}
-.cf-loop{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(241,232,214,.72);border-left:2px solid var(--coral);padding-left:16px;margin:20px 0 0;max-width:60ch}
+.cf-flow .fl-dash{stroke:rgba(237,237,232,.4);stroke-width:1.5;fill:none;stroke-dasharray:5 6}
+.cf-loop{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(237,237,232,.72);border-left:2px solid var(--coral);padding-left:16px;margin:20px 0 0;max-width:60ch}
 .cf-note{margin-top:clamp(40px,6vh,64px);padding-top:18px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.14em;color:var(--cream-45)}
 body.cf-lock{overflow:hidden}
 
@@ -455,7 +455,7 @@ body.cf-lock{overflow:hidden}
   position:absolute;left:0;right:0;bottom:0;z-index:2;
   display:flex;justify-content:space-between;align-items:baseline;gap:12px;
   padding:14px 16px;
-  background:linear-gradient(0deg, rgba(15,12,10,.88), rgba(15,12,10,0));
+  background:linear-gradient(0deg, rgba(17,19,21,.88), rgba(17,19,21,0));
   opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s var(--ease);
 }
 .idx-card:hover figcaption{opacity:1;transform:none}
@@ -467,7 +467,7 @@ body.cf-lock{overflow:hidden}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 @media(min-width:900px){.stats{grid-template-columns:repeat(5,1fr)}}
 .stat{padding:clamp(28px,4vw,52px) clamp(20px,2.4vw,36px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.stat::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 110%,rgba(239,122,94,.14),transparent);opacity:0;transition:opacity .6s}
+.stat::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 110%,rgba(0,161,222,.14),transparent);opacity:0;transition:opacity .6s}
 .stat:hover::after{opacity:1}
 .stat .n{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,72px);line-height:1;letter-spacing:-.02em}
 .stat .n i{font-style:italic;color:var(--coral)}
@@ -534,12 +534,12 @@ body.cf-lock{overflow:hidden}
 @media(min-width:960px){.tier{grid-template-columns:auto 1.1fr 1.6fr auto;gap:clamp(28px,4vw,70px);align-items:baseline}}
 .tier .t-no{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--coral);width:40px}
 .tier h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.2vw,46px);line-height:1.02;letter-spacing:-.01em}
-.tier h3 span{display:block;font-size:12px;font-family:var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(15,12,10,.5);margin-top:12px;font-weight:400}
-.tier p{font-size:15px;color:rgba(15,12,10,.7);max-width:52ch}
+.tier h3 span{display:block;font-size:12px;font-family:var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(17,19,21,.5);margin-top:12px;font-weight:400}
+.tier p{font-size:15px;color:rgba(17,19,21,.7);max-width:52ch}
 .tier p b{font-weight:500;color:var(--ink)}
 .tier-cta{
   font-size:11px;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;
-  border:1px solid rgba(15,12,10,.35);padding:14px 26px;border-radius:99px;
+  border:1px solid rgba(17,19,21,.35);padding:14px 26px;border-radius:99px;
   transition:background .35s,color .35s,border-color .35s;align-self:center;justify-self:start;
   display:inline-block;
 }
@@ -551,7 +551,7 @@ body.cf-lock{overflow:hidden}
 .tier.feature p b{color:var(--cream)}
 .tier.feature .tier-cta{border-color:var(--coral);color:var(--coral)}
 .tier.feature .tier-cta:hover{background:var(--coral);color:var(--ink)}
-.offer-foot{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,60px);margin-top:clamp(36px,6vh,64px);font-size:12px;letter-spacing:.1em;color:rgba(15,12,10,.6)}
+.offer-foot{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,60px);margin-top:clamp(36px,6vh,64px);font-size:12px;letter-spacing:.1em;color:rgba(17,19,21,.6)}
 .offer-foot b{color:var(--ink);font-weight:500}
 
 /* ---- motion archive ---- */
@@ -567,7 +567,7 @@ body.cf-lock{overflow:hidden}
 .gif-cell:hover img,.gif-cell:hover video{transform:scale(1.05)}
 .gif-cell figcaption{
   position:absolute;left:10px;bottom:10px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--cream);background:rgba(15,12,10,.78);padding:6px 10px;border-radius:2px;
+  color:var(--cream);background:rgba(17,19,21,.78);padding:6px 10px;border-radius:2px;
 }
 
 /* ---- ambient motion backgrounds ---- */
@@ -599,10 +599,10 @@ body.cf-lock{overflow:hidden}
 .prac-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.6vw,72px);line-height:1.06;letter-spacing:-.01em}
 .prac-head h2 em{font-style:italic;color:var(--coral)}
 .prac-side{display:flex;flex-direction:column;gap:24px;justify-content:flex-end}
-.prac-side p{font-size:clamp(15px,1.2vw,18px);color:rgba(15,12,10,.72);max-width:46ch}
+.prac-side p{font-size:clamp(15px,1.2vw,18px);color:rgba(17,19,21,.72);max-width:46ch}
 .prac-side p b{font-weight:500;color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
-.chips span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(15,12,10,.28);border-radius:99px;padding:8px 14px;color:rgba(15,12,10,.75)}
+.chips span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(17,19,21,.28);border-radius:99px;padding:8px 14px;color:rgba(17,19,21,.75)}
 .cv{border-top:1px solid var(--line-ink)}
 .cv-row{
   display:grid;grid-template-columns:minmax(220px,.9fr) 1.6fr auto;gap:clamp(16px,3vw,44px);align-items:baseline;
@@ -614,8 +614,8 @@ body.cf-lock{overflow:hidden}
 .cv-row:hover::before{width:clamp(4px,1.2vw,16px)}
 .cv-row .co{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.2vw,31px);line-height:1.1}
 .cv-row .co small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--coral);margin-top:7px;font-weight:400}
-.cv-row .role{font-size:13px;color:rgba(15,12,10,.68);max-width:58ch}
-.cv-row .yr{font-size:11px;letter-spacing:.2em;color:rgba(15,12,10,.45);white-space:nowrap}
+.cv-row .role{font-size:13px;color:rgba(17,19,21,.68);max-width:58ch}
+.cv-row .yr{font-size:11px;letter-spacing:.2em;color:rgba(17,19,21,.45);white-space:nowrap}
 @media(max-width:760px){.cv-row{grid-template-columns:1fr;gap:6px}}
 .range{display:grid;grid-template-columns:1fr;gap:clamp(14px,1.8vw,24px);margin-top:clamp(50px,8vh,100px)}
 @media(min-width:700px){.range{grid-template-columns:repeat(2,1fr)}}
@@ -628,13 +628,13 @@ body.cf-lock{overflow:hidden}
 .range-card:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);transform:translateY(-4px)}
 .range-card h4{font-family:var(--serif);font-weight:400;font-size:clamp(19px,1.8vw,25px)}
 .range-card h4 i{font-style:italic;color:var(--coral);margin-right:8px;font-family:var(--serif);font-weight:300}
-.range-card p{font-size:13.5px;color:rgba(15,12,10,.68);line-height:1.55;transition:color .45s}
+.range-card p{font-size:13.5px;color:rgba(17,19,21,.68);line-height:1.55;transition:color .45s}
 .range-card:hover p{color:var(--cream-70)}
 .prac-foot{
   display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:clamp(20px,3vw,44px);
   margin-top:clamp(50px,8vh,100px);border-top:1px solid var(--line-ink);padding-top:clamp(26px,4vh,40px);
 }
-.prac-edu{font-size:13px;color:rgba(15,12,10,.68);letter-spacing:.04em;max-width:52ch;line-height:1.7}
+.prac-edu{font-size:13px;color:rgba(17,19,21,.68);letter-spacing:.04em;max-width:52ch;line-height:1.7}
 .prac-edu b{color:var(--ink);font-weight:400;font-family:var(--serif);font-size:17px}
 .btn-resume{
   display:inline-flex;align-items:center;gap:14px;
@@ -711,8 +711,8 @@ body.cf-lock{overflow:hidden}
 }
 .final-bg .fb-1{width:clamp(440px,56vw,900px);right:-2%;top:9%;opacity:.4}   /* Back to the beginning — sole accent, top upper right */
 .final-bg::after{content:"";position:absolute;inset:0;background:
-  radial-gradient(100% 80% at 50% 100%, rgba(239,122,94,.16), transparent 55%),
-  linear-gradient(180deg, var(--ink) 0%, rgba(15,12,10,.34) 30%, rgba(15,12,10,.6) 100%)}
+  radial-gradient(100% 80% at 50% 100%, rgba(0,161,222,.16), transparent 55%),
+  linear-gradient(180deg, var(--ink) 0%, rgba(17,19,21,.34) 30%, rgba(17,19,21,.6) 100%)}
 .final-inner{position:relative;z-index:2}
 .final h2{
   font-family:var(--serif);font-weight:300;
@@ -744,6 +744,82 @@ body.cf-lock{overflow:hidden}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
 }
+/* chicago type c-new-bauhaus */
+.hero-bg video{filter:grayscale(1) brightness(.85)}
+h1,h2,h3{font-weight:500;letter-spacing:-.015em}.hero h1{font-weight:600}
+#process .mani-side p{color:var(--cream-70)}#process .mani-side p b{color:var(--cream)}.proc-intro{margin-bottom:clamp(48px,8vh,96px)}
+
+/* ===== motion: page line + process line ===== */
+.wayline{position:fixed;right:clamp(10px,1.4vw,22px);top:50%;height:min(58vh,540px);width:28px;z-index:60;
+  transform:translateY(-50%);opacity:0;pointer-events:none;transition:opacity .5s var(--ease);display:none}
+.wayline.show{opacity:1;pointer-events:auto}
+@media (min-width:1100px){.wayline{display:block}}
+.wayline .wl-track{position:absolute;left:13.5px;top:0;bottom:0;width:1px;background:rgba(237,237,232,.16)}
+.wayline .wl-fill{position:absolute;inset:0;background:var(--coral);transform-origin:top;transform:scaleY(0)}
+.wayline .wl-stop{position:absolute;left:0;width:28px;height:28px;margin-top:-14px;border:0;padding:0;background:none;cursor:pointer;
+  display:grid;place-items:center;color:inherit}
+.wayline .wl-dot{width:7px;height:7px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px rgba(237,237,232,.45);
+  transition:transform .45s var(--ease),background .3s,box-shadow .3s}
+.wayline .wl-stop.passed .wl-dot{background:var(--coral);box-shadow:0 0 0 1px var(--coral)}
+.wayline .wl-stop.active .wl-dot{transform:scale(1.7);background:var(--coral);box-shadow:0 0 0 1px var(--coral),0 0 0 5px rgba(0,161,222,.18)}
+.wayline .wl-lab{position:absolute;right:34px;top:50%;white-space:nowrap;font:400 10.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);background:var(--ink);padding:6px 9px;border-radius:3px;opacity:0;transform:translate(8px,-50%);
+  transition:opacity .35s var(--ease),transform .45s var(--ease);pointer-events:none}
+.wayline .wl-lab b{color:var(--coral);font-weight:500;margin-right:8px}
+.wayline .wl-stop.active .wl-lab,.wayline .wl-stop:hover .wl-lab,.wayline .wl-stop:focus-visible .wl-lab{opacity:1;transform:translate(0,-50%)}
+.wayline .wl-stop:focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:50%}
+.wayline.on-light .wl-track{background:rgba(17,19,21,.18)}
+.wayline.on-light .wl-dot{background:var(--cream);box-shadow:0 0 0 1px rgba(17,19,21,.45)}
+.wayline.on-light .wl-lab{background:var(--ink);color:var(--cream)}
+
+.pline{position:relative;margin:0 0 clamp(18px,3vh,30px);padding:0;list-style:none;display:flex;justify-content:space-between}
+.pline-track{position:absolute;left:14px;right:14px;top:14px;height:1px;background:var(--line);transform-origin:left;transform:scaleX(0);
+  transition:transform 1.1s var(--ease)}
+.pline-fill{position:absolute;inset:0;background:var(--coral);transform-origin:left;transform:scaleX(0);transition:transform .7s var(--ease)}
+.pline.drawn .pline-track{transform:scaleX(1)}
+.pline li{position:relative;z-index:1;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.pline.drawn li{opacity:1;transform:none}
+.pline.drawn li:nth-child(2){transition-delay:.18s}.pline.drawn li:nth-child(3){transition-delay:.36s}
+.pline.drawn li:nth-child(4){transition-delay:.54s}.pline.drawn li:nth-child(5){transition-delay:.72s}
+.pline button{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:28px;min-height:28px;padding:0;border:0;background:none;
+  color:var(--cream-45);font:400 10.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:color .3s}
+.pline li:first-child button{align-items:flex-start}.pline li:last-child button{align-items:flex-end}
+.pline .pd{width:28px;height:28px;display:grid;place-items:center}
+.pline .pd::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px rgba(237,237,232,.4);
+  transition:transform .45s var(--ease),background .3s,box-shadow .3s}
+.pline li.passed .pd::before{background:var(--coral);box-shadow:0 0 0 1px var(--coral)}
+.pline li.active .pd::before{transform:scale(1.6);background:var(--coral);box-shadow:0 0 0 1px var(--coral),0 0 0 6px rgba(0,161,222,.16)}
+.pline li.active button,.pline button:hover{color:var(--cream)}
+.pline button:focus-visible{outline:2px solid var(--coral);outline-offset:4px;border-radius:4px}
+@media (max-width:600px){.pline .pl-lab{font-size:9px;letter-spacing:.12em}}
+@media (prefers-reduced-motion:reduce){
+  .wayline,.wayline *,.pline,.pline *{transition:none!important}
+  .pline-track{transform:scaleX(1)}.pline li{opacity:1;transform:none}
+}
+
+
+/* ===== PitchBlacKnight band: type matched to pitchblacknight.com ===== */
+.otherside .pbk-banner{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0}
+.otherside .btn-pbk{margin-top:clamp(24px,3.4vh,36px)}
+.pbk-mark{font-family:'Bebas Neue',Impact,sans-serif!important;font-weight:400;text-transform:uppercase;line-height:.8;letter-spacing:.005em;
+  font-size:clamp(84px,12.5vw,196px);display:flex;flex-direction:column;align-items:flex-start;flex-wrap:nowrap;width:max-content;
+  margin-bottom:clamp(22px,3.4vh,36px)}
+.pbk-mark .pm{display:block;color:transparent;-webkit-text-stroke:1.5px var(--c);background:center/cover no-repeat;
+  -webkit-background-clip:text;background-clip:text}
+.pbk-mark .pm-1{--c:#F0F0F0;margin-left:.1em;background-image:url("ASSETS/motion-art/v/Vector%20echo.jpg")}
+.pbk-mark .pm-2{--c:#E8512A;margin-left:.47em;background-image:url("ASSETS/motion-art/v/Night%20Moon.jpg")}
+.pbk-mark .pm-3{--c:#7B8DB8;background-image:url("ASSETS/motion-art/v/Stay%20in%20line.jpg")}
+.pbk-sub{font-family:'Space Mono',monospace!important;font-size:clamp(11px,.95vw,13.6px)!important;letter-spacing:.35em!important;
+  color:rgba(240,240,240,.86)!important}
+.pbk-voice{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:clamp(18px,1.5vw,21px);color:rgba(240,240,240,.78);
+  margin:14px 0 18px}
+.pbk-chips span{font-family:'Space Mono',monospace;font-size:9px!important;letter-spacing:.18em!important;padding:6px 14px!important;
+  border-radius:0!important;color:rgba(240,240,240,.62)!important}
+.btn-pbk{font-family:'Space Mono',monospace!important;font-style:normal!important;font-size:11px!important;letter-spacing:.18em;
+  text-transform:uppercase;border-radius:2px!important;padding:16px 22px!important;gap:14px!important}
+.btn-pbk:focus-visible{outline:2px solid #E8512A;outline-offset:4px}
+@media (max-width:760px){.pbk-mark{font-size:clamp(64px,24vw,120px)}}
+
 </style>
 <script src="ASSETS/nav-back.js"></script>
 </head>
@@ -785,7 +861,7 @@ body.cf-lock{overflow:hidden}
       <span class="split-l"><span>ROSENTHAL</span></span>
     </h1>
     <div class="hero-sub" id="heroSub">
-      <p><b>Twenty-three years</b> of product design, visual craft, and design systems for Google, GE&nbsp;Healthcare, Blue&nbsp;Cross&nbsp;Blue&nbsp;Shield, Verizon, TransUnion, and Avant. I work with AI every day. What ships is finished by hand.</p>
+      <p><b>Product designer, 23 years.</b> Product design, visual design and design systems for Google, GE&nbsp;Healthcare, Blue&nbsp;Cross&nbsp;Blue&nbsp;Shield, Verizon, TransUnion and Avant.</p>
       <div class="hero-scroll"><span>Scroll</span><span class="wire"></span></div>
     </div>
   </div>
@@ -800,22 +876,91 @@ body.cf-lock{overflow:hidden}
 </div>
 
 
-<!-- 02 · PROBLEM / SOLUTION -->
-<section class="sec light" id="manifesto">
-  <video class="secfx on-light tr rot-r mv" poster="ASSETS/motion-art/v/Solar%20BW.jpg" data-src="ASSETS/motion-art/v/Solar%20BW.mp4" muted loop playsinline preload="none" width="500" height="281" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">01</span><span>The Premise</span></div>
-  <div class="mani-grid">
+<!-- 01 · PROCESS (merged with the old premise list) -->
+<section class="sec" id="process">
+  <video class="secfx on-dark bl rot-r mv" poster="ASSETS/motion-art/v/Crank%20still.jpg" data-src="ASSETS/motion-art/v/Crank%20still.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
+  <div class="sec-tag"><span class="no">01</span><span>Process</span></div>
+  <div class="mani-grid proc-intro">
     <h2 class="mani-state" id="maniState">
-      Method.<br>
-      <em>Five phases, each closed by a decision.</em>
+      Process.<br>
+      <em>Define, build, test, design, ship.</em>
     </h2>
     <div class="mani-side">
-      <p class="reveal">Working prototypes come early, and the careful design pass goes to what survives testing. <b>Static comps are kept to a minimum.</b></p>
-      <div class="mani-rule reveal"><span class="k">1.</span><span class="v">Define. The goal, the user and the constraints, agreed in writing before work starts.</span></div>
-      <div class="mani-rule reveal"><span class="k">2.</span><span class="v">Build. A working prototype early, so decisions get made against the real thing.</span></div>
-      <div class="mani-rule reveal"><span class="k">3.</span><span class="v">Test. Real people and real content. What people do is weighed above what they say.</span></div>
-      <div class="mani-rule reveal"><span class="k">4.</span><span class="v">Design. Type, spacing, color, motion and every state, applied to what held up in testing.</span></div>
-      <div class="mani-rule reveal"><span class="k">5.</span><span class="v">Ship. Components, documentation and handoff, delivered alongside engineering.</span></div>
+      <p class="reveal">I build a working prototype early and test it before doing detailed design.</p>
+    </div>
+  </div>
+  <ol class="pline" aria-label="Process steps"><span class="pline-track" aria-hidden="true"><span class="pline-fill"></span></span><li><button type="button" data-step="0"><span class="pd" aria-hidden="true"></span><span class="pl-lab">Define</span></button></li><li><button type="button" data-step="1"><span class="pd" aria-hidden="true"></span><span class="pl-lab">Build</span></button></li><li><button type="button" data-step="2"><span class="pd" aria-hidden="true"></span><span class="pl-lab">Test</span></button></li><li><button type="button" data-step="3"><span class="pd" aria-hidden="true"></span><span class="pl-lab">Design</span></button></li><li><button type="button" data-step="4"><span class="pd" aria-hidden="true"></span><span class="pl-lab">Ship</span></button></li></ol>
+  <div class="proc-list">
+    <div class="proc open">
+      <div class="proc-head" role="button" tabindex="0" aria-expanded="true">
+        <span class="proc-no">i.</span><h3 class="proc-name">Define</h3><span class="proc-x" aria-hidden="true"></span>
+      </div>
+      <div class="proc-body"><div class="proc-body-inner">
+        <p>Research users, review the current product and brand, and agree on goals before design starts.</p>
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Synchronization.jpg" data-src="ASSETS/motion-art/v/Synchronization.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
+      </div></div>
+    </div>
+    <div class="proc">
+      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="proc-no">ii.</span><h3 class="proc-name">Build</h3><span class="proc-x" aria-hidden="true"></span>
+      </div>
+      <div class="proc-body"><div class="proc-body-inner">
+        <p>Make a rough working prototype of the main flows.</p>
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Twisting%20vector.jpg" data-src="ASSETS/motion-art/v/Twisting%20vector.mp4" muted loop playsinline preload="none" width="499" height="416"></video>
+      </div></div>
+    </div>
+    <div class="proc">
+      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="proc-no">iii.</span><h3 class="proc-name">Test</h3><span class="proc-x" aria-hidden="true"></span>
+      </div>
+      <div class="proc-body"><div class="proc-body-inner">
+        <p>Show the prototype to users and stakeholders. Keep what works and change what doesn't.</p>
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Graph%20builds.jpg" data-src="ASSETS/motion-art/v/Graph%20builds.mp4" muted loop playsinline preload="none" width="800" height="600"></video>
+      </div></div>
+    </div>
+    <div class="proc">
+      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="proc-no">iv.</span><h3 class="proc-name">Design</h3><span class="proc-x" aria-hidden="true"></span>
+      </div>
+      <div class="proc-body"><div class="proc-body-inner">
+        <p>Finish type, color, spacing, motion and all states. AI helps with repetitive work.</p>
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Keep%20building.jpg" data-src="ASSETS/motion-art/v/Keep%20building.mp4" muted loop playsinline preload="none" width="256" height="256"></video>
+      </div></div>
+    </div>
+    <div class="proc">
+      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="proc-no">v.</span><h3 class="proc-name">Ship</h3><span class="proc-x" aria-hidden="true"></span>
+      </div>
+      <div class="proc-body"><div class="proc-body-inner">
+        <p>Deliver components and documentation to engineering and support the build.</p>
+        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Forever%20drop.jpg" data-src="ASSETS/motion-art/v/Forever%20drop.mp4" muted loop playsinline preload="none" width="490" height="392"></video>
+      </div></div>
+    </div>
+  </div>
+  <div class="proc-more">
+    <div class="proc-more-head">
+      <p class="proc-more-eyebrow">Process documents</p>
+      <h3>The process is written down. <em>Here are the documents.</em></h3>
+    </div>
+    <div class="proc-more-grid">
+      <a class="proc-card" href="process/index.html">
+        <span class="k">i. The method</span>
+        <b>Process guide</b>
+        <p>Working agreements, weekly schedule and handoff checklist. Also available as slides.</p>
+        <span class="cta">Read the method →</span>
+      </a>
+      <a class="proc-card" href="process/skill-library.html">
+        <span class="k">ii. The skill library</span>
+        <b>Skill library</b>
+        <p>Nine written procedures, from project brief to developer handoff.</p>
+        <span class="cta">Open the library →</span>
+      </a>
+      <a class="proc-card" href="process/pathfinder-case-study.html">
+        <span class="k">iii. The audit</span>
+        <b>Pathfinder audit</b>
+        <p>Pathfinder checked against its own documentation. Five findings.</p>
+        <span class="cta">Read the audit →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -823,10 +968,10 @@ body.cf-lock{overflow:hidden}
 <!-- 02 · THE SYSTEMS -->
 <section class="sec systems" id="systems">
   <video class="secfx on-dark mid-l rot-r mv" poster="ASSETS/motion-art/v/3x%20Geo%20Twist.jpg" data-src="ASSETS/motion-art/v/3x%20Geo%20Twist.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">02</span><span>The Systems · 2018 – 2026</span></div>
+  <div class="sec-tag"><span class="no">02</span><span>Design systems · 2018–2026</span></div>
   <div class="index-head">
-    <h2 class="reveal">Design systems. <em>Built and led for enterprise teams.</em></h2>
-    <p class="reveal">Run at enterprise scale for Avant, BCBS, GE&nbsp;Healthcare, SurePeople, and TransUnion: architecture, governance, and a language whole organizations ship from. Some I founded. Some I inherited and made stronger.</p>
+    <h2 class="reveal">Design systems. <em>Built or maintained for five companies.</em></h2>
+    <p class="reveal">Avant, BCBS, GE&nbsp;Healthcare, SurePeople and TransUnion. Some I started, some I took over.</p>
   </div>
   <div class="sys-grid">
     <figure class="sys-card reveal" data-href="northstar-case-study.html" tabindex="0" role="link" aria-label="Open the NorthStar DS case study">
@@ -868,10 +1013,10 @@ body.cf-lock{overflow:hidden}
 <!-- 02.7 · PROJECT INDEX -->
 <section class="sec index" id="index">
   <video class="secfx on-dark tl mv" poster="ASSETS/motion-art/v/Circle%20spheres.jpg" data-src="ASSETS/motion-art/v/Circle%20spheres.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">03</span><span>The Index · 2001 – 2023</span></div>
+  <div class="sec-tag"><span class="no">03</span><span>Archive · 2001–2023</span></div>
   <div class="index-head">
     <h2 class="reveal">Archive. <em>Brand, product and campaign work.</em></h2>
-    <p class="reveal">Fintech, healthcare, retail and consumer brands. Most boards open a full case file.</p>
+    <p class="reveal">Fintech, healthcare, retail and consumer brands. Click a project for details.</p>
   </div>
   <div class="idx-grid">
     <figure class="idx-card reveal" data-case="cf-truecredit" tabindex="0" role="button" aria-label="Open TrueCredit case file" style="cursor:pointer"><img src="ASSETS/work/board-truecredit.jpg" alt="TrueCredit: TransUnion fintech rebrand across mobile, tablet, and desktop, 2018" loading="lazy" width="1600" height="1236"><figcaption><b>TrueCredit</b><span>Fintech Rebrand · 2018</span></figcaption></figure>
@@ -914,93 +1059,15 @@ body.cf-lock{overflow:hidden}
   </div>
 </section>
 
-<!-- 05 · PROCESS -->
-<section class="sec" id="process">
-  <video class="secfx on-dark bl rot-r mv" poster="ASSETS/motion-art/v/Crank%20still.jpg" data-src="ASSETS/motion-art/v/Crank%20still.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">05</span><span>How the work gets made</span></div>
-  <div class="proc-list">
-    <div class="proc open">
-      <div class="proc-head" role="button" tabindex="0" aria-expanded="true">
-        <span class="proc-no">i.</span><h3 class="proc-name">Define</h3><span class="proc-x" aria-hidden="true"></span>
-      </div>
-      <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Agree on the problem.</b> Research with real people, an audit of the brand and the product, and success criteria written down before any screens.</p>
-        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Synchronization.jpg" data-src="ASSETS/motion-art/v/Synchronization.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
-      </div></div>
-    </div>
-    <div class="proc">
-      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
-        <span class="proc-no">ii.</span><h3 class="proc-name">Build</h3><span class="proc-x" aria-hidden="true"></span>
-      </div>
-      <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Get to a working version early.</b> Flows, foundations and a rough prototype, built quickly so the team reacts to a working build instead of a static comp.</p>
-        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Twisting%20vector.jpg" data-src="ASSETS/motion-art/v/Twisting%20vector.mp4" muted loop playsinline preload="none" width="499" height="416"></video>
-      </div></div>
-    </div>
-    <div class="proc">
-      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
-        <span class="proc-no">iii.</span><h3 class="proc-name">Test</h3><span class="proc-x" aria-hidden="true"></span>
-      </div>
-      <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Test the build with users and stakeholders.</b> Keep what holds up and cut what doesn't. What people do is weighed above what they say.</p>
-        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Graph%20builds.jpg" data-src="ASSETS/motion-art/v/Graph%20builds.mp4" muted loop playsinline preload="none" width="800" height="600"></video>
-      </div></div>
-    </div>
-    <div class="proc">
-      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
-        <span class="proc-no">iv.</span><h3 class="proc-name">Design</h3><span class="proc-x" aria-hidden="true"></span>
-      </div>
-      <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Finish the details.</b> Art direction, type, spacing, color, motion and every state, finished to production quality. AI speeds up the mechanical passes. Design judgment and the final finish are done by hand.</p>
-        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Keep%20building.jpg" data-src="ASSETS/motion-art/v/Keep%20building.mp4" muted loop playsinline preload="none" width="256" height="256"></video>
-      </div></div>
-    </div>
-    <div class="proc">
-      <div class="proc-head" role="button" tabindex="0" aria-expanded="false">
-        <span class="proc-no">v.</span><h3 class="proc-name">Ship</h3><span class="proc-x" aria-hidden="true"></span>
-      </div>
-      <div class="proc-body"><div class="proc-body-inner">
-        <p><b>Hand off to engineering.</b> Components, documentation, governance and developer handoff, delivered alongside the engineering team.</p>
-        <video class="proc-gif mv" poster="ASSETS/motion-art/v/Forever%20drop.jpg" data-src="ASSETS/motion-art/v/Forever%20drop.mp4" muted loop playsinline preload="none" width="490" height="392"></video>
-      </div></div>
-    </div>
-  </div>
-  <div class="proc-more">
-    <div class="proc-more-head">
-      <p class="proc-more-eyebrow">Process as product</p>
-      <h3>The method is written down, versioned, <em>and tested on my own work.</em></h3>
-    </div>
-    <div class="proc-more-grid">
-      <a class="proc-card" href="process/index.html">
-        <span class="k">i. The method</span>
-        <b>Five phases, five decisions</b>
-        <p>Working agreements, the weekly rhythm, the handoff package, and the gate that closes each phase. Also available as slides.</p>
-        <span class="cta">Read the method →</span>
-      </a>
-      <a class="proc-card" href="process/skill-library.html">
-        <span class="k">ii. The skill library</span>
-        <b>Nine skills, documented like a product</b>
-        <p>My practice from brief intake to developer handoff, written as reusable procedures with a rubric and an output format each.</p>
-        <span class="cta">Open the library →</span>
-      </a>
-      <a class="proc-card" href="process/pathfinder-case-study.html">
-        <span class="k">iii. The audit</span>
-        <b>The method, pointed at my own system</b>
-        <p>Pathfinder run through the library and checked against its own claims. Five findings, each with a file behind it.</p>
-        <span class="cta">Read the audit →</span>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- 06 · PRACTICE -->
 <section class="sec light practice" id="practice">
   <video class="secfx on-light tr rot-l mv" poster="ASSETS/motion-art/v/Can%20you%20see%20me.jpg" data-src="ASSETS/motion-art/v/Can%20you%20see%20me.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">06</span><span>The Practice · 2003 – 2026</span></div>
+  <div class="sec-tag"><span class="no">05</span><span>Experience · 2003–2026</span></div>
   <div class="prac-head">
-    <h2 class="reveal">Range. <em>Film, motion and sound, carried into product design.</em></h2>
+    <h2 class="reveal">Experience. <em>Product, brand, motion and sound.</em></h2>
     <div class="prac-side">
-      <p class="reveal">Most teams staff this range across three or four hires: product, systems, brand, art direction, motion, and sound. I carry it as one person. On a team, that means I plug in wherever the work needs me and can speak every specialist’s language while I’m there. <b>AI is in the workflow, not in the credits.</b> I use Claude Code for working prototypes and production front-end, Figma Make to take a direction to a clickable prototype in an afternoon, and agent workflows for the multi-step passes like audits, variant production, and documentation. That buys back the hours that go into finish. Over the past year this has turned into AI-assisted design engineering. I design and build in one pass and take an idea to production-grade front-end instead of stopping at comps. This site and my Morning Intel dashboard were both built that way.</p>
+      <p class="reveal">I work across product design, design systems, brand, art direction, motion and sound. I use Claude Code and Figma Make to build working prototypes, and AI agents for audits and documentation. This site and my Morning Intel dashboard were built that way.</p>
       <div class="chips reveal">
         <span>Art Direction</span><span>Design Systems</span><span>Brand-to-Product</span><span>Visual Leadership</span><span>CX Audit + Strategy</span><span>Cross-Functional Leadership</span><span>Figma-First Workflows</span><span>Design Engineering</span><span>Accessibility + Craft</span><span>Voice &amp; Narrative</span>
       </div>
@@ -1066,12 +1133,12 @@ body.cf-lock{overflow:hidden}
   </div>
 
   <div class="range">
-    <div class="range-card reveal"><h4><i>a.</i>Figma</h4><p>I build systems that scale and visuals that behave.</p></div>
-    <div class="range-card reveal"><h4><i>b.</i>AI</h4><p>Prototyping, production front-end and documentation passes, with every design decision made by hand.</p></div>
-    <div class="range-card reveal"><h4><i>c.</i>CX</h4><p>I find the friction, the confusion, and the quiet reasons customers leave. Then I fix them.</p></div>
-    <div class="range-card reveal"><h4><i>d.</i>Brand</h4><p>Identity carried into the interface: rhythm, interaction, cohesion. Concept to system in one arc.</p></div>
-    <div class="range-card reveal"><h4><i>e.</i>Platforms</h4><p>Slack, Jira, Confluence, GitHub, Notion, Miro. Whatever your team uses.</p></div>
-    <div class="range-card reveal"><h4><i>f.</i>Fluxus</h4><p>Video, motion, animation, music and sound, spatial concepts, projection mapping. First take, always.</p></div>
+    <div class="range-card reveal"><h4><i>a.</i>Figma</h4><p>Design systems and screens, using variables and modes.</p></div>
+    <div class="range-card reveal"><h4><i>b.</i>AI</h4><p>Prototypes, front-end code and documentation.</p></div>
+    <div class="range-card reveal"><h4><i>c.</i>CX</h4><p>Finding and fixing usability problems.</p></div>
+    <div class="range-card reveal"><h4><i>d.</i>Brand</h4><p>Brand identity applied to product interfaces.</p></div>
+    <div class="range-card reveal"><h4><i>e.</i>Platforms</h4><p>Slack, Jira, Confluence, GitHub, Notion, Miro.</p></div>
+    <div class="range-card reveal"><h4><i>f.</i>Fluxus</h4><p>Video, animation, music, sound and projection mapping.</p></div>
   </div>
 
   <div class="prac-foot reveal">
@@ -1083,25 +1150,25 @@ body.cf-lock{overflow:hidden}
 <!-- 07 · OFFER -->
 <section class="sec light offer" id="offer">
   <video class="secfx on-light bl mv" poster="ASSETS/motion-art/v/anapose.jpg" data-src="ASSETS/motion-art/v/anapose.mp4" muted loop playsinline preload="none" width="500" height="500" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">07</span><span>Ways to work together</span></div>
+  <div class="sec-tag"><span class="no">06</span><span>Work with me</span></div>
   <div class="offer-grid">
     <div class="tier reveal">
       <span class="t-no">i.</span>
       <h3>The Sprint<span>2–4 weeks</span></h3>
-      <p>A focused engagement: design audit, creative direction, and a <b>concept your team can rally around.</b> Strategy with pictures, made to be built from rather than filed in a drive.</p>
-      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=The%20Sprint" data-magnetic>Start a sprint</a>
+      <p>Design audit, creative direction and a concept.</p>
+      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=The%20Sprint" data-magnetic>Ask about this</a>
     </div>
     <div class="tier feature reveal">
       <span class="t-no">ii.</span>
-      <h3>Embedded Lead<span>3–12 months · most requested</span></h3>
-      <p>I join your team as <b>design systems lead or art director</b>, the same seat I've held at GE Healthcare, BCBS, TransUnion, and Avant. Vision through governance, inside your stack, alongside your people.</p>
-      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Embedded%20Lead" data-magnetic>Reserve the seat</a>
+      <h3>Embedded Lead<span>3–12 months</span></h3>
+      <p>I join your team as design systems lead or art director.</p>
+      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Embedded%20Lead" data-magnetic>Ask about this</a>
     </div>
     <div class="tier reveal">
       <span class="t-no">iii.</span>
-      <h3>Studio Build<span>Full world · PBK Studio</span></h3>
-      <p>The whole visual world: <b>identity, design system, website, motion, sound.</b> One voice from the logo to the interface to the music in the launch film.</p>
-      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Studio%20Build" data-magnetic>Build a world</a>
+      <h3>Studio Build<span>PBK Studio</span></h3>
+      <p>Identity, design system, website, motion and sound, through PBK Studio.</p>
+      <a class="tier-cta" href="mailto:mikelrosenthal@me.com?subject=Studio%20Build" data-magnetic>Ask about this</a>
     </div>
   </div>
   <div class="offer-foot reveal">
@@ -1114,10 +1181,10 @@ body.cf-lock{overflow:hidden}
 <!-- 08 · MOTION ARCHIVE -->
 <section class="sec archive" id="archive">
   <video class="secfx on-dark inset mv" poster="ASSETS/motion-art/v/Solve%20me.jpg" data-src="ASSETS/motion-art/v/Solve%20me.mp4" muted loop playsinline preload="none" width="400" height="400" aria-hidden="true"></video>
-  <div class="sec-tag"><span class="no">08</span><span>The Motion Archive</span></div>
+  <div class="sec-tag"><span class="no">07</span><span>Motion work</span></div>
   <div class="archive-head">
-    <h2 class="reveal">156 motion pieces. <em>Each one starts with a single rule.</em></h2>
-    <p class="reveal">A daily practice since 1993: geometry, orbit, and patience. Full archive at pitchblacknight.com.</p>
+    <h2 class="reveal">Motion work. <em>156 pieces since 1993.</em></h2>
+    <p class="reveal">Full archive at pitchblacknight.com.</p>
   </div>
   <div class="gif-river" id="gifRiver" aria-label="Selected motion works">
     <figure class="gif-cell"><video class="mv" poster="ASSETS/motion-art/v/Cosmos.jpg" data-src="ASSETS/motion-art/v/Cosmos.mp4" muted loop playsinline preload="none" width="400" height="300" aria-label="Cosmos"></video><figcaption>Cosmos</figcaption></figure>
@@ -1147,29 +1214,7 @@ body.cf-lock{overflow:hidden}
   </div>
 </section>
 
-<!-- 09 · THE OTHER SIDE -->
-<section class="sec otherside" id="otherside">
-  <div class="pbk-reel" aria-hidden="true">
-    <video class="on mv" poster="ASSETS/motion-art/v/Vector%20echo.jpg" data-src="ASSETS/motion-art/v/Vector%20echo.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
-    <video class="mv" poster="ASSETS/motion-art/v/Night%20Moon.jpg" data-src="ASSETS/motion-art/v/Night%20Moon.mp4" muted loop playsinline preload="none" width="426" height="239"></video>
-    <video class="mv" poster="ASSETS/motion-art/v/Stay%20in%20line.jpg" data-src="ASSETS/motion-art/v/Stay%20in%20line.mp4" muted loop playsinline preload="none" width="500" height="500"></video>
-  </div>
-  <div class="pbk-scrim" aria-hidden="true"></div>
-  <div class="sec-tag"><span class="no">09</span><span>The Other Side of the Practice</span></div>
-  <div class="pbk-banner">
-    <div class="pbk-lede">
-      <h2 class="pbk-mark reveal"><span class="pm-1">Pitch</span><span class="pm-2">Blac</span><span class="pm-3">Knight</span></h2>
-      <p class="pbk-sub reveal">Mikel Rosenthal &middot; Fluxus Artist &middot; Still Making</p>
-      <div class="pbk-chips reveal" aria-label="Practice disciplines">
-        <span>Design Systems</span><span>Music</span><span>Digital Art</span><span>Voice Performance</span><span>Brand Identity</span><span>Dance</span><span>Operatic Voice</span><span>Vocal Mimicry</span>
-      </div>
-    </div>
-    <a class="btn-pbk reveal" href="https://pitchblacknight.com" target="_blank" rel="noopener" data-magnetic aria-label="Enter PitchBlacKnight: music, digital art, and voice">
-      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      Enter PitchBlacKnight <span class="arr">&rarr;</span>
-    </a>
-  </div>
-</section>
+
 
 <!-- 10 · FINAL CTA -->
 <section class="sec final" id="contact">
@@ -1177,9 +1222,9 @@ body.cf-lock{overflow:hidden}
     <video class="fb fb-1 mv" poster="ASSETS/motion-art/v/Back%20to%20the%20beginning.jpg" data-src="ASSETS/motion-art/v/Back%20to%20the%20beginning.mp4" muted loop playsinline preload="none" width="400" height="336"></video>
   </div>
   <div class="final-inner">
-    <div class="sec-tag"><span class="no">10</span><span>The Invitation</span></div>
-    <h2 id="finalTitle">Let&rsquo;s talk about <em>what you&rsquo;re building.</em></h2>
-    <p class="final-note reveal">If your team has reached the point where design needs to do more, whether that's anchoring a system, defining a brand, or holding a complex product together, that's the work I do best. I'm available for focused engagements and open to the right full- or part-time role.</p>
+    <div class="sec-tag"><span class="no">08</span><span>Contact</span></div>
+    <h2 id="finalTitle">Contact.</h2>
+    <p class="final-note reveal">Available for contract projects and full-time or part-time roles. Email is the best way to reach me.</p>
     <div class="final-row reveal">
       <a class="btn-mail" href="mailto:mikelrosenthal@me.com" data-magnetic>mikelrosenthal@me.com <span class="arr">→</span></a>
       <div class="final-links">
@@ -1190,6 +1235,31 @@ body.cf-lock{overflow:hidden}
       </div>
     </div>
     <p class="final-fine reveal">Email first · Replies within 2–3 business days · Remote or Chicago-area hybrid</p>
+  </div>
+</section>
+
+<!-- + · SIDE PROJECT: PITCHBLACKNIGHT (type matches pitchblacknight.com) -->
+<section class="sec otherside" id="otherside">
+  <div class="pbk-reel" aria-hidden="true">
+    <video class="on mv" poster="ASSETS/motion-art/v/Vector%20echo.jpg" data-src="ASSETS/motion-art/v/Vector%20echo.mp4" muted loop playsinline preload="none" width="400" height="400"></video>
+    <video class="mv" poster="ASSETS/motion-art/v/Night%20Moon.jpg" data-src="ASSETS/motion-art/v/Night%20Moon.mp4" muted loop playsinline preload="none" width="426" height="239"></video>
+    <video class="mv" poster="ASSETS/motion-art/v/Stay%20in%20line.jpg" data-src="ASSETS/motion-art/v/Stay%20in%20line.mp4" muted loop playsinline preload="none" width="500" height="500"></video>
+  </div>
+  <div class="pbk-scrim" aria-hidden="true"></div>
+  <div class="sec-tag"><span class="no">+</span><span>Side project</span></div>
+  <div class="pbk-banner">
+    <div class="pbk-lede">
+      <h2 class="pbk-mark reveal" aria-label="PitchBlacKnight"><span class="pm pm-1" aria-hidden="true">Pitch</span><span class="pm pm-2" aria-hidden="true">Blac</span><span class="pm pm-3" aria-hidden="true">Knight</span></h2>
+      <p class="pbk-sub reveal">Mikel Rosenthal &middot; Fluxus artist</p>
+      <p class="pbk-voice reveal">Music, digital art and voice, made alongside the design work.</p>
+      <div class="pbk-chips reveal" aria-label="Practice disciplines">
+        <span>Music</span><span>Digital Art</span><span>Voice Performance</span><span>Brand Identity</span>
+      </div>
+    </div>
+    <a class="btn-pbk reveal" href="https://pitchblacknight.com" target="_blank" rel="noopener" data-magnetic aria-label="Enter PitchBlacKnight: music, digital art, and voice">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      Enter PitchBlacKnight <span class="arr">&rarr;</span>
+    </a>
   </div>
 </section>
 
@@ -1279,7 +1349,7 @@ body.cf-lock{overflow:hidden}
 <figure class="cf-flow" role="img" aria-label="FIBER process flow: audit, foundations, components, document, prove, adopt, with accessibility running under every stage and production learnings feeding back into the system">
 <svg viewBox="0 0 1240 720" xmlns="http://www.w3.org/2000/svg">
   <defs><marker id="flArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/></marker>
-  <marker id="flArrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(241,232,214,.4)"/></marker></defs>
+  <marker id="flArrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(237,237,232,.4)"/></marker></defs>
   <rect class="fl-box" x="20" y="20" width="360" height="240" rx="3"/>
   <text class="fl-n" x="48" y="78">i.</text>
   <text class="fl-t" x="98" y="76">AUDIT</text>
@@ -2492,6 +2562,76 @@ body.cf-lock{overflow:hidden}
   }
 
   ScrollTrigger.refresh();
+})();
+</script>
+
+<script>
+/* ===== motion: page line + process line (vanilla, works with or without Lenis) ===== */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const secs = [...document.querySelectorAll('section.sec')].filter(s => s.querySelector('.sec-tag .no'));
+  const hero = document.getElementById('top');
+
+  /* --- page line --- */
+  const wl = document.createElement('nav');
+  wl.className = 'wayline'; wl.setAttribute('aria-label', 'Page sections');
+  wl.innerHTML = '<span class="wl-track" aria-hidden="true"><span class="wl-fill"></span></span>' + secs.map((s, i) => {
+    const no = s.querySelector('.sec-tag .no').textContent.trim();
+    const lab = s.querySelector('.sec-tag span:nth-child(2)').textContent.split('·')[0].trim();
+    return `<button class="wl-stop" type="button" style="top:${secs.length > 1 ? i / (secs.length - 1) * 100 : 0}%" aria-label="Go to ${no} ${lab}"><span class="wl-dot"></span><span class="wl-lab" aria-hidden="true"><b>${no}</b>${lab}</span></button>`;
+  }).join('');
+  document.body.appendChild(wl);
+  const stops = [...wl.querySelectorAll('.wl-stop')], fill = wl.querySelector('.wl-fill');
+  stops.forEach((b, i) => b.addEventListener('click', () => {
+    if (window.__lenis) window.__lenis.scrollTo(secs[i], {offset: -20});
+    else secs[i].scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
+  }));
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const probe = scrollY + innerHeight * .4;
+    const tops = secs.map(s => s.getBoundingClientRect().top + scrollY);
+    let idx = -1;
+    tops.forEach((t, i) => { if (probe >= t) idx = i; });
+    let frac = 0;
+    if (idx >= 0 && idx < secs.length - 1) frac = Math.min(1, (probe - tops[idx]) / (tops[idx + 1] - tops[idx]));
+    const prog = idx < 0 ? 0 : Math.min(1, (idx + frac) / (secs.length - 1));
+    fill.style.transform = `scaleY(${prog})`;
+    stops.forEach((b, i) => { b.classList.toggle('active', i === idx); b.classList.toggle('passed', i < idx); });
+    if (idx >= 0) stops[idx].setAttribute('aria-current', 'true');
+    stops.forEach((b, i) => { if (i !== idx) b.removeAttribute('aria-current'); });
+    wl.classList.toggle('show', hero.getBoundingClientRect().bottom < innerHeight * .5);
+    /* swap to dark marks when the line sits over a light section */
+    const mid = innerHeight / 2;
+    const under = secs.find(s => { const r = s.getBoundingClientRect(); return r.top <= mid && r.bottom >= mid; });
+    wl.classList.toggle('on-light', !!under && under.classList.contains('light'));
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive: true});
+  addEventListener('resize', update);
+  update();
+
+  /* --- process line --- */
+  const pl = document.querySelector('.pline');
+  if (!pl) return;
+  const procs = [...document.querySelectorAll('.proc')];
+  const items = [...pl.querySelectorAll('li')], pfill = pl.querySelector('.pline-fill');
+  const sync = () => {
+    const open = procs.findIndex(p => p.classList.contains('open'));
+    pfill.style.transform = `scaleX(${open < 0 ? 0 : open / (items.length - 1)})`;
+    items.forEach((li, i) => {
+      li.classList.toggle('active', i === open); li.classList.toggle('passed', open >= 0 && i < open);
+      li.querySelector('button').setAttribute('aria-pressed', i === open);
+    });
+  };
+  procs.forEach(p => new MutationObserver(sync).observe(p, {attributes: true, attributeFilter: ['class']}));
+  pl.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    const p = procs[+b.dataset.step];
+    if (!p.classList.contains('open')) p.querySelector('.proc-head').click();
+  }));
+  sync();
+  if (reduced || !('IntersectionObserver' in window)) { pl.classList.add('drawn'); return; }
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { pl.classList.add('drawn'); o.disconnect(); } }),
+    {threshold: .6}).observe(pl);
 })();
 </script>
 </body>
